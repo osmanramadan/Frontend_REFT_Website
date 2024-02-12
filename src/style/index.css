@@ -1,3 +1,260 @@
-* {
-    background-color: rgb(241, 236, 236);
+
+/* ................................................. global ........................................... */
+:root { 
+    --indigo_700_14:#47478a14; 
+    --blue_gray_50:#ececf1; 
+    --blue_gray_900_a2:#1c1e53a2; 
+    --white_A700_99:#ffffff99; 
+    --black_900:#000000; 
+    --white_A700_ab:#ffffffab; 
+    --gray_100_99:#f2efff99; 
+    --blue_gray_900_02:#232536; 
+    --white_A700_19:#ffffff19; 
+    --blue_gray_900_01:#1c1e53; 
+    --blue_gray_900:#282938; 
+    --deep_purple_A700:#2405f2; 
+    --gray_600:#818181; 
+    --gray_700:#646464; 
+    --lime_700:#c8971b; 
+    --blue_gray_300:#9197b3; 
+    --gray_800:#4f4f4f; 
+    --amber_200:#fcd980; 
+    --blue_gray_900_7e:#2829387e; 
+    --gray_100:#eef4fa; 
+    --gray_100_02:#f4f6fc; 
+    --deep_purple_A700_66:#2405f266; 
+    --blue_gray_900_90:#28293890; 
+    --gray_100_87:#f4f6fc87; 
+    --gray_100_01:#f5f5f5; 
+    --blue_gray_900_a2_01:#282938a2; 
+    --blue_gray_900_99:#1c1e5399; 
+    --blue_gray_900_99_01:#28293899; 
+    --white_A700:#ffffff; 
+    }
+
+
+body {
+    margin: 0;
+    font-family: 'cairo', sans-serif;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+.inputfield {
+    height: 65px;
+    width: 450px;
+    background-color:#1c1e53;
+    outline:none;
+    color:  var(--gray_100_87);
+    display:block;
+    margin-bottom: 25px;
+    border:2px solid var(--white_A700_19);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+.inputfield::placeholder {
+    color: var(--gray_100_87);
+    font-size: 20px;
+    text-indent:13px ;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ............................................. responsive ................................................ */
+
+@media (max-width: 500px) {
+
+    .access {
+       
+        height:100%;
+        width:100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+     }
+    
+    .access-img {
+        width:45%;
+        height:100%;
+       }
+       
+    .access-inputs{
+        width:100%;
+        height:100%;
+        background-color: #1c1e53;
+        color:white;
+        border-radius: 40px;
+        padding:60px;
+        margin-right: -250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;        
+     }
+     
+     .access img {
+        height:100%;
+        width:400%;
+     }
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
+    .access {
+        height:100%;
+        width:100%;
+        margin-top: 20px;
+     }
+    
+    .access-img {
+         width:50%;
+         height:100%;
+         
+       }
+       
+    .access-inputs{
+         width:70%;
+         height:50%;
+         background-color: #1c1e53;
+         color:white;
+         border-radius: 40px;
+         padding:60px;
+         margin-top: 10px;
+         margin-left: -160px; 
+     }
+     
+     .access img {
+         height:100%;
+         width:310%;
+     }
+}
+
+  
+@media (min-width: 750px) and (max-width: 1000px) {
+    .access {
+        height:100%;
+        width:100%;
+        margin-top: 20px;
+        
+     }
+
+     .access-img {
+         width:50%;
+         height:100%;
+         margin-left: 20px;
+     
+       }
+       
+     .access-inputs{
+         width:63%;
+         height:100%;
+         background-color: #1c1e53;
+         color:white;
+         border-radius:40px;
+         padding:60px;
+         margin-top: 50px;
+         margin-left: -280px;
+        
+     }
+     
+     .access img {
+         height:120%;
+         width:190%;
+     }
+}
+
+@media (min-width: 1000px) and (max-width: 1480px) {
+    .access {
+        background-color: #777898;
+        height:100%;
+        width:100%;
+        margin-top: 20px;
+        
+     }
+         
+         
+     .access-img {
+         width:50%;
+         height:100%;
+         margin-top: 10px;
+     
+       }
+       
+     .access-inputs{
+         width:63%;
+         height:100%;
+         background-color: #1c1e53;
+         color:white;
+         border-radius: 40px;
+         padding:60px;
+         margin-top: 10px;
+         margin-left: -330px;
+         margin-right:-20px;
+     }
+     
+     .access img {
+         height:100%;
+         width:110%;
+     }
+}
+  
+@media (min-width: 1480px) {
+
+.access {
+   background-color: #777898;
+   height:100%;
+   width:100%;
+   margin-top: 20px;
+   
+}
+    
+    
+.access-img {
+    width:50%;
+    height:100%;
+    margin-top: 10px;
+
+  }
+  
+.access-inputs{
+    width:63%;
+    height:100%;
+    background-color: #1c1e53;
+    color:white;
+    border-radius: 40px;
+    padding:60px;
+    margin-top: 10px;
+    margin-left: -330px;
+    margin-right:-90px;
+}
+
+.access img {
+    height:100%;
+    width:80%;
+}
 }
