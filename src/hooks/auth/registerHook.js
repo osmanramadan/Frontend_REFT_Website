@@ -10,53 +10,83 @@ const RegisterHook = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('City');
+  const [role, setRole] = useState('Role');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(true);
 
   const res = useSelector((state) => state.authReducer.createUser);
 
+
+  console.log(res,'usernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusername')
+
   const onChangeUsername = (e) => {
+    console.log(e.target.value)
     setUsername(e.target.value);
   };
   const onChangeEmail = (e) => {
+    console.log(e.target.value)
     setEmail(e.target.value);
   };
   const onChangePhone = (e) => {
+    console.log(e.target.value)
     setPhone(e.target.value);
   };
+
+  const onChangeRole = (value) => {
+    console.log(value)
+    setRole(value);
+  };
+
+  const onChangeCity = (value) => {
+    console.log(value)
+    setCity(value);
+  };
+
   const onChangePassword = (e) => {
+    console.log(e.target.value)
     setPassword(e.target.value);
   };
 
   const onChangeConfirmPassword = (e) => {
+    console.log(e.target.value)
     setConfirmPassword(e.target.value);
   };
 
   const validationValues = () => {
-    if (username === '') {
-      return 'من فضلك ادخل اسم المستخدم';
+    if (username === '' || username.length < 5) {
+      return 'Enter username at least five !';
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return 'من فضلك أدخل ايميل صحيح';
+
+    if(role==='' || role==='Role'){
+      return 'Enter role !';
     }
 
-    if (password.length < 8) {
-      return 'يجب الا تقل كلمه عن تماني احرف';
-    }
-    if (!/^\d+$/.test(phone)) {
-      return 'رقم الهاتف يجب ان يكون ارقام فقط';
-    }
+
     // Validate if phone is an Egyptian number
     const egyptianPhoneRegex = /^(01)[0-9]{9}$/;
     if (!egyptianPhoneRegex.test(phone)) {
-      return 'من فضلك ادخل رقم هاتف مصري صحيح';
+      return 'Invalid egyptian number';
     }
 
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Enter valid email';
+    }
+
+    if (password.length < 8) {
+      return 'Password length shouldnt less 8';
+    }
+ 
     if (password !== confirmPassword) {
-      return 'من فضلك تاكيد من كلمه السر';
+      return 'Confirm password!';
+    }
+
+    if(city ==='' || city ==='City'){
+      return 'Enter City !';
     }
 
     return ''; // No validation error
@@ -87,6 +117,8 @@ const RegisterHook = () => {
         createNewUser({
           email,
           username,
+          city,
+          role,
           password,
           confirmPassword,
           phone,
@@ -106,7 +138,7 @@ const RegisterHook = () => {
           localStorage.removeItem('user');
 
           setTimeout(() => {
-            navigate('/login');
+            navigate('/signin');
           }, 2000);
         }
 
@@ -131,10 +163,14 @@ const RegisterHook = () => {
     phone,
     password,
     confirmPassword,
+    city,
+    role,
     loading,
     onChangeUsername,
     onChangeEmail,
     onChangePhone,
+    onChangeCity,
+    onChangeRole,
     onChangePassword,
     onChangeConfirmPassword,
     OnSubmit,

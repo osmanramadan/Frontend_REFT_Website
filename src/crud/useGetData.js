@@ -1,4 +1,4 @@
-import baseUrl from '../Api/baseURL';
+import baseUrl from '../api/baseURL';
 
 const useGetData = async (url, parmas) => {
   const res = await baseUrl.get(url, parmas);

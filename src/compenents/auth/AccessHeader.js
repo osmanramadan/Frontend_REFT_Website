@@ -7,7 +7,7 @@ function AcessHeader({ txt }) {
         fontSize: '28px',
         fontWeight: 'semibold',
       }}
-      className='d-flex justify-content-center'
+      className="d-flex justify-content-center"
     >
       {txt}
     </p>

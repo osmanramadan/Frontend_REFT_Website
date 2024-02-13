@@ -6,9 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import AcessHeader from '../../compenents/auth/AccessHeader';
 import AcessButton from '../../compenents/auth/AccessButton';
-import AcessSwitch from '../../compenents/auth/AccessSwitch';
 
-function ForgetPassword() {
+function ChangePassword() {
   return (
     <div>
       <Row className="access">
@@ -22,12 +21,14 @@ function ForgetPassword() {
           className="access-inputs d-flex justify-content-center"
         >
           <div>
-            <AcessHeader txt="Forget Password" />
+            <AcessHeader txt="Enter New Password" />
 
             <div>
-              <input className="inputfield" placeholder="Email"></input>
+              <input className="inputfield" placeholder="Password"></input>
 
-              <AcessButton txt="SEND CODE" />
+              <input className="inputfield" placeholder="New Password"></input>
+
+              <AcessButton txt="SAVE CHANGES" />
             </div>
           </div>
         </Col>
@@ -36,4 +37,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default ChangePassword;

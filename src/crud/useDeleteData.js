@@ -1,4 +1,4 @@
-import baseUrl from '../Api/baseURL';
+import baseUrl from '../api/baseURL';
 
 const useDeleteData = async (url, parmas) => {
   const config = {

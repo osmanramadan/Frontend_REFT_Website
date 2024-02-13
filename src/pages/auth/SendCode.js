@@ -8,7 +8,7 @@ import AcessHeader from '../../compenents/auth/AccessHeader';
 import AcessButton from '../../compenents/auth/AccessButton';
 import AcessSwitch from '../../compenents/auth/AccessSwitch';
 
-function ForgetPassword() {
+function SendCode() {
   return (
     <div>
       <Row className="access">
@@ -22,10 +22,10 @@ function ForgetPassword() {
           className="access-inputs d-flex justify-content-center"
         >
           <div>
-            <AcessHeader txt="Forget Password" />
+            <AcessHeader txt="Enter Sended Code" />
 
             <div>
-              <input className="inputfield" placeholder="Email"></input>
+              <input className="inputfield" placeholder="Code"></input>
 
               <AcessButton txt="SEND CODE" />
             </div>
@@ -36,4 +36,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default SendCode;

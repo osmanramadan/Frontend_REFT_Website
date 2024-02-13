@@ -1,87 +1,134 @@
 import React, { useState } from 'react';
-import { Row, Container, Col, Button ,Spinner } from 'react-bootstrap';
-import signup from "../../assets/images/signup.png"
+import { Row, Container, Col, Button, Spinner } from 'react-bootstrap';
+import signup from '../../assets/images/signup.png';
 import AcessHeader from '../../compenents/auth/AccessHeader';
-// import RegisterHook from '../../hooks/auth/registerHook';
-// import { Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import AcessButton from '../../compenents/auth/AccessButton';
+import AcessSwitch from '../../compenents/auth/AccessSwitch';
+import RoleDropDown from '../../compenents/auth/RoleDropdown';
+import CityDropdown from '../../compenents/auth/CityDropdown';
+import RegisterHook from '../../hooks/auth/registerHook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function SignUp() {
+  const [
+    username,
+    email,
+    phone,
+    password,
+    confirmPassword,
+    city,
+    role,
+    loading,
+    onChangeUsername,
+    onChangeEmail,
+    onChangePhone,
+    onChangeCity,
+    onChangeRole,
+    onChangePassword,
+    onChangeConfirmPassword,
+    OnSubmit,
+  ] = RegisterHook();
 
+  const [showPassword, setShowPassword] = useState(true);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div>
-        <Row  className='access'>
+      <Row className="access">
+        <Col md="6" className="access-img">
+          <img src={signup} alt="image" />
+        </Col>
 
-          <Col xs="2" md='6' className='access-img'>
-             <img src={signup} alt="image" />
-          </Col>
+        <Col
+          xs="12"
+          md="6"
+          className="access-inputs d-flex justify-content-center"
+        >
+          <div>
+            <AcessHeader txt="Sign up" />
 
-
-          <Col xs="10" md='6' className='access-inputs d-flex justify-content-center'>
-         
             <div>
-                <AcessHeader txt="Sign up"/>
-                 {/* <div> */}
+              <input
+                className="inputfield"
+                placeholder="Name"
+                value={username}
+                onChange={onChangeUsername}
+              ></input>
+              <RoleDropDown  role={role} onChange={onChangeRole}/>
 
-                    <input
-                      className="inputfield"
-                      placeholder="Name"
-                                      
-                    >
-                   </input>
-                   
-                   <input
-                      className="inputfield"
-                      placeholder="Phone"             
-                    >
-                    </input>
-                      
-                   <input
-                      className="inputfield"
-                      placeholder="Email"             
-                    >
-                   </input>
+              <input
+                className="inputfield"
+                placeholder="Phone"
+                value={phone}
+                onChange={onChangePhone}
+              ></input>
 
-                   <input
-                      className="inputfield"
-                      placeholder="Role"             
-                    >
-                   </input>
+              <input
+                className="inputfield"
+                placeholder="Email"
+                value={email}
+                onChange={onChangeEmail}
+              ></input>
 
-                   <input
-                      className="inputfield"
-                      placeholder="City"             
-                    >
-                   </input>
+              <div className="input-wrapper">
+                <input
+                  className="inputfield"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={password}
+                  onChange={onChangePassword}
+                />
+                <span
+                  className="password-toggle-icon"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <FontAwesomeIcon icon={faEye} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  )}
+                </span>
+              </div>
 
-                   <input
-                      className="inputfield"
-                      placeholder="Password"             
-                    >
-                   </input>
+              <div className="input-wrapper">
+                <input
+                  className="inputfield"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Retype Password"
+                  value={confirmPassword}
+                  onChange={onChangeConfirmPassword}
+                />
+                <span
+                  className="password-toggle-icon"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <FontAwesomeIcon icon={faEye} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  )}
+                </span>
+              </div>
 
-                   <input
-                      className="inputfield"
-                      placeholder="Retype Password"             
-                    >
-                   </input>
+              <CityDropdown city={city} onChange={onChangeCity}/>
 
-                   <button  className="btn-login mt-3 mx-2">
-                      register
-                   </button>
+              <AcessButton txt="register" onClick={OnSubmit}/>
+              <AcessSwitch
+                txt="Already have an account?"
+                to={'signin'}
+                target={'login'}
+              />
 
-
-                {/* </div> */}
-           
-      
             </div>
-
-          </Col>
-        </Row>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
-};
+}
 
 export default SignUp;

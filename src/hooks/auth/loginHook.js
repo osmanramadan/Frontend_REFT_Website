@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/actions/authAction';
 
-
 const LoginHook = () => {
   const dispatch = useDispatch();
 
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(true);
@@ -51,7 +49,7 @@ const LoginHook = () => {
       if (res.data) {
         if (res.data.validationError) {
           setLoading(true);
-          alert(res.data.validationError)
+          alert(res.data.validationError);
           return;
         }
         if (res.data.token) {
@@ -69,13 +67,11 @@ const LoginHook = () => {
         if (res.data.error) {
           if (res.data.error === 'Password wrong') {
             setLoading(true);
-            alert('كلمة السر خاطئه')
-          
+            alert('كلمة السر خاطئه');
           }
           if (res.data.error === 'Email not found') {
             setLoading(true);
-            alert('ايميل عير موجود')
-            
+            alert('ايميل عير موجود');
           }
         }
       }

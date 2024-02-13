@@ -1,4 +1,4 @@
-import baseUrl from '../Api/baseURL';
+import baseUrl from '../api/baseURL';
 
 const useInsertDataWithImage = async (url, parmas) => {
   const config = {
@@ -18,6 +18,7 @@ const useInsertData = async (url, parmas) => {
     },
   };
   const res = await baseUrl.post(url, parmas, config);
+  console.log(res)
   return res;
 };
 
