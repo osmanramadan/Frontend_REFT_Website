@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Container, Col, Button, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import signup from '../../assets/images/signup.png';
 import AcessHeader from '../../compenents/auth/AccessHeader';
 import AcessButton from '../../compenents/auth/AccessButton';
@@ -49,6 +49,39 @@ function SignUp() {
           className="access-inputs d-flex justify-content-center"
         >
           <div>
+            {loading == false ? (
+              <div className="d-flex justify-content-center mb-2">
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </div>
+            ) : (
+              ''
+            )}
+
             <AcessHeader txt="Sign up" />
 
             <div>
@@ -58,7 +91,7 @@ function SignUp() {
                 value={username}
                 onChange={onChangeUsername}
               ></input>
-              <RoleDropDown  role={role} onChange={onChangeRole}/>
+              <RoleDropDown role={role} onChange={onChangeRole} />
 
               <input
                 className="inputfield"
@@ -114,15 +147,13 @@ function SignUp() {
                 </span>
               </div>
 
-              <CityDropdown city={city} onChange={onChangeCity}/>
-
-              <AcessButton txt="register" onClick={OnSubmit}/>
+              <CityDropdown city={city} onChange={onChangeCity} />
+              <AcessButton txt="register" onClick={OnSubmit} />
               <AcessSwitch
                 txt="Already have an account?"
                 to={'signin'}
-                target={'login'}
+                target={'Login'}
               />
-
             </div>
           </div>
         </Col>

@@ -18,39 +18,31 @@ const RegisterHook = () => {
 
   const res = useSelector((state) => state.authReducer.createUser);
 
-
-  console.log(res,'usernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusernameusername')
-
   const onChangeUsername = (e) => {
-    console.log(e.target.value)
     setUsername(e.target.value);
   };
+
   const onChangeEmail = (e) => {
-    console.log(e.target.value)
     setEmail(e.target.value);
   };
+
   const onChangePhone = (e) => {
-    console.log(e.target.value)
     setPhone(e.target.value);
   };
 
   const onChangeRole = (value) => {
-    console.log(value)
     setRole(value);
   };
 
   const onChangeCity = (value) => {
-    console.log(value)
     setCity(value);
   };
 
   const onChangePassword = (e) => {
-    console.log(e.target.value)
     setPassword(e.target.value);
   };
 
   const onChangeConfirmPassword = (e) => {
-    console.log(e.target.value)
     setConfirmPassword(e.target.value);
   };
 
@@ -59,18 +51,15 @@ const RegisterHook = () => {
       return 'Enter username at least five !';
     }
 
-
-    if(role==='' || role==='Role'){
+    if (role === '' || role === 'Role') {
       return 'Enter role !';
     }
-
 
     // Validate if phone is an Egyptian number
     const egyptianPhoneRegex = /^(01)[0-9]{9}$/;
     if (!egyptianPhoneRegex.test(phone)) {
       return 'Invalid egyptian number';
     }
-
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -80,12 +69,12 @@ const RegisterHook = () => {
     if (password.length < 8) {
       return 'Password length shouldnt less 8';
     }
- 
+
     if (password !== confirmPassword) {
       return 'Confirm password!';
     }
 
-    if(city ==='' || city ==='City'){
+    if (city === '' || city === 'City') {
       return 'Enter City !';
     }
 
@@ -95,10 +84,11 @@ const RegisterHook = () => {
   const validationQuery = () => {
     if (res.data.error) {
       if (res.data.error === 'Email already exist') {
-        return 'هذا الايميل مسجل من قبل';
+        return 'Email already exist';
       }
+
       if (res.data.error === 'Phone already exist') {
-        return 'هذا الرقم مسجل من قبل';
+        return 'Phone already exist';
       }
 
       return ''; // No validation error
@@ -107,11 +97,13 @@ const RegisterHook = () => {
 
   const OnSubmit = async () => {
     const validationError = validationValues();
+
     if (validationError) {
       alert(validationError, 'error');
       return;
     }
 
+    setLoading(true);
     try {
       dispatch(
         createNewUser({
@@ -147,6 +139,7 @@ const RegisterHook = () => {
           alert(res.data.validationError);
           return;
         }
+
         const validationError = validationQuery();
         if (validationError) {
           setLoading(true);

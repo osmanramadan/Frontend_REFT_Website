@@ -3,16 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
 
-function RoleDropDown({role,onChange}) {
+function RoleDropDown({ role, onChange }) {
   const [isActive, setIsActive] = useState(false);
-  
 
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
 
   const changeRole = (role) => {
-    onChange(role)
+    onChange(role);
     setIsActive(!isActive);
   };
 
@@ -38,11 +37,11 @@ function RoleDropDown({role,onChange}) {
           display: isActive ? 'block' : 'none',
         }}
       >
-        <div className="item" onClick={() => changeRole('Owner')}>
-          Owner
+        <div className="item" onClick={(e) => changeRole(e.target.textContent)}>
+          OWNER
         </div>
-        <div className="item" onClick={() => changeRole('Teacher')}>
-          Teacher
+        <div className="item" onClick={(e) => changeRole(e.target.textContent)}>
+          TEACHER
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/signin" element={<SignIn />} />
         <Route exact path="/forget-password" element={<ForgetPassword />} />
         <Route exact path="/change-password" element={<ChangePassword />} />
-        <Route exact path="/send-code" element={<SendCode />} />
+        <Route exact path="/verify-code" element={<SendCode />} />
 
         <Route element={<ProtectedRoute auth={isUser} />}>
           {/* <Route exact path="/cart" element={<Cart />} /> */}

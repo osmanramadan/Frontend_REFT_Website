@@ -16,7 +16,7 @@ const ForgetPasswordHook = () => {
   const onSubmit = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('من فضلك أدخل ايميل صحيح');
+      alert('Invalid email');
       return;
     }
 
@@ -31,28 +31,35 @@ const ForgetPasswordHook = () => {
   const res = useSelector((state) => state.authReducer.forgetPassword);
   useEffect(() => {
     if (loading === false) {
+
       if (res.data) {
+      
         if (res.data.status === 'success') {
+
           localStorage.setItem('email', email);
+
           setTimeout(() => {
-            navigate('/user/verifycode');
+            navigate('/verify-code');
           }, 1000);
         }
+
         if (res.data.validationError) {
           setLoading(true);
           alert(res.data.validationError);
           return;
         }
+
         if (res.data.status === 'fail') {
           setLoading(true);
-          alert('هذا الحساب غير موجود لدينا');
+          alert('This account doesnt exist');
           setTimeout(() => {
-            navigate('/register');
+            navigate('/signup');
           }, 1000);
         }
+
         if (res.data.status === 'fail to update') {
           setLoading(true);
-          alert('حاول مره أخرى :حدث خطأ');
+          alert('Try again :Error');
           return;
         }
       }

@@ -14,7 +14,12 @@ import { useInsUpdateData } from '../../crud/useUpdateData';
 //create new user
 export const createNewUser = (data) => async (dispatch) => {
   try {
+    console.log(data);
     const response = await useInsertData(`/api/v1/users/signup`, data);
+    console.log(
+      response,
+      'sssss ssssss sssss ss#### ##s#333 333333 333333 3333333',
+    );
     dispatch({
       type: CREATE_NEW_USER,
       payload: response,

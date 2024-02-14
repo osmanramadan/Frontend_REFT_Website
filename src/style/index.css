@@ -101,7 +101,6 @@ body {
   color: var(--amber_200);
 }
 
-
 /* ************************ dropdown ***************************** */
 
 .role-dropdown {
@@ -122,7 +121,6 @@ body {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-
 
 .role-dropdown .dropdown-btn {
   cursor: pointer;
@@ -150,26 +148,13 @@ body {
   -o-border-radius: 5px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ............................................. responsive ................................................ */
 
 @media (max-width: 500px) {
   .access {
     height: 100%;
     width: 165%;
-    margin-top: 10px;
+    margin-top: 50px;
   }
 
   .access-img {

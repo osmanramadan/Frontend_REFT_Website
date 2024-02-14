@@ -21,11 +21,11 @@ const LoginHook = () => {
   const validationValues = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return 'من فضلك أدخل ايميل صحيح';
+      return 'Invalid email';
     }
 
     if (password.length < 8) {
-      return 'يجب الا تقل كلمه عن تماني احرف';
+      return 'Password length shouldnt less 8';
     }
   };
 
@@ -67,11 +67,11 @@ const LoginHook = () => {
         if (res.data.error) {
           if (res.data.error === 'Password wrong') {
             setLoading(true);
-            alert('كلمة السر خاطئه');
+            alert('Incorrect password');
           }
           if (res.data.error === 'Email not found') {
             setLoading(true);
-            alert('ايميل عير موجود');
+            alert('Not found  email');
           }
         }
       }

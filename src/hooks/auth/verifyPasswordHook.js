@@ -16,18 +16,18 @@ const VerifyPasswordHook = () => {
 
   const onSubmit = async () => {
     if (code === '') {
-      alert('من فضلك ادخل الكود');
+      alert('Enter the code !');
       return;
     }
 
     const isNumeric = /^\d+$/.test(code);
     if (!isNumeric) {
-      alert('الكود يجب أن يحتوي على أرقام فقط');
+      alert('Only numbers allowed');
       return;
     }
 
     if (code.length < 6) {
-      notify('الكود لا يقل عن سته ارقام', 'error');
+      alert('Code is not less than 6 digits');
       return;
     }
 
@@ -55,28 +55,28 @@ const VerifyPasswordHook = () => {
 
         if (res.data.status === 'email not found') {
           setLoading(true);
-          alert('ايميل غير موجود');
+          alert('Email not found');
           setTimeout(() => {
-            navigate('/user/forgetpassword');
+            navigate('/forget-password');
           }, 1500);
         }
 
         if (res.data.status === 'invalid code') {
-          alert('اكتب كود صحيح');
+          alert('Write valid code');
           setLoading(true);
           return;
         }
 
         if (res.data.status === 'already verified') {
-          alert('تم التفعيل بالفعل');
+          alert('Success verified');
           setTimeout(() => {
-            navigate('/user/resetpassword');
+            navigate('/change-password');
           }, 1500);
         }
 
         if (res.data.status === 'expired code') {
           setLoading(true);
-          alert('انتهت مدة كود التفعيل');
+          alert('Expired code');
           setTimeout(() => {
             navigate('/login');
           }, 1500);
@@ -84,13 +84,13 @@ const VerifyPasswordHook = () => {
 
         if (res.data.status === 'success') {
           setTimeout(() => {
-            navigate('/user/resetpassword');
+            navigate('/change-password');
           }, 1500);
         }
 
         if (res.data.status === 'fail') {
           setLoading(true);
-          alert('الكود خاطئ او انتهت صلاحيته');
+          alert('Incorrect code or expired');
           return;
         }
       }

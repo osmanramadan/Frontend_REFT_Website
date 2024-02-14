@@ -3,16 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
 
-function CityDropdown({city,onChange}) {
+function CityDropdown({ city, onChange }) {
   const [isActive, setIsActive] = useState(false);
-
 
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
 
   const changeCity = (city) => {
-    onChange(city)
+    onChange(city);
     setIsActive(!isActive);
   };
 
@@ -20,7 +19,6 @@ function CityDropdown({city,onChange}) {
     <div onClick={toggleDropdown} className="role-dropdown">
       <p className="dropdown-btn">
         <Row className="d-flex justify-content-between">
-          
           <Col className="text-start">{city}</Col>
 
           <Col className="text-end mx-2">

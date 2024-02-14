@@ -19,23 +19,26 @@ const ResetPasswordHook = () => {
 
   const validationValues = () => {
     if (password.length < 8) {
-      return 'يجب الا تقل كلمه عن تماني احرف';
+      return 'Password length shouldnt less 8';
     }
 
     if (password !== passwordConfirm) {
-      return 'من فضلك تاكيد من كلمه السر';
+      return 'Confirm the password!';
     }
 
     return ''; // No validation error
   };
   const onSubmit = async () => {
     const validationError = validationValues();
+
     if (validationError) {
-      notify(validationError, 'error');
+      alert(validationError);
       return;
     }
+
     setLoading(true);
     const email = localStorage.getItem('email');
+
     dispatch(
       resetPassword({
         confirmPassword: passwordConfirm,
@@ -61,17 +64,17 @@ const ResetPasswordHook = () => {
           localStorage.setItem('token', res.data.token);
           localStorage.removeItem('email');
           setTimeout(() => {
-            navigate('/login');
+            navigate('/signin');
           }, 1500);
         }
         if (res.data.status === 'fail') {
-          alert('من فضلك اطلب كود جديد');
+          alert('Ask for new code');
           setTimeout(() => {
-            navigate('/login');
+            navigate('/forget-password');
           }, 1500);
         }
         if (res.data.status === 'unupdated') {
-          alert('حاول مره اخرى');
+          alert('Try again');
           return;
         }
       }
