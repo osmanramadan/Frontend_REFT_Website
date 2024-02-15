@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Row, Container, Col, Button, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import signin from '../../assets/images/signin.png';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import AcessHeader from '../../compenents/auth/AccessHeader';

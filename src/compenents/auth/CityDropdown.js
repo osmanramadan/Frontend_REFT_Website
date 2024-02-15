@@ -16,7 +16,7 @@ function CityDropdown({ city, onChange }) {
   };
 
   return (
-    <div onClick={toggleDropdown} className="role-dropdown">
+    <div onClick={toggleDropdown} className="auth-dropdown">
       <p className="dropdown-btn">
         <Row className="d-flex justify-content-between">
           <Col className="text-start">{city}</Col>
@@ -32,7 +32,7 @@ function CityDropdown({ city, onChange }) {
       </p>
 
       <div
-        className="role-dropdown-content"
+        className="auth-dropdown-content"
         style={{
           display: isActive ? 'block' : 'none',
         }}

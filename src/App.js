@@ -8,12 +8,15 @@ import SignIn from './pages/auth/SignIn';
 import ForgetPassword from './pages/auth/ForgetPassword';
 import SendCode from './pages/auth/SendCode';
 import ChangePassword from './pages/auth/ChangePassword';
+import NavBar from './compenents/global/navbar';
+import Footer from './compenents/global/footer';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
 
   return (
     <div>
+      <NavBar />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/signup" element={<SignUp />} />
@@ -30,6 +33,7 @@ function App() {
           {/* <Route exact path="/admin/allproducts" element={<Allproducts />} /> */}
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -8,7 +8,6 @@ import AcessButton from '../../compenents/auth/AccessButton';
 import ResetPasswordHook from '../../hooks/auth/resetPasswordHook';
 
 function ChangePassword() {
-
   const [
     password,
     OnChangePassword,
@@ -27,11 +26,8 @@ function ChangePassword() {
   return (
     <div>
       <Row className="access">
-
         <Col md="6" className="access-img">
-
           <img src={signin} alt="image" />
-
         </Col>
 
         <Col
@@ -40,9 +36,7 @@ function ChangePassword() {
           className="access-inputs d-flex justify-content-center"
         >
           <div>
-
-            {  
-              loading == false ? (
+            {loading == false ? (
               <div className="d-flex justify-content-center mb-2">
                 <Spinner
                   style={{ color: '#fcd980', marginLeft: '5px' }}
@@ -73,8 +67,7 @@ function ChangePassword() {
               </div>
             ) : (
               ''
-            )
-            }
+            )}
 
             <AcessHeader txt="Enter New Password" />
 
@@ -99,7 +92,6 @@ function ChangePassword() {
             </div>
 
             <div className="input-wrapper">
-
               <input
                 className="inputfield"
                 type={showPassword ? 'text' : 'password'}
@@ -117,12 +109,9 @@ function ChangePassword() {
                   <FontAwesomeIcon icon={faEyeSlash} />
                 )}
               </span>
-
-
             </div>
 
             <AcessButton txt="SAVE CHANGES" onClick={onSubmit} />
-
           </div>
         </Col>
       </Row>

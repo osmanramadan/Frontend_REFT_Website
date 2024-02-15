@@ -32,7 +32,7 @@
 }
 
 body {
-  margin: 0;
+  margin: 0px;
   font-family: 'cairo', sans-serif;
   font-family: 'Poppins', sans-serif;
 }
@@ -42,10 +42,12 @@ body {
   color: unset;
 }
 
+/************************************************************** Auth ******************************************************/
+
 .inputfield {
   height: 60px;
   width: 450px;
-  background-color: #1c1e53;
+  background-color: var(--blue_gray_900_01);
   outline: none;
   color: var(--white_A700);
   display: block;
@@ -84,11 +86,10 @@ body {
   -o-border-radius: 5px;
 }
 
-/************************* password-field ************************/
-
 .input-wrapper {
   position: relative;
 }
+
 .password-toggle-icon {
   position: absolute;
   top: 50%;
@@ -97,13 +98,14 @@ body {
   cursor: pointer;
   color: #ccc;
 }
+
 .password-toggle-icon:hover {
   color: var(--amber_200);
 }
 
-/* ************************ dropdown ***************************** */
+/* **************************************************************** Dropdowns ********************************************** */
 
-.role-dropdown {
+.auth-dropdown {
   position: relative;
   text-align: center;
   width: 100%;
@@ -122,13 +124,13 @@ body {
   -o-border-radius: 5px;
 }
 
-.role-dropdown .dropdown-btn {
+.auth.dropdown .dropdown-btn {
   cursor: pointer;
   color: var(--white_A700);
   background-color: #1c1e53;
 }
 
-.role-dropdown-content div {
+.auth-dropdown-content div {
   margin-top: 5px;
   color: #28293c;
   cursor: pointer;
@@ -136,7 +138,7 @@ body {
   font-size: 18px;
 }
 
-.role-dropdown-content {
+.auth-dropdown-content {
   padding: 5px;
   background-color: var(--gray_100_87);
   border: 2px solid var(--white_A700_19);
@@ -148,7 +150,68 @@ body {
   -o-border-radius: 5px;
 }
 
-/* ............................................. responsive ................................................ */
+/* ...................................................... navbar ............................................................. */
+
+.navbar {
+  background-color: var(--blue_gray_900_01);
+  width: 100%;
+  z-index: 10000;
+}
+
+.navbar .link {
+  font-family: 'Poppins';
+  color: var(--white_A700);
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.navbar .link:hover {
+  color: var(--amber_200);
+}
+
+.btn-navbar {
+  background-color: var(--blue_gray_900_01);
+  border-color: var(--white_A700);
+  height: 50px;
+  border-radius: 3px;
+  width: 140px;
+  color: white;
+  font-family: Poppins;
+  font-size: 16px;
+}
+
+.btn-navbar:hover {
+  background-color: var(--amber_200);
+  color: var(--blue_gray_900_01);
+  font-weight: bold;
+  font-size: larger;
+}
+
+/* .............................................. Footer....................................................*/
+
+.footer {
+  background-color: var(--blue_gray_900_01);
+  color: var(--white_A700);
+  overflow: scroll;
+  padding: 50px;
+  direction: ltr;
+  height: max-content;
+  width: 100%;
+  /* position: fixed; */
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.footer .link {
+  font-family: 'Poppins';
+  font-weight: medium;
+  color: var(--amber_200);
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+/* ................................................... responsive ................................................ */
 
 @media (max-width: 500px) {
   .access {
@@ -228,6 +291,7 @@ body {
     background-color: #777898;
     height: 100%;
     width: 100%;
+    /* margin:100px; */
   }
 
   .access-img {

@@ -31,11 +31,8 @@ const ForgetPasswordHook = () => {
   const res = useSelector((state) => state.authReducer.forgetPassword);
   useEffect(() => {
     if (loading === false) {
-
       if (res.data) {
-      
         if (res.data.status === 'success') {
-
           localStorage.setItem('email', email);
 
           setTimeout(() => {
