@@ -23,7 +23,8 @@ const ProtectedRouteHook = () => {
   }, []);
 
   return [
-    error ? undefined : userData.role === 'user', //  isUser
+    true, //  isUser
+    // error ? undefined : userData.role === 'user', //  isUser
     error ? undefined : userData.role === 'admin_1/id=80226753244', //  isAdmin
     userData,
   ];

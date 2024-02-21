@@ -52,7 +52,7 @@ function Footer() {
 
         <Row className="mt-5">
           <Col xs="12" sm="12" md="6" lg="6">
-            <div
+            {/* <div
               style={{
                 backgroundColor: '#fcd980',
                 width: '360px',
@@ -110,7 +110,7 @@ function Footer() {
                   010898898887
                 </Col>
               </Row>
-            </div>
+            </div> */}
           </Col>
           <Col xs="12" sm="12" md="6" lg="6">
             <Row className="text-end mx-4 mt-4">
