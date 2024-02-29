@@ -32,7 +32,7 @@ function Footer() {
           Rate your place in the right place
         </Row>
 
-        <Row className="d-flex  justify-content-end  mt-3">
+        <Row className="d-flex  justify-content-center  mt-3">
           <Col xs="12" sm="6" md="2">
             <Link className="link mx-1 mb-xs-1">Contact Us</Link>
           </Col>
@@ -52,7 +52,8 @@ function Footer() {
 
         <Row className="mt-5">
           <Col xs="12" sm="12" md="6" lg="6">
-            {/* <div
+            <div
+              className="footer-contact"
               style={{
                 backgroundColor: '#fcd980',
                 width: '360px',
@@ -64,7 +65,7 @@ function Footer() {
               <Row>
                 <Col
                   xs="6"
-                  className="mb- mt-1 mx-1 text-start"
+                  className="mt-1 mx-1 text-start"
                   style={{
                     color: '#282938',
                     fontSize: '18px',
@@ -74,7 +75,7 @@ function Footer() {
                   Email
                 </Col>
                 <Col
-                  className="mb- mt-1  text-start"
+                  className="mt-1  text-start"
                   style={{
                     color: '#282938',
                     fontSize: '18px',
@@ -110,11 +111,11 @@ function Footer() {
                   010898898887
                 </Col>
               </Row>
-            </div> */}
+            </div>
           </Col>
           <Col xs="12" sm="12" md="6" lg="6">
             <Row className="text-end mx-4 mt-4">
-              <Col xs="6"  md="3">
+              <Col xs="6" md="3">
                 {' '}
                 <FontAwesomeIcon
                   icon={faInstagram}
@@ -122,7 +123,7 @@ function Footer() {
                   style={{ color: 'white', height: '50px', width: '50px' }}
                 />
               </Col>
-              <Col xs="6"  md="3">
+              <Col xs="6" md="3">
                 {' '}
                 <FontAwesomeIcon
                   icon={faFacebookF}
@@ -136,7 +137,7 @@ function Footer() {
                   }}
                 />
               </Col>
-              <Col xs="6"  md="3">
+              <Col xs="6" md="3">
                 {' '}
                 <FontAwesomeIcon
                   className="mb-xs-2 mx-3"

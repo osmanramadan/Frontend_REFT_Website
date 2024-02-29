@@ -33,7 +33,7 @@
 
 body {
   margin: 0px;
-  overflow-x:scroll;
+  overflow-x: scroll;
   font-family: 'Racing Sans One';
   font-family: 'Poppins', sans-serif;
 }
@@ -42,8 +42,6 @@ body {
   text-decoration: none !important;
   color: unset;
 }
-
-
 
 /************************************************************** Auth ******************************************************/
 
@@ -140,9 +138,15 @@ body {
   cursor: pointer;
   font-weight: bold;
   font-size: 18px;
+  z-index: 10000000;
+}
+
+.auth-dropdown-content .item:hover {
+  background-color: var(--amber_200);
 }
 
 .auth-dropdown-content {
+  z-index: 10000000;
   padding: 5px;
   background-color: var(--gray_100_87);
   border: 2px solid var(--white_A700_19);
@@ -381,6 +385,7 @@ body {
 }
 
 .inputfield-hall {
+  /* width:auto; */
   height: 55px;
   outline: none;
   display: block;
@@ -406,7 +411,6 @@ div.lmMaya {
   width: 100%;
   outline: none;
   display: block;
-  /* text-indent: 17px; */
   padding: 10px;
   margin-bottom: 25px;
   border: 2px solid #a1a1a1;
@@ -415,26 +419,6 @@ div.lmMaya {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-}
-
-.custom-file-input {
-  /* display: inline-block; */
-  position: absolute;
-  left: -50px;
-  /* top:-30px; */
-  left: 100px;
-  padding: 8px 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #007bff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.custom-file-input input {
-  display: none;
 }
 
 .btn-addhall {
@@ -449,6 +433,25 @@ div.lmMaya {
   padding: 10px;
   margin-bottom: 25px;
   border: 2px solid var(--white_A700_19);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.inputfield-hallacception {
+  text-align: center;
+  height: 54px;
+  outline: none;
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+  color: #282938;
+  text-indent: 17px;
+  padding: 10px;
+  margin-bottom: 25px;
+  border: 2px solid #808080;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -519,16 +522,42 @@ div.lmMaya {
   font-size: 20px;
   text-indent: 17px;
 }
+
+/* .............................................. Contact US ................................................*/
+.inputfield-contactus {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  direction: ltr;
+  display: block;
+  text-indent: 17px;
+  padding: 10px;
+  margin-bottom: 25px;
+  border: 2px solid white;
+  color: var(--white_A700);
+  background-color: #1c1e53;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.inputfield-contactus::placeholder {
+  color: #8e8e97;
+  font-size: 20px;
+  text-indent: 17px;
+}
+
 /* .............................................. Footer ....................................................*/
 
 .footer {
   background-color: var(--blue_gray_900_01);
   color: var(--white_A700);
-  /* overflow: scroll; */
   padding: 70px;
   direction: ltr;
-  height:auto;
-  width:auto;
+  height: auto;
+  width: auto;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -690,6 +719,13 @@ div.lmMaya {
 
 @media (max-width: 400px) {
   .user-two-tabs {
+    display: none;
+  }
+}
+
+/***** footer *****/
+@media (max-width: 445px) {
+  .footer-contact {
     display: none;
   }
 }

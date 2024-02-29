@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
-import React, { useRef, useState } from 'react';
-
-const PdfChooser = ({ handleSelect, img }) => {
+const PdfChooser = ({ handleSelect }) => {
   const selectPdf = (e) => {
     handleSelect(e);
   };

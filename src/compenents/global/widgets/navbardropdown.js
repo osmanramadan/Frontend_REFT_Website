@@ -2,12 +2,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import osman from '../../../assets/images/24.png';
 import { Figure } from 'react-bootstrap';
 import ProtectedRouteHook from '../../../hooks/auth/protectedRoutedHook';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Navbardropdown({ isUser }) {
-  const [isuser, isadmin, data] = ProtectedRouteHook();
+  const [isuser, _isadmin, userData] = ProtectedRouteHook();
 
   const [show, setShow] = useState(false);
 
@@ -28,26 +29,40 @@ function Navbardropdown({ isUser }) {
   return (
     <div>
       <Dropdown onClick={handleMenuClick}>
-        {isuser ? (
+        {isUser ? (
           <Row
             className="d-flex align-items-center mt-3"
             style={{ color: 'white' }}
           >
             <Row className="d-flex justify-content-center">
               <Col xs="3" className="text-center d-flex align-items-center">
-                <Figure>
-                  <Figure.Image
-                    width={120}
-                    height={120}
-                    alt="Profile Image"
-                    src={osman}
-                    roundedCircle
+                {userData && userData.profile_img ? (
+                  <Figure>
+                    <Figure.Image
+                      width={125}
+                      height={125}
+                      alt="Profile Image"
+                      // src={osman}
+                      src={`data:image/*;base64,${userData.profile_img}`}
+                      // src={userData.profile_img}
+                      roundedCircle
+                    />
+                  </Figure>
+                ) : (
+                  <FontAwesomeIcon
+                    style={{
+                      marginRight: '3px',
+                      color: '#fcd980',
+                      height: '35px',
+                      width: '35px',
+                    }}
+                    icon={faCircleUser}
                   />
-                </Figure>
+                )}
               </Col>
               <Col xs="6">
                 <div style={{ fontWeight: 'medium', fontSize: '14px' }}>
-                  mr/osman
+                  {userData ? userData.name : ''}
                 </div>
                 <div
                   style={{
@@ -56,7 +71,7 @@ function Navbardropdown({ isUser }) {
                     color: '#b1b2c4',
                   }}
                 >
-                  Teacher
+                  {userData ? userData.role : ''}
                 </div>
               </Col>
               <Col xs="3">
@@ -104,7 +119,7 @@ function Navbardropdown({ isUser }) {
               My Profile
             </Link>
           ) : (
-            <Link className="link mt-2 mb-1" to="/">
+            <Link className="link mt-2 mb-1" to="/admin-places">
               {' '}
               Admin
             </Link>

@@ -32,7 +32,7 @@ function Admintabs({ icon }) {
             </div>
             <div
               className="d-flex flex-column justify-content-center user-left-tab"
-              style={{ backgroundColor: '#eef4fa', height: '400px' }}
+              style={{ backgroundColor: '#eef4fa', height: '100vh' }}
             >
               <Link to="/user-profile" className="link">
                 <div className="user-tab-item border-bottom">Dashboard</div>
@@ -48,7 +48,7 @@ function Admintabs({ icon }) {
   ) : (
     <div
       className="d-flex flex-column justify-content-center user-left-tab"
-      style={{ backgroundColor: '#eef4fa', height: '400px' }}
+      style={{ backgroundColor: '#eef4fa', height: '100vh' }}
     >
       <Link to="/user-profile" className="link">
         <div className="user-tab-item border-bottom">Dashboard</div>

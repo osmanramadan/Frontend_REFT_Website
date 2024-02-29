@@ -1,55 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import Place from '../../compenents/global/widgets/place';
 import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
+import GetHallsHook from '../../hooks/hall/getHallsHook';
 
 function Halls() {
-  const [isuser, isadmin, data] = ProtectedRouteHook();
-  const Data = [
-    {
-      city: 'Cairo',
-      txt: 'The owner of the place can share the geographical location of the place, upload pictures of the rooms he wants to rent, and also determine the appropriate financial cost for one hour of rent.',
-      num: '1',
-    },
-    {
-      city: 'Damietta',
-      txt: 'The owner of the place determines the number of rooms he wants to share on the site and also determines the number of hours during which he wants the rent to be made',
-      num: '2',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-  ];
+  const [isuser, _isadmin, _data] = ProtectedRouteHook();
+
+  const [halls, loading, setSearch, search, searchHalls] = GetHallsHook();
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, _setitemsPerPage] = useState(3);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const [currentItems, setCurrentItems] = useState([]);
+
+  useEffect(() => {
+    const updatedItems = halls.slice(indexOfFirstItem, indexOfLastItem);
+    setCurrentItems(updatedItems);
+  }, [halls, indexOfFirstItem, indexOfLastItem]);
+
+  useEffect(() => {
+    if (halls.length > 0) {
+      const pages = [];
+
+      for (let i = 1; i <= Math.ceil(halls.length / itemsPerPage); i++) {
+        pages.push(i);
+      }
+      setPageNumberLimit(pages.length);
+    }
+  }, [halls]);
+
+  const handlePageClick = (num) => {
+    setcurrentPage(num);
+  };
+
+  const search_in_halls = (e) => {
+    if (e.target.value === '') {
+      location.reload();
+    }
+
+    setSearch(e.target.value);
+    searchHalls();
+  };
+
   return (
     <div>
       <NavBar />
-      <Banner txt={isuser ? 'Home > Places' : 'Home  > Admin >  Places'} />
+      <Banner txt={'Home > Places'} />
 
       <Row
         xs="12"
@@ -57,20 +61,66 @@ function Halls() {
         style={{ marginTop: '105px', marginBottom: '110px' }}
       >
         <input
+          value={search}
           className="hall-search-input"
           placeholder="Write your location"
+          onChange={search_in_halls}
         />
       </Row>
 
       <Container className="mt-5">
-        <Row className="d-flex justify-content-between px-5">
-          {Data.map((info, index) => (
-            <Col xs="12" sm="12" md="6" lg="4" className="mb-3" key={index}>
-              <Place data={info} />
-            </Col>
-          ))}
+        <Row className="d-flex justify-content-center px-5">
+          {loading === true && currentItems.length == 0 && (
+            <div
+              style={{ fontSize: '30px' }}
+              className="d-flex justify-content-center mb-2 fw-bold"
+            >
+              No Halls Yet
+            </div>
+          )}
+          {loading === false ? (
+            <div className="d-flex justify-content-center mb-2">
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            </div>
+          ) : (
+            ''
+          )}
+          {currentItems.length > 0 &&
+            currentItems.map((data, i) => (
+              <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
+                <Place key={i} data={data} />
+              </Col>
+            ))}
         </Row>
-        <PaginationComponent pageCount={8} handlePageClick={() => {}} />
+        <PaginationComponent
+          pageCount={pageNumberLimit}
+          handlePageClick={handlePageClick}
+        />
       </Container>
 
       <Footer />

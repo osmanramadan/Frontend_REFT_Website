@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Col, Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
-import NavBarButton from './widgets/navbarbutton';
 import Navbardropdown from './widgets/navbardropdown';
+import NavBarButton from './widgets/navbarbutton';
 import logo from '../../assets/images/logo.png';
 
 function NavBar() {
@@ -35,16 +35,16 @@ function NavBar() {
             style={{ marginLeft: '100px' }}
           >
             <Nav className="d-flex justify-content-center">
-              <Nav.Link href="/" className="link mx-md-4">
+              <Nav.Link href="/" className="link mx-md-3">
                 HOME
               </Nav.Link>
-              <Nav.Link href="/about-us" className="link mx-lg-4">
+              <Nav.Link href="/about-us" className="link mx-lg-3">
                 About us
               </Nav.Link>
-              <Nav.Link href="/contact-us" className="link mx-lg-4">
-                Contact us
+              <Nav.Link href="/places" className="link mx-lg-3">
+                Our places
               </Nav.Link>
-              <Nav.Link href="/hall-add" className="link mx-lg-4">
+              <Nav.Link href="/hall-add" className="link mx-lg-3">
                 Add hall
               </Nav.Link>
             </Nav>
@@ -53,11 +53,14 @@ function NavBar() {
           <Col
             xs={9}
             md={6}
-            className="d-flex justify-content-center px-xs-3 px-md-3"
+            className="d-flex justify-content-center px-xs-4 px-md-4"
             style={{ marginRight: '-40px' }}
           >
-            {/* isUser || isAdmin ? (<Navbardropdown isUser={isUser} />):(<NavBarButton/>)  */}
-            {<Navbardropdown isUser={isUser} />}
+            {isUser || isAdmin ? (
+              <Navbardropdown isUser={isUser} />
+            ) : (
+              <NavBarButton />
+            )}
           </Col>
         </Navbar.Collapse>
       </Container>

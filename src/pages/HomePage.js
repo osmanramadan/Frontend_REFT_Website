@@ -21,9 +21,9 @@ function HomePage() {
         <HomepageGoals />
         <HomepageBannerTwo />
 
-        <MidTitle txt={'HIGHLY RATED PLACES'} arrow={true} />
+        {/* <MidTitle txt={'HIGHLY RATED PLACES'} arrow={true} /> */}
 
-        <HomepageHighlyRatedPlaces />
+        {/* <HomepageHighlyRatedPlaces /> */}
         <MidTitle txt={'REVIEWS FROM OUR CUTOMERS'} arrow={false} />
         <HomepageTestimonial />
         <HomepageFAQ />

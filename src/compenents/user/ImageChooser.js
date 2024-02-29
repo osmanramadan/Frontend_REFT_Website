@@ -1,7 +1,9 @@
 import React from 'react';
-import { Figure } from 'react-bootstrap';
+// import { Figure } from 'react-bootstrap';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ImageChooser = ({ handleSelect, img }) => {
+const ImageChooser = ({ handleSelect }) => {
   const selectImage = (e) => {
     handleSelect(e);
   };
@@ -12,7 +14,17 @@ const ImageChooser = ({ handleSelect, img }) => {
         style={{ border: 'none', backgroundColor: 'unset' }}
         for="upload-image"
       >
-        <Figure>
+        <FontAwesomeIcon
+          style={{
+            marginRight: '3px',
+            color: 'black',
+            height: '80px',
+            width: '80px',
+          }}
+          icon={faCircleUser}
+        />
+
+        {/* <Figure>
           <Figure.Image
             width={110}
             height={120}
@@ -20,7 +32,7 @@ const ImageChooser = ({ handleSelect, img }) => {
             src={img}
             roundedCircle
           />
-        </Figure>
+        </Figure> */}
         {/* <img style={{ height: '110px', width: '120px' }} src={img} />{' '} */}
       </label>
 

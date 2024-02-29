@@ -1,51 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Container, Figure, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import UserTabs from '../../compenents/user/UserTap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
-import ImageChooser from '../../compenents/user/ImageChooser';
-import osman from '../../assets/images/24.png';
 import Place from '../../compenents/global/widgets/place';
+import GetUserHallsHook from '../../hooks/hall/getUserHallsHook';
+import PaginationComponent from '../../compenents/global/pagination';
 
 function UserPlaces() {
-  const Data = [
-    {
-      city: 'Cairo',
-      txt: 'The owner of the place can share the geographical location of the place, upload pictures of the rooms he wants to rent, and also determine the appropriate financial cost for one hour of rent.',
-      num: '1',
-    },
-    {
-      city: 'Damietta',
-      txt: 'The owner of the place determines the number of rooms he wants to share on the site and also determines the number of hours during which he wants the rent to be made',
-      num: '2',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-    {
-      city: 'Mansora',
-      txt: 'The site helps the teacher by showing him the nearest geographical places The teacher can also search for available places and hours in any city he wants to search for',
-      num: '3',
-    },
-  ];
+  const [halls, loading] = GetUserHallsHook();
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, _setitemsPerPage] = useState(3);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const [currentItems, setCurrentItems] = useState([]);
+
+  useEffect(() => {
+    const updatedItems = halls.slice(indexOfFirstItem, indexOfLastItem);
+    setCurrentItems(updatedItems);
+  }, [halls, indexOfFirstItem, indexOfLastItem]);
+
+  useEffect(() => {
+    if (halls.length > 0) {
+      const pages = [];
+
+      for (let i = 1; i <= Math.ceil(halls.length / itemsPerPage); i++) {
+        pages.push(i);
+      }
+      setPageNumberLimit(pages.length);
+    }
+  }, [halls]);
+
+  const handlePageClick = (num) => {
+    setcurrentPage(num);
+  };
+
   return (
     <div>
       <NavBar />
@@ -55,16 +48,21 @@ function UserPlaces() {
           <UserTabs />
         </Col>
 
-        <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'rtl' }}>
+        <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
           <Row className="mt-5">
             <MidTitle txt={'My Places'} />
           </Row>
-          <Row className="mt-5 px-lg-5 px-md-5">
-            {Data.map((info, index) => (
+          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+            {currentItems.map((info, index) => (
               <Col xs="12" sm="6" md="12" lg="6" key={index}>
                 <Place data={info} />
               </Col>
             ))}
+
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
           </Row>
         </Col>
       </Row>

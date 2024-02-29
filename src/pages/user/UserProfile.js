@@ -6,8 +6,12 @@ import UserTabs from '../../compenents/user/UserTap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import ImageChooser from '../../compenents/user/ImageChooser';
 import osman from '../../assets/images/24.png';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function Profile() {
+  const [isuser, _isadmin, userData] = ProtectedRouteHook();
   return (
     <div>
       <NavBar />
@@ -26,7 +30,20 @@ function Profile() {
 
             <Row className="d-flex justify-content-center text-center">
               <Col xs="6">
-                <ImageChooser img={osman} handleSelect={() => {}} />
+                {userData && userData.profile_img ? (
+                  <Figure>
+                    <Figure.Image
+                      width={125}
+                      height={125}
+                      alt="Profile Image"
+                      // src={osman}
+                      src={`data:image/*;base64,${userData.profile_img}`}
+                      roundedCircle
+                    />
+                  </Figure>
+                ) : (
+                  <ImageChooser handleSelect={() => {}} />
+                )}
               </Col>
             </Row>
             <Row className="d-flex justify-content-center text-center">
@@ -36,6 +53,7 @@ function Profile() {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  borderRadius: '7px',
                   fontSize: '16px',
                   fontWeight: 'medium',
                   color: 'white',
@@ -44,7 +62,7 @@ function Profile() {
                   backgroundColor: '#2405f2',
                 }}
               >
-                <div>Teacher</div>
+                <div>{userData && userData.role ? userData.role : ''}</div>
               </Col>
             </Row>
 
@@ -56,7 +74,7 @@ function Profile() {
               >
                 <input
                   className="inputfield-userprofile"
-                  placeholder="osman"
+                  placeholder={userData && userData.name ? userData.name : ''}
                   readOnly
                 />
               </Col>
@@ -65,13 +83,12 @@ function Profile() {
                 sm="2"
                 className="d-flex justify-content-start align-items-start py-2"
                 style={{
-                  lineHeight: '160%',
-                  fontWeight: 'bold',
-                  fontSize: '45',
+                  fontWeight: '600',
+                  fontSize: '29px',
                   color: '#282938',
                 }}
               >
-                Name
+                name
               </Col>
             </Row>
 
@@ -83,7 +100,7 @@ function Profile() {
               >
                 <input
                   className="inputfield-userprofile"
-                  placeholder="osman@osman"
+                  placeholder={userData && userData.email ? userData.email : ''}
                   readOnly
                 />
               </Col>
@@ -92,13 +109,12 @@ function Profile() {
                 sm="2"
                 className="d-flex justify-content-start align-items-start py-2"
                 style={{
-                  lineHeight: '160%',
-                  fontWeight: 'bold',
-                  fontSize: '45',
+                  fontWeight: '600',
+                  fontSize: '29px',
                   color: '#282938',
                 }}
               >
-                Email
+                email
               </Col>
             </Row>
 
@@ -110,7 +126,7 @@ function Profile() {
               >
                 <input
                   className="inputfield-userprofile"
-                  placeholder="22098898"
+                  placeholder={userData && userData.phone ? userData.phone : ''}
                   readOnly
                 />
               </Col>
@@ -119,9 +135,8 @@ function Profile() {
                 sm="2"
                 className="d-flex justify-content-start align-items-start py-2"
                 style={{
-                  lineHeight: '160%',
-                  fontWeight: 'bold',
-                  fontSize: '45',
+                  fontWeight: '600',
+                  fontSize: '29px',
                   color: '#282938',
                 }}
               >
@@ -136,22 +151,21 @@ function Profile() {
               >
                 <input
                   className="inputfield-userprofile"
-                  placeholder="cairo"
+                  placeholder={userData && userData.city ? userData.city : ''}
                   readOnly
                 />
               </Col>
               <Col
                 xs="1"
                 sm="2"
-                className="d-flex justify-content-start align-items-start py-2"
+                className="d-flex justify-content-start align-items-start"
                 style={{
-                  lineHeight: '160%',
-                  fontWeight: 'bold',
-                  fontSize: '45',
+                  fontWeight: '600',
+                  fontSize: '29px',
                   color: '#282938',
                 }}
               >
-                City
+                city
               </Col>
             </Row>
           </Col>

@@ -15,6 +15,8 @@ import Profile from './pages/user/UserProfile';
 import UserPlaces from './pages/user/UserPlaces';
 import AboutUs from './pages/aboutus/AboutUs';
 import ContactUs from './pages/contactus/ContactUs';
+import AdminHalls from './pages/admin/halls';
+import NotFound from './compenents/global/notfound';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -24,10 +26,11 @@ function App() {
       {/* <NavBar /> */}
       <Routes>
         <Route exact path="/" element={<HomePage />} />
+        <Route exact path="*" element={<NotFound />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/signin" element={<SignIn />} />
-        <Route exact path="/about-us" element={<AboutUs/>} />
-        <Route exact path="/contact-us" element={<ContactUs/>} />
+        <Route exact path="/about-us" element={<AboutUs />} />
+        <Route exact path="/contact-us" element={<ContactUs />} />
         <Route exact path="/forget-password" element={<ForgetPassword />} />
         <Route exact path="/change-password" element={<ChangePassword />} />
         <Route exact path="/verify-code" element={<SendCode />} />
@@ -38,11 +41,12 @@ function App() {
         {/* <Route element={<ProtectedRoute auth={isUser} />}> */}
         <Route exact path="/user-profile" element={<Profile />} />
         <Route exact path="/user-places" element={<UserPlaces />} />
-        
+
         {/* </Route> */}
 
         <Route element={<ProtectedRoute auth={isAdmin} />}>
           {/* <Route exact path="/admin/allproducts" element={<Allproducts />} /> */}
+          <Route exact path="/admin-places" element={<AdminHalls />} />
         </Route>
       </Routes>
       {/* <Footer /> */}

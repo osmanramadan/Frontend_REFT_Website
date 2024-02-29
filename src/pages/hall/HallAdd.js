@@ -1,29 +1,87 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import Banner from '../../compenents/global/widgets/banner';
 import MultiImageInput from 'react-multiple-image-input';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import PdfChooser from '../../compenents/hall/PdfChooser';
-import add from '../../assets/images/add.png';
 import VideoChooser from '../../compenents/hall/VideoChooser';
-import AcessButton from '../../compenents/auth/AccessButton';
 import AddHallButton from '../../compenents/hall/AddHallButton';
+import CityDropdown from '../../compenents/auth/CityDropdown';
+import AddHallHook from '../../hooks/hall/addHallHook';
 
 function HallAdd() {
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
+  const [
+    onSubmit,
+    images,
+    onChangeImages,
+    placeName,
+    onChangePlaceName,
+    placeCapacity,
+    onChangePlaceCapacity,
+    placeCity,
+    onChangePlaceCity,
+    placeLocation,
+    onChangePlaceLocation,
+    hourPrice,
+    onChangePriceHour,
+    placeDetails,
+    onChangePlaceDetails,
+    pdf,
+    onChangePdf,
+    pdfName,
+    video,
+    onChangeVideo,
+    videoName,
+    loading,
+  ] = AddHallHook();
+
   return (
     <div>
       <NavBar />
       <Banner txt={'Home > Add Place'} />
       <MidTitle txt={'Add Hall'} />
+      {loading === false ? (
+        <div className="d-flex justify-content-center mb-2">
+          <Spinner
+            style={{ color: 'black', marginLeft: '5px' }}
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
 
+          <Spinner
+            style={{ color: 'black', marginLeft: '5px' }}
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+
+          <Spinner
+            style={{ color: 'black', marginLeft: '5px' }}
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+        </div>
+      ) : (
+        ''
+      )}
       <div className="px-1 mt-5">
         <Row className="d-flex justify-content-center">
           <Col xs="12" sm="6" md="4" lg="4" className="text-center">
             <input
               className="inputfield-hall"
+              onChange={onChangePlaceName}
+              // value={placeName}
               placeholder="Place Name"
               style={{ width: '100%' }}
             />
@@ -32,6 +90,8 @@ function HallAdd() {
             <input
               className="inputfield-hall"
               placeholder="Place Capacity"
+              onChange={onChangePlaceCapacity}
+              value={placeCapacity}
               type="number"
               style={{ width: '100%' }}
             />
@@ -39,17 +99,27 @@ function HallAdd() {
         </Row>
         {/***********************/}
         <Row className="d-flex justify-content-center">
-          <Col xs="12" sm="6" md="4" lg="4" className="text-center">
-            <input
-              className="inputfield-hall"
-              placeholder="Place City"
-              style={{ width: '100%' }}
+          <Col
+            xs="12"
+            sm="6"
+            md="4"
+            lg="4"
+            className="text-center"
+            style={{ zIndex: '1000000' }}
+          >
+            <CityDropdown
+              addhall={true}
+              city={placeCity}
+              onChange={onChangePlaceCity}
             />
           </Col>
+
           <Col xs="12" sm="6" md="4" lg="4" className="text-center">
             <input
               className="inputfield-hall"
               placeholder="Place Location"
+              value={placeLocation}
+              onChange={onChangePlaceLocation}
               style={{ width: '100%' }}
             />
           </Col>
@@ -60,6 +130,8 @@ function HallAdd() {
             <input
               className="inputfield-hall"
               placeholder="Hour Price"
+              value={hourPrice}
+              onChange={onChangePriceHour}
               style={{ width: '100%' }}
               type="number"
             />
@@ -69,6 +141,8 @@ function HallAdd() {
         <Row className="d-flex justify-content-center">
           <Col xs="8">
             <textarea
+              value={placeDetails}
+              onChange={onChangePlaceDetails}
               rows={4}
               className="inputfield-hall"
               placeholder="Place Details"
@@ -82,9 +156,7 @@ function HallAdd() {
           <Col xs="8">
             <MultiImageInput
               images={images}
-              setImages={(value) => {
-                setImages(value);
-              }}
+              setImages={onChangeImages}
               theme={'light'}
               allowCrop={false}
             />
@@ -96,13 +168,14 @@ function HallAdd() {
           <Col xs="7" sm="7" md="7" lg="7" className="text-center">
             <input
               className="inputfield-hall"
+              value={pdfName}
               readOnly
               placeholder="Select  property of place   eg :  place ownership contract "
               style={{ width: '100%' }}
             />
           </Col>
           <Col xs="1" sm="1" md="1" lg="1" className="text-end">
-            <PdfChooser img={add} handleSelect={() => {}} />
+            <PdfChooser handleSelect={onChangePdf} />
           </Col>
         </Row>
 
@@ -112,17 +185,18 @@ function HallAdd() {
               className="inputfield-hall"
               placeholder="Select Video"
               style={{ width: '100%' }}
+              value={videoName}
               readOnly
             />
           </Col>
           <Col xs="1" sm="1" md="1" lg="1" className="text-end">
-            <VideoChooser video={add} handleSelect={() => {}} />
+            <VideoChooser handleSelect={onChangeVideo} />
           </Col>
         </Row>
 
         <Row className="d-flex justify-content-center mt-4">
           <Col xs="8" sm="5" md="4" lg="3" className="text-start">
-            <AddHallButton txt={'Submit +'} onClick={() => {}} />
+            <AddHallButton txt={'Submit +'} onClick={onSubmit} />
           </Col>
         </Row>
       </div>

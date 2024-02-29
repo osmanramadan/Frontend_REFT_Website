@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
 
-function CityDropdown({ city, onChange }) {
+function CityDropdown({ addhall, city, onChange }) {
   const [isActive, setIsActive] = useState(false);
 
   const toggleDropdown = () => {
@@ -16,14 +16,17 @@ function CityDropdown({ city, onChange }) {
   };
 
   return (
-    <div onClick={toggleDropdown} className="auth-dropdown">
+    <div
+      onClick={toggleDropdown}
+      className={addhall ? 'inputfield-hall' : 'auth-dropdown'}
+    >
       <p className="dropdown-btn">
         <Row className="d-flex justify-content-between">
           <Col className="text-start">{city}</Col>
 
           <Col className="text-end mx-2">
             <FontAwesomeIcon
-              style={{ color: '#FCD980' }}
+              style={{ color: addhall ? '#D0D0D0' : '#FCD980' }}
               icon={faCaretUp}
               flip="vertical"
             />{' '}
