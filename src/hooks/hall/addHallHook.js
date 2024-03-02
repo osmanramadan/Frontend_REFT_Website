@@ -7,6 +7,9 @@ const AddHallHook = () => {
 
   if (localStorage.getItem('user') !== null) {
     var user = JSON.parse(localStorage.getItem('user'));
+  } else {
+    window.location.href = '/signin';
+    return;
   }
 
   const [placeName, setPlaceName] = useState('');
@@ -20,7 +23,7 @@ const AddHallHook = () => {
   const [pdfName, setPdfName] = useState('pdf name');
   const [video, setVideo] = useState('');
   const [videoName, setVideoName] = useState('video name');
-  const [userID, setUserId] = useState(user.id);
+  const [userID, _setUserId] = useState(user.id);
   const [loading, setLoading] = useState(true);
 
   // to convert base 64 to file ......
@@ -74,7 +77,7 @@ const AddHallHook = () => {
   const onChangePdf = (event) => {
     const selectedPdf = event.target.files[0];
     setPdf(selectedPdf);
-    console.log(event.target.files[0]);
+   
 
     if (selectedPdf) {
       const fileSizeInBytes = selectedPdf.size;

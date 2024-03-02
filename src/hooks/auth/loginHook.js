@@ -37,8 +37,8 @@ const LoginHook = () => {
     }
     dispatch(
       loginUser({
-        email,
-        password,
+        email: email,
+        password: password,
       }),
     );
     setLoading(false);
@@ -48,14 +48,11 @@ const LoginHook = () => {
     if (loading === false) {
       if (res.data) {
         if (res.data.validationError) {
-          console.log('error', res.data);
           setLoading(true);
-
           alert(res.data.validationError);
           return;
         }
         if (res.data.token) {
-          console.log(res.data);
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('user', JSON.stringify(res.data.data));
 

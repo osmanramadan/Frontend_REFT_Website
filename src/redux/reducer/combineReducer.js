@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
-import commentReducer from './commentReducer';
+import messReducer from './messReducer';
 import hallReducer from './hallReducer';
 
 export const combineReducer = combineReducers({
   authReducer: authReducer,
-  commentReducer: commentReducer,
+  messReducer: messReducer,
   hallReducer: hallReducer,
 });

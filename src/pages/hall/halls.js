@@ -5,11 +5,12 @@ import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import Place from '../../compenents/global/widgets/place';
 import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
-import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import GetHallsHook from '../../hooks/hall/getHallsHook';
 
+
+
 function Halls() {
-  const [isuser, _isadmin, _data] = ProtectedRouteHook();
+
 
   const [halls, loading, setSearch, search, searchHalls] = GetHallsHook();
 
@@ -69,15 +70,19 @@ function Halls() {
       </Row>
 
       <Container className="mt-5">
+
         <Row className="d-flex justify-content-center px-5">
-          {loading === true && currentItems.length == 0 && (
+          
+          {
+          loading === true && currentItems.length == 0 && (
             <div
               style={{ fontSize: '30px' }}
               className="d-flex justify-content-center mb-2 fw-bold"
             >
               No Halls Yet
             </div>
-          )}
+          )
+          }
           {loading === false ? (
             <div className="d-flex justify-content-center mb-2">
               <Spinner
@@ -112,7 +117,7 @@ function Halls() {
           )}
           {currentItems.length > 0 &&
             currentItems.map((data, i) => (
-              <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
+              <Col xs={12} sm={12} md="6" lg="4" className="d-flex justify-content-center mb-3" key={i}>
                 <Place key={i} data={data} />
               </Col>
             ))}

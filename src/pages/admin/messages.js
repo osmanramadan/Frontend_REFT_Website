@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
-import Place from '../../compenents/global/widgets/place';
+import Message from '../../compenents/global/widgets/message';
 import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
-import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
+import GetMessagesHook from '../../hooks/admin/message/getMessagesHook';
+// import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 
-function AdminHalls() {
-  const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
+function AdminMessages() {
+  // const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
+  const [messages, loading] = GetMessagesHook();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
@@ -19,39 +21,30 @@ function AdminHalls() {
   const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
-    const updatedItems = halls.slice(indexOfFirstItem, indexOfLastItem);
+    const updatedItems = messages.slice(indexOfFirstItem, indexOfLastItem);
     setCurrentItems(updatedItems);
-  }, [halls, indexOfFirstItem, indexOfLastItem]);
+  }, [messages, indexOfFirstItem, indexOfLastItem]);
 
   useEffect(() => {
-    if (halls.length > 0) {
+    if (messages.length > 0) {
       const pages = [];
 
-      for (let i = 1; i <= Math.ceil(halls.length / itemsPerPage); i++) {
+      for (let i = 1; i <= Math.ceil(messages.length / itemsPerPage); i++) {
         pages.push(i);
       }
       setPageNumberLimit(pages.length);
     }
-  }, [halls]);
+  }, [messages]);
 
   const handlePageClick = (num) => {
     setcurrentPage(num);
   };
 
-  const search_in_halls = (e) => {
-    if (e.target.value === '') {
-      location.reload();
-    }
-
-    setSearch(e.target.value);
-    searchHalls();
-  };
-
   return (
     <div>
       <NavBar />
-      <Banner txt={'Home > Admin >Places'} />
-
+      <Banner txt={'Home > Admin > Messages'} />
+      {/* 
       <Row
         xs="12"
         className="d-flex justify-content-center"
@@ -63,7 +56,7 @@ function AdminHalls() {
           placeholder="Write your location"
           onChange={search_in_halls}
         />
-      </Row>
+      </Row> */}
 
       <Container className="mt-5">
         <Row className="d-flex justify-content-center px-5">
@@ -72,7 +65,7 @@ function AdminHalls() {
               style={{ fontSize: '30px' }}
               className="d-flex justify-content-center mb-2 fw-bold"
             >
-              No Halls Yet
+              No Messages Yet
             </div>
           )}
           {loading === false ? (
@@ -110,7 +103,7 @@ function AdminHalls() {
           {currentItems.length > 0 &&
             currentItems.map((data, i) => (
               <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
-                <Place key={i} data={data} />
+                <Message key={i} data={data} />
               </Col>
             ))}
         </Row>
@@ -124,4 +117,4 @@ function AdminHalls() {
     </div>
   );
 }
-export default AdminHalls;
+export default AdminMessages;

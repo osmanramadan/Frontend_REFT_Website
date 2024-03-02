@@ -4,12 +4,27 @@ import Footer from '../../compenents/global/footer';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import AddHallButton from '../../compenents/hall/AddHallButton';
+import AddMessageHook from '../../hooks/admin/message/addMessageHook';
+
 
 function ContactUs() {
+
+  const  [
+    name,
+    email,
+    phone,
+    message,
+    loading,
+    onChangeUsername,
+    onChangeEmail,
+    onChangePhone,
+    onChangeMessage,
+    OnSubmit,
+  ]=AddMessageHook()
+  
   return (
     <div>
       <NavBar />
@@ -43,12 +58,12 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                  // className="mx-3"
+                
                   style={{ height: '30px', width: '40px' }}
                   icon={faPhone}
                 />
                 <span
-                  // className="mx-2"
+                
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -59,7 +74,7 @@ function ContactUs() {
                   Phone:
                 </span>
                 <span
-                  // className="mx-5"
+                  
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -75,12 +90,12 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                  // className="mx-3"
+                  
                   style={{ height: '30px', width: '40px' }}
                   icon={faEnvelope}
                 />
                 <span
-                  // className="mx-2"
+                  
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -91,7 +106,7 @@ function ContactUs() {
                   Email:
                 </span>
                 <span
-                  // className="mx-5"
+               
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -106,12 +121,12 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5 mb-4">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                  // className="mx-3"
+                 
                   style={{ height: '30px', width: '40px' }}
                   icon={faMapMarkerAlt}
                 />
                 <span
-                  // className="mx-2"
+                  
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -122,7 +137,7 @@ function ContactUs() {
                   Address:
                 </span>
                 <span
-                  // className="mx-5"
+                 
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -155,6 +170,7 @@ function ContactUs() {
                   <input
                     className="inputfield-contactus"
                     placeholder="Your name"
+                    onChange={onChangeUsername}
                   />
                 </Col>
               </Row>
@@ -163,6 +179,8 @@ function ContactUs() {
                   <input
                     className="inputfield-contactus"
                     placeholder="Your email"
+                    value={email}
+                    onChange={onChangeEmail}
                   />
                 </Col>
               </Row>
@@ -171,6 +189,8 @@ function ContactUs() {
                   <input
                     className="inputfield-contactus"
                     placeholder="Your phone"
+                    value={phone}
+                    onChange={onChangePhone}
                   />
                 </Col>
               </Row>
@@ -179,11 +199,13 @@ function ContactUs() {
                   <textarea
                     className="inputfield-contactus"
                     placeholder="Your message"
+                    value={message}
+                    onChange={onChangeMessage}
                     style={{ height: '170px' }}
                   />
                 </Col>
               </Row>
-              <AddHallButton txt={'SEND MESSAGE'} />
+              <AddHallButton onClick={OnSubmit} txt={'SEND MESSAGE'} />
             </div>
           </Col>
         </Col>

@@ -13,8 +13,9 @@ import { _useGetDataToken, useGetData } from '../../crud/useGetData';
 // add new hall
 export const addNewHall = (data) => async (dispatch) => {
   try {
+    
     const response = await useInsertData(`/api/v1/halls/addhall`, data);
-    console.log(response);
+
 
     dispatch({
       type: ADD_HALL,
@@ -32,7 +33,6 @@ export const addNewHall = (data) => async (dispatch) => {
 export const getHalls = (data) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/halls`);
-    console.log(response);
 
     dispatch({
       type: GET_ALL_HALLS,
@@ -50,8 +50,7 @@ export const getHalls = (data) => async (dispatch) => {
 export const getAdminHalls = (data) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/halls/getadminhalls`);
-    console.log(response);
-
+    
     dispatch({
       type: GET_ADMIN_HALLS,
       payload: response,
@@ -105,8 +104,7 @@ export const searchAdminHalls = (search) => async (dispatch) => {
 export const changeHallStatus = (data) => async (dispatch) => {
   try {
     const response = await useInsUpdateData(`/api/v1/halls`, data);
-    console.log(response, 'changeHallStatu/changeHallStatu/changeHallStatu');
-
+   
     dispatch({
       type: CHANGE_HALL_STATUS,
       payload: data,

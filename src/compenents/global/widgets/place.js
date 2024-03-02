@@ -42,7 +42,7 @@ function Place({ data }) {
             style={{ color: 'white', fontSize: '10px', fontWeight: 'medium' }}
             className="mx-3"
           >
-            3.9
+            3.1
           </span>
           <FontAwesomeIcon
             icon={faStar}

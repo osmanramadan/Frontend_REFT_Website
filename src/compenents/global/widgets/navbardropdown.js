@@ -42,9 +42,7 @@ function Navbardropdown({ isUser }) {
                       width={125}
                       height={125}
                       alt="Profile Image"
-                      // src={osman}
                       src={`data:image/*;base64,${userData.profile_img}`}
-                      // src={userData.profile_img}
                       roundedCircle
                     />
                   </Figure>
@@ -84,7 +82,7 @@ function Navbardropdown({ isUser }) {
           </Row>
         ) : (
           <Row
-            className="d-flex align-items-center justigy-content-center mt-3"
+            className="d-flex align-items-center justify-content-center mt-3"
             style={{ color: 'white' }}
           >
             <Col className="text-center d-flex align-items-center">Admin</Col>
@@ -98,7 +96,7 @@ function Navbardropdown({ isUser }) {
         )}
 
         <Dropdown.Menu
-          className={`mx-2 d-flex flex-column justify-content-between text-center  ${
+          className={`d-flex flex-column justify-content-between text-center  ${
             show ? 'd-none' : 'show'
           }`}
           style={{
@@ -107,8 +105,7 @@ function Navbardropdown({ isUser }) {
             height: '110px',
             width: '210px',
             padding: '10px',
-            marginLeft: '-17px',
-            marginTop: '10px',
+            marginTop: '17px',
             borderColor: 'white',
             borderWidth: '3px',
           }}
@@ -119,13 +116,19 @@ function Navbardropdown({ isUser }) {
               My Profile
             </Link>
           ) : (
-            <Link className="link mt-2 mb-1" to="/admin-places">
-              {' '}
-              Admin
-            </Link>
+            <div>
+              <Link className="link mt-2 mb-1" to="/admin-places">
+                {' '}
+                Admin
+              </Link>
+              <Link className="link d-block mt-2 mb-1" to="/admin-messages">
+                {' '}
+                Messages
+              </Link>
+            </div>
           )}
 
-          <Link className="link py-1 mt-1 mb-1">
+          <Link className="link  mt-1 mb-2">
             <div onClick={Logout}>Log out</div>
           </Link>
         </Dropdown.Menu>

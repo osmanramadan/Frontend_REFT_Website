@@ -34,17 +34,23 @@ function Footer() {
 
         <Row className="d-flex  justify-content-center  mt-3">
           <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">Contact Us</Link>
+            <Link to={'/contact-us'} className="link mx-1 mb-xs-1">
+              Contact Us
+            </Link>
           </Col>
           <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">About Us</Link>
+            <Link to={'/about-us'} className="link mx-1 mb-xs-1">
+              About Us
+            </Link>
           </Col>
           <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">Our Places</Link>
+            <Link to={'/places'} className="link mx-1 mb-xs-1">
+              Our Places
+            </Link>
           </Col>
-          <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">Add Place</Link>
-          </Col>
+          {/* <Col xs="12" sm="6" md="2">
+            <Link to={"/hall-add"} className="link mx-1 mb-xs-1">Add Place</Link>
+          </Col> */}
           <Col xs="12" sm="6" md="2">
             <Link className="link mx-1 mb-xs-1">Terms and Conditions</Link>
           </Col>

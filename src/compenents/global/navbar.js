@@ -7,11 +7,12 @@ import NavBarButton from './widgets/navbarbutton';
 import logo from '../../assets/images/logo.png';
 
 function NavBar() {
+  
   const [isUser, isAdmin, _data] = ProtectedRouteHook();
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Navbar collapseOnSelect expand="md" className="navbar" expanded={expanded}>
+    <Navbar collapseOnSelect expand="lg" className="navbar" expanded={expanded}>
       <Container>
         <Link to="/">
           <img

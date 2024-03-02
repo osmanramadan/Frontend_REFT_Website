@@ -29,7 +29,6 @@ function HallDetails() {
   }
   const handleSubmit = () => {
     onSubmit(hallData.id);
-    console.log(hallData.id, 'hallData.idhallData.idhallData.id');
   };
 
   return (
@@ -40,7 +39,7 @@ function HallDetails() {
       />
       <Row className="d-flex justify-content-center">
         <Col xs="12" sm="12" md="8" lg="8">
-          <Carousel className="mt-0">
+          <Carousel className="mt-2">
             {hallData.imagesData &&
               hallData.imagesData.map((v, _i) => {
                 return (

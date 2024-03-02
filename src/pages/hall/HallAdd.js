@@ -12,7 +12,6 @@ import CityDropdown from '../../compenents/auth/CityDropdown';
 import AddHallHook from '../../hooks/hall/addHallHook';
 
 function HallAdd() {
-  // const [images, setImages] = useState([]);
   const [
     onSubmit,
     images,

@@ -16,6 +16,8 @@ import UserPlaces from './pages/user/UserPlaces';
 import AboutUs from './pages/aboutus/AboutUs';
 import ContactUs from './pages/contactus/ContactUs';
 import AdminHalls from './pages/admin/halls';
+import AdminMessages from './pages/admin/messages';
+import MessDetails from './pages/admin/messageDetails';
 import NotFound from './compenents/global/notfound';
 
 function App() {
@@ -35,18 +37,18 @@ function App() {
         <Route exact path="/change-password" element={<ChangePassword />} />
         <Route exact path="/verify-code" element={<SendCode />} />
         <Route exact path="/hall-details" element={<HallDetails />} />
-        <Route exact path="/hall-add" element={<HallAdd />} />
         <Route exact path="/places" element={<Halls />} />
+        <Route exact path="/hall-add" element={<HallAdd />} />
 
-        {/* <Route element={<ProtectedRoute auth={isUser} />}> */}
-        <Route exact path="/user-profile" element={<Profile />} />
-        <Route exact path="/user-places" element={<UserPlaces />} />
-
-        {/* </Route> */}
+        <Route element={<ProtectedRoute auth={isUser} />}>
+          <Route exact path="/user-profile" element={<Profile />} />
+          <Route exact path="/user-places" element={<UserPlaces />} />
+        </Route>
 
         <Route element={<ProtectedRoute auth={isAdmin} />}>
-          {/* <Route exact path="/admin/allproducts" element={<Allproducts />} /> */}
           <Route exact path="/admin-places" element={<AdminHalls />} />
+          <Route exact path="/admin-messages" element={<AdminMessages />} />
+          <Route exact path="/message-details" element={<MessDetails/>} />
         </Route>
       </Routes>
       {/* <Footer /> */}

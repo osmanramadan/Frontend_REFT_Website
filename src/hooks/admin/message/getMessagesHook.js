@@ -1,29 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserHalls } from '../../redux/actions/hallAction';
+import { getMessages } from '../../../redux/actions/messAction';
 
-const GetUserHallsHook = () => {
+const GetMessagesHook = () => {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const res = useSelector((state) => state.hallReducer.getUserHalls);
+
+  const res = useSelector((state) => state.messReducer.getMessages);
+  
+
 
   useEffect(() => {
-    if (localStorage.getItem('user') !== null) {
-      var user = JSON.parse(localStorage.getItem('user'));
-    }
-
     setLoading(true);
-    dispatch(getUserHalls(user.id));
+    dispatch(getMessages());
     setLoading(false);
   }, []);
 
+
   useEffect(() => {
+
     if (loading === false) {
       setLoading(true);
+      console.log(res.data)
 
-      if (res.status) {
+      if (res.data) {
         if (res.status === 'success') {
           setData(res.data);
         }
@@ -34,4 +37,4 @@ const GetUserHallsHook = () => {
   return [data, loading];
 };
 
-export default GetUserHallsHook;
+export default GetMessagesHook;

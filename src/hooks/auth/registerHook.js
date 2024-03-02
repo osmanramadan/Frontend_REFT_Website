@@ -91,7 +91,7 @@ const RegisterHook = () => {
         return 'Phone already exist';
       }
 
-      return ''; // No validation error
+      return ''; 
     }
   };
 

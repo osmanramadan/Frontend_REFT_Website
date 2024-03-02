@@ -7,9 +7,16 @@ import MidTitle from '../../compenents/global/widgets/midtitle';
 import Place from '../../compenents/global/widgets/place';
 import GetUserHallsHook from '../../hooks/hall/getUserHallsHook';
 import PaginationComponent from '../../compenents/global/pagination';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function UserPlaces() {
-  const [halls, loading] = GetUserHallsHook();
+  const [isuser, _isadmin, _userData] = ProtectedRouteHook();
+  const [halls, _loading] = GetUserHallsHook();
+
+  // if(!isuser){
+  //   window.location.href='/signin';
+  //   return;
+  // }
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);

@@ -5,13 +5,16 @@ import { Col, Row } from 'react-bootstrap';
 import UserTabs from '../../compenents/user/UserTap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import ImageChooser from '../../compenents/user/ImageChooser';
-import osman from '../../assets/images/24.png';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function Profile() {
   const [isuser, _isadmin, userData] = ProtectedRouteHook();
+
+  // if(!isuser){
+  //   window.location.href='/signin';
+  //   return;
+  // }
+
   return (
     <div>
       <NavBar />

@@ -19,3 +19,8 @@ export const GET_ADMIN_HALLS = 'GET_ADMIN_HALLS ';
 export const SEARCH_HALLS = 'SEARCH_HALLS';
 export const CHANGE_HALL_STATUS = 'CHANGE_HALL_STATUS';
 export const GET_USER_HALLS = 'GET_USER_HALLS';
+
+// message
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
