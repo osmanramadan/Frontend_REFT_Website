@@ -1,6 +1,6 @@
 import { ADD_MESSAGE, GET_ALL_MESSAGES, DELETE_MESSAGE } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
-import { _useGetDataToken, useGetData } from '../../crud/useGetData';
+import { _useGetDataToken, useGetData, useGetDataToken } from '../../crud/useGetData';
 
 
 

@@ -376,7 +376,7 @@ body {
 
 .carousel-control-next-icon {
   background-image: url('../assets/images/arrow.svg');
-  color: var(--amber_200);
+  color: var(--amber_200) !important;
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);

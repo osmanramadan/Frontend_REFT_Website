@@ -117,7 +117,7 @@ function Halls() {
           )}
           {currentItems.length > 0 &&
             currentItems.map((data, i) => (
-              <Col xs={12} sm={12} md="6" lg="4" className="d-flex justify-content-center mb-3" key={i}>
+              <Col xs={12} sm={12} md={6} lg={4} className="d-flex justify-content-center mb-3" key={i}>
                 <Place key={i} data={data} />
               </Col>
             ))}
