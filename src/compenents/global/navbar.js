@@ -46,7 +46,7 @@ function NavBar() {
                 Our places
               </Nav.Link>
               <Nav.Link href="/hall-add" className="link mx-lg-3">
-                Add hall
+                Add Place
               </Nav.Link>
             </Nav>
           </Col>
