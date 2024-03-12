@@ -59,12 +59,14 @@ function UserPlaces() {
           <Row className="mt-5">
             <MidTitle txt={'My Places'} />
           </Row>
-          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-            {currentItems.map((info, index) => (
+          <Row className="mt-5 mx-3 px-lg-5 px-md-5 d-flex justify-content-center">
+            {
+             currentItems.map((info, index) => (
               <Col xs="12" sm="6" md="12" lg="6" key={index}>
                 <Place data={info} />
               </Col>
-            ))}
+            ))
+            }
 
             <PaginationComponent
               pageCount={pageNumberLimit}

@@ -3,7 +3,7 @@ import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import Banner from '../../compenents/global/widgets/banner';
 import Carousel from 'react-bootstrap/Carousel';
-import { Row, Col, Container, Spinner } from 'react-bootstrap';
+import { Row, Col, Container} from 'react-bootstrap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import HallAcceptionDropdown from '../../compenents/admin/hall/HallAcceptionDropdown';
@@ -41,9 +41,9 @@ function HallDetails() {
         <Col xs="12" sm="12" md="8" lg="8">
           <Carousel className="mt-2">
             {hallData.imagesData &&
-              hallData.imagesData.map((v, _i) => {
+              hallData.imagesData.map((v, i) => {
                 return (
-                  <Carousel.Item style={{ height: '100%', width: '100%' }}>
+                  <Carousel.Item key={i} style={{ height: '100%', width: '100%' }}>
                     <div className="d-flex flex-row justify-content-center">
                       <img
                         style={{
@@ -70,7 +70,7 @@ function HallDetails() {
             sm="12"
             md="6"
             lg="4"
-            // className='text-center'
+            className='detail-title'
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -92,7 +92,7 @@ function HallDetails() {
             sm="12"
             md="6"
             lg="4"
-            // className='text-center'
+            className='detail-title'
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -118,7 +118,7 @@ function HallDetails() {
             sm="12"
             md="6"
             lg="4"
-            // className='text-center'
+            className='detail-title'
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -140,7 +140,7 @@ function HallDetails() {
             sm="12"
             md="6"
             lg="4"
-            // className='text-center'
+            className='detail-title'
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -169,7 +169,7 @@ function HallDetails() {
             sm="12"
             md="6"
             lg="6"
-            className="mx-5"
+            className='detail-title mx-5'
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -197,38 +197,13 @@ function HallDetails() {
       ) : (
         ''
       )}
-
-      <Row className="d-flex justify-content-center mx-5">
+            <Row className="d-flex justify-content-center mx-5">
         <Col
           xs="12"
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
-          style={{
-            fontSize: '32px',
-            fontWeight: 'medium',
-            fontFamily: 'Poppins',
-            color: '#282938',
-          }}
-        >
-          Hall Details :
-          <span
-            style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
-            className="mx-1"
-          >
-            {hallData.details}
-          </span>
-        </Col>
-      </Row>
-
-      <Row className="d-flex justify-content-center mx-5">
-        <Col
-          xs="12"
-          sm="12"
-          md="6"
-          lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -246,15 +221,13 @@ function HallDetails() {
         </Col>
       </Row>
 
-      {/*  */}
-
       <Row className="d-flex justify-content-center mx-5">
         <Col
           xs="12"
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -272,6 +245,34 @@ function HallDetails() {
         </Col>
       </Row>
 
+
+
+      {/*  */}
+
+      {/* <Row className="d-flex justify-content-center mx-5">
+        <Col
+          xs="12"
+          sm="12"
+          md="6"
+          lg="6"
+          className='detail-title mx-5'
+          style={{
+            fontSize: '32px',
+            fontWeight: 'medium',
+            fontFamily: 'Poppins',
+            color: '#282938',
+          }}
+        >
+        Hall Details:
+          <span
+            style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
+            className="mx-1"
+          >
+            {hallData.details}
+          </span>
+        </Col>
+      </Row> */}
+
       {/*  */}
 
       <Row className="d-flex justify-content-center mx-5">
@@ -280,7 +281,7 @@ function HallDetails() {
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -303,7 +304,7 @@ function HallDetails() {
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -327,7 +328,7 @@ function HallDetails() {
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -351,7 +352,7 @@ function HallDetails() {
           sm="12"
           md="6"
           lg="6"
-          className="mx-5"
+          className='detail-title mx-5'
           style={{
             fontSize: '32px',
             fontWeight: 'medium',
@@ -382,6 +383,7 @@ function HallDetails() {
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
+            
             ></iframe>
           </div>
         </Col>

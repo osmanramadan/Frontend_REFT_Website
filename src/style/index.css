@@ -33,7 +33,7 @@
 
 body {
   margin: 0px;
-  overflow-x: scroll;
+  overflow-x:hidden;
   font-family: 'Racing Sans One';
   font-family: 'Poppins', sans-serif;
 }
@@ -729,3 +729,13 @@ div.lmMaya {
     display: none;
   }
 }
+
+
+@media (max-width: 400px) {
+  .detail-title {
+    font-size:18px !important;
+    font-weight: medium;
+    color:#282938,
+  }
+}
+

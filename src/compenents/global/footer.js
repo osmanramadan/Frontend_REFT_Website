@@ -39,7 +39,7 @@ function Footer() {
             </Link>
           </Col>
           <Col xs="12" sm="6" md="2">
-            <Link to={'/about-us'} className="link mx-1 mb-xs-1">
+            <Link to={'/about-us'} className="link mx-2 mb-xs-1">
               About Us
             </Link>
           </Col>
@@ -52,7 +52,7 @@ function Footer() {
             <Link to={"/hall-add"} className="link mx-1 mb-xs-1">Add Place</Link>
           </Col> */}
           <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">Terms and Conditions</Link>
+            <Link className="link mx-2 mb-xs-1">Terms and Conditions</Link>
           </Col>
         </Row>
 
@@ -120,7 +120,7 @@ function Footer() {
             </div>
           </Col>
           <Col xs="12" sm="12" md="6" lg="6">
-            <Row className="text-end mx-4 mt-4">
+            <Row className="text-start mx-4 mt-4">
               <Col xs="6" md="3">
                 {' '}
                 <FontAwesomeIcon

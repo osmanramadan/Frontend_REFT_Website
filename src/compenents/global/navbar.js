@@ -70,3 +70,27 @@ function NavBar() {
 }
 
 export default NavBar;
+
+
+// {
+//     "dev": {
+
+//         "driver":    "pg",
+//         "host":      "localhost",
+//         "database":  "reft",
+//         "user":      "reftreft",
+//         "password":  "reftreft",
+//         "port":5433
+        
+//     },
+    
+//     "test": {
+        
+//         "driver":   "pg",
+//         "host":     "localhost",
+//         "database": "test_reft",
+//         "user":     "reftreft",
+//         "password": "reftreft", 
+//         "port":5433
+//     }
+// }

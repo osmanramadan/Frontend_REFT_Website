@@ -13,25 +13,30 @@ import AddHallHook from '../../hooks/hall/addHallHook';
 
 function HallAdd() {
   const [
-    onSubmit,
-    images,
-    onChangeImages,
-    onChangePlaceName,
-    placeCapacity,
-    onChangePlaceCapacity,
-    placeCity,
-    onChangePlaceCity,
-    placeLocation,
-    onChangePlaceLocation,
-    hourPrice,
-    onChangePriceHour,
-    placeDetails,
-    onChangePlaceDetails,
-    onChangePdf,
-    pdfName,
-    onChangeVideo,
-    videoName,
-    loading,
+    
+      onSubmit,
+      images,
+      onChangeImages,
+      placeName,
+      onChangePlaceName,
+      placeCapacity,
+      onChangePlaceCapacity,
+      placeCity,
+      onChangePlaceCity,
+      placeLocation,
+      onChangePlaceLocation,
+      hourPrice,
+      onChangePriceHour,
+      placeDetails,
+      onChangePlaceDetails,
+      _pdf,
+      onChangePdf,
+      pdfName,
+      _video,
+      onChangeVideo,
+      videoName,
+      loading,
+    
   ] = AddHallHook();
 
   return (
@@ -77,7 +82,7 @@ function HallAdd() {
             <input
               className="inputfield-hall"
               onChange={onChangePlaceName}
-              // value={placeName}
+              value={placeName}
               placeholder="Place Name"
               style={{ width: '100%' }}
             />
