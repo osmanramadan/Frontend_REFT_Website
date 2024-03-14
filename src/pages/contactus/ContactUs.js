@@ -1,13 +1,14 @@
 import React from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import AddHallButton from '../../compenents/hall/AddHallButton';
 import AddMessageHook from '../../hooks/admin/message/addMessageHook';
+
 
 
 function ContactUs() {
@@ -210,6 +211,43 @@ function ContactUs() {
           </Col>
         </Col>
       </Row>
+
+      {/*  */}
+
+{/* import { Button } from "@/components/ui/button" */}
+
+    <div className="bg-[#8bc34a] p-4">
+      <h1 className="text-2xl font-bold">welcome :Ahmed</h1>
+      <div className="mt-4">
+        <h2 className="text-xl font-semibold">My places</h2>
+        <p className="mt-2">place : 56street</p>
+        <p>place : north_town</p>
+      </div>
+      <Button className="mt-4 bg-[#f44336] text-white">
+      <svg
+    
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </svg>
+
+        Add Places{"\n      "}
+      </Button>
+    </div>
+
+
+
+
+      {/*  */}
       <Footer />
     </div>
   );
