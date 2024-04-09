@@ -1,62 +1,61 @@
 import { ADD_MESSAGE, GET_ALL_MESSAGES, DELETE_MESSAGE } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
-import { _useGetDataToken, useGetData, useGetDataToken } from '../../crud/useGetData';
-
-
-
-
+import {
+  _useGetDataToken,
+  useGetData,
+  useGetDataToken,
+} from '../../crud/useGetData';
 
 export const addNewMessage = (data) => async (dispatch) => {
-    try {
-      const response = await useInsertData(`/api/v1/messages`, data);
-      console.log(response);
-  
-      dispatch({
-        type:ADD_MESSAGE,
-        payload: response,
-        loading: true,
-      });
-    } catch (e) {
-      dispatch({
-        type: ADD_MESSAGE,
-        payload: e.response,
-      });
-    }
-  };
-  
-  export const getMessages = (data) => async (dispatch) => {
-    try {
-      const response = await useGetData(`/api/v1/messages`);
-      console.log(response);
-  
-      dispatch({
-        type: GET_ALL_MESSAGES,
-        payload: response,
-        loading: true,
-      });
-    } catch (e) {
-      dispatch({
-        type: GET_ALL_MESSAGES,
-        payload: e.response,
-      });
-    }
-  };
+  try {
+    const response = await useInsertData(`/api/v1/messages`, data);
+    console.log(response);
 
-    
-  export const delMessage = (id) => async (dispatch) => {
-    try {
-      const response = await useInsertData(`/api/v1/messages/delete/${id}`);
-      console.log(response);
-  
-      dispatch({
-        type: DELETE_MESSAGE,
-        payload: response,
-        loading: true,
-      });
-    } catch (e) {
-      dispatch({
-        type: DELETE_MESSAGE,
-        payload: e.response,
-      });
-    }
-  };
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: e.response,
+    });
+  }
+};
+
+export const getMessages = (data) => async (dispatch) => {
+  try {
+    const response = await useGetData(`/api/v1/messages`);
+    console.log(response);
+
+    dispatch({
+      type: GET_ALL_MESSAGES,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: GET_ALL_MESSAGES,
+      payload: e.response,
+    });
+  }
+};
+
+export const delMessage = (id) => async (dispatch) => {
+  try {
+    const response = await useInsertData(`/api/v1/messages/delete/${id}`);
+    console.log(response);
+
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: e.response,
+    });
+  }
+};

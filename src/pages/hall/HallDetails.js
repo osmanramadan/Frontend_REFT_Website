@@ -11,10 +11,15 @@ import ChangeHallStatusHook from '../../hooks/admin/hall/changeHallStatusHook';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglass } from '@fortawesome/free-solid-svg-icons';
+// import dotenv from 'dotenv';
+
+
+// dotenv.config();
+
 
 function HallDetails() {
-  const [isuser, isadmin, data] = ProtectedRouteHook();
-  const [onSubmit, status, onChangeStatus, loading] = ChangeHallStatusHook();
+  const [isuser, isadmin, _data] = ProtectedRouteHook();
+  const [onSubmit, status, onChangeStatus, _loading] = ChangeHallStatusHook();
 
   const location = useLocation();
   const nav = useNavigate();
@@ -31,6 +36,13 @@ function HallDetails() {
     onSubmit(hallData.id);
   };
 
+  const handleClick = () => {
+    console.log(hallData.userData.name)
+    console.log(hallData.userData)
+    console.log("########################################")
+    nav(`/book-hall`, { state:{id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id}});
+  };
+
   return (
     <div>
       <NavBar />
@@ -41,9 +53,9 @@ function HallDetails() {
         <Col xs="12" sm="12" md="8" lg="8">
           <Carousel className="mt-2">
             {hallData.imagesData &&
-              hallData.imagesData.map((v, _i) => {
+              hallData.imagesData.map((v, i) => {
                 return (
-                  <Carousel.Item style={{ height: '100%', width: '100%' }}>
+                  <Carousel.Item key={i} style={{ height: '100%', width: '100%' }}>
                     <div className="d-flex flex-row justify-content-center">
                       <img
                         style={{
@@ -446,8 +458,32 @@ function HallDetails() {
         </Row>
       ) : null}
 
+      {isuser ? (
+        <Row className="d-flex justify-content-center mb-3 mt-3">
+          <Col
+            onClick={handleClick}
+            xs="3"
+            className="mt-1  mx-1 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: '#fcd980',
+              borderRadius: '10px',
+              color: 'black',
+              height: '50px',
+              fontSize: '20px',
+              fontWeight: 'bold',
+            }}
+          >
+            BOOK NOW
+          </Col>
+        </Row>
+      ) : (
+        ''
+      )}
+
       <Footer />
     </div>
   );
 }
 export default HallDetails;
+
+

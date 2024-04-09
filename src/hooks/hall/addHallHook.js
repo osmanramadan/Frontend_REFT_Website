@@ -77,7 +77,6 @@ const AddHallHook = () => {
   const onChangePdf = (event) => {
     const selectedPdf = event.target.files[0];
     setPdf(selectedPdf);
-   
 
     if (selectedPdf) {
       const fileSizeInBytes = selectedPdf.size;
@@ -120,8 +119,8 @@ const AddHallHook = () => {
       hourPrice === '',
       placeDetails === '',
       images.length === 0,
-      pdfName === '',
-      videoName === '')
+      pdfName === '' || pdfName === 'pdf name',
+      videoName === '' || videoName==='video name')
     ) {
       alert('من فضلك اكمل البيانات');
       return;

@@ -9,11 +9,8 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import AddHallButton from '../../compenents/hall/AddHallButton';
 import AddMessageHook from '../../hooks/admin/message/addMessageHook';
 
-
-
 function ContactUs() {
-
-  const  [
+  const [
     name,
     email,
     phone,
@@ -24,8 +21,8 @@ function ContactUs() {
     onChangePhone,
     onChangeMessage,
     OnSubmit,
-  ]=AddMessageHook()
-  
+  ] = AddMessageHook();
+
   return (
     <div>
       <NavBar />
@@ -59,12 +56,10 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                
                   style={{ height: '30px', width: '40px' }}
                   icon={faPhone}
                 />
                 <span
-                
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -75,7 +70,6 @@ function ContactUs() {
                   Phone:
                 </span>
                 <span
-                  
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -91,12 +85,10 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                  
                   style={{ height: '30px', width: '40px' }}
                   icon={faEnvelope}
                 />
                 <span
-                  
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -107,7 +99,6 @@ function ContactUs() {
                   Email:
                 </span>
                 <span
-               
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -122,12 +113,10 @@ function ContactUs() {
             <Row className="d-flex justify-content-center mt-5 mb-4">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                 
                   style={{ height: '30px', width: '40px' }}
                   icon={faMapMarkerAlt}
                 />
                 <span
-                  
                   style={{
                     opacity: '0.8',
                     color: '#F2EFFF',
@@ -138,7 +127,6 @@ function ContactUs() {
                   Address:
                 </span>
                 <span
-                 
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
@@ -211,43 +199,6 @@ function ContactUs() {
           </Col>
         </Col>
       </Row>
-
-      {/*  */}
-
-{/* import { Button } from "@/components/ui/button" */}
-
-    <div className="bg-[#8bc34a] p-4">
-      <h1 className="text-2xl font-bold">welcome :Ahmed</h1>
-      <div className="mt-4">
-        <h2 className="text-xl font-semibold">My places</h2>
-        <p className="mt-2">place : 56street</p>
-        <p>place : north_town</p>
-      </div>
-      <Button className="mt-4 bg-[#f44336] text-white">
-      <svg
-    
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M5 12h14" />
-    <path d="M12 5v14" />
-  </svg>
-
-        Add Places{"\n      "}
-      </Button>
-    </div>
-
-
-
-
-      {/*  */}
       <Footer />
     </div>
   );

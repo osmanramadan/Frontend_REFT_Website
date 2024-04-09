@@ -7,11 +7,7 @@ import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
 import GetHallsHook from '../../hooks/hall/getHallsHook';
 
-
-
 function Halls() {
-
-
   const [halls, loading, setSearch, search, searchHalls] = GetHallsHook();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
@@ -70,19 +66,15 @@ function Halls() {
       </Row>
 
       <Container className="mt-5">
-
         <Row className="d-flex justify-content-center px-5">
-          
-          {
-          loading === true && currentItems.length == 0 && (
+          {loading === true && currentItems.length == 0 && (
             <div
               style={{ fontSize: '30px' }}
               className="d-flex justify-content-center mb-2 fw-bold"
             >
               No Halls Yet
             </div>
-          )
-          }
+          )}
           {loading === false ? (
             <div className="d-flex justify-content-center mb-2">
               <Spinner
@@ -117,7 +109,14 @@ function Halls() {
           )}
           {currentItems.length > 0 &&
             currentItems.map((data, i) => (
-              <Col xs={12} sm={12} md={6} lg={4} className="d-flex justify-content-center mb-3" key={i}>
+              <Col
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                className="d-flex justify-content-center mb-3"
+                key={i}
+              >
                 <Place key={i} data={data} />
               </Col>
             ))}

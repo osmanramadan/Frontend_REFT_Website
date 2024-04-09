@@ -91,7 +91,7 @@ const RegisterHook = () => {
         return 'Phone already exist';
       }
 
-      return ''; 
+      return '';
     }
   };
 
@@ -130,10 +130,14 @@ const RegisterHook = () => {
           localStorage.removeItem('user');
 
           setTimeout(() => {
-            navigate('/signin');
+            navigate('/user/confirm-email');
           }, 2000);
         }
-
+        if(res.data.status==="fail"){
+          setLoading(true);
+          alert("Recreate acount");
+          return;
+        }
         if (res.data.validationError) {
           setLoading(true);
           alert(res.data.validationError);

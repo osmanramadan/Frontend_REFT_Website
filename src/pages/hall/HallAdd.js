@@ -16,6 +16,7 @@ function HallAdd() {
     onSubmit,
     images,
     onChangeImages,
+    placeName,
     onChangePlaceName,
     placeCapacity,
     onChangePlaceCapacity,
@@ -27,8 +28,10 @@ function HallAdd() {
     onChangePriceHour,
     placeDetails,
     onChangePlaceDetails,
+    pdf,
     onChangePdf,
     pdfName,
+    video,
     onChangeVideo,
     videoName,
     loading,
@@ -42,7 +45,7 @@ function HallAdd() {
       {loading === false ? (
         <div className="d-flex justify-content-center mb-2">
           <Spinner
-            style={{ color: 'black', marginLeft: '5px' }}
+            style={{ color: '#fcd980', marginLeft: '5px' }}
             as="span"
             animation="grow"
             size="sm"
@@ -51,7 +54,7 @@ function HallAdd() {
           />
 
           <Spinner
-            style={{ color: 'black', marginLeft: '5px' }}
+            style={{ color: '#fcd980', marginLeft: '5px' }}
             as="span"
             animation="grow"
             size="sm"
@@ -60,7 +63,7 @@ function HallAdd() {
           />
 
           <Spinner
-            style={{ color: 'black', marginLeft: '5px' }}
+            style={{ color: '#fcd980', marginLeft: '5px' }}
             as="span"
             animation="grow"
             size="sm"

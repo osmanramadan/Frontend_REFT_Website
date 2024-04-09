@@ -12,9 +12,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import { faHourglass } from '@fortawesome/free-solid-svg-icons';
 
 function MessDetails() {
-
-
-
   const location = useLocation();
   const nav = useNavigate();
 
@@ -26,25 +23,21 @@ function MessDetails() {
     nav('/admin-messages');
     return;
   }
- 
 
   return (
     <div>
       <NavBar />
-      <Banner
-        txt={'Home > Admin > Message  Details' }
-      />
-    
+      <Banner txt={'Home > Admin > Message  Details'} />
+
       <MidTitle txt={'Message  Details'} arrow={false} />
 
-      <Container className='mb-5'>
+      <Container className="mb-5">
         <Row className="d-flex justify-content-center mx-5">
           <Col
             xs="12"
             sm="12"
             md="6"
             lg="6"
-            
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -60,7 +53,6 @@ function MessDetails() {
               {messData.name}
             </span>
           </Col>
-
         </Row>
 
         <Row className="d-flex justify-content-center mx-5">
@@ -69,7 +61,6 @@ function MessDetails() {
             sm="12"
             md="6"
             lg="6"
-            
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -87,14 +78,12 @@ function MessDetails() {
           </Col>
         </Row>
 
-        
         <Row className="d-flex justify-content-center mx-5">
           <Col
             xs="12"
             sm="12"
             md="6"
             lg="6"
-            
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -118,7 +107,6 @@ function MessDetails() {
             sm="12"
             md="6"
             lg="6"
-            
             style={{
               fontSize: '32px',
               fontWeight: 'medium',
@@ -134,15 +122,10 @@ function MessDetails() {
               {messData.message}
             </span>
           </Col>
-
         </Row>
 
-
         {/* *********************** */}
-
-        
       </Container>
-
 
       <Footer />
     </div>

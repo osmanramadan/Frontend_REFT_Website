@@ -19,6 +19,8 @@ import AdminHalls from './pages/admin/halls';
 import AdminMessages from './pages/admin/messages';
 import MessDetails from './pages/admin/messageDetails';
 import NotFound from './compenents/global/notfound';
+import HallBook from './pages/hall/HallBook';
+import HallCheckout from './pages/hall/HallChckout';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -39,6 +41,8 @@ function App() {
         <Route exact path="/hall-details" element={<HallDetails />} />
         <Route exact path="/places" element={<Halls />} />
         <Route exact path="/hall-add" element={<HallAdd />} />
+        <Route exact path="/book-hall" element={<HallBook />} />
+        <Route exact path="/hall-checkout" element={<HallCheckout />} />
 
         <Route element={<ProtectedRoute auth={isUser} />}>
           <Route exact path="/user-profile" element={<Profile />} />
@@ -48,7 +52,7 @@ function App() {
         <Route element={<ProtectedRoute auth={isAdmin} />}>
           <Route exact path="/admin-places" element={<AdminHalls />} />
           <Route exact path="/admin-messages" element={<AdminMessages />} />
-          <Route exact path="/message-details" element={<MessDetails/>} />
+          <Route exact path="/message-details" element={<MessDetails />} />
         </Route>
       </Routes>
       {/* <Footer /> */}
