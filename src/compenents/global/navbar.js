@@ -6,6 +6,8 @@ import Navbardropdown from './widgets/navbardropdown';
 import NavBarButton from './widgets/navbarbutton';
 import logo from '../../assets/images/logo.png';
 
+
+
 function NavBar() {
   const [isUser, isAdmin, _data] = ProtectedRouteHook();
   const [expanded, setExpanded] = useState(false);

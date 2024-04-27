@@ -15,6 +15,15 @@ function CityDropdown({ addhall, city, onChange }) {
     setIsActive(!isActive);
   };
 
+  const data = [
+    { id: 1, name: "cairo"},
+    { id: 2, name: "Alexandria" },
+    { id: 3, name: "Giza" },
+    { id: 4, name: "Port Said" },
+    { id: 5, name: "Luxor"}
+  ];
+  
+
   return (
     <div
       onClick={toggleDropdown}
@@ -40,21 +49,18 @@ function CityDropdown({ addhall, city, onChange }) {
           display: isActive ? 'block' : 'none',
         }}
       >
-        <div className="item" onClick={(e) => changeCity(e.target.textContent)}>
-          Cairo
-        </div>
-        <div className="item" onClick={(e) => changeCity(e.target.textContent)}>
-          Alexandria
-        </div>
-        <div className="item" onClick={(e) => changeCity(e.target.textContent)}>
-          Giza
-        </div>
-        <div className="item" onClick={(e) => changeCity(e.target.textContent)}>
-          Port Said
-        </div>
-        <div className="item" onClick={(e) => changeCity(e.target.textContent)}>
-          Luxor
-        </div>
+
+{
+  data && data.length && data.map((city, index) => (
+    <div className="item" key={city.id} onClick={() => changeCity(city.name)}>
+      {city.name}
+    </div>
+  ))
+}
+
+
+
+
       </div>
     </div>
   );

@@ -129,9 +129,6 @@ const RegisterHook = () => {
           localStorage.setItem('token', res.data.token);
           localStorage.removeItem('user');
 
-          setTimeout(() => {
-            navigate('/user/confirm-email');
-          }, 2000);
         }
         if(res.data.status==="fail"){
           setLoading(true);

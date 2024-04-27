@@ -83,7 +83,7 @@ const data = {
           <span className="mx-3" style={{ color: '#2405f2' }}>
             03
           </span>{' '}
-          How to contact with admin ?
+          How to contact with admin?
         </div>
       ),
       content: (

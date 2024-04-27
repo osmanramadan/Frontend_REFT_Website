@@ -1,3 +1,4 @@
+import { reservHallByHour, reservHallByInterval } from '../actions/hallAction';
 import {
   ADD_HALL,
   GET_ALL_HALLS,
@@ -5,6 +6,9 @@ import {
   GET_ADMIN_HALLS,
   CHANGE_HALL_STATUS,
   GET_USER_HALLS,
+  RESERV_HALL_BY_INTERVAL,
+  RESERV_HALL_BY_HOUR 
+
 } from '../type';
 
 const inital = {
@@ -13,6 +17,8 @@ const inital = {
   getAdminHalls: [],
   getUserHalls: [],
   searchHalls: [],
+  reservHallByHour:[],
+  reservHallByInterval:[],
   hallStatus: [],
 };
 
@@ -49,6 +55,16 @@ const hallReducer = (state = inital, action) => {
       return {
         ...state,
         hallStatus: action.payload,
+      };
+    case RESERV_HALL_BY_HOUR:
+        return {
+          ...state,
+        reservHallByHour: action.payload,
+        };
+    case RESERV_HALL_BY_INTERVAL:
+      return {
+        ...state,
+        reservHallByInterval: action.payload,
       };
 
     default:

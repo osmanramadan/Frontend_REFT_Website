@@ -53,7 +53,7 @@ function AdminHalls() {
       <Banner txt={'Home > Admin >Places'} />
 
       <Row
-        xs="12"
+        xs="12" 
         className="d-flex justify-content-center"
         style={{ marginTop: '105px', marginBottom: '110px' }}
       >

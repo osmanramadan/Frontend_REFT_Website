@@ -43,9 +43,21 @@ body {
   color: unset;
 }
 
+/* Customize scrollbar appearance */
+::-webkit-scrollbar {
+  width: 17px; /* Width of scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color:#1C1E53; /* Color of thumb */
+}
+
+
+
 /************************************************************** Auth ******************************************************/
 
 .inputfield {
+
   height: 60px;
   width: 450px;
   background-color: var(--blue_gray_900_01);

@@ -43,7 +43,6 @@ const AddHallHook = () => {
   const res = useSelector((state) => state.hallReducer.addHall);
 
   const onChangePlaceName = (event) => {
-    console.log(event.target.value);
     setPlaceName(event.target.value);
   };
 
@@ -95,7 +94,7 @@ const AddHallHook = () => {
     const selectedVideo = value.target.files[0];
     setVideo(selectedVideo);
 
-    console.log(value.target.files[0]);
+    
 
     if (selectedVideo) {
       const fileSizeInBytes = selectedVideo.size;
