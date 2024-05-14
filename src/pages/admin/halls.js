@@ -6,9 +6,11 @@ import Place from '../../compenents/global/widgets/place';
 import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
 import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
+import { useTranslation } from 'react-i18next';
 
 function AdminHalls() {
   const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
+  const { t } = useTranslation();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
@@ -50,7 +52,8 @@ function AdminHalls() {
   return (
     <div>
       <NavBar />
-      <Banner txt={'Home > Admin >Places'} />
+      <Banner txt={t('halls.home')} />
+      {/* <Banner txt={'Home > Admin >Places'} /> */}
 
       <Row
         xs="12" 

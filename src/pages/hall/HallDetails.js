@@ -11,7 +11,10 @@ import ChangeHallStatusHook from '../../hooks/admin/hall/changeHallStatusHook';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglass } from '@fortawesome/free-solid-svg-icons';
-import ReservHallHook from '../../hooks/book/reservHallByHourHook';
+import ReservHallByHourHook from '../../hooks/book/reservHallByHourHook';
+import ReservHallByIntervalDays from '../../hooks/book/reservHallIntervalDaysHook';
+import ReservHallIntervalHoursHook from '../../hooks/book/reservHallIntervalHoursHook';
+import ReservHallIntervalDaysHoursHook from '../../hooks/book/reservHallIntervalDaysHoursHook';
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
 
 
@@ -19,11 +22,19 @@ import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
 
 
 function HallDetails() {
+
+
   const [isuser, isadmin, _data] = ProtectedRouteHook();
   const [onSubmit, status, onChangeStatus, _loading] = ChangeHallStatusHook();
   const [selectedTab, setSelectedTab] = useState('book hour'); 
+  const handleShow  = () => setShow(true);
+  const [show, setShow]  = useState(false);
+  const handleClose = () => setShow(false);
 
-  const  [show,handleShow,handleClose,onChangeDate,date,setHour,hour] =ReservHallHook()
+  const  [onChangeDateByHour,date,onChangeHour,hour]=ReservHallByHourHook()
+  const  [onChangeDateOne,onChangeDateTwo,dateone,datetwo,onChangeDaysHour,hourdays]=ReservHallByIntervalDays()
+  const  [onChangeDateHours,datehours,onChangeHoursFrom,hourfrom,onChangeHoursTo,hourto]=ReservHallIntervalHoursHook()
+  const  [onChangeDateOneMix,onChangeDateTwoMix,onChangeHoursFromMix,onChangeHoursToMix,dateonemix,datetwomix,hourfrommix,hourtomix]=ReservHallIntervalDaysHoursHook()
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -53,8 +64,94 @@ function HallDetails() {
   const handleClick = () => {
     nav(`/book-hall`, { state:{id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id}});
   };
-  const handleCheckout = (e) => {
-    nav(`/hall-checkout`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},hour:hour,date:date}});
+const handleCheckoutHour = (e) => {
+
+    if(date=='' || date==null){
+      alert("Choose date")
+      return;
+    }
+
+    if(hour=='' || hour==null){
+        alert("Choose hour")
+        return;
+    }
+
+    nav(`/checkout-hour`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hour:hour,date:date}});
+  }
+
+const handleCheckoutDays = (e) => {
+
+    if(hourdays=='' || hourdays==null){
+        alert(`Choose hour ${hourdays}`)
+        return;
+    }
+    if(dateone=='' || dateone==null){
+      alert("Choose date From")
+      return;
+    }
+    if(datetwo=='' || datetwo==null){
+    alert("Choose date To")
+    return;
+    }
+    
+    if(datetwo == dateone){
+     alert("Date should be different")
+     return;
+     }
+    nav(`/checkout-days`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hour:hourdays,datefrom:dateone,dateto:datetwo}});
+  }
+
+  const handleCheckoutHours = (e) => {
+
+    if(hourfrom=='' || hourfrom==null){
+        alert("Choose hour from")
+        return;
+    }
+
+    if(hourto=='' || hourto==null){
+      alert("Choose hour to")
+      return;
+    }
+    if(hourto == hourfrom){
+    alert("Hours should be different")
+    return;
+    }
+    nav(`/checkout-hours`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hourfrom:hourfrom,hourto:hourto,datehours:datehours}});
+  }
+
+  const handleCheckoutHoursDays = (e) => {
+
+    if(hourfrommix=='' || hourfrommix==null){
+        alert("Choose hour from")
+        return;
+    }
+
+    if(hourtomix=='' || hourtomix==null){
+      alert("Choose hour to")
+      return;
+    }
+
+   if(dateonemix=='' || dateonemix==null){
+    alert("Choose date from")
+    return;
+   }
+
+   if(datetwomix =='' || datetwomix==null){
+    alert("Choose date to")
+    return;
+   }
+
+   if(dateonemix == datetwomix){
+    alert("Date should be different")
+    return;
+  }
+
+  if(hourfrommix == hourtomix){
+
+    alert("Hours should be different")
+    return;
+  }
+    nav(`/checkout-hours-days`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hourfrom:hourfrommix,hourto:hourtomix,dateonemix:dateonemix,datetwomix:datetwomix}});
   }
 
 
@@ -68,15 +165,15 @@ function HallDetails() {
   };
 
   return (
-    <div>
+    <div style={{overflow:"scroll"}}>
       <NavBar />
       <Banner
       txt={isuser ? 'Home > Place  Details' : 'Home  > Admin > Place Details'} />
-      <Row className="d-flex justify-content-center">
-      <Modal show={show} onHide={handleClose} style={{direction: 'rtl',left:"-10px",top: '35px', zIndex: '100000' }}>
+      <Row className="d-flex justify-content-center" >
+      <Modal show={show} onHide={handleClose} style={{direction: 'rtl',top: '5px', zIndex: '100000' }}>
           <Modal.Header className='d-flex justify-content-center'>
             <Modal.Title style={{ fontFamily: 'cairo', backgroundColor: '#F9F9F9' }}>
-              Reservation Details
+              Reservation Details 
             </Modal.Title>
           </Modal.Header>
           <Modal.Body style={{ backgroundColor: "#f6f8f7" }}>
@@ -84,21 +181,23 @@ function HallDetails() {
               
               <Tab eventKey="book hour" title="book hour">
                 <Row className='px-3 d-flex justify-content-center'>
-                  <Col xs="6">
+                  <Col xs="8" sm="9" md="6">
                     <Row>
-                      <Col xs="12"><input data={date} onChange={onChangeDate} value={date}  min={today} style={{ width: "100%" }} type='date' /></Col>
-                      <Col xs="12">
-                        <select style={{ width: "100%" }} onChange={(e)=>{setHour(e.target.value)}} className='mt-3'>
+                      <Col xs="12"><input data={date} onChange={onChangeDateByHour} value={date}  min={today} style={{ width: "100%" }} type='date' /></Col>
+                      <Col xs="12" >
+                         
+                         <select style={{width: "100%" }}  onChange={onChangeHour}  key={hour} value={hour} className='mt-3'>
                          {generateHours().map((hou) => (
-                           <option  key={hour} value={hour}>{hou}</option>
+                           <option style={{width:"50px",height:"50px"}}>{hou}</option>
                           ))}
-                      </select>
+                           </select>
+                        
                       </Col>
                     </Row>
                   </Col>
                 </Row>
                 <div className='d-flex justify-content-center mt-3'>
-                  <Button type="button" onClick={handleCheckout}>
+                  <Button type="button" onClick={handleCheckoutHour}>
                     continue
                   </Button>
                 </div>
@@ -110,26 +209,28 @@ function HallDetails() {
 
            <Col xs="12" className='text-center'>
                <Row>
-                  <Col className='text-start'> <input value={date} onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                  <Col className='text-start'> <input value={dateone} onChange={onChangeDateOne} style={{ width: "100%" }} min={today}  type='date' /></Col>
                   <Col>: From</Col>
                </Row>
           </Col>
           <Col xs="12" className='text-center mt-3'>
             <Row>
-                 <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                 <Col className='text-start'> <input  value={datetwo} onChange={onChangeDateTwo} style={{ width: "100%" }} min={today}  type='date' /></Col>
                  <Col >: To</Col>
             </Row>
           </Col>
                 </Row>
                 <Row className='d-flex justify-content-center mt-3'>
-                    <Col xs="6"><select style={{ width: "100%" }}>
+                    <Col xs="6">
+                      <select style={{ width: "100%" }} key={hourdays} value={hourdays} onChange={onChangeDaysHour} >
                       {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
+                        <option >{hour}</option>
                       ))}
-                    </select></Col>
+                     </select>
+                    </Col>
                   </Row>
                 <div className='d-flex justify-content-center mt-3'>
-                  <Button type="button" onClick={handleCheckout}>
+                  <Button type="button" onClick={handleCheckoutDays}>
                     continue
                   </Button>
                 </div>
@@ -140,13 +241,13 @@ function HallDetails() {
 
                       <Col xs="12" className='text-center'>
                         <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                           <Col className='text-start'> <input value={dateonemix}  onChange={onChangeDateOneMix} style={{ width: "100%" }} min={today}  type='date' /></Col>
                            <Col>: From</Col>
                         </Row>
                       </Col>
                       <Col xs="12" className='text-center mt-3'>
                         <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                           <Col className='text-start'> <input value={datetwomix} onChange={onChangeDateTwoMix} style={{ width: "100%" }} min={today}  type='date' /></Col>
                            <Col >: To</Col>
                         </Row>
                       </Col>
@@ -156,22 +257,23 @@ function HallDetails() {
                      
                  <Col xs="12" className='text-center mt-3'>
                         
-                           <Row>
-                           <Col className='text-start'><select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                           <Col>: From</Col>
+                   <Row>
+                        <Col className='text-start'>
+                            <select onChange={onChangeHoursFromMix}  key={hourfrommix} value={hourfrommix} style={{ width: "100%" }}>
+                               {generateHours().map((hour) => (
+                            <option>{hour}</option>
+                            ))}
+                          </select></Col>
+                        <Col>: From</Col>
                            </Row>
                         
                       </Col>
                       <Col xs="12" className='text-center mt-3'>
                         <Row>
                             
-                           <Col className='text-start'> <select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
+                        <Col className='text-start'> <select  onChange={onChangeHoursToMix}  key={hourtomix} value={hourtomix} style={{ width: "100%" }}>
+                           {generateHours().map((hour) => (
+                        <option>{hour}</option>
                       ))}
                     </select></Col>
                            <Col >: To</Col>
@@ -182,7 +284,7 @@ function HallDetails() {
               
           
             <div className='d-flex justify-content-center mt-3'>
-              <Button type="button"  onClick={handleClose}>
+              <Button type="button"  onClick={handleCheckoutHoursDays}>
                 continue
               </Button>
             </div>
@@ -193,7 +295,7 @@ function HallDetails() {
 
                       <Col xs="12" className='text-center'>
                         <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                           <Col className='text-start'> <input  onChange={onChangeDateHours} style={{ width: "100%" }} min={today}  type='date' /></Col>
                            <Col>:</Col>
                         </Row>
                       </Col>
@@ -205,11 +307,12 @@ function HallDetails() {
                  <Col xs="12" className='text-center mt-3'>
                         
                            <Row>
-                           <Col className='text-start'><select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
+                           <Col className='text-start'>
+                            <select style={{ width: "100%" }}  key={hourfrom} value={hourfrom}  onChange={onChangeHoursFrom}>
+                             {generateHours().map((hour) => (
+                               <option>{hour}</option>
+                             ))}
+                             </select></Col>
                            <Col>: From</Col>
                            </Row>
                         
@@ -217,9 +320,10 @@ function HallDetails() {
                       <Col xs="12" className='text-center mt-3'>
                         <Row>
                             
-                           <Col className='text-start'> <select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
+                           <Col className='text-start'> 
+                           <select style={{ width: "100%" }}  key={hourto} value={hourto} onChange={onChangeHoursTo}>
+                              {generateHours().map((hour) => (
+                        <option>{hour}</option>
                       ))}
                     </select></Col>
                            <Col >: To</Col>
@@ -230,7 +334,7 @@ function HallDetails() {
               
           
             <div className='d-flex justify-content-center mt-3'>
-              <Button type="button"  onClick={handleClose}>
+              <Button type="button"  onClick={handleCheckoutHours}>
                 continue
               </Button>
             </div>
@@ -276,6 +380,7 @@ function HallDetails() {
       <MidTitle txt={'Hall Owner'} arrow={false} />
 
       <Container>
+       
         <Row className="d-flex justify-content-center mx-5">
           <Col
             xs="12"
@@ -458,34 +563,6 @@ function HallDetails() {
         </Col>
       </Row>
 
-      {/*  */}
-
-      <Row className="d-flex justify-content-center mx-5">
-        <Col
-          xs="12"
-          sm="12"
-          md="6"
-          lg="6"
-          className="mx-5"
-          style={{
-            fontSize: '32px',
-            fontWeight: 'medium',
-            fontFamily: 'Poppins',
-            color: '#282938',
-          }}
-        >
-          Hall Details :
-          <span
-            style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
-            className="mx-1"
-          >
-            {hallData.details}
-          </span>
-        </Col>
-      </Row>
-
-      {/*  */}
-
       <Row className="d-flex justify-content-center mx-5">
         <Col
           xs="12"
@@ -589,7 +666,7 @@ function HallDetails() {
               style={{ borderRadius: '30px' }}
               width="80%"
               height="350px"
-              src={`http://localhost:300400/api/v1/halls/video/${hallData.video}`}
+              src={`${process.env.REACT_APP_VIDEO_API}/${hallData.video}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

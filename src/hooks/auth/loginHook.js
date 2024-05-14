@@ -47,19 +47,24 @@ const LoginHook = () => {
   useEffect(() => {
     if (loading === false) {
       if (res.data) {
+        
         if (res.data.validationError) {
           setLoading(true);
           alert(res.data.validationError);
           return;
         }
         if (res.data.token) {
+  
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('user', JSON.stringify(res.data.data));
-
+          setLoading(true);
           setTimeout(() => {
             window.location.href = '/';
-          }, 3000);
+          }, 1000);
+
+
         } else {
+          setLoading(true);
           localStorage.removeItem('token');
           localStorage.removeItem('user');
         }

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 
 const ProtectedRouteHook = () => {
+
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(true);
 
+
   useEffect(() => {
+
     const storedUserData = localStorage.getItem('user');
 
     if (storedUserData) {
@@ -24,12 +27,18 @@ const ProtectedRouteHook = () => {
 
   return [
     // true, //  isUser
-    error
-      ? undefined
-      : userData.role === 'OWNER' || userData.role === 'TEACHER', //  isUser
+    error? undefined: userData.role === 'OWNER' || userData.role === 'TEACHER', //  isUser
     error ? undefined : userData.role === 'admin_1/id=80226753244', //  isAdmin
     userData,
   ];
+  // return [
+  //   // true, //  isUser
+  //   error? undefined: userData.role === 'OWNER' || userData.role === 'TEACHER', //  isUser
+  //   error ? undefined : userData.role === 'admin_1/id=80226753244', //  isAdmin
+  //   error ? undefined: userData.role === 'TEACHER', // ISTEACHER
+  //   error ? undefined :userData.role ==='OWNER', // ISOWNER
+  //   userData,
+  // ];
 };
 
 export default ProtectedRouteHook;

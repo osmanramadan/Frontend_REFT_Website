@@ -126,9 +126,14 @@ const RegisterHook = () => {
     if (loading === false) {
       if (res.data) {
         if (res.data.token) {
+          setLoading(true)
           localStorage.setItem('token', res.data.token);
           localStorage.removeItem('user');
-
+          alert("Success create")
+          setTimeout(() => {
+            window.location.href = '/signin';
+          }, 1000);
+          return;
         }
         if(res.data.status==="fail"){
           setLoading(true);

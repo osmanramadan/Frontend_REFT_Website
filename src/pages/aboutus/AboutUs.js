@@ -4,7 +4,7 @@ import Footer from '../../compenents/global/footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import aboutus from '../../assets/images/aboutus.png';
 
-function AboutUs({ txt, onClick }) {
+function AboutUs() {
   return (
     <div>
       <NavBar />
@@ -25,7 +25,8 @@ function AboutUs({ txt, onClick }) {
             }}
           >
             <div className="mb-5">
-              We Build Bridge Between Teacher and Place Owner
+           -
+              We Build Bridge Between Teacher and Place Owner-
             </div>
           </Col>
           <Col

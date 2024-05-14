@@ -1,37 +1,37 @@
 import { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { reservHallByHour  } from '../../redux/actions/hallAction';
 // import { reservHallByInterval  } from '../../redux/actions/hallAction';
 
-const ReservHallByHourHook = () => {
+const ReservHallIntervalHoursHook = () => {
 
 
   const dispatch         = useDispatch();
 
-  const [date, setDate]  = useState('');
-  const [hour, setHour]  = useState('9:00');
-  const [day, setDay]  = useState('');
-  const [month, setMonth]  = useState('');
-  const [year, setYear]  = useState('');
+  const [datehours, setDateHours]  = useState('');
+  const [hourfrom, setHourFrom]  = useState('9:00');
+  const [hourto, setHourTo]  = useState('9:00');
+  // const [day, setDay]  = useState('');
+  // const [month, setMonth]  = useState('');
+  // const [year, setYear]  = useState('');
 
 
 
-  // const reservbyhour= useSelector((state) => state.bookReducer.reservHallByHour);
+  // const reservbyhour= useSelector((state) => state.hallReducer.reservHallByHour);
   // const reservbyinterval = useSelector((state) => state.hallReducer.reservHallByInterval);
 
-  const onChangeDateByHour=(e) => {
+  const onChangeDateHours=(e) => {
 
-      setDate(e.target.value)
-      // const selectedDate = new Date(e.target.value);
-      // const day          = selectedDate.getDate();
-      // const month        = selectedDate.getMonth() + 1;
-      // const year         = selectedDate.getFullYear();
-      // // console.log("Day:", day, "Month:", month, "Year:", year,selectedDate);
+      setDateHours(e.target.value)
   }
 
-  const onChangeHour = (e) => {
-    setHour(e.target.value);
-    // console.log(e.target.value)
+  const onChangeHoursFrom = (e) => {
+    setHourFrom(e.target.value)
+    console.log(e.target.value)
+  };
+  const onChangeHoursTo = (e) => {
+    setHourTo(e.target.value);
+    console.log(e.target.value)
   };
 
   // const reservHallByHour=()=>{
@@ -57,7 +57,7 @@ const ReservHallByHourHook = () => {
   //   }
   // }, [reservbyhour.data]);
 
-  return [onChangeDateByHour,date,onChangeHour,hour];
+  return [onChangeDateHours,datehours,onChangeHoursFrom,hourfrom,onChangeHoursTo,hourto];
 };
 
-export default ReservHallByHourHook
+export default ReservHallIntervalHoursHook;

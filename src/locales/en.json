@@ -1,0 +1,31 @@
+{
+    "contactUs": {
+      "title": "GET IN TOUCH",
+      "phoneLabel": "Phone:",
+      "emailLabel": "Email:",
+      "addressLabel": "Address:",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Your email",
+      "phonePlaceholder": "Your phone",
+      "messagePlaceholder": "Your message",
+      "sendButton": "SEND MESSAGE"
+    },
+    "halls": {
+        "home": "Home > Places",
+        "searchPlaceholder": "Write your location",
+        "noHalls": "No Halls Yet"
+      },
+      "navbar": {
+        "home": "HOME",
+        "signup":"Sign up",
+        "aboutUs": "About us",
+        "ourPlaces": "Our places",
+        "addPlace": "Add Place"
+      },
+      "homepageBanner": {
+        "title": "Empowering Minds: Your Gateway to Knowledge and Learning",
+        "description": "Our mission is to provide a comprehensive educational experience that transcends boundaries and empowers individuals on their journey to knowledge mastery",
+        "buttonText": "START SEARCH"
+      }
+  }
+  

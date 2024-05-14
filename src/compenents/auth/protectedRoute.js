@@ -6,7 +6,7 @@ const ProtectedRoute = ({ auth, children }) => {
     return null;
   }
 
-  return auth ? children || <Outlet /> : <Navigate to="/login" replace />;
+  return auth ? children || <Outlet /> : <Navigate to="/login"  />;
 };
 
 export default ProtectedRoute;

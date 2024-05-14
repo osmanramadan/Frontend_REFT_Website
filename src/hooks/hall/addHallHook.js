@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewHall } from '../../redux/actions/hallAction';
 
+
 const AddHallHook = () => {
   const dispatch = useDispatch();
 

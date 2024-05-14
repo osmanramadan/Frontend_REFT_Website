@@ -1,0 +1,33 @@
+{
+    "contactUs": {
+      "title": "تواصل معنا",
+      "phoneLabel": "الهاتف:",
+      "emailLabel": "البريد الإلكتروني:",
+      "addressLabel": "العنوان:",
+      "namePlaceholder": "اسمك",
+      "emailPlaceholder": "بريدك الإلكتروني",
+      "phonePlaceholder": "هاتفك",
+      "messagePlaceholder": "رسالتك",
+      "sendButton": "إرسال الرسالة"
+    },
+    "halls": {
+        "home": "الرئيسية > الأماكن",
+        "searchPlaceholder": "اكتب موقعك",
+        "noHalls": "لا توجد صالات حتى الآن"
+      },
+      "navbar": {
+        "signup":"تسجيل حساب",
+        "home": "الصفحة الرئيسية",
+        "aboutUs": "معلومات عنا",
+        "ourPlaces": "أماكننا",
+        "addPlace": "إضافة مكان"
+      },
+        "homepageBanner": {
+          "title": "تمكين العقول: بوابتك إلى المعرفة والتعلم",
+          "description": "مهمتنا هي توفير تجربة تعليمية شاملة تتجاوز الحدود وتمكن الأفراد في رحلتهم نحو استيعاب المعرفة",
+          "buttonText": "بدء البحث"
+        }
+    
+    }
+  
+  

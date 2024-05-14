@@ -5,12 +5,15 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Navbardropdown from './widgets/navbardropdown';
 import NavBarButton from './widgets/navbarbutton';
 import logo from '../../assets/images/logo.png';
-
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 
 function NavBar() {
+  const { t, i18n } = useTranslation(); // Initialize useTranslation hook
+
   const [isUser, isAdmin, _data] = ProtectedRouteHook();
   const [expanded, setExpanded] = useState(false);
+
 
   return (
     <Navbar collapseOnSelect expand="lg" className="navbar" expanded={expanded}>
@@ -33,21 +36,23 @@ function NavBar() {
           <Col
             xs={6}
             md={6}
-            className="d-flex justify-content-end justify-content-xs-center  mb-2 mb-md-0"
+            className={`d-flex justify-content-end justify-content-xs-center mb-2 mb-md-0 ${
+              i18n.language === 'ar' ? 'rtl' : '' // Add RTL class for Arabic
+            }`}
             style={{ marginLeft: '100px' }}
           >
             <Nav className="d-flex justify-content-center">
               <Nav.Link href="/" className="link mx-md-3">
-                HOME
+                {t('navbar.home')}
               </Nav.Link>
               <Nav.Link href="/about-us" className="link mx-lg-3">
-                About us
+                {t('navbar.aboutUs')}
               </Nav.Link>
               <Nav.Link href="/places" className="link mx-lg-3">
-                Our places
+                {t('navbar.ourPlaces')}
               </Nav.Link>
               <Nav.Link href="/hall-add" className="link mx-lg-3">
-                Add Place
+                {t('navbar.addPlace')}
               </Nav.Link>
             </Nav>
           </Col>
@@ -71,3 +76,4 @@ function NavBar() {
 }
 
 export default NavBar;
+

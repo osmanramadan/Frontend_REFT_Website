@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './compenents/auth/protectedRoute';
 import ProtectedRouteHook from './hooks/auth/protectedRoutedHook';
 import HomePage from './pages/HomePage';
@@ -20,7 +20,11 @@ import AdminMessages from './pages/admin/messages';
 import MessDetails from './pages/admin/messageDetails';
 import NotFound from './compenents/global/notfound';
 import HallBook from './pages/hall/HallBook';
-import HallCheckout from './pages/hall/HallChckout';
+import HallCheckoutDays from './pages/checkout/HallCheckoutIntervalDays';
+import HallCheckoutHours from './pages/checkout/HallCheckoutIntervalHours';
+import HallCheckoutHoursDays from './pages/checkout/HallCheckoutDaysHours';
+import './i18n'; // Import i18n configuration
+import HallCheckoutOneHour from './pages/checkout/HallCheckoutOneHour';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -31,7 +35,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="*" element={<NotFound />} />
-        <Route exact path="/signup" element={<SignUp />} />
+        <Route exact path="signup" element={<SignUp />} />
         <Route exact path="/signin" element={<SignIn />} />
         <Route exact path="/about-us" element={<AboutUs />} />
         <Route exact path="/contact-us" element={<ContactUs />} />
@@ -42,9 +46,14 @@ function App() {
         <Route exact path="/places" element={<Halls />} />
         <Route exact path="/hall-add" element={<HallAdd />} />
         <Route exact path="/book-hall" element={<HallBook />} />
-        <Route exact path="/hall-checkout" element={<HallCheckout />} />
+        <Route exact path="/checkout-hour" element={<HallCheckoutOneHour />} />
+        <Route exact path="/checkout-hours" element={<HallCheckoutHours />} />
+        <Route exact path="/checkout-days" element={<HallCheckoutDays />} />
+        <Route exact path="/checkout-hours-days" element={<HallCheckoutHoursDays />} />
 
-        <Route element={<ProtectedRoute auth={isUser} />}>
+        
+
+        <Route errorElement={<Navigate to="/login" />} element={<ProtectedRoute auth={isUser} />}>
           <Route exact path="/user-profile" element={<Profile />} />
           <Route exact path="/user-places" element={<UserPlaces />} />
         </Route>

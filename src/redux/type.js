@@ -19,8 +19,14 @@ export const GET_ADMIN_HALLS = 'GET_ADMIN_HALLS ';
 export const SEARCH_HALLS = 'SEARCH_HALLS';
 export const CHANGE_HALL_STATUS = 'CHANGE_HALL_STATUS';
 export const GET_USER_HALLS = 'GET_USER_HALLS';
+export const GET_HALLS_CITIES = 'GET_HALLS_CITIES';
+
+
+//book
 export const RESERV_HALL_BY_HOUR = 'RESERV_HALL_BY_HOUR';
-export const RESERV_HALL_BY_INTERVAL = 'RESERV_HALL_BY_INTERVAL';
+export const RESERV_HALL_BY_INTERVAL_Hours = 'RESERV_HALL_BY_INTERVAL_Hours';
+export const RESERV_HALL_BY_INTERVAL_Days = 'RESERV_HALL_BY_INTERVAL_Days';
+export const RESERV_HALL_BY_Days_Hours = 'RESERV_HALL_BY_INTERVAl_Days_Hours';
 
 // message
 export const ADD_MESSAGE = 'ADD_MESSAGE';

@@ -150,41 +150,50 @@
 // PayPalButton.js
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+// import ReservHallHook from '../../hooks/book/reservHallByHourHook';
 
 
+// const  [reservHallByHour,onChangeDate,date,onChangeHour,hour]=ReservHallHook()
 
-const PayPalButton = () => {
+const PayPalButton = ({ amount }) => {
+
   return (
     <PayPalScriptProvider options={{ "AdclrXp4eMBG3Ew9EtTohMKqxTRV0TLCk2CbloyVJ3QrjU5-IQI6TKdGBu6afGHGoa3YamNCuTN2q1-g": "EB2zVfNYMpz9ugCB7HuCWKP30XzLUDItD0XxRScgWXgEEnwaNwf7QtAu1TwM5j_iq97sypySOzEJxXLL" }}>
-      <PayPalButtons
+          
+             <PayPalButtons
+            
         createOrder={(data, actions) => {
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value:"1200" // Replace with your desired total amount
+                value:amount // Replace with your desired total amount
               }
             }]
           });
         }}
         onCancel={
         ()=>{
-            alert("Cancel -------------")
+            alert("Canceled")
         }
         }
         onApprove={(data, actions) => {
-
-            alert("Success")
+            console.log(data,actions,';;;;;;;;;;;;;;;;;;;;;;;;;;;')
+            
+            alert(`Success ${data.orderID}`)
         
-        //   return actions.order.capture().then(function(details) {
-        //     alert('Transaction completed by ' + details.payer.name.given_name);
-        //     // Optionally, you can perform additional actions after successful transaction
-        //   });
+          // return actions.order.capture().then(function(details) {
+          //   alert('Transaction completed by ' + details.payer.name.given_name);
+          // });
         }}
         onError={(e)=>{
             alert("Error",e)
         }}
+        onClick={(e)=>{
+          console.log("     ssssssssssssssssssssssss e.amount")
+        }}
 
       />
+    
     </PayPalScriptProvider>
   );
 };

@@ -18,7 +18,7 @@ function Place({ data }) {
   };
 
   return (
-    <Card style={{ width: '17rem' }} onClick={handleClick} className="mb-3">
+    <Card style={{ width: '13rem',height:"20em" }} onClick={handleClick} className="mb-3">
       <Card.Img
         variant="top"
         style={{ height: '180px' }}

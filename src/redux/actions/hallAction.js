@@ -5,8 +5,7 @@ import {
   GET_ADMIN_HALLS,
   CHANGE_HALL_STATUS,
   GET_USER_HALLS,
-  RESERV_HALL_BY_HOUR ,
-  RESERV_HALL_BY_INTERVAL
+  GET_HALLS_CITIES
 
 } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
@@ -43,6 +42,23 @@ export const getHalls = (data) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: GET_ALL_HALLS,
+      payload: e.response,
+    });
+  }
+};
+export const getHallsCities = (data) => async (dispatch) => {
+  try {
+    const response = await useGetData(`/api/v1/halls/cities`);
+    console.log(response)
+
+    dispatch({
+      type: GET_HALLS_CITIES,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type:GET_HALLS_CITIES,
       payload: e.response,
     });
   }
@@ -137,34 +153,3 @@ export const searchHalls = (search) => async (dispatch) => {
   }
 };
 
-export const reservHallByHour = (search) => async (dispatch) => {
-  try {
-    const response = await useInsertData(`/api/v1/halls/reservbyhour`);
-
-    dispatch({
-      type:RESERV_HALL_BY_HOUR,
-      payload: data,
-    });
-  } catch (e) {
-    dispatch({
-      type:RESERV_HALL_BY_HOUR,
-      payload: e.response,
-    });
-  }
-};
-
-export const reservHallByInterval = (search) => async (dispatch) => {
-  try {
-    const response = await useInsertData(`/api/v1/halls/reservbyinterval`);
-
-    dispatch({
-      type:RESERV_HALL_BY_INTERVAL,
-      payload: data,
-    });
-  } catch (e) {
-    dispatch({
-      type:RESERV_HALL_BY_INTERVAL,
-      payload: e.response,
-    });
-  }
-};

@@ -81,9 +81,33 @@ const HallBook = () => {
       'Saturday'
     ];
     return daysOfWeek[date.getDay()-1];
+  }
+
+  const isLeapYear = (year) => {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   };
 
-  const dt=['520244259:00','5202442511:00','5202442512:00','5202442510:00','5202442514:00']
+
+  const months = {
+    1: 31,
+    2: isLeapYear(year) ? 29 : 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31
+  };
+  const checkMonthCompleteness=()=>{
+
+  }
+
+  const dt=['7202442911:00','720244289:00','920244299:00','9202442911:00','9202442912:00','92024519:00','9202443011:00','920245111:00',
+,'920245112:00','920245113:00','1020244309:00','10202443011:00']
 
   // Function to render the calendar table
   const renderCalendar = () => {
@@ -93,190 +117,14 @@ const HallBook = () => {
     );
     const daysInMonth = generateMonthDays();
     const firstDayOfMonth = new Date(year, currentMonth - 1, 1);
-    const startingDay = firstDayOfMonth.getDay();
+    // const startingDay = firstDayOfMonth.getDay();
 
     return (
       <div>
         <h2>
           {currentMonth} ({monthName})
         </h2>
-        <Modal show={show} onHide={handleClose} style={{direction: 'rtl',left:"-10px",top: '35px', zIndex: '100000' }}>
-          <Modal.Header className='d-flex justify-content-center'>
-            <Modal.Title style={{ fontFamily: 'cairo', backgroundColor: '#F9F9F9' }}>
-              Reservation Details
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{ backgroundColor: "#f6f8f7" }}>
-            <Tabs activeKey={selectedTab} onSelect={handleChangeTab}  className="mb-3  d-flex justify-content-center">
-              
-              <Tab eventKey="book hour" title="book hour">
-                <Row className='px-3 d-flex justify-content-center'>
-                  <Col xs="6">
-                    <Row>
-                      <Col xs="12"><input data={date} onChange={onChangeDate} value={date}  min={today} style={{ width: "100%" }} type='date' /></Col>
-                      <Col xs="12"><select style={{ width: "100%" }} className='mt-3'>
-                        {generateHours().map((hour) => (
-                          <option key={hour} value={hour}>{hour}</option>
-                        ))}
-                      </select>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-                <div className='d-flex justify-content-center mt-3'>
-                  <Button type="button" onClick={handleCheckout}>
-                    continue
-                  </Button>
-                </div>
-              </Tab>
 
-              <Tab eventKey="book interval days" title="book interval days">
-                <Row className='px-3 d-flex justify-content-center'>
-                
-
-           <Col xs="12" className='text-center'>
-               <Row>
-                  <Col className='text-start'> <input value={date} onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
-                  <Col>: From</Col>
-               </Row>
-          </Col>
-          <Col xs="12" className='text-center mt-3'>
-            <Row>
-                 <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
-                 <Col >: To</Col>
-            </Row>
-          </Col>
-                </Row>
-                <Row className='d-flex justify-content-center mt-3'>
-                    <Col xs="6"><select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                  </Row>
-                <div className='d-flex justify-content-center mt-3'>
-                  <Button type="button" onClick={handleCheckout}>
-                    continue
-                  </Button>
-                </div>
-              </Tab>
-
-              <Tab eventKey="book interval hours & days" title="book interval hours & days">
-                  <Row className='d-flex justify-content-center'>
-
-                      <Col xs="12" className='text-center'>
-                        <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
-                           <Col>: From</Col>
-                        </Row>
-                      </Col>
-                      <Col xs="12" className='text-center mt-3'>
-                        <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
-                           <Col >: To</Col>
-                        </Row>
-                      </Col>
-
-                  </Row>
-                 <Row>
-                     
-                 <Col xs="12" className='text-center mt-3'>
-                        
-                           <Row>
-                           <Col className='text-start'><select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                           <Col>: From</Col>
-                           </Row>
-                        
-                      </Col>
-                      <Col xs="12" className='text-center mt-3'>
-                        <Row>
-                            
-                           <Col className='text-start'> <select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                           <Col >: To</Col>
-                        </Row>
-                      
-                      </Col>
-                 </Row>
-              
-          
-            <div className='d-flex justify-content-center mt-3'>
-              <Button type="button"  onClick={handleClose}>
-                continue
-              </Button>
-            </div>
-          </Tab>
-
-          <Tab eventKey="book interval hours" title="book interval hours">
-                  <Row className='d-flex justify-content-center'>
-
-                      <Col xs="12" className='text-center'>
-                        <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDate} style={{ width: "100%" }} min={today}  type='date' /></Col>
-                           <Col>:</Col>
-                        </Row>
-                      </Col>
-  
-
-                  </Row>
-                 <Row>
-                     
-                 <Col xs="12" className='text-center mt-3'>
-                        
-                           <Row>
-                           <Col className='text-start'><select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                           <Col>: From</Col>
-                           </Row>
-                        
-                      </Col>
-                      <Col xs="12" className='text-center mt-3'>
-                        <Row>
-                            
-                           <Col className='text-start'> <select style={{ width: "100%" }}>
-                      {generateHours().map((hour) => (
-                        <option key={hour} value={hour}>{hour}</option>
-                      ))}
-                    </select></Col>
-                           <Col >: To</Col>
-                        </Row>
-                      
-                      </Col>
-                 </Row>
-              
-          
-            <div className='d-flex justify-content-center mt-3'>
-              <Button type="button"  onClick={handleClose}>
-                continue
-              </Button>
-            </div>
-          </Tab>
-        </Tabs>
-      </Modal.Body>
-      <Modal.Footer className='d-flex justify-content-center'>
-        <Button style={{
-              backgroundColor: '#fcd980',
-              borderRadius: '10px',
-              color: 'black',
-              height: '50px',
-              fontSize: '20px',
-              fontWeight: 'bold',
-              border:"none"
-            }} onClick={handleClose}>
-          cancel
-        </Button>
-      </Modal.Footer>
-    </Modal>
         <Table responsive>
           <thead>
             <tr>
@@ -289,24 +137,33 @@ const HallBook = () => {
           <tbody>
             {daysInMonth.map((day) => (
               <tr key={day-1}>
-                <td>{`${day-1} (${getDayName(
-                  new Date(year, currentMonth - 1, day),
-                )})`}</td>
+                <td>
+                {`${day - 1 ? day - 1 : months[currentMonth-1]} (${
+
+        getDayName(new Date(year, currentMonth - 1, day))
+          ? getDayName(new Date(year, currentMonth - 1, day))
+          : "Saturday"
+      })`}
+
+                </td>
                 {generateHours().map((hour) => (
                   <td key={hour}>
                 
                     <button
                           data={`{"year":${year},"time":${JSON.stringify(hour)},"dayname":"${getDayName(
                                     new Date(year, currentMonth - 1, day)
-                               )}","daynum":${day},"monthname":"${monthName}","monthnum":${currentMonth}}`}
+                               )}","daynum":${day-1?currentMonth:currentMonth-1}},"monthname":"${monthName}","monthnum":${day-1?currentMonth:currentMonth-1}}`}
                                style={{ height: "30px", 
-                               borderWidth:dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`) ?('none'):'1px', backgroundColor:dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`) ?('#fcd980'):'',border: dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`) ?('none'):'2px double black'}}
+                               borderWidth:dt.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('none'):'1px', backgroundColor:dt.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('#fcd980'):'',border: dt.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('none'):'2px double black'}}
                                 onClick={
-                                   dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`)?()=>{}:handleShow
+                                  
+                                  ()=>console.log(`${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`)
+                                  
+                                  //  dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`)?()=>{}:handleShow
                                   }
                                >
                               {
-                                 dt.some(dtValue => dtValue === `${id}${year}${currentMonth}${day-1}${hour}`) ? (
+                                 dt.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ? (
                                   "blocked"
                                 ) : (
                                   "available"
@@ -388,3 +245,57 @@ const HallBook = () => {
 };
 
 export default HallBook;
+
+
+
+
+
+
+// function HallCheckout() {
+
+    // const location = useLocation();
+    // const nav = useNavigate();
+    // // {id:id,data:buttonData,price:price,userid:userid}
+    // let data;
+  
+    // try {
+    //   data = location.state;
+    //   // console.log(data.info)
+    //   // price =location.state.price;
+    //   // userid =location.state.userid;
+    // } catch (v) {
+    //   nav('/');
+    //   return;
+    // }
+  
+    
+//   return (
+//     <div>
+//         <NavBar/>
+//       <Container className='mt-5 mb-5'>
+      
+//         <Row className='d-flex justify-content-center'>
+//           <Col xs="12" sm="6" className='text-center'>
+//           price: {data.info.price}<br/>
+//           Hall userid: {data.info.userid}<br/>
+//           Hall id: {data.id}<br/>
+//           hall date:{data.date}<br/>
+//           hall hour:{data.hour}
+            
+//           </Col>
+//         </Row>
+//         {/* Hall year: {data.data.year}<br/> */}
+//         {/* Hall dayname: {data.data.dayname}<br/> */}
+//         {/* Hall daynum: {data.data.daynum}<br/> */}
+//         {/* Hall monthname: {data.data.monthname}<br/> */}
+//         {/* Hall monthnumber: {data.data.monthnum}<br/> */}
+//         {/* Hall hour: {data.data.time}<br/> */}
+//         {/* date: {data.data.daynum}/{data.data.monthnum}/{data.data.year}<br/> */}
+//         {/* Code : {data.id}{data.data.year}{data.data.monthnum}{data.data.daynum}{data.data.time}<br/> */}
+     
+//       </Container>
+//       <Footer/>
+//     </div>
+//   );
+// }
+// export default HallCheckout;
