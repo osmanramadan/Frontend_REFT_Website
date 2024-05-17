@@ -4,12 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faOutdent, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function Admintabs({ icon }) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [_isUser, _isAdmin, data] = ProtectedRouteHook();
   return icon ? (
     <div className="mt-4">
       <Button variant="primary" className="cart-action" onClick={handleShow}>
@@ -37,9 +38,11 @@ function Admintabs({ icon }) {
               <Link to="/user-profile" className="link">
                 <div className="user-tab-item border-bottom">Dashboard</div>
               </Link>
-              <Link to="/user-places" className="link mt-3">
+              {
+              data.role && data.role === 'TEACHER' ?<Link to="/user-places" className="link mt-3">
                 <div className="user-tab-item border-bottom">My Places</div>
-              </Link>
+              </Link>:''
+              }
             </div>
           </div>
         </Offcanvas.Body>

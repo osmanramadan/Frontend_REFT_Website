@@ -25,6 +25,7 @@ import HallCheckoutHours from './pages/checkout/HallCheckoutIntervalHours';
 import HallCheckoutHoursDays from './pages/checkout/HallCheckoutDaysHours';
 import './i18n'; // Import i18n configuration
 import HallCheckoutOneHour from './pages/checkout/HallCheckoutOneHour';
+import UserTermsAndCondition from './pages/user/UserTermsAndCondition';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -50,6 +51,7 @@ function App() {
         <Route exact path="/checkout-hours" element={<HallCheckoutHours />} />
         <Route exact path="/checkout-days" element={<HallCheckoutDays />} />
         <Route exact path="/checkout-hours-days" element={<HallCheckoutHoursDays />} />
+        <Route exact path="/terms" element={<UserTermsAndCondition/>} />
 
         
 

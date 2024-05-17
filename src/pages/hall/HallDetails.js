@@ -16,6 +16,8 @@ import ReservHallByIntervalDays from '../../hooks/book/reservHallIntervalDaysHoo
 import ReservHallIntervalHoursHook from '../../hooks/book/reservHallIntervalHoursHook';
 import ReservHallIntervalDaysHoursHook from '../../hooks/book/reservHallIntervalDaysHoursHook';
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
+import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -26,6 +28,7 @@ function HallDetails() {
 
   const [isuser, isadmin, _data] = ProtectedRouteHook();
   const [onSubmit, status, onChangeStatus, _loading] = ChangeHallStatusHook();
+  const { t, i18n } = useTranslation()
   const [selectedTab, setSelectedTab] = useState('book hour'); 
   const handleShow  = () => setShow(true);
   const [show, setShow]  = useState(false);
@@ -165,7 +168,7 @@ const handleCheckoutDays = (e) => {
   };
 
   return (
-    <div style={{overflow:"scroll"}}>
+    <div style={{overflow:"scroll",fontFamily:"cairo"}}>
       <NavBar />
       <Banner
       txt={isuser ? 'Home > Place  Details' : 'Home  > Admin > Place Details'} />
@@ -422,7 +425,8 @@ const handleCheckoutDays = (e) => {
               style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
               className="text-center mx-1"
             >
-              {hallData.userData.city}
+              {hallData.userData.city?i18n.language === 'en'?hallData.userData.city.split('-')[0]:hallData.userData.city.split('-')[1]:''}
+            
             </span>
           </Col>
         </Row>
@@ -582,7 +586,8 @@ const handleCheckoutDays = (e) => {
             style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
             className="mx-1"
           >
-            {hallData.city}
+       {hallData.city?i18n.language === 'en'?hallData.city.split('-')[0]:hallData.city.split('-')[1]:''}
+
           </span>
         </Col>
       </Row>
@@ -605,7 +610,7 @@ const handleCheckoutDays = (e) => {
             style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
             className="mx-1"
           >
-            {hallData.location}
+           {hallData.location?i18n.language === 'en'?hallData.location.split('/')[0]:hallData.location.split('/')[1]:''}
           </span>
         </Col>
       </Row>

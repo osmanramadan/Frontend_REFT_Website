@@ -9,14 +9,20 @@ import PaginationComponent from '../../compenents/global/pagination';
 import GetHallsHook from '../../hooks/hall/getHallsHook';
 import GetHallsCitiesHook from '../../hooks/hall/getHallCitiesHook';
 import { useTranslation } from 'react-i18next';
-// import { GET_HALLS_CITIES } from '../../redux/type';
+import SearchHallDropdownCities from '../../compenents/hall/SearchHallDropdownCities';
+import SearchHallDropdownTowns from '../../compenents/hall/searchHallDropdownTowns';
+
+
+
 
 function Halls() {
-  const [halls, loading, setSearch, search, searchHalls,onChangeCity] = GetHallsHook();
+  
+  const [halls,_loading,setTown,town,setSearch,search,onChangeCity]= GetHallsHook();
   const [cities, _load] = GetHallsCitiesHook()
   const { t, i18n } = useTranslation();
 
   const [selectedCity, setSelectedCity] = useState([]);
+  const [cityid, setCityID] = useState('');
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,91 +33,56 @@ function Halls() {
   const [currentItems, setCurrentItems] = useState([]);
   const [hallCities, setHallCities] = useState([]);
 
-  const uniqueCities = [...new Set(cities.map((i) => {
-    const parts = i.city.split('-');
-    return i18n.language === 'en' ? parts[0] : parts[1];
+
+  const uniqueCities = [...new Set(cities.map((v) => {
+    
+    return v
   }))];
-  
-  // const HandleChangeCity = (v) => {
 
-  //   if (v.target.id === 'all' && v.target.checked) {
-  //     onChangeCity('all')
-  //   } else if (v.target.id && !v.target.checked) {
-      
-  //     const filtered = selectedCity.filter((dt) => dt !== v.target.id);
-  //     setSelectedCity([...filtered]);
-  //     onChangeCity({ city:[...filtered] });
+  // const uniqueCities = [...new Set(cities.map((i) => {
+  //   const parts = i.city.split('-');
+  //   return i18n.language === 'en' ? parts[0] : parts[1];
+  // }))];
 
-  //   }else if (v.target.id === 'all' && !v.target.checked) {
-
-  //     setSelectedCity([...selectedCity]);
-  //     onChangeCity({
-  //       city: [...selectedCity]
-  //     });
-
-  //   }  else {
-
-  //     setSelectedCity([...selectedCity, v.target.id]);
-  //     onChangeCity({
-  //       city: [...selectedCity]
-  //     });
-  //   }
-
-  // };
 
 
   const HandleChangeCity = (v) => {
-
-    if (v.target.id === 'all' && !v.target.checked) {
-      onChangeCity('all')
-
-    }else if (v.target.id && !v.target.checked) {
-
-      const filtered = selectedCity.filter((dt) => dt !== v.target.id);
-      console.log(filtered,'3333333333#############################');
-      setSelectedCity([...filtered]);
-      onChangeCity({ city: [...filtered ] });
-
+    const city = v.target.id;
+    const isChecked = v.target.checked;
+    console.log(v.target.id,'<<<<<<<<<<<<<<<<<<<<<----------------=================>>>>>>>>>>>>>>>')
+    
+  
+    if (city === 'all') {
+      setSelectedCity(isChecked ? [city] : []);
+      onChangeCity({ city: isChecked ? [city] : [] });
+    }else if(!isChecked){
+      window.location.reload();
+    }else {
+      const updatedSelectedCity = isChecked
+        ? [...selectedCity, city]
+        : selectedCity.filter((selected) => selected !== city);
+      setSelectedCity(updatedSelectedCity);
+      onChangeCity({ city: updatedSelectedCity });
+   
     }
-    else {
+   
+    // Disable all other checkboxes if one is checked
+    const checkboxes = document.querySelectorAll('.form-check-input');
 
-      setSelectedCity([...selectedCity,v.target.id]);
-      onChangeCity({
-        city: [...selectedCity,v.target.id]
-      });
-      
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.id !== city) {
+        checkbox.disabled = isChecked;
+      }
+    });
+  
+    // If no checkboxes are checked, render all halls
+    if (!isChecked && selectedCity.length === 0) {
+      window.location.reload();
     }
-
   };
   
-  //   const HandleChangeCity = (v) => {
 
-  //   if (v.target.id === 'all' && v.target.checked) {
-  //     onChangeCity('all')
 
-  //   }else if (v.target.id && !v.target.checked) {
-
-  //     const filtered = selectedCity.filter((dt) => dt !== v.target.id);
-  //     setSelectedCity(filtered);
-  //     onChangeCity({ city: [...filtered ] });
-
-  //   } else if (v.target.id === 'all' && !v.target.checked) {
-
-  //     setSelectedCity([...selectedCity]);
-  //     onChangeCity({
-  //       city: [...selectedCity]
-  //     });
-
-  //   } else {
-
-  //     setSelectedCity([...selectedCity,v.target.value]);
-  //     onChangeCity({
-  //       city: [...selectedCity,v.target.value]
-  //     });
-      
-  //   }
-
-  // };
 
   useEffect(() => {
     const updatedItems = halls.slice(indexOfFirstItem, indexOfLastItem);
@@ -119,8 +90,13 @@ function Halls() {
   }, [halls, indexOfFirstItem, indexOfLastItem]);
 
   useEffect(()=>{
-     setHallCities(uniqueCities)  
+     setHallCities([...new Set(cities.map((i) => {
+      const parts = i.city.split('-');
+      return i18n.language === 'en' ? parts[0] : parts[1];
+    }))])  
+
   },[cities])
+
 
   useEffect(() => {
     if (halls.length > 0) {
@@ -137,14 +113,24 @@ function Halls() {
     setCurrentPage(num);
   };
 
-  const search_in_halls = (e) => {
-    const { value } = e.target;
+  const search_in_halls = (value) => {
+
+    if (value === '') {
+      window.location.reload();
+    }
+    setCityID(value.id)
+    setSearch(value.name);
+    setTown('')
+  };
+
+  const searchlocation_in_halls = (value) => {
+
     if (value === '') {
       window.location.reload();
     }
 
-    setSearch(value);
-    searchHalls();
+    setTown(value);
+  
   };
 
   return (
@@ -153,45 +139,41 @@ function Halls() {
       <Banner txt={t('halls.home')} />
       <Row
         xs="12"
-        className={`d-flex justify-content-center ${i18n.language === 'ar' ? 'rtl' : ''}`}
+        className={`px-1 d-flex justify-content-center ${i18n.language === 'ar' ? 'rtl' : ''}`}
         style={{ marginTop: '105px',backgroundColor:'#eef4fa', marginBottom: '110px' }}
       >
-        {i18n.language === 'en' ? (
-          <input
-            value={search}
-            className="hall-search-input"
-            placeholder={t('halls.searchPlaceholder')}
-            onChange={search_in_halls}
-          />
+       <Col xs="12" sm="4" md="4" lg="3">
+       {i18n.language === 'en' ? (
+          // <input
+          //   value={search}
+          //   className="hall-search-input"
+          //   placeholder={t('halls.searchPlaceholder')}
+          //   onChange={search_in_halls}
+          // />
+          <SearchHallDropdownCities search={search} onChange={search_in_halls} addhall={true}/>
         ) : (
-          <input
-            value={search}
-            className="hall-search-input-ar"
-            placeholder={t('halls.searchPlaceholder')}
-            onChange={search_in_halls}
-          />
+          // <input
+          //   value={search}
+          //   className="hall-search-input-ar"
+          //   placeholder={t('halls.searchPlaceholder')}
+          //   onChange={search_in_halls}
+          // />
+          <SearchHallDropdownCities search={search} onChange={search_in_halls} addhall={true}/>
         )}
+       </Col>
+       <Col xs="12" sm="6" md="5" lg="3">
+         <SearchHallDropdownTowns searchid={cityid} town={town} onChange={searchlocation_in_halls} addhall={true}/>
+       </Col>
       </Row>
       {cities.length > 0 && currentItems.length >0 ?<Container className="mt-5">
         <Row className={`d-flex justify-content-center px-5 ${i18n.language === 'ar' ? 'rtl' : ''}`}>
-      <Col xs="2" sm="2" md="2" lg="3" className="d-flex flex-column justify-content-start align-items-end">
-    <p style={{ fontWeight: '600',opacity: '0.7', fontSize: '24px' }} className="mb-1 mx-2 fs-4">
+      <Col xs="2" sm="2" md="2" lg="3" className="d-flex flex-column justify-content-start mb-2 align-items-end">
+    <p style={{ fontWeight: '600',fontFamily:"cairo",opacity: '0.7', fontSize: '24px' }} className="mb-1 mx-2 fs-4">
      Our Cities
     </p>
     <div style={{ fontSize: '14px', opacity: '0.8', fontWeight: '500' }}>
-    
-      {/* <div className="d-flex flex-row">
-        <input
-          type="checkbox"
-          onChange={HandleChangeCity}
-          id="all"
-          className="form-check-input p-1 mx-2"
-        />
-        <label htmlFor="all" className="form-check-label">
-        All
-        </label>
-      </div> */}
-    
+  
+
       {
         hallCities.map((city, i) => (
         <div key={i} className="d-flex flex-row">
@@ -212,7 +194,7 @@ function Halls() {
 
   </Col>
 
-          {loading && currentItems.length === 0 ? (
+      {currentItems.length === 0 ? (
             <div className={`d-flex justify-content-center mb-2 fw-bold ${i18n.language === 'ar' ? 'rtl' : ''}`} style={{ fontSize: '30px' }}>
               {t('halls.noHalls')}
             </div>
@@ -226,8 +208,18 @@ function Halls() {
           
         </Row>
       </Container>:( <div className={`d-flex justify-content-center mb-2 fw-bold ${i18n.language === 'ar' ? 'rtl' : ''}`} style={{ fontSize: '30px' }}>
-              {t('halls.noHalls')}
-            </div>)}
+              <div className='mx-3'>
+                  <span></span> {t('halls.noHalls')}
+              </div>
+              <div className="spinner-border text-custom" role="status"> 
+            {/* <span className="visually-hidden">Loading...</span> */}
+          </div>
+              
+              
+            </div>
+          
+          
+          )}
       <PaginationComponent pageCount={pageNumberLimit} handlePageClick={handlePageClick} />
       <Footer />
     </div>

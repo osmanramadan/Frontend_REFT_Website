@@ -35,7 +35,6 @@ const ReservHallIntervalDaysHoursHook = () => {
     setHourFromMix(e.target.value)
   };
   const onChangeHoursToMix = (e) => {
-    console.log(e.target.value,'ssssss')
     setHourToMix(e.target.value);
   };
 

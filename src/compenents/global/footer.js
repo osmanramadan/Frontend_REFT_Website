@@ -52,7 +52,7 @@ function Footer() {
             <Link to={"/hall-add"} className="link mx-1 mb-xs-1">Add Place</Link>
           </Col> */}
           <Col xs="12" sm="6" md="2">
-            <Link className="link mx-1 mb-xs-1">Terms and Conditions</Link>
+            <Link to={'/terms'} className="link mx-1 mb-xs-1">Terms and Conditions</Link>
           </Col>
         </Row>
 

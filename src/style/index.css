@@ -34,8 +34,14 @@
 body {
   margin: 0px;
   overflow-x: hidden;
-  font-family: 'Racing Sans One';
+  /* font-family: 'Racing Sans One'; */
   font-family: 'Poppins', sans-serif;
+}
+
+/* local */
+.form-check-input:checked {
+  background-color: #FCD980;
+  border-color: #c0cde0;
 }
 
 .link {
@@ -45,11 +51,11 @@ body {
 
 /* Customize scrollbar appearance */
 ::-webkit-scrollbar {
-  width: 17px; /* Width of scrollbar */
+  width: 5px; /* Width of scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color:#1C1E53; /* Color of thumb */
+  background-color:#1C1E53; 
 }
 
 .whatsapp-icon {
@@ -905,4 +911,9 @@ input[type=month]::-webkit-calendar-picker-indicator {
 
 .app-container::-webkit-scrollbar-thumb {
   background-color:white 
+}
+
+
+.auth-dropdown-content {
+  position:relative !important ;
 }

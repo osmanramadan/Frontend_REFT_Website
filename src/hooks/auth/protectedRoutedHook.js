@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const ProtectedRouteHook = () => {
 
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
   const [error, setError] = useState(true);
 
 
@@ -27,14 +27,14 @@ const ProtectedRouteHook = () => {
 
   return [
     // true, //  isUser
-    error? undefined: userData.role === 'OWNER' || userData.role === 'TEACHER', //  isUser
-    error ? undefined : userData.role === 'admin_1/id=80226753244', //  isAdmin
+    error? undefined: userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
+    error ? undefined : userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
     userData,
   ];
   // return [
   //   // true, //  isUser
   //   error? undefined: userData.role === 'OWNER' || userData.role === 'TEACHER', //  isUser
-  //   error ? undefined : userData.role === 'admin_1/id=80226753244', //  isAdmin
+  //   error ? undefined : userData.role === , //  isAdmin
   //   error ? undefined: userData.role === 'TEACHER', // ISTEACHER
   //   error ? undefined :userData.role ==='OWNER', // ISOWNER
   //   userData,

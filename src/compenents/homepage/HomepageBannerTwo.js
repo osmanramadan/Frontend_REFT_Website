@@ -42,7 +42,7 @@ function HomepageBannerTwo() {
         lg="6"
         className="text-lg-end text-sm-start text-start"
       >
-        <div style={{ width: '100%', height: '100%' }}>
+        <div style={{ width: '100%', height: '90%' }}>
           <img
             alt="image"
             src={banner}

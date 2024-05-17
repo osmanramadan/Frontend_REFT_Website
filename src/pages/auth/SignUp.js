@@ -5,7 +5,7 @@ import AcessHeader from '../../compenents/auth/AccessHeader';
 import AcessButton from '../../compenents/auth/AccessButton';
 import AcessSwitch from '../../compenents/auth/AccessSwitch';
 import RoleDropDown from '../../compenents/auth/RoleDropdown';
-import CityDropdown from '../../compenents/auth/CityDropdown';
+import CityDropdown from '../../compenents/global/widgets/CityDropdown';
 import RegisterHook from '../../hooks/auth/registerHook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -147,7 +147,7 @@ function SignUp() {
                 </span>
               </div>
 
-              <CityDropdown city={city} onChange={onChangeCity} />
+              <CityDropdown city={city} onChangeCity={onChangeCity} />
               <AcessButton txt="register" onClick={OnSubmit} />
               <AcessSwitch
                 txt="Already have an account?"

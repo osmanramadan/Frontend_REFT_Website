@@ -8,11 +8,12 @@ import { Col, Row, Spinner } from 'react-bootstrap';
 import PdfChooser from '../../compenents/hall/PdfChooser';
 import VideoChooser from '../../compenents/hall/VideoChooser';
 import AddHallButton from '../../compenents/hall/AddHallButton';
-import CityDropdown from '../../compenents/auth/CityDropdown';
+import CityDropdown from '../../compenents/global/widgets/CityDropdown';
 import AddHallHook from '../../hooks/hall/addHallHook';
+import LocationDropdown from '../../compenents/global/widgets/LocationDropDown';
 
 function HallAdd() {
-  const [
+const  [
     onSubmit,
     images,
     onChangeImages,
@@ -22,6 +23,8 @@ function HallAdd() {
     onChangePlaceCapacity,
     placeCity,
     onChangePlaceCity,
+    onChangePlaceCityId,
+    placeCityId,
     placeLocation,
     onChangePlaceLocation,
     hourPrice,
@@ -35,7 +38,7 @@ function HallAdd() {
     onChangeVideo,
     videoName,
     loading,
-  ] = AddHallHook();
+  ]= AddHallHook();
 
   return (
     <div>
@@ -109,18 +112,21 @@ function HallAdd() {
             <CityDropdown
               addhall={true}
               city={placeCity}
-              onChange={onChangePlaceCity}
+              onChangeCity={onChangePlaceCity}
+              onChangePlaceCityId={onChangePlaceCityId}
             />
           </Col>
 
           <Col xs="12" sm="6" md="4" lg="4" className="text-center">
-            <input
+            {/* <input
               className="inputfield-hall"
               placeholder="Place Location"
               value={placeLocation}
               onChange={onChangePlaceLocation}
               style={{ width: '100%' }}
-            />
+            /> */}
+           
+          <LocationDropdown addhall={true}  cityid={placeCityId} location={placeLocation} onChange={onChangePlaceLocation}/>
           </Col>
         </Row>
         {/***********************/}

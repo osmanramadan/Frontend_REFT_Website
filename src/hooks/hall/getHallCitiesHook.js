@@ -31,8 +31,7 @@ const GetHallsCitiesHook = () => {
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
-      console.log(res,'099999999999999()()(()(')
-
+     
       if (res.status) {
         if (res.status == 'success') {
           setCities(res.cities);

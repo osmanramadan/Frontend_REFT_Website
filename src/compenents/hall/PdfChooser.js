@@ -24,7 +24,7 @@ const PdfChooser = ({ handleSelect }) => {
         id="upload-pdf"
         onChange={selectPdf}
         accept="pdf"
-        style={{ display: 'none' }}
+        style={{ display: 'none'}}
       />
     </div>
   );

@@ -35,16 +35,17 @@ function HomepageTestimonial() {
   ];
 
   return (
-    <Carousel data-bs-theme="dark" style={{ position: 'relative' }}>
+    <Carousel data-bs-theme="dark" style={{position: 'relative' }}>
       {/* Map over testimonialData array to generate Carousel items dynamically */}
       {testimonialData.map((item, index) => (
         <Carousel.Item
           key={index} // Use index as key (you can use a unique identifier if available)
           style={{
             height: 'auto',
+            
             color: '#282938',
             backgroundColor: '#eef4fa',
-            borderRadius: '5px',
+            borderRadius:'15px',
           }}
           className="mb-4"
         >
@@ -52,7 +53,7 @@ function HomepageTestimonial() {
             <Col
               xs="8"
               style={{
-                fontSize: '26px',
+                fontSize: '15px',
                 fontWeight: 'medium',
                 lineHeight: '140%',
                 letterSpacing: '0.5%',
@@ -96,7 +97,7 @@ function HomepageTestimonial() {
               <div
                 style={{
                   fontWeight: 'medium',
-                  fontSize: '18px',
+                  fontSize: '15px',
                   color: '#282938',
                 }}
               >

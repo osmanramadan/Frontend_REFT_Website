@@ -4,6 +4,7 @@ import { addNewHall } from '../../redux/actions/hallAction';
 
 
 const AddHallHook = () => {
+
   const dispatch = useDispatch();
 
   if (localStorage.getItem('user') !== null) {
@@ -16,6 +17,7 @@ const AddHallHook = () => {
   const [placeName, setPlaceName] = useState('');
   const [placeCapacity, setPlaceCapacity] = useState('');
   const [placeCity, setPlaceCity] = useState('');
+  const [placeCityId,setPlaceCityId] = useState('');
   const [placeLocation, setPlaceLocation] = useState('');
   const [hourPrice, setHourPrice] = useState('');
   const [placeDetails, setPlaceDetails] = useState('');
@@ -54,11 +56,17 @@ const AddHallHook = () => {
 
   const onChangePlaceCity = (value) => {
     setPlaceCity(value);
+    setPlaceLocation('')
   };
 
+  
+  const onChangePlaceCityId = (id) => {
+    setPlaceCityId(id);
+  }
+
   const onChangePlaceLocation = (event) => {
-    setPlaceLocation(event.target.value);
-  };
+    setPlaceLocation(`${event.en}/${event.ar}`);
+  }
 
   const onChangePriceHour = (event) => {
     if (event.target.value <= 0) return;
@@ -109,6 +117,8 @@ const AddHallHook = () => {
       setVideoName('');
     }
   };
+
+
 
   const onSubmit = async () => {
     if (
@@ -186,6 +196,8 @@ const AddHallHook = () => {
     onChangePlaceCapacity,
     placeCity,
     onChangePlaceCity,
+    onChangePlaceCityId,
+    placeCityId,
     placeLocation,
     onChangePlaceLocation,
     hourPrice,

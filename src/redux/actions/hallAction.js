@@ -137,9 +137,11 @@ export const changeHallStatus = (data) => async (dispatch) => {
 export const searchHalls = (search) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/halls`);
+  
     const data = response.data.filter((v) =>
-      v.location.toLowerCase().includes(search.toLowerCase())||v.city.toLowerCase().includes(search.toLowerCase()),
+      v.city.toLowerCase().includes(search.split('/')[0].toLowerCase()) && v.location.toLowerCase().includes(search.split('/')[1].toLowerCase())
     );
+    
 
     dispatch({
       type: SEARCH_HALLS,
@@ -152,4 +154,28 @@ export const searchHalls = (search) => async (dispatch) => {
     });
   }
 };
+
+export const searchHallsCity = (city) => async (dispatch) => {
+  try {
+    const response = await useGetData(`/api/v1/halls`);
+  
+    const data = response.data.filter((v) =>
+      v.city.toLowerCase().includes(city.toLowerCase())
+    );
+    
+
+    dispatch({
+      type: SEARCH_HALLS,
+      payload: data,
+    });
+  } catch (e) {
+    dispatch({
+      type: SEARCH_HALLS,
+      payload: e.response,
+    });
+  }
+};
+
+
+
 

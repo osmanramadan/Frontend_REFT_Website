@@ -16,7 +16,7 @@ function AboutUs() {
             md="7"
             lg="6"
             style={{
-              fontSize: '65px',
+              fontSize: '60px',
               lineHeight: '140%',
               fontWeight: '400',
               letterSpacing: '0.5%',
@@ -25,8 +25,7 @@ function AboutUs() {
             }}
           >
             <div className="mb-5">
-           -
-              We Build Bridge Between Teacher and Place Owner-
+                  We Build Bridge Between Teacher and Place Owner
             </div>
           </Col>
           <Col
@@ -42,7 +41,6 @@ function AboutUs() {
               lineHeight: '170%',
               fontWeight: '400',
               letterSpacing: '0%',
-              fontFamily: 'Poppins',
               color: '#282938',
             }}
           >

@@ -1,20 +1,27 @@
 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faSearchengin } from '@fortawesome/free-brands-svg-icons';
 import { Col, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+// import GetHallsHook from '../../hooks/hall/getHallsHook';
 
-function CityDropdown({ addhall, city, onChange }) {
+function SearchHallDropdownCities({addhall,search,onChange}) {
+  // const [_data, loading, setSearch, search, searchHall,onChangeCity]=GetHallsHook()
+
   const [isActive, setIsActive] = useState(false);
+  const { _t, i18n } = useTranslation();
+  
 
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
-
+ 
   const changeCity = (city) => {
     onChange(city);
     setIsActive(!isActive);
   };
+
 
   const data = [
     { id: 1, name: "Cairo-القاهرة"},
@@ -50,17 +57,17 @@ function CityDropdown({ addhall, city, onChange }) {
     <div
       onClick={toggleDropdown}
       className={addhall ? 'inputfield-hall' : 'auth-dropdown'}
+      style={{borderWidth:'3px'}}
+
     >
       <p className="dropdown-btn">
-        <Row className="d-flex justify-content-between">
-          <Col className="text-start">{city}</Col>
+        <Row className="d-flex justify-content-between"  style={{fontWeight:"400",color:"#8E8EA0",fontSize:"20px",fontFamily:"cairo","direction":i18n.language === 'en'?'ltr':'rtl'}}>
+         <Col className={i18n.language==='en'?'text-start':'text-end'} style={{fontFamily:'cairo'}} > {search?i18n.language === 'en'?search.split('-')[0]:search.split('-')[1]:i18n.language === 'en'?'City':'محافظتك'}</Col> 
 
-          <Col className="text-end mx-2">
-            <FontAwesomeIcon
-              style={{ color: addhall ? '#D0D0D0' : '#FCD980' }}
-              icon={faCaretUp}
-              flip="vertical"
-            />{' '}
+          <Col className={i18n.language==='en'?'text-end mx-2':'text-start mx-2'}>
+           
+            <FontAwesomeIcon  style={{ color:'#A1A1A1' }}  icon={faSearchengin} />{' '}
+          
           </Col>
         </Row>
       </p>
@@ -73,8 +80,8 @@ function CityDropdown({ addhall, city, onChange }) {
         }}
       >
         {data && data.length && data.map((city, index) => (
-          <div className="item" key={city.id} onClick={() => changeCity(city.name)}>
-            {city.name}
+          <div className="item text-center" style={{fontFamily:'cairo'}} key={city.id} onClick={() => changeCity(city)}>
+            {i18n.language === 'en'?city.name.split('-')[0]:city.name.split('-')[1]}
           </div>
         ))}
       </div>
@@ -82,4 +89,4 @@ function CityDropdown({ addhall, city, onChange }) {
   );
 }
 
-export default CityDropdown;
+export default SearchHallDropdownCities;
