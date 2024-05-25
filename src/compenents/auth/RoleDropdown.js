@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
+import i18n from '../../i18n';
 
 function RoleDropDown({ role, onChange }) {
   const [isActive, setIsActive] = useState(false);
@@ -11,7 +12,7 @@ function RoleDropDown({ role, onChange }) {
   };
 
   const changeRole = (role) => {
-    onChange(role);
+    onChange(role=='صاحب مكان'||role=='OWNER'?'OWNER':'TEACHER');
     setIsActive(!isActive);
   };
 
@@ -37,11 +38,13 @@ function RoleDropDown({ role, onChange }) {
           display: isActive ? 'block' : 'none',
         }}
       >
-        <div className="item" onClick={(e) => changeRole(e.target.textContent)}>
+        <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
+          {/* {i18n.language == 'en'?OWNER:'صاحب مكان'} */}
           OWNER
         </div>
-        <div className="item" onClick={(e) => changeRole(e.target.textContent)}>
+        <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
           TEACHER
+           {/* {i18n.language == 'en'?TEACHER:'مدرس'} */}
         </div>
       </div>
     </div>

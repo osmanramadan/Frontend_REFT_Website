@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import Banner from '../../compenents/global/widgets/banner';
@@ -16,8 +16,8 @@ import ReservHallByIntervalDays from '../../hooks/book/reservHallIntervalDaysHoo
 import ReservHallIntervalHoursHook from '../../hooks/book/reservHallIntervalHoursHook';
 import ReservHallIntervalDaysHoursHook from '../../hooks/book/reservHallIntervalDaysHoursHook';
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import GetHallCodesHook from '../../hooks/checkout/GetHallCodeHook';
 
 
 
@@ -27,13 +27,15 @@ function HallDetails() {
 
 
   const [isuser, isadmin, _data] = ProtectedRouteHook();
-  const [onSubmit, status, onChangeStatus, _loading] = ChangeHallStatusHook();
+  const [onSubmit, status, onChangeStatus, _load] = ChangeHallStatusHook();
   const { t, i18n } = useTranslation()
   const [selectedTab, setSelectedTab] = useState('book hour'); 
   const handleShow  = () => setShow(true);
   const [show, setShow]  = useState(false);
   const handleClose = () => setShow(false);
 
+  
+  const  [_loading,GetHallCodes,data]=GetHallCodesHook()
   const  [onChangeDateByHour,date,onChangeHour,hour]=ReservHallByHourHook()
   const  [onChangeDateOne,onChangeDateTwo,dateone,datetwo,onChangeDaysHour,hourdays]=ReservHallByIntervalDays()
   const  [onChangeDateHours,datehours,onChangeHoursFrom,hourfrom,onChangeHoursTo,hourto]=ReservHallIntervalHoursHook()
@@ -44,8 +46,6 @@ function HallDetails() {
   const handleChangeTab = (tabKey) => {
     setSelectedTab(tabKey);
   };
-
- 
 
 
 
@@ -60,6 +60,16 @@ function HallDetails() {
     nav('/places');
     return;
   }
+
+  useEffect(()=>{
+    GetHallCodes({"id":hallData.id})
+  },[hallData])
+
+  useEffect(()=>{
+   console.log(data)
+  },[data])
+
+
   const handleSubmit = () => {
     onSubmit(hallData.id);
   };
@@ -67,7 +77,8 @@ function HallDetails() {
   const handleClick = () => {
     nav(`/book-hall`, { state:{id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id}});
   };
-const handleCheckoutHour = (e) => {
+
+  const handleCheckoutHour = (e) => {
 
     if(date=='' || date==null){
       alert("Choose date")
@@ -78,6 +89,14 @@ const handleCheckoutHour = (e) => {
         alert("Choose hour")
         return;
     }
+    const code=`${hallData.id}${new Date(date).getFullYear()}${new Date(date).getMonth()+1}${ new Date(date).getDate()}${hour}`
+    
+
+    if(data.some(dtValue => dtValue ===code)){
+        alert("هذا المكان غير متاح")
+        return;
+    }
+
 
     nav(`/checkout-hour`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hour:hour,date:date}});
   }
@@ -88,75 +107,226 @@ const handleCheckoutDays = (e) => {
         alert(`Choose hour ${hourdays}`)
         return;
     }
-    if(dateone=='' || dateone==null){
+    if(dateone =='' || dateone==null){
       alert("Choose date From")
       return;
     }
-    if(datetwo=='' || datetwo==null){
+    if(datetwo =='' || datetwo==null){
     alert("Choose date To")
     return;
     }
+    if(dateone > datetwo){
+      alert("Choose suitable increase date")
+      return;
+      }
     
     if(datetwo == dateone){
      alert("Date should be different")
      return;
      }
-    nav(`/checkout-days`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hour:hourdays,datefrom:dateone,dateto:datetwo}});
-  }
 
+    function getDates(startDate, endDate) {
+      const bookinfo = [];
+      let currentDate = new Date(startDate);
+    
+      while (currentDate <= endDate){
+
+        let code=`${hallData.id}${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}${hourdays}`
+        if(data.some(dtValue => dtValue == code)){
+          alert(`يوم  ${currentDate.getDate()} الساعه ${hourdays} غير متاح`)
+          return false;
+        }else{
+          bookinfo.push({'code':`${hallData.id}${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}${hourdays}`,'userid':hallData.userData.id,'hallid':hallData.id,'date':`${new Date(currentDate).getFullYear()}-${new Date(currentDate).getMonth()+1}-${new Date(currentDate).getDate()}`,"month":new Date(currentDate).getMonth()+1,'year':new Date(currentDate).getFullYear(),'day':currentDate.getDate(),"hour":hourdays,"price":hallData.price_hour});
+          currentDate.setDate(currentDate.getDate() + 1);    
+        }
+
+      }
+      return bookinfo;
+    }
+
+    const startDate = new Date(dateone);
+    const endDate = new Date(datetwo);
+    
+    const bookinfo = getDates(startDate, endDate);
+
+    if(bookinfo){
+      nav(`/checkout-days`, { state:{bookinfo:bookinfo,id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hour:hourdays,datefrom:dateone,dateto:datetwo}});
+
+    }
+  
+  }
   const handleCheckoutHours = (e) => {
 
-    if(hourfrom=='' || hourfrom==null){
-        alert("Choose hour from")
-        return;
-    }
-
-    if(hourto=='' || hourto==null){
-      alert("Choose hour to")
+    if (datehours === '') {
+      alert("Choose Date");
       return;
     }
-    if(hourto == hourfrom){
-    alert("Hours should be different")
-    return;
+  
+    if (hourfrom == '' || hourfrom == null) {
+      alert("Choose hour from");
+      return;
     }
-    nav(`/checkout-hours`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hourfrom:hourfrom,hourto:hourto,datehours:datehours}});
-  }
+  
+    if (hourto == '' || hourto == null) {
+      alert("Choose hour to");
+      return;
+    }
+
+    console.log(hourfrom,hourto,'_+++++++++++++++++_______+++++++++++++++++')
+    if (hourto < hourfrom) {
+
+      alert("Choose suitable increase time");
+      return;
+    }
+  
+    if (hourto === hourfrom) {
+      alert("Hours should be different");
+      return;
+    }
+  
+    const getDatesHours = (startDate, endDate, startHour, endHour) => {
+  
+      const bookinfo = [];
+      let currentDate = new Date(startDate);
+  
+      while (currentDate <= endDate) {
+        for (let hour = startHour; hour <= endHour; hour++) {
+          let code = `${hallData.id}${currentDate.getFullYear()}${currentDate.getMonth() + 1}${currentDate.getDate()}${hour}:00`;
+          if (data.some(dtValue => dtValue === code)) {
+            alert(`${currentDate.getDate()} في الساعة ${hour}:00 غير متاح`);
+            return false;
+          } else {
+            bookinfo.push({
+              code: code,
+              userid: hallData.userData.id,
+              hallid: hallData.id,
+              date: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
+              month: currentDate.getMonth() + 1,
+              year: currentDate.getFullYear(),
+              day: currentDate.getDate(),
+              hour: hour + ':00',
+              price: hallData.price_hour
+            });
+          }
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return bookinfo;
+    };
+  
+    const startDate = new Date(datehours);
+    const endDate = new Date(datehours);
+    const startHour = parseInt(hourfrom, 10);
+    const endHour = parseInt(hourto, 10);
+  
+    const bookinfo = getDatesHours(startDate, endDate, startHour, endHour);
+    if (bookinfo !== false) {
+      nav(`/checkout-hours`, { state:{bookinfo:bookinfo,id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hourfrom:hourfrom,hourto:hourto,datehours:datehours}});
+    }
+  
+  };
+  
+
 
   const handleCheckoutHoursDays = (e) => {
-
-    if(hourfrommix=='' || hourfrommix==null){
-        alert("Choose hour from")
-        return;
-    }
-
-    if(hourtomix=='' || hourtomix==null){
-      alert("Choose hour to")
+    
+    const isEmpty = (value) => value === '' || value === null;
+  
+    if (isEmpty(hourfrommix)) {
+      alert("Choose hour from");
       return;
     }
+  
+    if (isEmpty(hourtomix)) {
+      alert("Choose hour to");
+      return;
+    }
+  
+    if (isEmpty(dateonemix)) {
+      alert("Choose date from");
+      return;
+    }
+  
+    if (isEmpty(datetwomix)) {
+      alert("Choose date to");
+      return;
+    }
+  
+    if (dateonemix === datetwomix) {
+      alert("The start and end dates should be different");
+      return;
+    }
+  
+    if (hourfrommix === hourtomix) {
+      alert("The start and end hours should be different");
+      return;
+    }
+  
+    if (new Date(dateonemix) > new Date(datetwomix)) {
+      alert("The start date should be before the end date");
+      return;
+    }
+  
+    if (parseInt(hourtomix, 10) < parseInt(hourfrommix, 10)) {
+      alert("The start hour should be before the end hour");
+      return;
+    }
+  
+    const getDatesHours = (startDate, endDate, startHour, endHour) => {
 
-   if(dateonemix=='' || dateonemix==null){
-    alert("Choose date from")
-    return;
-   }
+      const bookinfo = [];
+      let currentDate = new Date(startDate);
+  
+      while (currentDate <= endDate) {
+        for (let hour = startHour; hour <= endHour; hour++) {
+          let code = `${hallData.id}${currentDate.getFullYear()}${currentDate.getMonth() + 1}${currentDate.getDate()}${hour}:00`;
+          if (data.some(dtValue => dtValue === code)) {
+            alert(`يوم ${ currentDate.getDate()} في الساعة ${hour}:00 غير متاح`);
+            return false;
+          } else {
+            bookinfo.push({
+              code: code,
+              userid: hallData.userData.id,
+              hallid: hallData.id,
+              date: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
+              month: currentDate.getMonth() + 1,
+              year: currentDate.getFullYear(),
+              day: currentDate.getDate(),
+              hour: hour + ':00',
+              price: hallData.price_hour
+            });
+          }
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return bookinfo;
+    };
+  
+    const startDate = new Date(dateonemix);
+    const endDate = new Date(datetwomix);
+    const startHour = parseInt(hourfrommix, 10);
+    const endHour = parseInt(hourtomix, 10);
+  
+    const bookinfo = getDatesHours(startDate, endDate, startHour, endHour);
 
-   if(datetwomix =='' || datetwomix==null){
-    alert("Choose date to")
-    return;
-   }
-
-   if(dateonemix == datetwomix){
-    alert("Date should be different")
-    return;
-  }
-
-  if(hourfrommix == hourtomix){
-
-    alert("Hours should be different")
-    return;
-  }
-    nav(`/checkout-hours-days`, { state:{id:hallData.id,info:{price:hallData.price_hour,userid:hallData.userData.id},name:hallData.name,image:hallData.imagesData[0],hourfrom:hourfrommix,hourto:hourtomix,dateonemix:dateonemix,datetwomix:datetwomix}});
-  }
-
+  
+    if (bookinfo !== false) {
+      nav(`/checkout-hours-days`, {
+        state: {
+          bookinfo:bookinfo,
+          id: hallData.id,
+          info: { price: hallData.price_hour, userid: hallData.userData.id },
+          name: hallData.name,
+          image: hallData.imagesData[0],
+          hourfrom: hourfrommix,
+          hourto: hourtomix,
+          dateonemix: dateonemix,
+          datetwomix: datetwomix
+        }
+      });
+    }
+  };
+  
 
 
   const generateHours = () => {
@@ -298,7 +468,7 @@ const handleCheckoutDays = (e) => {
 
                       <Col xs="12" className='text-center'>
                         <Row>
-                           <Col className='text-start'> <input  onChange={onChangeDateHours} style={{ width: "100%" }} min={today}  type='date' /></Col>
+                           <Col className='text-start'> <input onChange={onChangeDateHours} value={datehours} style={{ width: "100%" }} min={today}  type='date' /></Col>
                            <Col>:</Col>
                         </Row>
                       </Col>
@@ -671,7 +841,7 @@ const handleCheckoutDays = (e) => {
               style={{ borderRadius: '30px' }}
               width="80%"
               height="350px"
-              src={`${process.env.REACT_APP_VIDEO_API}/${hallData.video}`}
+              src={`http://localhost:3006/api/v1/halls/video/${hallData.video}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -791,6 +961,4 @@ const handleCheckoutDays = (e) => {
     </div>
   );
 }
-export default HallDetails;
-
-
+export default HallDetails

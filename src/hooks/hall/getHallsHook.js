@@ -85,6 +85,7 @@ const GetHallsHook = () => {
       if (res.status) {
         if (res.status === 'success') {
           setData(res.data);
+          // location.replace(res.data)
         }
       }
     }

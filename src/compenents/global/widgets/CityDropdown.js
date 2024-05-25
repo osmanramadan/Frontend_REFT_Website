@@ -12,13 +12,10 @@ function CityDropdown({ addhall, city, onChangeCity,onChangePlaceCityId }) {
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
-  {
-    console.log(city)
-  }
+
   const changeCity = (city) => {
     onChangeCity(city.name);
     onChangePlaceCityId? onChangePlaceCityId(city.id):()=>{}
-    // console.log([city.id,city.name])
     setIsActive(!isActive);
   };
   
@@ -59,7 +56,7 @@ function CityDropdown({ addhall, city, onChangeCity,onChangePlaceCityId }) {
       className={addhall ? 'inputfield-hall' : 'auth-dropdown'}
 
     >
-      <p className="dropdown-btn">
+      <p className="dropdown-btn px-2">
         <Row className="d-flex justify-content-between"  style={{fontWeight:"400",color:"#8E8EA0",fontSize:"20px",fontFamily:"cairo","direction":i18n.language === 'en'?'ltr':'rtl'}}>
          <Col className={i18n.language==='en'?'text-start':'text-end'} style={{fontFamily:'cairo'}} > {city?i18n.language === 'en'?city.split('-')[0]:city.split('-')[1]:i18n.language === 'en'?'Select City':'اختر محافظتك'}</Col> 
 

@@ -118,13 +118,6 @@ const  [
           </Col>
 
           <Col xs="12" sm="6" md="4" lg="4" className="text-center">
-            {/* <input
-              className="inputfield-hall"
-              placeholder="Place Location"
-              value={placeLocation}
-              onChange={onChangePlaceLocation}
-              style={{ width: '100%' }}
-            /> */}
            
           <LocationDropdown addhall={true}  cityid={placeCityId} location={placeLocation} onChange={onChangePlaceLocation}/>
           </Col>

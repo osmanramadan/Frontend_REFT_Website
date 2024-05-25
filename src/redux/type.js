@@ -21,7 +21,6 @@ export const CHANGE_HALL_STATUS = 'CHANGE_HALL_STATUS';
 export const GET_USER_HALLS = 'GET_USER_HALLS';
 export const GET_HALLS_CITIES = 'GET_HALLS_CITIES';
 
-
 //book
 export const RESERV_HALL_BY_HOUR = 'RESERV_HALL_BY_HOUR';
 export const RESERV_HALL_BY_INTERVAL_Hours = 'RESERV_HALL_BY_INTERVAL_Hours';
@@ -32,3 +31,8 @@ export const RESERV_HALL_BY_Days_Hours = 'RESERV_HALL_BY_INTERVAl_Days_Hours';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+
+// checkout
+export const CREATE_ORDER = 'CREATE_ORDER'; 
+export const CHECK_ORDER_COMPLETE='CHECK_ORDER_COMPLETE'
+export const Get_Hall_CODES='Get_Hall_CODES'

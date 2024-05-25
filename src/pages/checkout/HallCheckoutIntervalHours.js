@@ -1,10 +1,11 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PayPalButton from '../hall/Paypal';
+import PayPalButton from '../../compenents/hall/PaypalButton';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import ReservHallHook from '../../hooks/book/reservHallByHourHook';
+
+
 
 const HallCheckoutIntervalHours= () => {
   
@@ -15,10 +16,14 @@ const HallCheckoutIntervalHours= () => {
 
   let data;
   let amount;
+  let bookinfo;
 
   try {
+
     data = location.state;
     amount =data.info.price
+    bookinfo =location.state.bookinfo
+
     
   } catch (error) {
     nav('/');
@@ -34,7 +39,7 @@ const HallCheckoutIntervalHours= () => {
           <Col className="mb-4">
           <div className="checkout">
       <div className="checkout-container">
-        <Row className='text-end'><h3 style={{color:"#FCD980"}}>{data.info.price} EGP</h3></Row>
+        <Row className='text-end'><h3 style={{color:"#FCD980"}}>{data.info.price * bookinfo.length} EGP</h3></Row>
         <Row className='text-center'><h3>Checkout </h3></Row>
         <Row>
            <Col xs="12" sm="6">
@@ -56,7 +61,7 @@ const HallCheckoutIntervalHours= () => {
 
 
         <Row className='mt-5 text-center' >
-        <PayPalButton amount={amount} />
+        <PayPalButton amount={amount * bookinfo.length} data={{'type':'dayhours','bookinfo':bookinfo}}/>
         </Row>
      
       </div>
@@ -69,33 +74,7 @@ const HallCheckoutIntervalHours= () => {
   );
 };
 
-// const Item = (props) => {
-//   return (
-//     <div className="item-container">
-//       <div className="item-image">
-//         {/* <Row>
-//           <Col>
-//             <img src={`data:image/*;base64,${props.img}`} alt={props.name} />
-//           </Col>
-//         </Row> */}
-//         <div className="item-details">
-//           <h3 className="item-name">{props.name}</h3>
-//           <h2 className="item-price">{props.price}</h2>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
-
-        {/* <Row className="mb-2">
-          <Col>
-            <Input label="Expiration Date" type="month" name="exp_date" />
-          </Col>
-          <Col>
-            <Input label="CVV" type="number" name="cvv" />
-          </Col>
-        </Row> */}
 
 const Input = (props) => {
   return (

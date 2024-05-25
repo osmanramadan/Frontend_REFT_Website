@@ -23,9 +23,11 @@ import HallBook from './pages/hall/HallBook';
 import HallCheckoutDays from './pages/checkout/HallCheckoutIntervalDays';
 import HallCheckoutHours from './pages/checkout/HallCheckoutIntervalHours';
 import HallCheckoutHoursDays from './pages/checkout/HallCheckoutDaysHours';
-import './i18n'; // Import i18n configuration
+import './i18n';
 import HallCheckoutOneHour from './pages/checkout/HallCheckoutOneHour';
 import UserTermsAndCondition from './pages/user/UserTermsAndCondition';
+import SuccessPayment from './pages/payment/SuccessPayment';
+import FailPayment from './pages/payment/FailPayment';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -57,7 +59,9 @@ function App() {
 
         <Route errorElement={<Navigate to="/login" />} element={<ProtectedRoute auth={isUser} />}>
           <Route exact path="/user-profile" element={<Profile />} />
-          <Route exact path="/user-places" element={<UserPlaces />} />
+          <Route exact path="/user-places"  element={<UserPlaces />} />
+          <Route exact path="/processing-payment"  element={<SuccessPayment />} />
+          <Route exact path="/fail-payment"  element={<FailPayment />} />
         </Route>
 
         <Route element={<ProtectedRoute auth={isAdmin} />}>

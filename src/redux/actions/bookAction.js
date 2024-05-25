@@ -8,7 +8,7 @@ import {
 
   import { useInsertData } from '../../crud/useInsertData';
 //   import { useInsUpdateData } from '../../crud/useUpdateData';
-  import { _useGetDataToken, useGetData } from '../../crud/useGetData';
+  import { _useGetDataToken, _useGetData } from '../../crud/useGetData';
   
 
 export const reservHallByHour = (search) => async (dispatch) => {
