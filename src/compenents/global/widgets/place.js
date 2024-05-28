@@ -1,12 +1,13 @@
 import React from 'react';
-import place from '../../../assets/images/place.png';
 import { Card, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+
 function Place({ data }) {
+  
   const limitText = (text, limit) => {
     const words = text.split(' ');
     
@@ -21,7 +22,7 @@ function Place({ data }) {
 
   const { t, i18n } = useTranslation()
   return (
-    <Card style={{ width: '13rem',height:"18rem",fontFamily:"cairo" }} onClick={handleClick} className="mb-3">
+    <Card style={{ width: '12rem',height:"18rem",fontFamily:"cairo" }} onClick={handleClick} className="mb-3">
       <Card.Img
         variant="top"
         style={{Width:'100%' ,height: '11rem',position:'fit-content' }}
@@ -45,7 +46,9 @@ function Place({ data }) {
             style={{ color: 'white', fontSize: '10px', fontWeight: 'medium' }}
             className="mx-3"
           >
-            3.1
+            {/* { data.rate.numstar} */}
+         {data.rate.sumstar && data.rate.numstar ? (data.rate.sumstar / data.rate.numstar).toFixed(1) : '0.0'}
+
           </span>
           <FontAwesomeIcon
             icon={faStar}

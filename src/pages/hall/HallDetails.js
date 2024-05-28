@@ -18,6 +18,8 @@ import ReservHallIntervalDaysHoursHook from '../../hooks/book/reservHallInterval
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import GetHallCodesHook from '../../hooks/checkout/GetHallCodeHook';
+import AddHallRateHook from '../../hooks/hall/addHallRateHook';
+import Hallrating from '../../compenents/global/widgets/hallrating';
 
 
 
@@ -28,7 +30,7 @@ function HallDetails() {
 
   const [isuser, isadmin, _data] = ProtectedRouteHook();
   const [onSubmit, status, onChangeStatus, _load] = ChangeHallStatusHook();
-  const { t, i18n } = useTranslation()
+  const { _t, i18n } = useTranslation()
   const [selectedTab, setSelectedTab] = useState('book hour'); 
   const handleShow  = () => setShow(true);
   const [show, setShow]  = useState(false);
@@ -36,6 +38,14 @@ function HallDetails() {
 
   
   const  [_loading,GetHallCodes,data]=GetHallCodesHook()
+  const  [
+    
+      load,
+      onSend,
+      onChangeHallId
+  ]= AddHallRateHook()
+
+
   const  [onChangeDateByHour,date,onChangeHour,hour]=ReservHallByHourHook()
   const  [onChangeDateOne,onChangeDateTwo,dateone,datetwo,onChangeDaysHour,hourdays]=ReservHallByIntervalDays()
   const  [onChangeDateHours,datehours,onChangeHoursFrom,hourfrom,onChangeHoursTo,hourto]=ReservHallIntervalHoursHook()
@@ -55,7 +65,7 @@ function HallDetails() {
   let hallData;
 
   try {
-    hallData = location.state.hallData;
+    hallData = location.state.hallData
   } catch (v) {
     nav('/places');
     return;
@@ -66,9 +76,8 @@ function HallDetails() {
   },[hallData])
 
   useEffect(()=>{
-   console.log(data)
-  },[data])
-
+    onChangeHallId(hallData.id)
+  },[hallData])
 
   const handleSubmit = () => {
     onSubmit(hallData.id);
@@ -172,7 +181,7 @@ const handleCheckoutDays = (e) => {
       return;
     }
 
-    console.log(hourfrom,hourto,'_+++++++++++++++++_______+++++++++++++++++')
+
     if (hourto < hourfrom) {
 
       alert("Choose suitable increase time");
@@ -337,11 +346,20 @@ const handleCheckoutDays = (e) => {
     return hours;
   };
 
+
+
   return (
     <div style={{overflow:"scroll",fontFamily:"cairo"}}>
       <NavBar />
       <Banner
-      txt={isuser ? 'Home > Place  Details' : 'Home  > Admin > Place Details'} />
+         txt={isuser?'Home > Place  Details' : 'Home  > Admin > Place Details'} />
+        <Row className='d-flex justify-content-center mt-2 mb-1'>
+         <Col xs='2'>
+            <Hallrating  onsend={onSend}  />
+         </Col>
+      </Row>
+
+
       <Row className="d-flex justify-content-center" >
       <Modal show={show} onHide={handleClose} style={{direction: 'rtl',top: '5px', zIndex: '100000' }}>
           <Modal.Header className='d-flex justify-content-center'>
@@ -397,7 +415,7 @@ const handleCheckoutDays = (e) => {
                     <Col xs="6">
                       <select style={{ width: "100%" }} key={hourdays} value={hourdays} onChange={onChangeDaysHour} >
                       {generateHours().map((hour) => (
-                        <option >{hour}</option>
+                        <option key={hour}>{hour}</option>
                       ))}
                      </select>
                     </Col>
@@ -483,7 +501,7 @@ const handleCheckoutDays = (e) => {
                            <Col className='text-start'>
                             <select style={{ width: "100%" }}  key={hourfrom} value={hourfrom}  onChange={onChangeHoursFrom}>
                              {generateHours().map((hour) => (
-                               <option>{hour}</option>
+                               <option key={hour}>{hour}</option>
                              ))}
                              </select></Col>
                            <Col>: From</Col>
@@ -496,7 +514,7 @@ const handleCheckoutDays = (e) => {
                            <Col className='text-start'> 
                            <select style={{ width: "100%" }}  key={hourto} value={hourto} onChange={onChangeHoursTo}>
                               {generateHours().map((hour) => (
-                        <option>{hour}</option>
+                        <option key={hour}>{hour}</option>
                       ))}
                     </select></Col>
                            <Col >: To</Col>
@@ -528,10 +546,15 @@ const handleCheckoutDays = (e) => {
         </Button>
       </Modal.Footer>
     </Modal>
+
+
     <Col xs="12" sm="12" md="8" lg="8">
         <Carousel className="mt-2">
-          {hallData.imagesData &&
+
+          { hallData.imagesData &&
+
             hallData.imagesData.map((v, i) => {
+
               return (
                 <Carousel.Item key={i} style={{ height: '100%', width: '100%' }}>
                   <div className="d-flex flex-row justify-content-center">
@@ -545,10 +568,13 @@ const handleCheckoutDays = (e) => {
                   </div>
                 </Carousel.Item>
               );
-            })}
+            }) }
         </Carousel>
       </Col>
       </Row>
+
+      
+
 
       <MidTitle txt={'Hall Owner'} arrow={false} />
 

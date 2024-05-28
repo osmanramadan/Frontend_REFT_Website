@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+
 
 
 
@@ -7,15 +7,12 @@ const ReservHallIntervalDaysHook = () => {
 
 
 
-  const today = new Date().toISOString().split('T')[0];
   
   const [dateone, setDateOne]  = useState('');
   const [datetwo, setDateTwo]  = useState('');
   const [hourdays, setHourDays]  = useState('9:00');
   const [data,setData]=useState()
-  // const [day, setDay]  = useState('');
-  // const [month, setMonth]  = useState('');
-  // const [year, setYear]  = useState('');
+
 
   
   function getDates(startDate, endDate) {
@@ -39,10 +36,9 @@ const ReservHallIntervalDaysHook = () => {
   
 
     const datesBetween = getDates(startDate, endDate);
-    console.log(datesBetween);
-
+   
     setData(datesBetween);
-    console.log(data,'data')
+
 }, [dateone, datetwo]);
 
 
@@ -55,7 +51,6 @@ const ReservHallIntervalDaysHook = () => {
 }
 
 const onChangeDaysHour = (e) => {
-  console.log(e.target.value,'.<><------------------------?')
   setHourDays(e.target.value);
 };
 

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/actions/authAction';
+// import CryptoJS from 'crypto-js';
+
 
 const LoginHook = () => {
   const dispatch = useDispatch();
@@ -56,7 +58,12 @@ const LoginHook = () => {
         if (res.data.token) {
   
           localStorage.setItem('token', res.data.token);
-          localStorage.setItem('user', JSON.stringify(res.data.data));
+
+          // var encrypted = CryptoJS.AES.encrypt(JSON.stringify(res.data.data),process.env.REACT_APP_ENCRYPT_KEY).toString();
+          // if (encrypted){
+            localStorage.setItem('user',JSON.stringify(res.data.data));
+          // }
+
           setLoading(true);
           setTimeout(() => {
             window.location.href = '/';

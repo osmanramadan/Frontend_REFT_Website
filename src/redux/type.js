@@ -19,6 +19,9 @@ export const GET_ADMIN_HALLS = 'GET_ADMIN_HALLS ';
 export const SEARCH_HALLS = 'SEARCH_HALLS';
 export const CHANGE_HALL_STATUS = 'CHANGE_HALL_STATUS';
 export const GET_USER_HALLS = 'GET_USER_HALLS';
+export const GET_HALL_RATE = 'GET_HALL_RATE';
+export const ADD_HALL_RATE = 'ADD_HALL_RATE';
+export const ALLOWED_USER_RATE = 'ALLOWED_USER_RATE';
 export const GET_HALLS_CITIES = 'GET_HALLS_CITIES';
 
 //book

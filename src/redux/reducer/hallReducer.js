@@ -6,12 +6,16 @@ import {
   GET_ADMIN_HALLS,
   CHANGE_HALL_STATUS,
   GET_USER_HALLS,
-  GET_HALLS_CITIES 
+  GET_HALLS_CITIES ,
+  ADD_HALL_RATE,
+  ALLOWED_USER_RATE
 
 } from '../type';
 
 const inital = {
   addHall: [],
+  addHallRate: [],
+  allowUserRate: [],
   getHalls: [],
   getAdminHalls: [],
   getUserHalls: [],
@@ -29,6 +33,18 @@ const hallReducer = (state = inital, action) => {
         ...state,
         addHall: action.payload,
       };
+
+    case ADD_HALL_RATE:
+        return {
+          ...state,
+          addHallRate: action.payload,
+        };
+
+    case ALLOWED_USER_RATE:
+        return {
+          ...state,
+          allowUserRate: action.payload,
+        };
     case GET_ALL_HALLS:
       return {
         ...state,

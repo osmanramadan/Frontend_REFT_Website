@@ -1,51 +1,47 @@
-import Carousel from 'react-bootstrap/Carousel';
-import { Col, Row } from 'react-bootstrap';
 import React from 'react';
-import { Figure } from 'react-bootstrap';
+import { Carousel, Col, Row, Figure } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import osman from '../../assets/images/osman.png';
 import ahmed from '../../assets/images/ahmed.jpg';
 import mona from '../../assets/images/mona.jpg';
 
-
 function HomepageTestimonial() {
-  // Define an array of objects representing Carousel items
+  const { t ,i18n} = useTranslation();
+
   const testimonialData = [
     { 
-      id:'1',
-      quote: "As a teacher, managing budgets can be challenging, especially when it comes to finding affordable spaces for classes and tutoring sessions. That's where [website name] comes in. This platform has been a game-changer for me. Instead of committing to long-term leases or expensive rentals, I can now book spaces by the hour, which significantly reduces my overhead costs.",
-      name: "Osman",
-      role: "Arbic teacher",
-      image:{osman}
+      id: '1',
+      quote: t('homepageTestimonial.osman.quote'),
+      name: t('homepageTestimonial.osman.name'),
+      role: t('homepageTestimonial.osman.role'),
+      image: osman
     },
     {
-      id:'2',
-      quote: "The process is seamless and convenient. I simply log in, browse through the available spaces in my area, and book the ones that suit my schedule. Whether I need a classroom for group lessons or a quiet space for one-on-one tutoring, [website name] has a variety of options to choose from.",
-      name: "ahmed",
-      role: "English teacher",
-      image:{ahmed}
+      id: '2',
+      quote: t('homepageTestimonial.ahmed.quote'),
+      name: t('homepageTestimonial.ahmed.name'),
+      role: t('homepageTestimonial.ahmed.role'),
+      image: ahmed
     },
     {
-      id:'3',
-      quote: "By renting spaces through reft, I can offer more competitive rates without sacrificing the quality of my teaching. This not only makes my lessons more accessible to a wider range of students but also alleviates some of the financial burden on their families.",
-      name: "mona",
-      role: "Science teacher",
-      image:{mona}
-    },
-    
+      id: '3',
+      quote: t('homepageTestimonial.mona.quote'),
+      name: t('homepageTestimonial.mona.name'),
+      role: t('homepageTestimonial.mona.role'),
+      image: mona
+    }
   ];
 
   return (
-    <Carousel data-bs-theme="dark" style={{position: 'relative' }}>
-      {/* Map over testimonialData array to generate Carousel items dynamically */}
+    <Carousel data-bs-theme="dark"  style={{'fontFamily':i18n.language==='en'?'Poppins':'Cairo', position: 'relative' }}>
       {testimonialData.map((item, index) => (
         <Carousel.Item
-          key={index} // Use index as key (you can use a unique identifier if available)
+          key={index}
           style={{
             height: 'auto',
-            
             color: '#282938',
             backgroundColor: '#eef4fa',
-            borderRadius:'15px',
+            borderRadius: '15px'
           }}
           className="mb-4"
         >
@@ -53,10 +49,10 @@ function HomepageTestimonial() {
             <Col
               xs="8"
               style={{
-                fontSize: '15px',
+                fontSize: '20px',
                 fontWeight: 'medium',
                 lineHeight: '140%',
-                letterSpacing: '0.5%',
+                letterSpacing: '0.5%'
               }}
             >
               {item.quote}
@@ -75,17 +71,12 @@ function HomepageTestimonial() {
                   width={70}
                   height={70}
                   alt="Profile Image"
-                  src={
-                
-                      item.id === '1' ? osman : item.id === '2' ? ahmed:mona
-             
-                    
-                  }
+                  src={item.image}
                   roundedCircle
                 />
               </Figure>
             </Col>
-  
+
             <Col
               xs="4"
               sm="3"
@@ -97,8 +88,8 @@ function HomepageTestimonial() {
               <div
                 style={{
                   fontWeight: 'medium',
-                  fontSize: '15px',
-                  color: '#282938',
+                  fontSize: '17px',
+                  color: '#282938'
                 }}
               >
                 {item.name}
@@ -106,8 +97,8 @@ function HomepageTestimonial() {
               <div
                 style={{
                   fontWeight: 'medium',
-                  fontSize: '12px',
-                  color: '#282938',
+                  fontSize: '14px',
+                  color: '#282938'
                 }}
               >
                 {item.role}

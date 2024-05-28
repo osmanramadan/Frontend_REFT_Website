@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -10,7 +10,12 @@ function Admintabs({ icon }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [_isUser, _isAdmin, data] = ProtectedRouteHook();
+  const [isUser, isAdmin, data] = ProtectedRouteHook();
+
+  useEffect(()=>{
+     console.log(data)
+  },[data])
+
   return icon ? (
     <div className="mt-4">
       <Button variant="primary" className="cart-action" onClick={handleShow}>
@@ -38,11 +43,13 @@ function Admintabs({ icon }) {
               <Link to="/user-profile" className="link">
                 <div className="user-tab-item border-bottom">Dashboard</div>
               </Link>
+
               {
-              data.role && data.role === 'TEACHER' ?<Link to="/user-places" className="link mt-3">
+                data.role && data.role==='OWNER'?<Link to="/user-places" className="link mt-3">
                 <div className="user-tab-item border-bottom">My Places</div>
-              </Link>:''
-              }
+               </Link>:''
+               }
+              
             </div>
           </div>
         </Offcanvas.Body>
@@ -56,9 +63,11 @@ function Admintabs({ icon }) {
       <Link to="/user-profile" className="link">
         <div className="user-tab-item border-bottom">Dashboard</div>
       </Link>
-      <Link to="/user-places" className="link mt-3">
+      {
+       data.role && data.role==='OWNER'?<Link to="/user-places" className="link mt-3">
         <div className="user-tab-item border-bottom">My Places</div>
-      </Link>
+      </Link>:''
+      }
     </div>
   );
 }

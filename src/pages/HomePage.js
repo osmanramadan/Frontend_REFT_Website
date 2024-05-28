@@ -9,22 +9,25 @@ import HomepageBannerTwo from '../compenents/homepage/HomepageBannerTwo';
 import HomepageHighlyRatedPlaces from '../compenents/homepage/HomepageHighlyRatedPlaces';
 import HomepageTestimonial from '../compenents/homepage/HomepageTestimonial';
 import HomepageFAQ from '../compenents/homepage/HomepageFAQ';
+import { useTranslation } from 'react-i18next';
+
 
 function HomePage() {
+  const { t } = useTranslation();
   return (
     <div>
       <NavBar />
       <HomepageBanner />
 
       <Container>
-        <MidTitle txt={'OUR GOALS'} arrow={false} />
+        <MidTitle txt={t('homepageGoals.title')} arrow={false} />
         <HomepageGoals />
         <HomepageBannerTwo />
 
-        <MidTitle txt={'HIGHLY RATED PLACES'} arrow={true} />
+        <MidTitle txt={t('highlyRatedPlaces')} arrow={true} />
 
-        {/* <HomepageHighlyRatedPlaces /> */}
-        <MidTitle txt={'REVIEWS FROM OUR CUTOMERS'} arrow={false} />
+        <HomepageHighlyRatedPlaces />
+        <MidTitle txt={t('homepageTestimonial.title')} arrow={false} />
         <HomepageTestimonial />
         <HomepageFAQ />
       </Container>

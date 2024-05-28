@@ -5,12 +5,52 @@ import {
   GET_ADMIN_HALLS,
   CHANGE_HALL_STATUS,
   GET_USER_HALLS,
-  GET_HALLS_CITIES
-
+  GET_HALLS_CITIES,
+  _GET_HALL_RATE,
+  ADD_HALL_RATE,
+  ALLOWED_USER_RATE
 } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
 import { useInsUpdateData } from '../../crud/useUpdateData';
 import { _useGetDataToken, useGetData } from '../../crud/useGetData';
+
+
+
+
+export const addNewRate = (data) => async (dispatch) => {
+  try {
+    const response = await useInsertData(`/api/v1/halls/addrate`, data);
+
+    dispatch({
+      type: ADD_HALL_RATE,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: ADD_HALL_RATE,
+      payload: e.response,
+    });
+  }
+};
+
+export const allowedUserRate = (data) => async (dispatch) => {
+  try {
+    const response = await useInsertData(`/api/v1/halls/allowrate`, data);
+    console.log(response,'))))))))))))))))))))))))))))***********')
+
+    dispatch({
+      type: ALLOWED_USER_RATE,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: ALLOWED_USER_RATE,
+      payload: e.response,
+    });
+  }
+};
 
 // add new hall
 export const addNewHall = (data) => async (dispatch) => {
@@ -46,10 +86,11 @@ export const getHalls = (data) => async (dispatch) => {
     });
   }
 };
+
 export const getHallsCities = (data) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/halls/cities`);
-    console.log(response)
+
 
     dispatch({
       type: GET_HALLS_CITIES,
@@ -84,7 +125,7 @@ export const getAdminHalls = (data) => async (dispatch) => {
 export const getUserHalls = (userid) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/halls/${userid}`);
-    console.log(response);
+   
 
     dispatch({
       type: GET_USER_HALLS,

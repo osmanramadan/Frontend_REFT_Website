@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PayPalButton from '../../compenents/hall/PaypalButton';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 
 
@@ -17,13 +18,19 @@ const HallCheckoutDaysHours= () => {
   let data;
   let amount;
   let bookinfo;
+  let userdata;
 
   try {
+
+
     data = location.state;
     amount =data.info.price
     bookinfo =location.state.bookinfo
-   
-    
+
+    const [_isUser,_isAdmin,userinfo]=ProtectedRouteHook()
+    userdata = userinfo    
+
+  
   } catch (error) {
     nav('/');
     return null; 
@@ -65,7 +72,7 @@ const HallCheckoutDaysHours= () => {
 
 
         <Row className='mt-5 text-center' >
-            <PayPalButton amount={amount * bookinfo.length} data={{'type':'dayshours','bookinfo':bookinfo}} />
+            <PayPalButton amount={amount * bookinfo.length} data={{'dashboardinfo':{"type":'dayshours','userid':userdata.id,'halluserid':data.info.userid,'hallid':data.id,'datefrom':data.dateonemix,'dateto':data.datetwomix,'hourfrom':data.hourfrom,'hourto':data.hourto,'amount':amount * bookinfo.length},'type':'dayshours','bookinfo':bookinfo}} />
         </Row>
      
       </div>

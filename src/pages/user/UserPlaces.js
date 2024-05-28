@@ -13,10 +13,6 @@ function UserPlaces() {
   const [isuser, _isadmin, _userData] = ProtectedRouteHook();
   const [halls, _loading] = GetUserHallsHook();
 
-  // if(!isuser){
-  //   window.location.href='/signin';
-  //   return;
-  // }
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);

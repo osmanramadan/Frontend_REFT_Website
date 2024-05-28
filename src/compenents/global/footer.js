@@ -8,51 +8,52 @@ import {
   faTwitter,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
+  const { t ,i18n} = useTranslation();
   return (
-    <div className="footer">
+    <div className="footer" style={{ fontWeight:i18n.language=='en'?'':'bold',fontFamily:i18n.language=='en'?'Poppins':'Cairo'}}>
       <Container>
         <Row
           style={{
-            fontFamily: 'Poppins',
+            direction:i18n.language=='en'?'ltr':'rtl',
             fontSize: '24px',
             fontWeight: 'bold',
           }}
+          
         >
           REFT
         </Row>
         <Row
-          style={{
-            fontFamily: 'Poppins',
+          style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo',
             fontSize: '16px',
             fontWeight: 'medium',
+            direction:i18n.language=='en'?'ltr':'rtl',
           }}
         >
-          Rate your place in the right place
+          {t('footer.rateYourPlace')}
         </Row>
 
         <Row className="d-flex  justify-content-center  mt-3">
           <Col xs="12" sm="6" md="2">
             <Link to={'/contact-us'} className="link mx-1 mb-xs-1">
-              Contact Us
+            {t('footer.contactUs')}
             </Link>
           </Col>
           <Col xs="12" sm="6" md="2">
             <Link to={'/about-us'} className="link mx-1 mb-xs-1">
-              About Us
+            {t('footer.aboutUs')}
             </Link>
           </Col>
           <Col xs="12" sm="6" md="2">
             <Link to={'/places'} className="link mx-1 mb-xs-1">
-              Our Places
+            {t('footer.ourPlaces')}
             </Link>
           </Col>
-          {/* <Col xs="12" sm="6" md="2">
-            <Link to={"/hall-add"} className="link mx-1 mb-xs-1">Add Place</Link>
-          </Col> */}
+
           <Col xs="12" sm="6" md="2">
-            <Link to={'/terms'} className="link mx-1 mb-xs-1">Terms and Conditions</Link>
+            <Link to={'/terms'} className="link mx-1 mb-xs-1">{t('footer.termsAndConditions')}</Link>
           </Col>
         </Row>
 
@@ -69,16 +70,18 @@ function Footer() {
               }}
             >
               <Row>
+                
                 <Col
                   xs="6"
                   className="mt-1 mx-1 text-start"
                   style={{
                     color: '#282938',
+                    
                     fontSize: '18px',
                     fontWeight: 'bold',
                   }}
                 >
-                  Email
+                {t('footer.email')}
                 </Col>
                 <Col
                   className="mt-1  text-start"
@@ -88,7 +91,7 @@ function Footer() {
                     fontWeight: 'bold',
                   }}
                 >
-                  Telephone
+                  {t('footer.telephone')}
                 </Col>
               </Row>
 
@@ -97,10 +100,9 @@ function Footer() {
                   xs="6"
                   className="mb-2 mx-1"
                   style={{
-                    color: '#282938',
+                    color: '#4F4A45',
                     fontSize: '16',
-                    fontFamily: 'Poppins',
-                    fontWeight: 'medium',
+                    fontWeight: 'none',
                   }}
                 >
                   osman@osman.com
@@ -108,10 +110,10 @@ function Footer() {
                 <Col
                   className="mb-2"
                   style={{
-                    color: '#282938',
+                    color:'#4F4A45',
+     
                     fontSize: '16',
-                    fontFamily: 'Poppins',
-                    fontWeight: 'medium',
+                    fontWeight: 'none',
                   }}
                 >
                   010898898887
@@ -121,15 +123,15 @@ function Footer() {
           </Col>
           <Col xs="12" sm="12" md="6" lg="6">
             <Row className="text-end mx-4 mt-4">
-              <Col xs="6" md="3">
+              <Col xs="6" md="3" className='mt-2'>
                 {' '}
                 <FontAwesomeIcon
                   icon={faInstagram}
                   className="mb-xs-2 mx-3"
-                  style={{ color: 'white', height: '50px', width: '50px' }}
+                  style={{ color: 'white', height: '30px', width: '30px' }}
                 />
               </Col>
-              <Col xs="6" md="3">
+              <Col xs="6" md="3" className='mt-2'>
                 {' '}
                 <FontAwesomeIcon
                   icon={faFacebookF}
@@ -137,29 +139,29 @@ function Footer() {
                   style={{
                     color: '#1C1E53',
                     borderRadius: '50%',
-                    height: '50px',
-                    width: '50px',
+                    height: '30px',
+                    width: '30px',
                     backgroundColor: 'white',
                   }}
                 />
               </Col>
-              <Col xs="6" md="3">
+              <Col xs="6" md="3" className='mt-2'>
                 {' '}
                 <FontAwesomeIcon
                   className="mb-xs-2 mx-3"
                   icon={faTwitter}
-                  style={{ color: 'white', height: '50px', width: '50px' }}
+                  style={{ color: 'white', height: '30px', width: '30px' }}
                 />
               </Col>
-              <Col xs="6" md="3">
+              <Col xs="6" md="3" className='mt-2'>
                 {' '}
                 <FontAwesomeIcon
                   className="mb-xs-2 mx-3"
                   icon={faLinkedinIn}
                   style={{
                     color: '#1C1E53',
-                    height: '50px',
-                    width: '50px',
+                    height: '30px',
+                    width: '30px',
                     backgroundColor: 'white',
                   }}
                 />

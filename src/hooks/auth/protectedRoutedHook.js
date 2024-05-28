@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import CryptoJS from 'crypto-js';
 
 const ProtectedRouteHook = () => {
 
@@ -9,6 +10,8 @@ const ProtectedRouteHook = () => {
   useEffect(() => {
 
     const storedUserData = localStorage.getItem('user');
+    // var userData={}
+    // var userData = CryptoJS.AES.decrypt(storedUserData,process.env.REACT_APP_ENCRYPT_KEY).toString(CryptoJS.enc.Utf8);
 
     if (storedUserData) {
       try {

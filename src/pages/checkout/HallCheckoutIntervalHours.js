@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PayPalButton from '../../compenents/hall/PaypalButton';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 
 
@@ -17,18 +18,25 @@ const HallCheckoutIntervalHours= () => {
   let data;
   let amount;
   let bookinfo;
+  let userdata;
 
   try {
 
     data = location.state;
     amount =data.info.price
     bookinfo =location.state.bookinfo
+    const [_isUser,_isAdmin,userinfo]=ProtectedRouteHook()
+    userdata = userinfo
+
 
     
   } catch (error) {
+    alert('مشكله فى عمليه الدفع');
     nav('/');
     return null; 
   }
+
+
   
   return (
     <div style={{ backgroundColor: "#1C1E53" }}>
@@ -61,7 +69,7 @@ const HallCheckoutIntervalHours= () => {
 
 
         <Row className='mt-5 text-center' >
-        <PayPalButton amount={amount * bookinfo.length} data={{'type':'dayhours','bookinfo':bookinfo}}/>
+        <PayPalButton amount={amount * bookinfo.length} data={{'dashboardinfo':{'userid':userdata.id,'halluserid':data.info.userid,'hallid':data.id,'type':'dayhours','userid':userdata.id,'amount':amount * bookinfo.length,'date':data.datehours,'hourfrom':data.hourfrom,'hourto':data.hourto},'type':'dayhours','bookinfo':bookinfo}}/>
         </Row>
      
       </div>

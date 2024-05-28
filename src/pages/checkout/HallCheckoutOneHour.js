@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PayPalButton from '../../compenents/hall/PaypalButton';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 
 
@@ -13,14 +14,24 @@ const HallCheckoutOneHour = () => {
 
   let data = null;
   let amount = null;
+  let userdata =null
 
   try {
     data = location.state;
     amount = data.info.price;
+    const [_isUser,_isAdmin,userinfo]=ProtectedRouteHook()
+    userdata = userinfo
 
   } catch (error) {
+    alert('مشكله فى عمليه الدفع')
     nav('/');
     return null; 
+  }
+  try{
+   
+  }catch(e){
+     alert('مشكله فى عملية الدفع')
+     return;
   }
 
     console.log(data)
@@ -36,7 +47,7 @@ const HallCheckoutOneHour = () => {
                   <h3 style={{ color: "#FCD980" }}>{data.info.price} EGP</h3>
                 </Row>
                 <Row className='text-center'>
-                  <h3>Checkout </h3>
+                  <h3>Checkout{userdata.id}</h3>
                 </Row>
                 <Row>
                   <Col xs="12" sm="6">
@@ -54,7 +65,8 @@ const HallCheckoutOneHour = () => {
                 <Row className='mt-5'>
                   <Col xs='4' className='justify-content-end d-flex'>
                     <div style={{ width: "50%" }}>
-                      <PayPalButton amount={amount} data={{'type':'onehour','hallid':data.id,'userid':data.info.userid,'year':new Date(data.date).getFullYear(),'month':new Date(data.date).getMonth()+1,'day':new Date(data.date).getDate(),'date':data.date,'hour':data.hour,'price':amount}}/>
+                      <PayPalButton amount={amount} data={{'dashboardinfo':{'type':'onehour','userid':userdata.id,'amount':amount,'halluserid':data.info.userid,'hallid':data.id,
+                      'date':data.date,'hour':data.hour,'price':amount},'type':'onehour','hallid':data.id,'userid':data.info.userid,'year':new Date(data.date).getFullYear(),'month':new Date(data.date).getMonth()+1,'day':new Date(data.date).getDate(),'date':data.date,'hour':data.hour,'price':amount}}/>
                     </div>
                   </Col>
                 </Row>

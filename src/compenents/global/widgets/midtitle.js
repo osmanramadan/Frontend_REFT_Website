@@ -3,13 +3,16 @@ import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function MidTitle({ txt, arrow }) {
+  
+  const { t , i18n} = useTranslation()
   return (
     <div>
       {arrow ? (
         <Row
-          style={{ fontFamily: 'Poppins', fontWeight: '600', fontSize: '38px' }}
+          style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo', fontWeight: '600', fontSize: '38px' }}
           className="d-flex justify-content-center mb-2 mt-4"
         >
           <Col xs="1">
@@ -24,7 +27,7 @@ function MidTitle({ txt, arrow }) {
         </Row>
       ) : (
         <Row
-          style={{ fontFamily: 'Poppins', fontWeight: '600', fontSize: '38px' }}
+          style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo', fontWeight: '600', fontSize: '38px' }}
           className={'d-flex justify-content-center mb-2 mt-4'}
         >
           <Col xs="1"> </Col>

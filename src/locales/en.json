@@ -1,31 +1,99 @@
 {
-    "contactUs": {
-      "title": "GET IN TOUCH",
-      "phoneLabel": "Phone:",
-      "emailLabel": "Email:",
-      "addressLabel": "Address:",
-      "namePlaceholder": "Your name",
-      "emailPlaceholder": "Your email",
-      "phonePlaceholder": "Your phone",
-      "messagePlaceholder": "Your message",
-      "sendButton": "SEND MESSAGE"
+  "contactUs": {
+    "title": "GET IN TOUCH",
+    "phoneLabel": "Phone:",
+    "emailLabel": "Email:",
+    "addressLabel": "Address:",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "phonePlaceholder": "Your phone",
+    "messagePlaceholder": "Your message",
+    "sendButton": "SEND MESSAGE"
+  },
+  "halls": {
+    "home": "Home > Places",
+    "searchPlaceholder": "Write your location",
+    "noHalls": "No Halls Yet"
+  },
+  "navbar": {
+    "home": "HOME",
+    "signup": "Sign up",
+    "aboutUs": "About us",
+    "ourPlaces": "Our places",
+    "addPlace": "Add Place"
+  },
+  "homepageBanner": {
+    "title": "Empowering Minds: Your Gateway to Knowledge and Learning",
+    "description": "Our mission is to provide a comprehensive educational experience that transcends boundaries and empowers individuals on their journey to knowledge mastery",
+    "buttonText": "START SEARCH"
+  },
+  "homepageGoals": {
+    "title":"OUR GOALS",
+    "availability": {
+      "title": "Availability",
+      "txt": "The owner of the place can share the geographical location of the place, upload pictures of the rooms he wants to rent, and also determine the appropriate financial cost for one hour of rent.",
+      "num": "1"
     },
-    "halls": {
-        "home": "Home > Places",
-        "searchPlaceholder": "Write your location",
-        "noHalls": "No Halls Yet"
+    "usability": {
+      "title": "Usability",
+      "txt": "The owner of the place determines the number of rooms he wants to share on the site and also determines the number of hours during which he wants the rent to be made.",
+      "num": "2"
+    },
+    "helpness": {
+      "title": "Helpness",
+      "txt": "The site helps the teacher by showing him the nearest geographical places. The teacher can also search for available places and hours in any city he wants to search for.",
+      "num": "3"
+    }
+  },
+  "homepageBannerTwo": {
+    "title": "Education first, Teacher first",
+    "description": "The intended system aims to help the teacher find the appropriate place for him to give educational lessons by controlling the area of the place, the capacity of students, the cost of rent, and the appropriate location"
+  },
+  "highlyRatedPlaces": "HIGHLY RATED PLACES",
+  "homepageTestimonial": {
+    "title": "REVIEWS FROM OUR CUSTOMERS",
+    "osman": {
+      "quote": "As a teacher, managing budgets can be challenging, especially when it comes to finding affordable spaces for classes and tutoring sessions. That's where reft comes in. This platform has been a game-changer for me. Instead of committing to long-term leases or expensive rentals, I can now book spaces by the hour, which significantly reduces my overhead costs.",
+      "name": "Osman",
+      "role": "Arbic teacher"
+    },
+    "ahmed": {
+      "quote": "The process is seamless and convenient. I simply log in, browse through the available spaces in my area, and book the ones that suit my schedule. Whether I need a classroom for group lessons or a quiet space for one-on-one tutoring, reft has a variety of options to choose from.",
+      "name": "Ahmed",
+      "role": "English teacher"
+    },
+    "mona": {
+      "quote": "By renting spaces through reft , I can offer more competitive rates without sacrificing the quality of my teaching. This not only makes my lessons more accessible to a wider range of students but also alleviates some of the financial burden on their families.",
+      "name": "Mona",
+      "role": "Science teacher"
+    }
+  },
+    "homepageFAQ": {
+      "title": "Frequently Asked Questions ?",
+      "faq1": {
+        "question": "What is the idea of the website?",
+        "answer": "The website is a link between a private teacher who wants a place to teach at with a suitable price for him and proportional to the number of hours he wants to rent. And the place owner wants to make the place rented for a greater number of hours in order to obtain a greater financial reward. The teacher searches for the area in which he wants to find a place to teach, then chooses the best one for him and then makes a reservation according to the number of hours he needs daily. Then the rental period for these hours is determined, such as an hour or more, a day or more, a week or more, a month or more. Then he confirms the reservation by sending the amount to the place owner’s account. For the owner of the place, after registering on the site, he clicks on the add a place icon and then puts all the details required of him on this page. Such as the area, capacity, price per hour, and ownership papers for this place, then he clicks on Add, then waits until our admin confirms all of these details, then after verifying If the information is correct, we inform the place owner that the place has been uploaded to the REFT website."
       },
-      "navbar": {
-        "home": "HOME",
-        "signup":"Sign up",
-        "aboutUs": "About us",
-        "ourPlaces": "Our places",
-        "addPlace": "Add Place"
+      "faq2": {
+        "question": "What is the owner place?",
+        "answer": "He/She is the person who owns the hall."
       },
-      "homepageBanner": {
-        "title": "Empowering Minds: Your Gateway to Knowledge and Learning",
-        "description": "Our mission is to provide a comprehensive educational experience that transcends boundaries and empowers individuals on their journey to knowledge mastery",
-        "buttonText": "START SEARCH"
+      "faq3": {
+        "question": "How to contact with admin?",
+        "answer": "By contact us page in the bottom of website or through WhatsApp icon."
       }
-  }
+    },
+    "footer": {
+      "contactUs": "Contact Us",
+      "aboutUs": "About Us",
+      "ourPlaces": "Our Places",
+      "termsAndConditions": "Terms and Conditions",
+      "email": "Email",
+      "telephone": "Telephone",
+      "rateYourPlace": "Rate your place in the right place"
+    }
   
+  
+  
+  
+}

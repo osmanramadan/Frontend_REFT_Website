@@ -8,7 +8,7 @@ import ImageChooser from '../../compenents/user/ImageChooser';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function Profile() {
-  const [isuser, _isadmin, userData] = ProtectedRouteHook();
+  const [_isuser, _isadmin, userData] = ProtectedRouteHook();
 
   // if(!isuser){
   //   window.location.href='/signin';
@@ -18,7 +18,7 @@ function Profile() {
   return (
     <div>
       <NavBar />
-      <div>
+      <div className='px-3'>
         <Row>
           <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
             <UserTabs />
@@ -39,7 +39,6 @@ function Profile() {
                       width={125}
                       height={125}
                       alt="Profile Image"
-                      // src={osman}
                       src={`data:image/*;base64,${userData.profile_img}`}
                       roundedCircle
                     />
@@ -76,6 +75,7 @@ function Profile() {
                 className="d-flex justify-content-center align-items-center"
               >
                 <input
+                  style={{width:'100%'}}
                   className="inputfield-userprofile"
                   placeholder={userData && userData.name ? userData.name : ''}
                   readOnly
@@ -102,6 +102,7 @@ function Profile() {
                 className="d-flex justify-content-center align-items-center"
               >
                 <input
+                style={{width:'100%'}}
                   className="inputfield-userprofile"
                   placeholder={userData && userData.email ? userData.email : ''}
                   readOnly

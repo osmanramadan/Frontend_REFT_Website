@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { reservHallByHour  } from '../../redux/actions/hallAction';
-// import { reservHallByInterval  } from '../../redux/actions/hallAction';
+import { useState} from 'react';
+import { useDispatch } from 'react-redux';
+
 
 const ReservHallIntervalDaysHoursHook = () => {
 
 
-  const dispatch         = useDispatch();
+
 
   const [dateonemix, setDateOneMix]  = useState('');
   const [datetwomix, setDateTwoMix]  = useState('');
@@ -14,11 +13,6 @@ const ReservHallIntervalDaysHoursHook = () => {
   const [hourtomix, setHourToMix]  = useState('9:00');
 
 
-  
-
-
-
-  // const reservbydays= useSelector((state) => state.bookReducer.reservHallByIntervalDays)
  
 
   const onChangeDateOneMix=(e) => {
@@ -31,7 +25,6 @@ const ReservHallIntervalDaysHoursHook = () => {
 
 
   const onChangeHoursFromMix = (e) => {
-    console.log(e.target.value)
     setHourFromMix(e.target.value)
   };
   const onChangeHoursToMix = (e) => {

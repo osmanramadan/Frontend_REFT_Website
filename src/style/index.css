@@ -917,3 +917,14 @@ input[type=month]::-webkit-calendar-picker-indicator {
 .auth-dropdown-content {
   position:relative !important ;
 }
+
+/* Hallrating.css */
+.star-ratings {
+  display: inline-block;
+  font-size: 0;
+}
+
+.star-ratings div {
+  display: inline-block;
+  margin: 0 2px; /* This will be overridden by the starSpacing prop */
+}

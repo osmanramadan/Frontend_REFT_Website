@@ -5,20 +5,20 @@ import banner from '../../assets/images/banner.png';
 import BannerButton from './widget/BannerButton';
 
 function HomepageBanner() {
-  const { t, i18n } = useTranslation();// Using useTranslation hook to access translation functions
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="homePage-Banner">
       <Container>
-        <Row style={{ height: '100%', width: '100%' }}>
-          <Col xs="12" md="12" lg="5" className={i18n.language=="en"?"":"mt-5 text-center"}>
-            <div className="p-2 txt-1">
-              {t('homepageBanner.title')} {/* Translated title */}
+        <Row style={{height: '100%', width: '100%' }}>
+          <Col xs="12" md="12" lg="5"  className={i18n.language=="en"?"":"mt-5 text-center"}>
+            <div style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className={i18n.language=="en"?"p-2 txt-1":"p-1 txt-1"}>
+              {t('homepageBanner.title')}
             </div>
 
             
-              <div className={i18n.language=="en"?"p-2 txt-2 ":" p-2 txt-2 text-center"}>
-                  {t('homepageBanner.description')} {/* Translated description */}
+              <div style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className={i18n.language=="en"?"p-2 txt-2":"p-2 txt-2 fs-4"}>
+                  {t('homepageBanner.description')} 
                 </div>
             
 

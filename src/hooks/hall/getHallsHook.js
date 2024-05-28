@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHalls, searchHalls, searchHallsCity, searchHallsTown } from '../../redux/actions/hallAction';
+import { getHalls, searchHalls, searchHallsCity} from '../../redux/actions/hallAction';
 import { useTranslation } from 'react-i18next';
 
 const GetHallsHook = () => {
@@ -8,11 +8,8 @@ const GetHallsHook = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const { _t, i18n } = useTranslation();
-  // const [selectedCity,setSelectedCity]=useEffect([])
   const [city, setCity] = useState('');
   const [town, setTown] = useState('');
-  // const [search,setSearch]=useState({city:city,town:town})
 
 
   const res = useSelector((state) => state.hallReducer.getHalls);

@@ -29,8 +29,8 @@ window.onload = () => {
 
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="navbar" expanded={expanded}>
-      <Container>
+    <Navbar collapseOnSelect  expand="lg" className="navbar" expanded={expanded}>
+      <Container >
         <Link to="/" className="navbar-brand">
           <img
             style={{ height: '80px', width: '100px' }}
@@ -63,17 +63,17 @@ window.onload = () => {
             }`}
             style={{ marginLeft: '100px' }}
           >
-            <Nav className="d-flex justify-content-center">
-              <Nav.Link href="/" className="link mx-md-3">
+            <Nav className="d-flex justify-content-center" >
+              <Nav.Link href="/" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-md-3">
                 {t('navbar.home')}
               </Nav.Link>
-              <Nav.Link href="/about-us" className="link mx-lg-3">
+              <Nav.Link href="/about-us" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-lg-3">
                 {t('navbar.aboutUs')}
               </Nav.Link>
-              <Nav.Link href="/places" className="link mx-lg-3">
+              <Nav.Link href="/places" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-lg-3">
                 {t('navbar.ourPlaces')}
               </Nav.Link>
-              {data.role && data.role == 'OWNER' ? <Nav.Link href="/hall-add" className="link mx-lg-3">
+              {data.role && data.role == 'OWNER' ? <Nav.Link style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} href="/hall-add" className="link mx-lg-3">
                 {t('navbar.addPlace')}
               </Nav.Link>:''}
             </Nav>
