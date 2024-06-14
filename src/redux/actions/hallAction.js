@@ -37,7 +37,7 @@ export const addNewRate = (data) => async (dispatch) => {
 export const allowedUserRate = (data) => async (dispatch) => {
   try {
     const response = await useInsertData(`/api/v1/halls/allowrate`, data);
-    console.log(response,'))))))))))))))))))))))))))))***********')
+    
 
     dispatch({
       type: ALLOWED_USER_RATE,

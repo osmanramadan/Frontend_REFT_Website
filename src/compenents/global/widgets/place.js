@@ -46,7 +46,7 @@ function Place({ data }) {
             style={{ color: 'white', fontSize: '10px', fontWeight: 'medium' }}
             className="mx-3"
           >
-            {/* { data.rate.numstar} */}
+            
          {data.rate.sumstar && data.rate.numstar ? (data.rate.sumstar / data.rate.numstar).toFixed(1) : '0.0'}
 
           </span>

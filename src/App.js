@@ -28,6 +28,10 @@ import HallCheckoutOneHour from './pages/checkout/HallCheckoutOneHour';
 import UserTermsAndCondition from './pages/user/UserTermsAndCondition';
 import SuccessPayment from './pages/payment/SuccessPayment';
 import FailPayment from './pages/payment/FailPayment';
+import AdminBooking from './pages/admin/booking';
+import UserBooking from './pages/user/UserBooking';
+import OwnerBooking from './pages/user/OwnerBooking';
+import OwnerPlacesBooking from './pages/user/OwnerPlacesBooking';
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
@@ -59,6 +63,9 @@ function App() {
 
         <Route errorElement={<Navigate to="/login" />} element={<ProtectedRoute auth={isUser} />}>
           <Route exact path="/user-profile" element={<Profile />} />
+          <Route exact path="/user-booking"  element={<UserBooking />} />
+          <Route exact path="/owner-booking"  element={<OwnerPlacesBooking />} />
+          <Route exact path="/owner-places-booking"  element={<OwnerBooking />} />
           <Route exact path="/user-places"  element={<UserPlaces />} />
           <Route exact path="/processing-payment"  element={<SuccessPayment />} />
           <Route exact path="/fail-payment"  element={<FailPayment />} />
@@ -66,6 +73,7 @@ function App() {
 
         <Route element={<ProtectedRoute auth={isAdmin} />}>
           <Route exact path="/admin-places" element={<AdminHalls />} />
+          <Route exact path="/admin-booking" element={<AdminBooking />} />
           <Route exact path="/admin-messages" element={<AdminMessages />} />
           <Route exact path="/message-details" element={<MessDetails />} />
         </Route>

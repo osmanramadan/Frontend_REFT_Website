@@ -5,7 +5,7 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Navbardropdown from './widgets/navbardropdown';
 import NavBarButton from './widgets/navbarbutton';
 import logo from '../../assets/images/logo.png';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next'; 
 
 function NavBar() {
   const { t, i18n } = useTranslation(); // Initialize useTranslation hook
@@ -80,7 +80,7 @@ window.onload = () => {
           </Col>
 
           <Col
-            xs={6} // Adjusted to accommodate the language switch button
+            xs={6}
             md={6}
             className="d-flex justify-content-center px-xs-4 px-md-4"
             style={{ marginRight: '-40px' }}

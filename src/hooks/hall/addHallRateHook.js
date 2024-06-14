@@ -16,10 +16,10 @@ const AddHallRateHook = () => {
 
   const [loading,setLoading]=useState(false)
   const [hallid,setHallId]=useState('')
-  // const [checkuserrate,setCheckUserRate]=useState(false)
+  const [checkuserrate,setCheckUserRate]=useState(false)
 
   const res = useSelector((state) => state.hallReducer.addHallRate);
-  // const resallowuser = useSelector((state) => state.hallReducer.allowUserRate);
+  const resallowuser = useSelector((state) => state.hallReducer.allowUserRate);
 
 
  
@@ -35,54 +35,65 @@ const AddHallRateHook = () => {
     setLoading(false);
   }
 
-  // useEffect(()=>{
- 
-   
-  //     setLoading(true);
-  //     dispatch(allowedUserRate({'userid':user.id,'hallid':hallid}));
-  //     setLoading(false);
-
-  // },[hallid])
-
+  useEffect(()=>{
+    setLoading(true);
+    dispatch(allowedUserRate({"userid":user.id,"hallid":hallid}));
+    setLoading(false);
+  },[hallid])
+  // console.log(res.data.status,'osmanmam')
 
   useEffect(() => {
 
     setLoading(true);
     
     if (res.data) {
-
-      if (res.data.status == 'success') {
+   
+      console.log(res.data.status,'osmanmam')
+      if (res.data.status === 'success') {
+        setLoading(false)
         alert('نجاح الاضافة');
-        return;
+        window.location.reload()
 
-      } else {
+      } 
+      
+      if (res.data.status === 'fail') {
+        setLoading(false)
         alert('انت بالفعل قمت بالتقييم');
-        return;
-      }
+        window.location.reload()
+
+  
+      } 
+   
     }
   }, [res.data]);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   setLoading(true);
+    setLoading(true);
     
-  //   if (resallowuser.data) {
-  //     console.log(resallowuser.data,'+++++++++++++++++++++++++++++++')
-  //     if (resallowuser.data.status == 'success') {
-       
-  //       setCheckUserRate(true)
+    if (resallowuser.data) {
+      console.log(resallowuser.data,'+++++++++++++++++++++++++++++++')
+      if (resallowuser.data.status == 'success') {
+        setLoading(false)
+        setCheckUserRate(true)
 
-  //     } else {
-  //       setCheckUserRate(false)
+      } else {
+        setLoading(false)
+        setCheckUserRate(false)
       
-  //     }
-  //   }
-  // }, [resallowuser.data]);
+      }
+    }
+  }, [resallowuser.data]);
+
+ useEffect(()=>{
+  console.log(checkuserrate,'(((((((((((((((((())))))))))))))))))))))))))))')
+ },[checkuserrate])
 
 
 
   return [
     loading,
+    checkuserrate,
     onSubmit,
     onChangeHallId
   ];

@@ -20,7 +20,7 @@ function Profile() {
       <NavBar />
       <div className='px-3'>
         <Row>
-          <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
+          <Col xs="0" sm="0" md="5" lg="3" className="user-one-tabs">
             <UserTabs />
           </Col>
 

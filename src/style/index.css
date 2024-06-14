@@ -518,7 +518,7 @@ div.lmMaya {
 }
 .user-tab-item {
   width: 100%;
-  height: 110px;
+  height: 80px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -526,7 +526,7 @@ div.lmMaya {
   cursor: pointer;
   font-family: 'Poppins';
   font-weight: bold;
-  font-size: 52px;
+  font-size: 23px;
   color: var(--blue_gray_900_01);
   background-color: var(--white_A700);
 }
@@ -535,7 +535,7 @@ div.lmMaya {
   background-color: #1c1e53;
   color: white;
   font-weight: bold;
-  font-size: 52px;
+  font-size: 26px;
 }
 
 .user-two-tabs {
@@ -927,4 +927,16 @@ input[type=month]::-webkit-calendar-picker-indicator {
 .star-ratings div {
   display: inline-block;
   margin: 0 2px; /* This will be overridden by the starSpacing prop */
+}
+
+
+/* print.css */
+@media print {
+  body {
+    overflow: visible !important;
+  }
+  .checkout-container {
+    height: auto !important;
+    overflow: visible !important;
+  }
 }

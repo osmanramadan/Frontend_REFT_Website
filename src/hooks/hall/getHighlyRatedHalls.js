@@ -84,7 +84,7 @@ const GetHighlyRatedHalls= () => {
     useEffect(() => {
         if (data.length > 0) {
           const sortedHalls = data
-          .filter(hall => hall.city.toLowerCase().includes(user?.city.toLocaleLowerCase()))
+          .filter(hall => hall.city.toLowerCase().includes(user?.city))
             .map(hall => ({
               ...hall,
               averageRating: hall.rate.numstar > 0 ? hall.rate.sumstar / hall.rate.numstar : 0

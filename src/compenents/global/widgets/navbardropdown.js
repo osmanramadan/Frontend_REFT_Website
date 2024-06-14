@@ -13,6 +13,7 @@ function Navbardropdown({ isUser }) {
   const [show, setShow] = useState(false);
 
   const Logout = () => {
+
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('id');
@@ -116,19 +117,16 @@ function Navbardropdown({ isUser }) {
               My Profile
             </Link>
           ) : (
-            <div>
-              <Link className="link mt-2 mb-1" to="/admin-places">
+            <div className='mt-2'>
+              <Link className="link" to="/admin-places">
                 {' '}
-                Admin
+                Dashboard
               </Link>
-              <Link className="link d-block mt-2 mb-1" to="/admin-messages">
-                {' '}
-                Messages
-              </Link>
+       
             </div>
           )}
 
-          <Link className="link  mt-1 mb-2">
+          <Link className="link mb-2">
             <div onClick={Logout}>Log out</div>
           </Link>
         </Dropdown.Menu>
