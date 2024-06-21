@@ -61,7 +61,7 @@ function App() {
 
         
 
-        <Route errorElement={<Navigate to="/login" />} element={<ProtectedRoute auth={isUser} />}>
+        <Route errorElement={<Navigate to="/signin" />} element={<ProtectedRoute auth={isUser} />}>
           <Route exact path="/user-profile" element={<Profile />} />
           <Route exact path="/user-booking"  element={<UserBooking />} />
           <Route exact path="/owner-booking"  element={<OwnerPlacesBooking />} />

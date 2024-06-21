@@ -7,9 +7,15 @@ const AddHallRateHook = () => {
 
   const dispatch = useDispatch();
 
-  if (localStorage.getItem('user') !== null) {
-    var user = JSON.parse(localStorage.getItem('user'));
-  } else {
+  try{
+    
+    if (localStorage.getItem('user') !== null) {
+      var user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      window.location.href = '/signin';
+      return;
+    }
+  }catch(e){
     window.location.href = '/signin';
     return;
   }

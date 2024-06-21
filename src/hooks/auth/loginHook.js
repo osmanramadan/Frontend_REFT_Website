@@ -46,6 +46,11 @@ const LoginHook = () => {
     setLoading(false);
   };
 
+  useEffect(()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  },[])
+
   useEffect(() => {
     if (loading === false) {
       if (res.data) {

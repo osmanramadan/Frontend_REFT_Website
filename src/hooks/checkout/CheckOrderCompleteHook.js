@@ -40,7 +40,7 @@ const CheckOrderCompleteHook = () => {
               } else {
                 alert(' خطا فى عملية الدفع حاول مره أخري');
                 window.history.go(-3);
-                // window.location.href = document.referrer || '/';
+                
               }
           }
     }

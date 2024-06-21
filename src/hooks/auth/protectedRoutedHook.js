@@ -37,8 +37,8 @@ const ProtectedRouteHook = () => {
 
   return [
 
-    error?false:userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
-    error ?false: userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
+    error?undefined:userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
+    error ?undefined: userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
     userData,
   ];
   // return [

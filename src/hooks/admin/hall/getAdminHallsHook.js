@@ -38,6 +38,7 @@ const GetAdminHallsHook = () => {
         if (res.status === 'success') {
           setData(res.data);
         }
+
       }
     }
   }, [res.data]);

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewHall } from '../../redux/actions/hallAction';
 
-
 const AddHallHook = () => {
 
   const dispatch = useDispatch();
@@ -17,17 +16,22 @@ const AddHallHook = () => {
   const [placeName, setPlaceName] = useState('');
   const [placeCapacity, setPlaceCapacity] = useState('');
   const [placeCity, setPlaceCity] = useState('');
-  const [placeCityId,setPlaceCityId] = useState('');
+  const [placeCityId, setPlaceCityId] = useState('');
   const [placeLocation, setPlaceLocation] = useState('');
   const [hourPrice, setHourPrice] = useState('');
   const [placeDetails, setPlaceDetails] = useState('');
   const [images, setImages] = useState([]);
   const [pdf, setPdf] = useState('');
+  const [pdfSize, setPdfSize] = useState('');
   const [pdfName, setPdfName] = useState('pdf name');
   const [video, setVideo] = useState('');
+  const [videoSize, setVideoSize] = useState('');
   const [videoName, setVideoName] = useState('video name');
   const [userID, _setUserId] = useState(user.id);
   const [loading, setLoading] = useState(true);
+
+  const MAX_NAME_LENGTH = 30; // Maximum number of characters for placeName
+  const MAX_DETAILS_LENGTH = 1000; // Maximum number of characters for placeDetails
 
   // to convert base 64 to file ......
   function dataURLtoFile(dataurl, filename) {
@@ -46,6 +50,10 @@ const AddHallHook = () => {
   const res = useSelector((state) => state.hallReducer.addHall);
 
   const onChangePlaceName = (event) => {
+    if (event.target.value.length > MAX_NAME_LENGTH) {
+      alert(`Name should not exceed ${MAX_NAME_LENGTH} characters`);
+      return;
+    }
     setPlaceName(event.target.value);
   };
 
@@ -56,10 +64,9 @@ const AddHallHook = () => {
 
   const onChangePlaceCity = (value) => {
     setPlaceCity(value);
-    setPlaceLocation('')
+    setPlaceLocation('');
   };
 
-  
   const onChangePlaceCityId = (id) => {
     setPlaceCityId(id);
   }
@@ -74,6 +81,10 @@ const AddHallHook = () => {
   };
 
   const onChangePlaceDetails = (event) => {
+    if (event.target.value.length > MAX_DETAILS_LENGTH) {
+      alert(`Details should not exceed ${MAX_DETAILS_LENGTH} characters`);
+      return;
+    }
     setPlaceDetails(event.target.value);
   };
 
@@ -92,6 +103,7 @@ const AddHallHook = () => {
       const fileSizeInMB = fileSizeInKB / 1024;
 
       console.log(`File Size: ${fileSizeInMB.toFixed(2)} MB`);
+      setPdfSize(fileSizeInMB);
       setPdfName(selectedPdf.name);
     } else {
       setPdf(null);
@@ -99,11 +111,9 @@ const AddHallHook = () => {
     }
   };
 
-  const onChangeVideo = (value) => {
-    const selectedVideo = value.target.files[0];
+  const onChangeVideo = (event) => {
+    const selectedVideo = event.target.files[0];
     setVideo(selectedVideo);
-
-    
 
     if (selectedVideo) {
       const fileSizeInBytes = selectedVideo.size;
@@ -111,6 +121,7 @@ const AddHallHook = () => {
       const fileSizeInMB = fileSizeInKB / 1024;
 
       console.log(`File Video Size: ${fileSizeInMB.toFixed(2)} MB`);
+      setVideoSize(fileSizeInMB);
       setVideoName(selectedVideo.name);
     } else {
       setVideo(null);
@@ -118,31 +129,39 @@ const AddHallHook = () => {
     }
   };
 
-
-
   const onSubmit = async () => {
     if (
-      (placeName === '',
-      placeCity === '',
-      placeCapacity === '',
-      placeLocation === '',
-      hourPrice === '',
-      placeDetails === '',
-      images.length === 0,
-      pdfName === '' || pdfName === 'pdf name',
-      videoName === '' || videoName==='video name')
+      placeName === '' ||
+      placeCity === '' ||
+      placeCapacity === '' ||
+      placeLocation === '' ||
+      hourPrice === '' ||
+      placeDetails === '' ||
+      images.length === 0 ||
+      pdfName === '' || pdfName === 'pdf name' ||
+      videoName === '' || videoName === 'video name'
     ) {
       alert('من فضلك اكمل البيانات');
       return;
     }
-
-    if (placeName.length < 5) {
-      alert('name shouldnt be less 5');
+    if (pdfSize > 1) {
+      alert('pdf should not be greater than 1 MB');
       return;
     }
-
+    if (videoSize > 1.5) {
+      alert('video should not be greater than 1.5 MB');
+      return;
+    }
+    if (placeName.length < 5) {
+      alert('name should not be less than 5 characters');
+      return;
+    }
     if (placeLocation.length < 5) {
-      alert('location shouldnt be less 5');
+      alert('location should not be less than 5 characters');
+      return;
+    }
+    if (placeDetails.length > MAX_DETAILS_LENGTH) {
+      alert(`Details should not exceed ${MAX_DETAILS_LENGTH} characters`);
       return;
     }
 
@@ -153,12 +172,12 @@ const AddHallHook = () => {
     const hallImages = Array.from(Array(Object.keys(images).length).keys()).map(
       (_item, index) => {
         return dataURLtoFile(images[index], Math.random() + '.png');
-      },
+      }
     );
 
     const formdata = new FormData();
     formdata.append('imageCover', imgCover);
-    hallImages.map((item) => formdata.append('images', item));
+    hallImages.forEach((item) => formdata.append('images', item));
     formdata.append('price', hourPrice);
     formdata.append('name', placeName);
     formdata.append('city', placeCity);
@@ -176,21 +195,19 @@ const AddHallHook = () => {
   useEffect(() => {
     setLoading(true);
     if (res.data) {
-      if (res.data.status == 'success') {
+      if (res.data.status === 'success') {
         alert('نجاح الاضافة');
         return;
       }
-      if (res.data.status == 'fail') {
+      if (res.data.status === 'fail') {
         alert('مشكله فى عمليه الدقع');
         return;
       }
-
       if (res.data.status === 'forbidden') {
-        alert('غير مسموح لك لهذا المحتوي');
-        window.location.href ='/signin'
+        alert('قم بالتسجيل مرة أخرى');
+        window.location.href = '/signin';
         return;
       }
-
     }
   }, [res.data]);
 
