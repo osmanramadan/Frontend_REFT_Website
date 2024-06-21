@@ -87,9 +87,7 @@ const AddMessageHook = () => {
           setEmail('')
           setMessage('')
           setPhone('')
-          const url = res.data.url;
-          window.location.replace(url);
-          // alert('Message Sent Successfully')
+          alert('Message Sent Successfully')
           return;
         } else {
           alert('Message Not Sent');

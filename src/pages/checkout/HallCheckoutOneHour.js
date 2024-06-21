@@ -47,7 +47,7 @@ const HallCheckoutOneHour = () => {
                   <h3 style={{ color: "#FCD980" }}>{data.info.price} EGP</h3>
                 </Row>
                 <Row className='text-center'>
-                  <h3>Checkout{userdata.id}</h3>
+                  <h3>Checkout</h3>
                 </Row>
                 <Row>
                   <Col xs="12" sm="6">

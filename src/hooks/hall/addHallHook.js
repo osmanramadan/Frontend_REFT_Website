@@ -179,10 +179,18 @@ const AddHallHook = () => {
       if (res.data.status == 'success') {
         alert('نجاح الاضافة');
         return;
-      } else {
-        alert('هناك مشكله فى عملية الاضافة');
+      }
+      if (res.data.status == 'fail') {
+        alert('مشكله فى عمليه الدقع');
         return;
       }
+
+      if (res.data.status === 'forbidden') {
+        alert('غير مسموح لك لهذا المحتوي');
+        window.location.href ='/signin'
+        return;
+      }
+
     }
   }, [res.data]);
 

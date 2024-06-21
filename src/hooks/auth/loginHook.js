@@ -59,10 +59,8 @@ const LoginHook = () => {
   
           localStorage.setItem('token', res.data.token);
 
-          // var encrypted = CryptoJS.AES.encrypt(JSON.stringify(res.data.data),process.env.REACT_APP_ENCRYPT_KEY).toString();
-          // if (encrypted){
             localStorage.setItem('user',JSON.stringify(res.data.data));
-          // }
+          
 
           setLoading(true);
           setTimeout(() => {

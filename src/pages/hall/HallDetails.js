@@ -383,7 +383,7 @@ const handleCheckoutDays = (e) => {
        txt={isuser?'Home > Place  Details' : 'Home  > Admin > Place Details'} />
       <Row className='d-flex justify-content-center mt-2 mb-1'>
        <Col xs='6' sm="6" md="2">
-          {checkuserrate===true?'':<Hallrating onsend={onSend} />}
+        {checkuserrate?null:<Hallrating onsend={onSend} />}
        </Col>
     </Row>
    
@@ -896,7 +896,7 @@ const handleCheckoutDays = (e) => {
             style={{ borderRadius: '30px' }}
             width="80%"
             height="350px"
-            src={`http://localhost:3006/api/v1/halls/video/${hallData.video}`}
+            src={`${process.env.REACT_APP_VIDEO_API}/${hallData.video}`}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -929,7 +929,9 @@ const handleCheckoutDays = (e) => {
                 fontWeight: '400',
                 color: '#282938',
               }}
-              to={`http://localhost:3004/api/v1/halls/pdf/${hallData.pdf}`}
+              
+              to={`${process.env.REACT_APP_PDF_API}/${hallData.pdf}`}
+              target="_blank"
             >
               Clik Here
             </Link>

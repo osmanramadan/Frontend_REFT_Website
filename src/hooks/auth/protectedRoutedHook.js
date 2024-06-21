@@ -14,24 +14,31 @@ const ProtectedRouteHook = () => {
     // var userData = CryptoJS.AES.decrypt(storedUserData,process.env.REACT_APP_ENCRYPT_KEY).toString(CryptoJS.enc.Utf8);
 
     if (storedUserData) {
+
       try {
+        
         const parsedUserData = JSON.parse(storedUserData);
+
         if (parsedUserData) {
+
           setUserData(parsedUserData);
           setError(false);
+          
         } else {
           setError(true);
         }
+
       } catch (error) {
         setError(true);
       }
+
     }
   }, []);
 
   return [
-    // true, //  isUser
-    error? undefined: userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
-    error ? undefined : userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
+
+    error?false:userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
+    error ?false: userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
     userData,
   ];
   // return [

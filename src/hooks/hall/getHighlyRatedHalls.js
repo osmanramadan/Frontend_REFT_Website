@@ -117,7 +117,6 @@ const GetHighlyRatedHalls= () => {
   
         if (res.status) {
           if (res.status === 'success') {
-            console.log(res.data,'-----------=========')
             setData(res.data);
           }
         }

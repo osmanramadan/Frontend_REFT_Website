@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
@@ -49,7 +48,7 @@ function Halls() {
   const HandleChangeCity = (v) => {
     const city = v.target.id;
     const isChecked = v.target.checked;
-    console.log(v.target.id,'<<<<<<<<<<<<<<<<<<<<<----------------=================>>>>>>>>>>>>>>>')
+   
     
   
     if (city === 'all') {

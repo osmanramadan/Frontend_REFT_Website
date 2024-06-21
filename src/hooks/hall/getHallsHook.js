@@ -75,19 +75,36 @@ const GetHallsHook = () => {
     setData(search_res);
   }, [search_res]);
 
-  useEffect(() => {
-    if (loading === false) {
-      setLoading(true);
-
-      if (res.status) {
-        if (res.status === 'success') {
-          setData(res.data);
-          // location.replace(res.data)
+  console.log(res,'(*********)')
+  try{
+  
+    useEffect(() => {
+      if (loading === false) {
+        setLoading(true);
+        
+        if (res.status) {
+          if (res.status === 'success') {
+            setData(res.data);
+            // location.replace(res.data)
+          }
+  
         }
-      }
-    }
-  }, [res.data]);
+        // if (res.data.status === 'forbidden') {
 
+        //   localStorage.removeItem('token');
+        //   localStorage.removeItem('user');
+        //   localStorage.getItem('id')?localStorage.removeItem('id'):null;
+        //   window.location.href ='/signin'
+        //   return;
+        // }
+  
+      }
+    }, [res.data,res.status]);
+  
+  }catch(e){
+   window.location.href ='/signin'
+   return;
+  }
   return [data,loading,setTown,town,setCity,city,onChangeCity];
 };
 

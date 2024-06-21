@@ -86,7 +86,17 @@ window.onload = () => {
             style={{ marginRight: '-40px' }}
           >
 
-            {isUser || isAdmin ? (
+            {/* {isUser || isAdmin && (
+              <Navbardropdown isUser={isUser} />
+            ) 
+            }
+           {console.log(isAdmin,isUser)}
+           {isUser===false && (
+               <NavBarButton />
+            ) 
+            } */}
+
+           {isUser || isAdmin ? (
               <Navbardropdown isUser={isUser} />
             ) : (
               <NavBarButton />

@@ -57,7 +57,7 @@ function UserPlaces() {
           </Row>
           <Row className="mt-5 mx-3 px-lg-5 px-md-5">
             {currentItems.map((info, index) => (
-              <Col xs="12" sm="6" md="12" lg="6" key={index}>
+              <Col xs="12" sm="6" md="12" lg="4" key={index}>
                 <Place data={info} />
               </Col>
             ))}

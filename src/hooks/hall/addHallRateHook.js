@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewRate ,allowedUserRate} from '../../redux/actions/hallAction';
+import { addNewRate ,showUserRate} from '../../redux/actions/hallAction';
 
 
 const AddHallRateHook = () => {
@@ -16,7 +16,7 @@ const AddHallRateHook = () => {
 
   const [loading,setLoading]=useState(false)
   const [hallid,setHallId]=useState('')
-  const [checkuserrate,setCheckUserRate]=useState(false)
+  const [checkuserrate,setCheckUserRate]=useState(true)
 
   const res = useSelector((state) => state.hallReducer.addHallRate);
   const resallowuser = useSelector((state) => state.hallReducer.allowUserRate);
@@ -37,10 +37,10 @@ const AddHallRateHook = () => {
 
   useEffect(()=>{
     setLoading(true);
-    dispatch(allowedUserRate({"userid":user.id,"hallid":hallid}));
+    dispatch(showUserRate({"userid":user.id,"hallid":hallid}));
     setLoading(false);
   },[hallid])
-  // console.log(res.data.status,'osmanmam')
+  
 
   useEffect(() => {
 
@@ -48,16 +48,14 @@ const AddHallRateHook = () => {
     
     if (res.data) {
    
-      console.log(res.data.status,'osmanmam')
+      setLoading(false)
       if (res.data.status === 'success') {
-        setLoading(false)
         alert('نجاح الاضافة');
         window.location.reload()
 
       } 
       
       if (res.data.status === 'fail') {
-        setLoading(false)
         alert('انت بالفعل قمت بالتقييم');
         window.location.reload()
 
@@ -72,23 +70,19 @@ const AddHallRateHook = () => {
     setLoading(true);
     
     if (resallowuser.data) {
-      console.log(resallowuser.data,'+++++++++++++++++++++++++++++++')
+      setLoading(false)
+      
       if (resallowuser.data.status == 'success') {
-        setLoading(false)
+        
         setCheckUserRate(true)
 
       } else {
-        setLoading(false)
+     
         setCheckUserRate(false)
       
       }
     }
   }, [resallowuser.data]);
-
- useEffect(()=>{
-  console.log(checkuserrate,'(((((((((((((((((())))))))))))))))))))))))))))')
- },[checkuserrate])
-
 
 
   return [

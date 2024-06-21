@@ -16,7 +16,7 @@ function Navbardropdown({ isUser }) {
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('id');
+    localStorage.getItem('id')?localStorage.removeItem('id'):null;
 
     setTimeout(() => {
       window.location.href = '/signin';
