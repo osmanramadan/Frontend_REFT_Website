@@ -7,9 +7,10 @@ import Banner from '../../compenents/global/widgets/banner';
 import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 import AdminBookingInfoHook from '../../hooks/book/adminbookinginfoHook';
 import { useTranslation } from 'react-i18next';
-import Admintabs from '../../compenents/user/UserTap';
+import Admintabs from '../../compenents/user/TeacherTaps';
 import PaginationComponent from '../../compenents/global/pagination';
-import BookingInfo from '../../compenents/admin/hall/BookingInfo';
+import BookingInfo from '../../compenents/admin/BookingInfo';
+import AdminTabs from '../../compenents/admin/AdminTaps';
 
 
 function AdminBooking() {
@@ -66,7 +67,7 @@ function AdminBooking() {
       <Banner txt={t('halls.home')} />
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
-          <Admintabs admin={true}/>
+          <AdminTabs/>
         </Col>
 
         <Col xs="12" sm="12" md="6" lg="8" style={{ direction: 'ltr',backgroundColor:'white' }}>

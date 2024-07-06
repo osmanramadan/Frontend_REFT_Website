@@ -145,7 +145,7 @@ import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
 import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 import { useTranslation } from 'react-i18next';
-import Admintabs from '../../compenents/user/UserTap';
+import Admintabs from '../../compenents/admin/AdminTaps';
 
 
 function AdminHalls() {
@@ -195,7 +195,7 @@ function AdminHalls() {
       <Banner txt={t('halls.home')} />
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
-          <Admintabs admin={true}/>
+        <Admintabs/>
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>

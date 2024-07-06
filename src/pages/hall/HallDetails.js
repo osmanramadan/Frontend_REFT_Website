@@ -23,12 +23,31 @@ import Hallrating from '../../compenents/global/widgets/hallrating';
 
 
 
-
-
 function HallDetails() {
 
+  const [isuser, isadmin, _data,loading] = ProtectedRouteHook();
 
-  const [isuser, isadmin, _data] = ProtectedRouteHook();
+  // useState(()=>{
+  //   if(!isuser){
+  //     window.location.href = '/signin'
+  //     return;
+  //    }
+  // },[])
+
+  const location = useLocation();
+  const nav = useNavigate();
+
+  let hallData;
+
+  try {
+    hallData = location.state.hallData
+  } catch (v) {
+    nav('/places');
+    return;
+  }
+
+
+
   const [onSubmit, status, onChangeStatus, _load] = ChangeHallStatusHook();
   const { _t, i18n } = useTranslation()
   const [selectedTab, setSelectedTab] = useState('book hour'); 
@@ -39,7 +58,6 @@ function HallDetails() {
   
   const  [_loading,GetHallCodes,data]=GetHallCodesHook()
   const  [
-    
       load,
       checkuserrate,
       onSend,
@@ -60,17 +78,7 @@ function HallDetails() {
 
 
 
-  const location = useLocation();
-  const nav = useNavigate();
 
-  let hallData;
-
-  try {
-    hallData = location.state.hallData
-  } catch (v) {
-    nav('/places');
-    return;
-  }
 
   useEffect(()=>{
     GetHallCodes({"id":hallData.id})

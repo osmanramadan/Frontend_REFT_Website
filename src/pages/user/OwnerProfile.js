@@ -1,19 +1,16 @@
 import React from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Row } from 'react-bootstrap';
-import UserTabs from '../../compenents/user/UserTap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import ImageChooser from '../../compenents/user/ImageChooser';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
+import Ownertabs from '../../compenents/user/OwnerTaps';
 
-function Profile() {
-  const [_isuser, _isadmin, userData] = ProtectedRouteHook();
+function OwnerProfile() {
+  const [isuser, _isadmin, userData,_loading] = ProtectedRouteHook();
 
-  // if(!isuser){
-  //   window.location.href='/signin';
-  //   return;
-  // }
+
 
   return (
     <div>
@@ -21,7 +18,7 @@ function Profile() {
       <div className='px-3'>
         <Row>
           <Col xs="0" sm="0" md="5" lg="3" className="user-one-tabs">
-            <UserTabs />
+          <Ownertabs/>
           </Col>
 
           <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'rtl' }}>
@@ -31,7 +28,10 @@ function Profile() {
               </Col>
             </Row>
 
-            <Row className="d-flex justify-content-center text-center">
+           {
+            isuser ?(
+                <>
+                  <Row className="d-flex justify-content-center text-center">
               <Col xs="6">
                 {userData && userData.profile_img ? (
                   <Figure>
@@ -172,6 +172,36 @@ function Profile() {
                 city
               </Col>
             </Row>
+                </>
+            ):<div className="d-flex justify-content-center mb-2">
+            <Spinner
+              style={{ color: '#fcd980', marginLeft: '5px' }}
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+  
+            <Spinner
+              style={{ color: '#fcd980', marginLeft: '5px' }}
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+  
+            <Spinner
+              style={{ color: '#fcd980', marginLeft: '5px' }}
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          </div>
+           }
           </Col>
         </Row>
       </div>
@@ -179,4 +209,4 @@ function Profile() {
     </div>
   );
 }
-export default Profile;
+export default OwnerProfile;

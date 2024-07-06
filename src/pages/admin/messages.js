@@ -127,8 +127,8 @@ import Message from '../../compenents/global/widgets/message';
 import Banner from '../../compenents/global/widgets/banner';
 import PaginationComponent from '../../compenents/global/pagination';
 import GetMessagesHook from '../../hooks/admin/message/getMessagesHook';
-import Admintabs from '../../compenents/user/UserTap';
-// import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
+import Admintabs from '../../compenents/admin/AdminTaps';
+
 
 function AdminMessages() {
   // const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
@@ -181,7 +181,7 @@ function AdminMessages() {
       </Row> */}
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
-          <Admintabs admin={true}/>
+          <Admintabs/>
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>

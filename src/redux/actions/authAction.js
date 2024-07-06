@@ -6,9 +6,10 @@ import {
   FOREGT_PASSWORD,
   LOGIN_USER,
   UPDATE_USER_PASSWORD,
+  VERIFY_USER
 } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
-import { _useGetDataToken, useGetData } from '../../crud/useGetData';
+import { useGetDataToken, useGetData } from '../../crud/useGetData';
 import { useInsUpdateData } from '../../crud/useUpdateData';
 
 //create new user
@@ -127,6 +128,22 @@ export const userAddresses = (body) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: GET_ALL_USER_ADDRESS,
+      payload: e.response,
+    });
+  }
+};
+
+export const verifyUser= () => async (dispatch) => {
+  try {
+    const response = await useGetDataToken(`/api/v1/users/verifyuser`);
+
+    dispatch({
+      type:VERIFY_USER,
+      payload: response,
+    });
+  } catch (e) {
+    dispatch({
+      type:VERIFY_USER,
       payload: e.response,
     });
   }

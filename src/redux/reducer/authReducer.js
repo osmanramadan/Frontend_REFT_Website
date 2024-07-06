@@ -1,3 +1,4 @@
+import { verifyuser } from '../actions/authAction';
 import {
   CREATE_NEW_USER,
   UPDATE_USER_PASSWORD,
@@ -8,6 +9,7 @@ import {
   LOGIN_USER,
   GET_CURERNT_USER,
   _GET_ALL_USER_ADDRESS,
+  VERIFY_USER
 } from '../type';
 
 const inital = {
@@ -18,6 +20,7 @@ const inital = {
   resetPassword: [],
   currentUser: [],
   userProfile: [],
+  verifyuser: [],
   userChangePassword: [],
 };
 
@@ -65,6 +68,12 @@ const authReducer = (state = inital, action) => {
         userChangePassword: action.payload,
       };
 
+      case VERIFY_USER:
+        return {
+          ...state,
+          verifyuser:action.payload,
+        };
+  
     default:
       return state;
   }

@@ -208,7 +208,7 @@ function Halls() {
         </Row>
       </Container>:( <div className={`d-flex justify-content-center mb-2 fw-bold ${i18n.language === 'ar' ? 'rtl' : ''}`} style={{ fontSize: '30px' }}>
               <div className='mx-3'>
-                  <span></span> {t('halls.noHalls')}
+                  <span>{t('halls.noHalls')}</span>
               </div>
               <div className="spinner-border text-custom" role="status"> 
             {/* <span className="visually-hidden">Loading...</span> */}

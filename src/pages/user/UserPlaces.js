@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Col, Row } from 'react-bootstrap';
-import UserTabs from '../../compenents/user/UserTap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import Place from '../../compenents/global/widgets/place';
 import GetUserHallsHook from '../../hooks/hall/getUserHallsHook';
 import PaginationComponent from '../../compenents/global/pagination';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
+import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function UserPlaces() {
   const [isuser, _isadmin, _userData] = ProtectedRouteHook();
@@ -48,25 +48,31 @@ function UserPlaces() {
 
       <Row>
         <Col xs="0" sm="0" md="5" lg="3" className="user-one-tabs">
-          <UserTabs />
+          <Ownertabs/>
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
           <Row className="mt-5">
             <MidTitle txt={'My Places'} />
           </Row>
-          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-            {currentItems.map((info, index) => (
-              <Col xs="12" sm="6" md="12" lg="4" key={index}>
-                <Place data={info} />
-              </Col>
-            ))}
+          {
+            isuser?(<Row className="mt-5 mx-3 px-lg-5 px-md-5">
 
-            <PaginationComponent
-              pageCount={pageNumberLimit}
-              handlePageClick={handlePageClick}
-            />
-          </Row>
+              {
+                currentItems.map((info, index) => (
+                <Col xs="12" sm="6" md="12" lg="4" key={index}>
+                  <Place data={info} />
+                </Col>
+                ))
+              }
+  
+              <PaginationComponent
+                pageCount={pageNumberLimit}
+                handlePageClick={handlePageClick}
+              />
+            </Row>):(<div   style={{ fontSize: '20px' }}
+              className="d-flex justify-content-center mb-2 fw-bold">Login Again To See The Places</div>)
+          }
         </Col>
       </Row>
 

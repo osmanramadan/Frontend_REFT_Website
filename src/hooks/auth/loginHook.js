@@ -64,7 +64,7 @@ const LoginHook = () => {
   
           localStorage.setItem('token', res.data.token);
 
-            localStorage.setItem('user',JSON.stringify(res.data.data));
+            // localStorage.setItem('user',JSON.stringify(res.data.data));
           
 
           setLoading(true);
@@ -75,8 +75,8 @@ const LoginHook = () => {
 
         } else {
           setLoading(true);
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
+          localStorage.getItem('token')?localStorage.removeItem('token'):''
+          localStorage.getItem('user')?localStorage.removeItem('user'):''
         }
 
         if (res.data.error) {

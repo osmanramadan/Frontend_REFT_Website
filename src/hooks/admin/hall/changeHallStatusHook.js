@@ -8,7 +8,6 @@ const ChangeHallStatusHook = () => {
   const [status, setStatus] = useState('waiting');
 
   const onChangeStatus = (v) => {
-    console.log(v, 'el el el osman el');
     setStatus(v);
   };
 

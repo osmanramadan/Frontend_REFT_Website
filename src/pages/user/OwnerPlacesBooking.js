@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import UserTabs from '../../compenents/user/UserTap';
+import UserTabs from '../../compenents/user/TeacherTaps';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import PaginationComponent from '../../compenents/global/pagination';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import OwnerBookingInfoHook from '../../hooks/book/ownerbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
+import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerPlacesBooking() {
 
@@ -60,7 +61,7 @@ function OwnerPlacesBooking() {
 
       <Row>
         <Col xs="0" sm="0" md="5" lg="3" className="user-one-tabs">
-          <UserTabs />
+        <Ownertabs/>
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
@@ -76,7 +77,7 @@ function OwnerPlacesBooking() {
         />
       </Row>
 
-          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+       {isuser?(   <Row className="mt-5 mx-3 px-lg-5 px-md-5">
           {loading === true && data.length == 0 && (
                   <div
                     style={{ fontSize: '30px' }}
@@ -127,7 +128,8 @@ function OwnerPlacesBooking() {
               pageCount={pageNumberLimit}
               handlePageClick={handlePageClick}
             />
-          </Row>
+          </Row>):(<div   style={{ fontSize: '20px' }}
+              className="d-flex justify-content-center mb-2 fw-bold">Login Again To See The Booking</div>)}
         </Col>
       </Row>
 

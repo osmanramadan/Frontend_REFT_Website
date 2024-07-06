@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Col, Nav, Navbar, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
@@ -8,46 +8,44 @@ import logo from '../../assets/images/logo.png';
 import { useTranslation } from 'react-i18next'; 
 
 function NavBar() {
-  const { t, i18n } = useTranslation(); // Initialize useTranslation hook
 
-  const [isUser, isAdmin, data] = ProtectedRouteHook();
+  const { t, i18n } = useTranslation();
+  const [isUser, isAdmin, data, loading] = ProtectedRouteHook();
   const [expanded, setExpanded] = useState(false);
-// Function to toggle between English and Arabic
-const toggleLanguage = () => {
-  const newLanguage = i18n.language === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar'
-  i18n.changeLanguage(newLanguage); // Change the language
-  localStorage.setItem('language', newLanguage); // Store the language preference
-};
+  
 
-// Check for stored language preference on page load
-window.onload = () => {
-  const storedLanguage = localStorage.getItem('language');
-  if (storedLanguage) {
-    i18n.changeLanguage(storedLanguage); // Set the language from stored preference
-  }
-};
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem('language',newLanguage);
+  };
+  
+
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, [i18n]);
 
 
   return (
-    <Navbar collapseOnSelect  expand="lg" className="navbar" expanded={expanded}>
-      <Container >
+    <Navbar collapseOnSelect expand="lg" className="navbar" expanded={expanded}>
+      <Container>
+     
         <Link to="/" className="navbar-brand">
-          <img
-            style={{ height: '80px', width: '100px' }}
-            alt="image"
-            src={logo}
-          />
+          <img style={{ height: '80px', width: '100px' }} alt="logo" src={logo} />
         </Link>
 
-        
-      <Form.Check
-              type="switch"
-              id="language-switch"
-              label={i18n.language === 'en' ? 'ع' : 'ُEN'} // Label changes based on current language
-              className="mx-2"
-              style={{color:"white"}}
-              onChange={toggleLanguage}
-            />
+        <Form.Check
+          type="switch"
+          id="language-switch"
+          label={i18n.language === 'en' ? 'ع' : 'EN'}
+          className="mx-2"
+          style={{ color: 'white' }}
+          onChange={toggleLanguage}
+        />
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => setExpanded(!expanded)}
@@ -58,49 +56,45 @@ window.onload = () => {
           <Col
             xs={6}
             md={6}
-            className={`d-flex justify-content-end justify-content-xs-center mb-2 mb-md-0 ${
-              i18n.language === 'ar' ? 'rtl' : '' // Add RTL class for Arabic
-            }`}
+            className={`d-flex justify-content-end mb-2 mb-md-0 ${i18n.language === 'ar' ? 'rtl' : ''}`}
             style={{ marginLeft: '100px' }}
           >
-            <Nav className="d-flex justify-content-center" >
-              <Nav.Link href="/" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-md-3">
+            <Nav className="d-flex justify-content-center">
+              <Nav.Link href="/" className="link mx-md-3" style={{ fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo' }}>
                 {t('navbar.home')}
               </Nav.Link>
-              <Nav.Link href="/about-us" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-lg-3">
+              <Nav.Link href="/about-us" className="link mx-lg-3" style={{ fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo' }}>
                 {t('navbar.aboutUs')}
               </Nav.Link>
-              <Nav.Link href="/places" style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className="link mx-lg-3">
+              <Nav.Link href="/places" className="link mx-lg-3" style={{ fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo' }}>
                 {t('navbar.ourPlaces')}
               </Nav.Link>
-              {data.role && data.role == 'OWNER' ? <Nav.Link style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} href="/hall-add" className="link mx-lg-3">
-                {t('navbar.addPlace')}
-              </Nav.Link>:''}
+              {data.role === 'OWNER' && (
+                <Nav.Link href="/hall-add" className="link mx-lg-3" style={{ fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo' }}>
+                  {t('navbar.addPlace')}
+                </Nav.Link>
+              )}
+              
             </Nav>
           </Col>
-
+        
           <Col
             xs={6}
             md={6}
             className="d-flex justify-content-center px-xs-4 px-md-4"
             style={{ marginRight: '-40px' }}
           >
-
-            {/* {isUser || isAdmin && (
-              <Navbardropdown isUser={isUser} />
-            ) 
-            }
-           {console.log(isAdmin,isUser)}
-           {isUser===false && (
-               <NavBarButton />
-            ) 
-            } */}
-
-           {isUser || isAdmin ? (
-              <Navbardropdown isUser={isUser} />
+ 
+           {isUser || isAdmin? (
+              isUser || isAdmin ? <Navbardropdown isUser={isUser} /> : null
             ) : (
-              <NavBarButton />
-            )}
+              !isUser || !isAdmin ? <NavBarButton /> : null
+           )}
+
+          
+        
+          
+            
           </Col>
         </Navbar.Collapse>
       </Container>

@@ -8,8 +8,10 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import AddHallButton from '../../compenents/hall/AddHallButton';
 import AddMessageHook from '../../hooks/admin/message/addMessageHook';
+import { useTranslation } from 'react-i18next';
 
 function ContactUs() {
+  const { t, i18n } = useTranslation()
   const [
     name,
     email,
@@ -32,6 +34,7 @@ function ContactUs() {
         style={{
           backgroundColor: '#1c1e53',
           color: 'white',
+          'direction':i18n.language=='ar'?'rtl':'ltr'
         }}
       >
         <Col xs="12" sm="12" md="8" className="mt-5">
@@ -49,14 +52,15 @@ function ContactUs() {
           >
             <span
               className="py-2"
-              style={{ fontWeight: 'bold', fontSize: '52px' }}
+              style={{ fontWeight: 'bold', fontSize: '52px'}}
             >
-              GET IN TOUCH
+              {t("contactus.header")}
             </span>
-            <Row className="d-flex justify-content-center mt-5">
+            {
+              i18n.language=='en'?<Row   className={`d-flex justify-content-center mt-5`}>
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
-                  style={{ height: '30px', width: '40px' }}
+                  style={{ height: '30px', width: '40px'}}
                   icon={faPhone}
                 />
                 <span
@@ -64,25 +68,55 @@ function ContactUs() {
                     opacity: '0.8',
                     color: '#F2EFFF',
                     fontSize: '26px',
-                    fontWeight: '400',
+                    fontWeight: '400'
                   }}
                 >
-                  Phone:
+                    {t("contactus.phone")}
                 </span>
                 <span
                   style={{
                     fontSize: '18px',
                     lineHeight: '28%',
                     color: '#80819e',
-                    fontWeight: '300',
+                    fontWeight: '300'
+                  }}
+                >
+                  987654345667
+                </span>
+              </Col>
+            </Row>:<Row   className={`d-flex justify-content-center mt-5`}>
+              <Col xs="12" sm="12" md="12" lg="9">
+              <span
+                  style={{
+                    opacity: '0.8',
+                    color: '#F2EFFF',
+                    fontSize: '26px',
+                    fontWeight: '400'
+                  }}
+                >
+                    {t("contactus.phone")}
+                </span>
+                <FontAwesomeIcon
+                  style={{ height: '30px', width: '40px'}}
+                  icon={faPhone}
+                />
+
+                <span
+                  style={{
+                    fontSize: '18px',
+                    lineHeight: '28%',
+                    color: '#80819e',
+                    fontWeight: '300'
                   }}
                 >
                   987654345667
                 </span>
               </Col>
             </Row>
+            }
 
-            <Row className="d-flex justify-content-center mt-5">
+            {
+              i18n.language=='en'?<Row className="d-flex justify-content-center mt-5">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
                   style={{ height: '30px', width: '40px' }}
@@ -96,7 +130,7 @@ function ContactUs() {
                     fontWeight: '400',
                   }}
                 >
-                  Email:
+                    {t("contactus.email")}
                 </span>
                 <span
                   style={{
@@ -109,8 +143,38 @@ function ContactUs() {
                   osman@osman.com
                 </span>
               </Col>
+            </Row>:<Row className="d-flex justify-content-center mt-5">
+              <Col xs="12" sm="12" md="12" lg="9">
+              <span
+                  style={{
+                    opacity: '0.8',
+                    color: '#F2EFFF',
+                    fontSize: '26px',
+                    fontWeight: '400',
+                  }}
+                >
+                    {t("contactus.email")}
+                </span>
+                <FontAwesomeIcon
+                  style={{ height: '30px', width: '40px' }}
+                  icon={faEnvelope}
+                />
+
+                <span
+                  style={{
+                    fontSize: '18px',
+                    lineHeight: '28%',
+                    color: '#80819e',
+                    fontWeight: '300',
+                  }}
+                >
+                  osman@osman.com
+                </span>
+              </Col>
             </Row>
-            <Row className="d-flex justify-content-center mt-5 mb-4">
+            }
+            {
+              i18n.language=='en'?<Row className="d-flex justify-content-center mt-5 mb-4">
               <Col xs="12" sm="12" md="12" lg="9">
                 <FontAwesomeIcon
                   style={{ height: '30px', width: '40px' }}
@@ -124,7 +188,7 @@ function ContactUs() {
                     fontWeight: '400',
                   }}
                 >
-                  Address:
+                   {t("contactus.address")}
                 </span>
                 <span
                   style={{
@@ -137,7 +201,37 @@ function ContactUs() {
                   Damietta/ Elsaidy street 22
                 </span>
               </Col>
-            </Row>
+            </Row>:
+            <Row className="d-flex justify-content-center mt-5 mb-4">
+            <Col xs="12" sm="12" md="12" lg="9">
+            <span
+                style={{
+                  opacity: '0.8',
+                  color: '#F2EFFF',
+                  fontSize: '26px',
+                  fontWeight: '400',
+                }}
+              >
+                 {t("contactus.address")}
+              </span>
+              <FontAwesomeIcon
+                style={{ height: '30px', width: '40px' }}
+                icon={faMapMarkerAlt}
+              />
+
+              <span
+                style={{
+                  fontSize: '18px',
+                  lineHeight: '28%',
+                  color: '#80819e',
+                  fontWeight: '300',
+                }}
+              >
+                Damietta/ Elsaidy street 22
+              </span>
+            </Col>
+          </Row>
+            }
           </div>
           <Col
             xs="12"

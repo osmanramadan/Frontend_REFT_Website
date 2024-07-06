@@ -148,8 +148,8 @@ const AddHallHook = () => {
       alert('pdf should not be greater than 1 MB');
       return;
     }
-    if (videoSize > 1.5) {
-      alert('video should not be greater than 1.5 MB');
+    if (videoSize > 10) {
+      alert('video should not be greater than 10 MB');
       return;
     }
     if (placeName.length < 5) {

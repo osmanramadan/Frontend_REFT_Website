@@ -6,13 +6,19 @@ import {ownerbookinginfo} from '../../redux/actions/bookAction';
 const OwnerBookingInfoHook = () => {
 
 
+try{
+ 
+  if (localStorage.getItem('user') !== null) {
+    var user = JSON.parse(localStorage.getItem('user'));
+  } else {
+    window.location.href = '/signin';
+    return; 
+  }
+}catch(e){
+  window.location.href = '/signin';
+  return; 
+}
 
-    if (localStorage.getItem('user') !== null) {
-        var user = JSON.parse(localStorage.getItem('user'));
-      } else {
-        window.location.href = '/signin';
-        return;
-      }
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -61,6 +67,7 @@ const OwnerBookingInfoHook = () => {
         if (res.status === 'fail') {
             setData([]);
           }
+         
       }
     }
   }, [res.data]);

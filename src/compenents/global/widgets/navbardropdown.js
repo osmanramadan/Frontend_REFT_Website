@@ -6,17 +6,19 @@ import { Figure } from 'react-bootstrap';
 import ProtectedRouteHook from '../../../hooks/auth/protectedRoutedHook';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NavBarButton from './navbarbutton';
 
 function Navbardropdown({ isUser }) {
-  const [isuser, _isadmin, userData] = ProtectedRouteHook();
+
+  const [isuser, isadmin, userData,load] = ProtectedRouteHook();
 
   const [show, setShow] = useState(false);
 
   const Logout = () => {
 
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.getItem('id')?localStorage.removeItem('id'):null;
+    localStorage.getItem('token')?localStorage.removeItem('token'):'';
+    localStorage.getItem('user')?localStorage.removeItem('user'):'';
+  
 
     setTimeout(() => {
       window.location.href = '/signin';
@@ -27,8 +29,9 @@ function Navbardropdown({ isUser }) {
     setShow(!show);
   };
 
-  return (
-    <div>
+return (
+  <div>
+
       <Dropdown onClick={handleMenuClick}>
         {isUser ? (
           <Row
@@ -111,16 +114,20 @@ function Navbardropdown({ isUser }) {
             borderWidth: '3px',
           }}
         >
-          {isuser ? (
-            <Link className="link py-2" to="/user-profile">
+          { 
+          isuser ? (
+            userData.role==='OWNER'?<Link className="link py-2" to="/owner-profile">
+            {' '}
+            My Profile
+          </Link>:<Link className="link py-2" to="/teacher-profile">
               {' '}
-              My Profile
+            My Profile
             </Link>
           ) : (
             <div className='mt-2'>
               <Link className="link" to="/admin-places">
-                {' '}
-                Dashboard
+            {' '}
+            Dashboard
               </Link>
        
             </div>
@@ -129,9 +136,161 @@ function Navbardropdown({ isUser }) {
           <Link className="link mb-2">
             <div onClick={Logout}>Log out</div>
           </Link>
+
         </Dropdown.Menu>
       </Dropdown>
     </div>
-  );
+)
+  
 }
 export default Navbardropdown;
+
+
+
+
+// import Dropdown from 'react-bootstrap/Dropdown';
+// import { Link } from 'react-router-dom';
+// import { useState } from 'react';
+// import { Col, Row } from 'react-bootstrap';
+// import { Figure } from 'react-bootstrap';
+// import ProtectedRouteHook from '../../../hooks/auth/protectedRoutedHook';
+// import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import NavBarButton from './navbarbutton';
+
+// function Navbardropdown({ isUser }) {
+
+//   const [isuser, isadmin, userData,load] = ProtectedRouteHook();
+
+//   const [show, setShow] = useState(false);
+
+//   const Logout = () => {
+
+//     localStorage.getItem('token')?localStorage.removeItem('token'):'';
+//     localStorage.getItem('user')?localStorage.removeItem('user'):'';
+  
+
+//     setTimeout(() => {
+//       window.location.href = '/signin';
+//     }, 1000);
+//   };
+
+//   const handleMenuClick = () => {
+//     setShow(!show);
+//   };
+
+// return (
+//   <div>
+
+//       <Dropdown onClick={handleMenuClick}>
+//         {isUser ? (
+//           <Row
+//             className="d-flex align-items-center mt-3"
+//             style={{ color: 'white' }}
+//           >
+//             <Row className="d-flex justify-content-center">
+//               <Col xs="3" className="text-center d-flex align-items-center">
+//                 {userData && userData.profile_img ? (
+//                   <Figure>
+//                     <Figure.Image
+//                       width={125}
+//                       height={125}
+//                       alt="Profile Image"
+//                       src={`data:image/*;base64,${userData.profile_img}`}
+//                       roundedCircle
+//                     />
+//                   </Figure>
+//                 ) : (
+//                   <FontAwesomeIcon
+//                     style={{
+//                       marginRight: '3px',
+//                       color: '#fcd980',
+//                       height: '35px',
+//                       width: '35px',
+//                     }}
+//                     icon={faCircleUser}
+//                   />
+//                 )}
+//               </Col>
+//               <Col xs="6">
+//                 <div style={{ fontWeight: 'medium', fontSize: '14px' }}>
+//                   {userData ? userData.name : 'تسجيل الدخول'}
+//                 </div>
+//                 <div
+//                   style={{
+//                     fontWeight: 'regular',
+//                     fontSize: '12px',
+//                     color: '#b1b2c4',
+//                   }}
+//                 >
+//                   {userData ? userData.role : ''}
+//                 </div>
+//               </Col>
+//               <Col xs="3">
+//                 <Dropdown.Toggle
+//                   id="dropdown-autoclose-true"
+//                   style={{ backgroundColor: '#1C1E53', border: 'none' }}
+//                 ></Dropdown.Toggle>
+//               </Col>
+//             </Row>
+//           </Row>
+//         ) : (
+//           <Row
+//             className="d-flex align-items-center justify-content-center mt-3"
+//             style={{ color: 'white' }}
+//           >
+//             <Col className="text-center d-flex align-items-center">Admin</Col>
+//             <Col xs="3">
+//               <Dropdown.Toggle
+//                 id="dropdown-autoclose-true"
+//                 style={{ backgroundColor: '#1C1E53', border: 'none' }}
+//               ></Dropdown.Toggle>
+//             </Col>
+//           </Row>
+//         )}
+
+//         <Dropdown.Menu
+//           className={`d-flex flex-column justify-content-between text-center  ${
+//             show ? 'd-none' : 'show'
+//           }`}
+//           style={{
+//             backgroundColor: '#1C1E53',
+//             color: 'white',
+//             height: '110px',
+//             width: '210px',
+//             padding: '10px',
+//             marginTop: '17px',
+//             borderColor: 'white',
+//             borderWidth: '3px',
+//           }}
+//         >
+//           { 
+//           isuser ? (
+//             userData.role==='OWNER'?<Link className="link py-2" to="/owner-profile">
+//             {' '}
+//             My Profile
+//           </Link>:<Link className="link py-2" to="/teacher-profile">
+//               {' '}
+//             My Profile
+//             </Link>
+//           ) : (
+//             <div className='mt-2'>
+//               <Link className="link" to="/admin-places">
+//             {' '}
+//             Dashboard
+//               </Link>
+       
+//             </div>
+//           )}
+
+//           <Link className="link mb-2">
+//             <div onClick={Logout}>Log out</div>
+//           </Link>
+
+//         </Dropdown.Menu>
+//       </Dropdown>
+//     </div>
+// )
+  
+// }
+// export default Navbardropdown;

@@ -18,6 +18,7 @@
   "navbar": {
     "home": "HOME",
     "signup": "Sign up",
+    "signin": "Sign in",
     "aboutUs": "About us",
     "ourPlaces": "Our places",
     "addPlace": "Add Place"
@@ -91,6 +92,18 @@
       "email": "Email",
       "telephone": "Telephone",
       "rateYourPlace": "Rate your place in the right place"
+    },
+    "aboutus":{
+      "sectionone":"We Build Bridge Between Teacher and Place Owner",
+      "sectiontwo":"Allow the owner to publish his hall on our website with the needed information, such as the location, pictures of the place, the rental price and contact after that Teacher can find its appropriate hall according to his location"
+    },
+    "contactus":{
+      "header":"GET IN TOUCH",
+      "email":"Email:",
+      "phone":"Phone:",
+      "address":"Address:",
+      "sectionone":"",
+      "sectiontwo":""
     }
   
   

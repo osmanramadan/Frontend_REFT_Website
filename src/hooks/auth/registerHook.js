@@ -35,6 +35,7 @@ const RegisterHook = () => {
   };
 
   const onChangeCity = (value) => {
+
     setCity(value);
   };
 
@@ -47,6 +48,7 @@ const RegisterHook = () => {
   };
 
   const validationValues = () => {
+
     if (username === '' || username.length < 5) {
       return 'Enter username at least five !';
     }

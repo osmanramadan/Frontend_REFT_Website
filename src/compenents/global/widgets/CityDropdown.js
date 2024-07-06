@@ -5,6 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 function CityDropdown({ addhall, city, onChangeCity, onChangePlaceCityId }) {
+
   const [isActive, setIsActive] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -82,11 +83,13 @@ function CityDropdown({ addhall, city, onChangeCity, onChangePlaceCityId }) {
           display: isActive ? 'block' : 'none',
         }}
       >
-        {data && data.length && data.map((city, index) => (
+      { 
+        data && data.length && data.map((city,_index) => (
           <div className="item" style={{ fontFamily: 'cairo' }} key={city.id} onClick={() => changeCity(city)}>
-            {i18n.language === 'en' ? city.name.split('-')[0] : city.name.split('-')[1]}
+            {i18n.language ==='en' ? city.name.split('-')[0] : city.name.split('-')[1]}
           </div>
-        ))}
+      ))}
+      
       </div>
     </div>
   );

@@ -1,24 +1,45 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewRate ,showUserRate} from '../../redux/actions/hallAction';
+import ProtectedRouteHook from '../auth/protectedRoutedHook';
+
+
 
 
 const AddHallRateHook = () => {
 
+  const [isuser,isadmin,userdata,load]=ProtectedRouteHook()
+  const [userinfo,setUserInfo]=useState([])
   const dispatch = useDispatch();
 
-  try{
-    
+  useEffect(()=>{
     if (localStorage.getItem('user') !== null) {
       var user = JSON.parse(localStorage.getItem('user'));
-    } else {
-      window.location.href = '/signin';
-      return;
+      setUserInfo(user)
     }
-  }catch(e){
-    window.location.href = '/signin';
-    return;
-  }
+    // setUserInfo(userdata)
+    // console.log(userdata,'teacherteacherteacherteacherteacherteacherteacherteacherteacherteacherteacher')
+  },[userdata])
+
+  // try{
+
+  //   if (localStorage.getItem('user') !== null) {
+  //     var user = JSON.parse(localStorage.getItem('user'));
+  //   } else {
+  //     window.location.href = '/signin';
+  //     return;
+  //   }
+
+  // }catch(e){
+  //   window.location.href = '/signin';
+  //   return;
+  // }
+    
+    // if (localStorage.getItem('user') !== null) {
+    //   var user = JSON.parse(localStorage.getItem('user'));
+    // }
+
+   
 
   const [loading,setLoading]=useState(false)
   const [hallid,setHallId]=useState('')
@@ -37,13 +58,14 @@ const AddHallRateHook = () => {
   const onSubmit =(rate)=>{
     
     setLoading(true);
-    dispatch(addNewRate({'userid':user.id,'hallid':hallid,'rate':rate}));
+    dispatch(addNewRate({'userid':userinfo.id,'hallid':hallid,'rate':rate}));
     setLoading(false);
   }
 
   useEffect(()=>{
     setLoading(true);
-    dispatch(showUserRate({"userid":user.id,"hallid":hallid}));
+    console.log(userinfo.id,userinfo,'099999**************&&&&&&&&&&&&&&')
+    dispatch(showUserRate({"userid":userinfo.id,"hallid":hallid}));
     setLoading(false);
   },[hallid])
   

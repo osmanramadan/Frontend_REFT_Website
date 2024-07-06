@@ -33,7 +33,7 @@ function Place({ data }) {
         style={{
           position: 'absolute',
           top: '155px',
-          right: '0px',
+          right:'10px',
           backgroundColor: '#1c1e53',
           borderRadius: '41%',
           padding: '5px',
@@ -77,7 +77,7 @@ function Place({ data }) {
             overflow:'hidden'
           }}
         >
-          {limitText(data.details, 2)}
+          {limitText(data.details, 7)}
         </Card.Text>
       </Card.Body>
     </Card>

@@ -5,16 +5,18 @@ import {teacherbookinginfo} from '../../redux/actions/bookAction';
 
 const TeacherBookingInfoHook = () => {
 
-
+  try{
     
-  
-  if (localStorage.getItem('user') !== null) {
-    var user = JSON.parse(localStorage.getItem('user'));
-  } else {
+    if (localStorage.getItem('user') !== null) {
+      var user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      window.location.href = '/signin';
+      return; 
+    }
+  }catch(e){
     window.location.href = '/signin';
-    return;
+    return; 
   }
-
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,8 @@ const TeacherBookingInfoHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    dispatch(teacherbookinginfo(user.id));
+    if(user.id)
+      dispatch(teacherbookinginfo(user.id));
     setLoading(false);
   }, []);
 
