@@ -6,29 +6,32 @@ import aboutus from '../../assets/images/aboutus.png';
 import { useTranslation } from 'react-i18next';
 
 function AboutUs() {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <NavBar />
       <Container>
-        <Row style={{ marginTop: '100px',direction:i18n.language=='en'?'ltr':'rtl' }}>
+        <Row
+          style={{
+            marginTop: '100px',
+            direction: i18n.language == 'en' ? 'ltr' : 'rtl',
+          }}
+        >
           <Col
             xs="12"
             sm="12"
             md="7"
             lg="6"
             style={{
-              fontSize: '57px',
-              lineHeight: '145%',
-              fontWeight:i18n.language=='en'?'400':'800',
+              fontSize: i18n.language == 'en' ? '57px' : '59px',
+              lineHeight: '140%',
+              fontWeight: i18n.language == 'en' ? '400' : '800',
               letterSpacing: '0.5%',
               color: '#282938',
-              fontFamily:i18n.language=='en'?'Racing Sans One':'cairo',
+              fontFamily: i18n.language == 'en' ? 'Racing Sans One' : 'cairo',
             }}
           >
-            <div className="mb-5">
-            {t('aboutus.sectionone')}
-            </div>
+            <div className="mb-5">{t('aboutus.sectionone')}</div>
           </Col>
           <Col
             xs="12"
@@ -38,17 +41,16 @@ function AboutUs() {
             className="d-flex text-start justify-content-center align-items-center"
             style={{
               opacity: '0.9',
-              fontWeight:i18n.language=='en'?'500':'700',
-              fontSize:i18n.language=='en'?'20px':'25px',
+              fontWeight: i18n.language == 'en' ? '500' : '700',
+              fontSize: i18n.language == 'en' ? '20px' : '25px',
               lineHeight: '180%',
-              fontWeight:i18n.language=='en'?'400':'500',
+              fontWeight: i18n.language == 'en' ? '400' : '500',
               letterSpacing: '0%',
               color: '#282938',
+              fontFamily: 'cairo',
             }}
           >
-            <div>
-            {t('aboutus.sectiontwo')}
-            </div>
+            <div>{t('aboutus.sectiontwo')}</div>
           </Col>
         </Row>
 

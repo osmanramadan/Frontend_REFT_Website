@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CheckCompletePaypal } from '../../redux/actions/checkoutAction';
+import { CheckCompleteStripe } from '../../redux/actions/checkoutAction';
 
-const CheckOrderCompleteHook = () => {
+const CheckOrderCompleteStripeHook = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, _setData] = useState(
@@ -13,11 +13,11 @@ const CheckOrderCompleteHook = () => {
 
   const res = useSelector((state) => state.checkoutReducer.checkordercomplete);
   const url = new URL(window.location.href);
-  const token = url.searchParams.get('token');
+  const session = url.searchParams.get('session_id');
 
-  const CheckOrderComplete = () => {
+  const CheckOrderCompleteStripe = () => {
     setLoading(true);
-    dispatch(CheckCompletePaypal(token, data));
+    dispatch(CheckCompleteStripe(session, data));
     setLoading(false);
   };
 
@@ -30,7 +30,7 @@ const CheckOrderCompleteHook = () => {
             'Payment was successful. Do you want to back?',
           );
           if (userConfirmed) {
-            window.history.go(-3);
+            window.history.go(-4);
           } else {
             window.location.href = '/places';
           }
@@ -43,7 +43,7 @@ const CheckOrderCompleteHook = () => {
     }
   }, [res.data]);
 
-  return [loading, CheckOrderComplete];
+  return [loading, CheckOrderCompleteStripe];
 };
 
-export default CheckOrderCompleteHook;
+export default CheckOrderCompleteStripeHook;

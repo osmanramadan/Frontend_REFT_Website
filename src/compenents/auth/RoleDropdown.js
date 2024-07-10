@@ -1,33 +1,115 @@
+// import React, { useState } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+// import { Col, Row } from 'react-bootstrap';
+// // import i18n from '../../i18n';
+
+// function RoleDropDown({ role, onChange }) {
+//   const [isActive, setIsActive] = useState(false);
+
+//   const toggleDropdown = () => {
+//     setIsActive(!isActive);
+//   };
+
+//   const changeRole = (role) => {
+//     onChange(role=='صاحب مكان'||role=='OWNER'?'OWNER':'TEACHER');
+//     setIsActive(!isActive);
+//   };
+
+//   return (
+//     <div onClick={toggleDropdown} className="auth-dropdown">
+//       <p className="dropdown-btn">
+//         <Row className="d-flex justify-content-between">
+//           <Col className="text-start">{role}</Col>
+
+//           <Col className="text-end mx-2">
+//             <FontAwesomeIcon
+//               style={{ color: '#FCD980' }}
+//               icon={faCaretUp}
+//               flip="vertical"
+//             />{' '}
+//           </Col>
+//         </Row>
+//       </p>
+
+//       <div
+//         className="auth-dropdown-content"
+//         style={{
+//           display: isActive ? 'block' : 'none',
+//         }}
+//       >
+//         <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
+//           {/* {i18n.language == 'en'?OWNER:'صاحب مكان'} */}
+//           OWNER
+//         </div>
+//         <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
+//           TEACHER
+//            {/* {i18n.language == 'en'?TEACHER:'مدرس'} */}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default RoleDropDown;
+
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
-import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 function RoleDropDown({ role, onChange }) {
   const [isActive, setIsActive] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
 
-  const changeRole = (role) => {
-    onChange(role=='صاحب مكان'||role=='OWNER'?'OWNER':'TEACHER');
-    setIsActive(!isActive);
+  const changeRole = (selectedRole) => {
+    let roleValue;
+
+    if (selectedRole === t('role.owner')) {
+      roleValue = t('role.owner');
+    } else if (selectedRole === t('role.teacher')) {
+      roleValue = t('role.teacher');
+    }
+    onChange(roleValue);
+    setIsActive(false);
   };
+
+  const roles = [
+    { id: 1, name: 'OWNER', label: t('role.owner') },
+    { id: 2, name: 'TEACHER', label: t('role.teacher') },
+  ];
 
   return (
     <div onClick={toggleDropdown} className="auth-dropdown">
-      <p className="dropdown-btn">
-        <Row className="d-flex justify-content-between">
-          <Col className="text-start">{role}</Col>
-
-          <Col className="text-end mx-2">
+      <p className="dropdown-btn px-2">
+        <Row
+          className="d-flex justify-content-between"
+          style={{
+            fontWeight: '400',
+            color: '#8E8EA0',
+            fontSize: '20px',
+            fontFamily: 'cairo',
+            direction: i18n.language === 'en' ? 'ltr' : 'rtl',
+          }}
+        >
+          <Col className={i18n.language === 'en' ? 'text-start' : 'text-end'}>
+            {role}
+          </Col>
+          <Col
+            className={
+              i18n.language === 'en' ? 'text-end mx-2' : 'text-start mx-2'
+            }
+          >
             <FontAwesomeIcon
               style={{ color: '#FCD980' }}
               icon={faCaretUp}
               flip="vertical"
-            />{' '}
+            />
           </Col>
         </Row>
       </p>
@@ -36,16 +118,18 @@ function RoleDropDown({ role, onChange }) {
         className="auth-dropdown-content"
         style={{
           display: isActive ? 'block' : 'none',
+          direction: i18n.language === 'en' ? 'ltr' : 'rtl',
         }}
       >
-        <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
-          {/* {i18n.language == 'en'?OWNER:'صاحب مكان'} */}
-          OWNER
-        </div>
-        <div className="item"  onClick={(e) => changeRole(e.target.textContent)}>
-          TEACHER
-           {/* {i18n.language == 'en'?TEACHER:'مدرس'} */}
-        </div>
+        {roles.map((role) => (
+          <div
+            className="item"
+            key={role.id}
+            onClick={() => changeRole(role.label)}
+          >
+            {role.label}
+          </div>
+        ))}
       </div>
     </div>
   );

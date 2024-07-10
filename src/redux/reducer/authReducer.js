@@ -9,7 +9,7 @@ import {
   LOGIN_USER,
   GET_CURERNT_USER,
   _GET_ALL_USER_ADDRESS,
-  VERIFY_USER
+  VERIFY_USER,
 } from '../type';
 
 const inital = {
@@ -68,12 +68,12 @@ const authReducer = (state = inital, action) => {
         userChangePassword: action.payload,
       };
 
-      case VERIFY_USER:
-        return {
-          ...state,
-          verifyuser:action.payload,
-        };
-  
+    case VERIFY_USER:
+      return {
+        ...state,
+        verifyuser: action.payload,
+      };
+
     default:
       return state;
   }

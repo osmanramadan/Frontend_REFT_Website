@@ -9,7 +9,6 @@
 // import { useTranslation } from 'react-i18next';
 // import Admintabs from '../../compenents/user/UserTap';
 
-
 // function AdminHalls() {
 //   const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
 //   const { t } = useTranslation();
@@ -58,10 +57,9 @@
 //       {/* <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
 //           <Admintabs/>
 //         </Col> */}
-      
 
 //       <Row
-//         xs="12" 
+//         xs="12"
 //         className="d-flex justify-content-center"
 //         style={{ marginTop: '105px', marginBottom: '110px' }}
 //       >
@@ -71,13 +69,13 @@
 //           placeholder="Write your location"
 //           onChange={search_in_halls}
 //         />
-      
+
 //       </Row>
-    
+
 //       <Container className="mt-5">
-              
+
 //         <Row className="d-flex justify-content-center px-5">
-          
+
 //           {loading === true && currentItems.length == 0 && (
 //             <div
 //               style={{ fontSize: '30px' }}
@@ -147,7 +145,6 @@ import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 import { useTranslation } from 'react-i18next';
 import Admintabs from '../../compenents/admin/AdminTaps';
 
-
 function AdminHalls() {
   const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
   const { t } = useTranslation();
@@ -195,80 +192,77 @@ function AdminHalls() {
       <Banner txt={t('halls.home')} />
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
-        <Admintabs/>
+          <Admintabs />
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
           <Row
-        xs="12" 
-        className="d-flex justify-content-center"
-        style={{ marginTop: '105px', marginBottom: '110px' }}
-      >
-        <input
-          value={search}
-          className="hall-search-input"
-          placeholder="Write your location"
-          onChange={search_in_halls}
-        />
-      
-      </Row>
-    
-      <Container className="mt-5">
-              
-        <Row className="d-flex justify-content-center px-5">
-          
-          {loading === true && currentItems.length == 0 && (
-            <div
-              style={{ fontSize: '30px' }}
-              className="d-flex justify-content-center mb-2 fw-bold"
-            >
-              No Halls Yet
-            </div>
-          )}
-          {loading === false ? (
-            <div className="d-flex justify-content-center mb-2">
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
+            xs="12"
+            className="d-flex justify-content-center"
+            style={{ marginTop: '105px', marginBottom: '110px' }}
+          >
+            <input
+              value={search}
+              className="hall-search-input"
+              placeholder="Write your location"
+              onChange={search_in_halls}
+            />
+          </Row>
 
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
+          <Container className="mt-5">
+            <Row className="d-flex justify-content-center px-5">
+              {loading === true && currentItems.length == 0 && (
+                <div
+                  style={{ fontSize: '30px' }}
+                  className="d-flex justify-content-center mb-2 fw-bold"
+                >
+                  No Halls Yet
+                </div>
+              )}
+              {loading === false ? (
+                <div className="d-flex justify-content-center mb-2">
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
 
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            </div>
-          ) : (
-            ''
-          )}
-          {currentItems.length > 0 &&
-            currentItems.map((data, i) => (
-              <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
-                <Place key={i} data={data} />
-              </Col>
-            ))}
-        </Row>
-        <PaginationComponent
-          pageCount={pageNumberLimit}
-          handlePageClick={handlePageClick}
-        />
-      </Container>
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              ) : (
+                ''
+              )}
+              {currentItems.length > 0 &&
+                currentItems.map((data, i) => (
+                  <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
+                    <Place key={i} data={data} />
+                  </Col>
+                ))}
+            </Row>
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
+          </Container>
         </Col>
       </Row>
 

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import Banner from '../../compenents/global/widgets/banner';
-import Carousel from 'react-bootstrap/Carousel';
-import { Row, Col, Container, Spinner} from 'react-bootstrap';
+import { Row, Col, Container, Spinner, Carousel} from 'react-bootstrap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import HallAcceptionDropdown from '../../compenents/admin/hall/HallAcceptionDropdown';
@@ -77,9 +76,6 @@ function HallDetails() {
   };
 
 
-
-
-
   useEffect(()=>{
     GetHallCodes({"id":hallData.id})
   },[hallData])
@@ -110,7 +106,7 @@ function HallDetails() {
     const code=`${hallData.id}${new Date(date).getFullYear()}${new Date(date).getMonth()+1}${ new Date(date).getDate()}${hour}`
     
 
-    if(data.some(dtValue => dtValue ===code)){
+    if(data.some(dtValue => dtValue === code)){
         alert("هذا المكان غير متاح")
         return;
     }
@@ -296,6 +292,7 @@ const handleCheckoutDays = (e) => {
       let currentDate = new Date(startDate);
   
       while (currentDate <= endDate) {
+
         for (let hour = startHour; hour <= endHour; hour++) {
           let code = `${hallData.id}${currentDate.getFullYear()}${currentDate.getMonth() + 1}${currentDate.getDate()}${hour}:00`;
           if (data.some(dtValue => dtValue === code)) {
@@ -386,12 +383,14 @@ const handleCheckoutDays = (e) => {
       aria-hidden="true"
     />
   </div>:<div style={{overflow:"scroll",fontFamily:"cairo"}}>
+
     <NavBar />
     <Banner
        txt={isuser?'Home > Place  Details' : 'Home  > Admin > Place Details'} />
+       
       <Row className='d-flex justify-content-center mt-2 mb-1'>
        <Col xs='6' sm="6" md="2">
-        {checkuserrate?null:<Hallrating onsend={onSend} />}
+        {checkuserrate?load && checkuserrate?'loading':null:<Hallrating onsend={onSend} />}
        </Col>
     </Row>
    
@@ -867,7 +866,7 @@ const handleCheckoutDays = (e) => {
           style={{ fontSize: '12px', fontWeight: '400', color: '#282938' }}
           className="mx-1"
         >
-          {hallData.price_hour}$
+          {hallData.price_hour}{' '}egy
         </span>
       </Col>
     </Row>

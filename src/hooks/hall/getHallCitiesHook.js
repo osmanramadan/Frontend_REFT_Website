@@ -6,19 +6,15 @@ const GetHallsCitiesHook = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [cities, setCities] = useState([]);
- 
 
   const res = useSelector((state) => state.hallReducer.getHallsCities);
-  
 
   // const hallCities = () => {
   //   // setLoading(true);
   //   dispatch(getHallsCities());
-  
+
   //   // setLoading(false);
   // };
-  
-
 
   useEffect(() => {
     setLoading(true);
@@ -26,12 +22,10 @@ const GetHallsCitiesHook = () => {
     setLoading(false);
   }, []);
 
-    
-
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
-     
+
       if (res.status) {
         if (res.status == 'success') {
           setCities(res.cities);
@@ -44,6 +38,3 @@ const GetHallsCitiesHook = () => {
 };
 
 export default GetHallsCitiesHook;
-
-
-

@@ -10,25 +10,42 @@ function HomepageBanner() {
   return (
     <div className="homePage-Banner">
       <Container>
-        <Row style={{height: '100%', width: '100%' }}>
-          <Col xs="12" md="12" lg="5"  className={i18n.language=="en"?"":"mt-5 text-center"}>
-            <div style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className={i18n.language=="en"?"p-2 txt-1":"p-1 txt-1"}>
+        <Row style={{ height: '100%', width: '100%' }}>
+          <Col
+            xs="12"
+            md="12"
+            lg="5"
+            className={i18n.language == 'en' ? '' : 'mt-5 text-center'}
+          >
+            <div
+              style={{
+                fontFamily: i18n.language == 'en' ? 'Poppins' : 'Cairo',
+              }}
+              className={i18n.language == 'en' ? 'p-2 txt-1' : 'p-1 txt-1'}
+            >
               {t('homepageBanner.title')}
             </div>
 
-            
-              <div style={{fontFamily:i18n.language=='en'?'Poppins':'Cairo'}} className={i18n.language=="en"?"p-2 txt-2":"p-2 txt-2 fs-4"}>
-                  {t('homepageBanner.description')} 
-                </div>
-            
-
-            {
-              i18n.language==="ar"?<div className="d-flex justify-content-center">
-              <BannerButton txt={t('homepageBanner.buttonText')} /> {/* Translated button text */}
-            </div>:<div className="d-flex justify-content-xs-center">
-              <BannerButton txt={t('homepageBanner.buttonText')} /> {/* Translated button text */}
+            <div
+              style={{
+                fontFamily: i18n.language == 'en' ? 'Poppins' : 'Cairo',
+              }}
+              className={i18n.language == 'en' ? 'p-2 txt-2' : 'p-2 txt-2 fs-4'}
+            >
+              {t('homepageBanner.description')}
             </div>
-            }
+
+            {i18n.language === 'ar' ? (
+              <div className="d-flex justify-content-center">
+                <BannerButton txt={t('homepageBanner.buttonText')} />{' '}
+                {/* Translated button text */}
+              </div>
+            ) : (
+              <div className="d-flex justify-content-xs-center">
+                <BannerButton txt={t('homepageBanner.buttonText')} />{' '}
+                {/* Translated button text */}
+              </div>
+            )}
           </Col>
 
           <Col xs="12" md="12" lg="7" className="text-center">

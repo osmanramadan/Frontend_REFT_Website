@@ -44,7 +44,7 @@
 //     <div>
 //       <NavBar />
 //       <Banner txt={'Home > Admin > Messages'} />
-//       {/* 
+//       {/*
 //       <Row
 //         xs="12"
 //         className="d-flex justify-content-center"
@@ -129,7 +129,6 @@ import PaginationComponent from '../../compenents/global/pagination';
 import GetMessagesHook from '../../hooks/admin/message/getMessagesHook';
 import Admintabs from '../../compenents/admin/AdminTaps';
 
-
 function AdminMessages() {
   // const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
   const [messages, loading] = GetMessagesHook();
@@ -181,73 +180,69 @@ function AdminMessages() {
       </Row> */}
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
-          <Admintabs/>
+          <Admintabs />
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
+          <Container className="mt-5">
+            <Row className="d-flex justify-content-center px-5">
+              {loading === true && currentItems.length == 0 && (
+                <div
+                  style={{ fontSize: '30px' }}
+                  className="d-flex justify-content-center mb-2 fw-bold"
+                >
+                  No Messages Yet
+                </div>
+              )}
+              {loading === false ? (
+                <div className="d-flex justify-content-center mb-2">
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
 
-      <Container className="mt-5">
-      <Row className="d-flex justify-content-center px-5">
-          {loading === true && currentItems.length == 0 && (
-            <div
-              style={{ fontSize: '30px' }}
-              className="d-flex justify-content-center mb-2 fw-bold"
-            >
-              No Messages Yet
-            </div>
-          )}
-          {loading === false ? (
-            <div className="d-flex justify-content-center mb-2">
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
 
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-
-              <Spinner
-                style={{ color: '#fcd980', marginLeft: '5px' }}
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            </div>
-          ) : (
-            ''
-          )}
-          {currentItems.length > 0 &&
-            currentItems.map((data, i) => (
-              <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
-                <Message key={i} data={data} />
-              </Col>
-            ))}
-        </Row>
-        <PaginationComponent
-          pageCount={pageNumberLimit}
-          handlePageClick={handlePageClick}
-        />
-      </Container>
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              ) : (
+                ''
+              )}
+              {currentItems.length > 0 &&
+                currentItems.map((data, i) => (
+                  <Col xs={12} sm={12} md="6" lg="4" className="mb-3" key={i}>
+                    <Message key={i} data={data} />
+                  </Col>
+                ))}
+            </Row>
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
+          </Container>
         </Col>
       </Row>
 
-      
-      
       <Footer />
     </div>
   );
 }
 export default AdminMessages;
-

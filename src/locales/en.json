@@ -29,7 +29,7 @@
     "buttonText": "START SEARCH"
   },
   "homepageGoals": {
-    "title":"OUR GOALS",
+    "title": "OUR GOALS",
     "availability": {
       "title": "Availability",
       "txt": "The owner of the place can share the geographical location of the place, upload pictures of the rooms he wants to rent, and also determine the appropriate financial cost for one hour of rent.",
@@ -69,44 +69,48 @@
       "role": "Science teacher"
     }
   },
-    "homepageFAQ": {
-      "title": "Frequently Asked Questions ?",
-      "faq1": {
-        "question": "What is the idea of the website?",
-        "answer": "The website is a link between a private teacher who wants a place to teach at with a suitable price for him and proportional to the number of hours he wants to rent. And the place owner wants to make the place rented for a greater number of hours in order to obtain a greater financial reward. The teacher searches for the area in which he wants to find a place to teach, then chooses the best one for him and then makes a reservation according to the number of hours he needs daily. Then the rental period for these hours is determined, such as an hour or more, a day or more, a week or more, a month or more. Then he confirms the reservation by sending the amount to the place owner’s account. For the owner of the place, after registering on the site, he clicks on the add a place icon and then puts all the details required of him on this page. Such as the area, capacity, price per hour, and ownership papers for this place, then he clicks on Add, then waits until our admin confirms all of these details, then after verifying If the information is correct, we inform the place owner that the place has been uploaded to the REFT website."
-      },
-      "faq2": {
-        "question": "What is the owner place?",
-        "answer": "He/She is the person who owns the hall."
-      },
-      "faq3": {
-        "question": "How to contact with admin?",
-        "answer": "By contact us page in the bottom of website or through WhatsApp icon."
-      }
+  "homepageFAQ": {
+    "title": "Frequently Asked Questions ?",
+    "faq1": {
+      "question": "What is the idea of the website?",
+      "answer": "The website is a link between a private teacher who wants a place to teach at with a suitable price for him and proportional to the number of hours he wants to rent. And the place owner wants to make the place rented for a greater number of hours in order to obtain a greater financial reward. The teacher searches for the area in which he wants to find a place to teach, then chooses the best one for him and then makes a reservation according to the number of hours he needs daily. Then the rental period for these hours is determined, such as an hour or more, a day or more, a week or more, a month or more. Then he confirms the reservation by sending the amount to the place owner’s account. For the owner of the place, after registering on the site, he clicks on the add a place icon and then puts all the details required of him on this page. Such as the area, capacity, price per hour, and ownership papers for this place, then he clicks on Add, then waits until our admin confirms all of these details, then after verifying If the information is correct, we inform the place owner that the place has been uploaded to the REFT website."
     },
-    "footer": {
-      "contactUs": "Contact Us",
-      "aboutUs": "About Us",
-      "ourPlaces": "Our Places",
-      "termsAndConditions": "Terms and Conditions",
-      "email": "Email",
-      "telephone": "Telephone",
-      "rateYourPlace": "Rate your place in the right place"
+    "faq2": {
+      "question": "What is the owner place?",
+      "answer": "He/She is the person who owns the hall."
     },
-    "aboutus":{
-      "sectionone":"We Build Bridge Between Teacher and Place Owner",
-      "sectiontwo":"Allow the owner to publish his hall on our website with the needed information, such as the location, pictures of the place, the rental price and contact after that Teacher can find its appropriate hall according to his location"
-    },
-    "contactus":{
-      "header":"GET IN TOUCH",
-      "email":"Email:",
-      "phone":"Phone:",
-      "address":"Address:",
-      "sectionone":"",
-      "sectiontwo":""
+    "faq3": {
+      "question": "How to contact with admin?",
+      "answer": "By contact us page in the bottom of website or through WhatsApp icon."
     }
-  
-  
-  
-  
+  },
+  "footer": {
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "ourPlaces": "Our Places",
+    "termsAndConditions": "Terms and Conditions",
+    "email": "Email",
+    "telephone": "Telephone",
+    "rateYourPlace": "Rate your place in the right place"
+  },
+  "aboutus": {
+    "sectionone": "We Build Bridge Between Teacher and Place Owner",
+    "sectiontwo": "Allow the owner to publish his hall on our website with the needed information, such as the location, pictures of the place, the rental price and contact after that Teacher can find its appropriate hall according to his location"
+  },
+  "contactus": {
+    "header": "GET IN TOUCH",
+    "email": "Email:",
+    "phone": "Phone:",
+    "address": "Address:",
+    "sectionone": "",
+    "sectiontwo": ""
+  },
+  "role": {
+    "placeholder": "Role",
+    "owner": "OWNER",
+    "teacher": "TEACHER"
+  },
+  "signup": {
+    "city": "city"
+  }
 }

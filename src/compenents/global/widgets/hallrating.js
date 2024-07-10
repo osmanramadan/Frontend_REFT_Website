@@ -1,21 +1,23 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import AddHallRateHook from '../../../hooks/hall/addHallRateHook';
 
-const Hallrating = ({onsend, starDimension = "25px", starSpacing = "2px" }) => {
-//   const  [
-    
-//     load,
-//     onSend,
-//     onChangeHallId
-// ]= AddHallRateHook()
+const Hallrating = ({
+  onsend,
+  starDimension = '25px',
+  starSpacing = '2px',
+}) => {
+  //   const  [
+
+  //     load,
+  //     onSend,
+  //     onChangeHallId
+  // ]= AddHallRateHook()
 
   const [rating, setRating] = useState('');
 
-
-
-  const changeRating = (newRating,_name) => {
-    setRating(Number(newRating))
+  const changeRating = (newRating, _name) => {
+    setRating(Number(newRating));
     onsend(Number(newRating));
     return;
   };
@@ -23,12 +25,12 @@ const Hallrating = ({onsend, starDimension = "25px", starSpacing = "2px" }) => {
   return (
     <StarRatings
       rating={Number(rating)}
-      starHoverColor='#1C1E53'
+      starHoverColor="#1C1E53"
       starRatedColor="#C9981C"
       // changeRating={onSend}
       changeRating={changeRating}
       numberOfStars={5}
-      name='rating'
+      name="rating"
       starDimension={starDimension}
       starSpacing={starSpacing}
     />
@@ -43,15 +45,13 @@ export default Hallrating;
 
 // const Hallrating = ({onsend, starDimension = "25px", starSpacing = "2px" }) => {
 // //   const  [
-    
+
 // //     load,
 // //     onSend,
 // //     onChangeHallId
 // // ]= AddHallRateHook()
 
 //   const [rating, setRating] = useState('');
-
-
 
 //   const changeRating =(newRating,_name) => {
 //     setRating(Number(newRating))

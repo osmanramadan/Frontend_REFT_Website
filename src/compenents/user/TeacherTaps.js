@@ -18,7 +18,6 @@
 //     <div className="user-tab-item border-bottom">profile</div>
 //   </Link>
 
-
 //   {
 //    data.role && data.role==='OWNER'?<Link to="/user-places" className="link mt-3">
 //     <div className="user-tab-item border-bottom">My Places</div>
@@ -42,28 +41,25 @@
 
 // export default Admintabs;
 
-
-
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
 function Teachertabs() {
-  
- 
-  return <div
-  className="d-flex flex-column justify-content-center user-left-tab"
-  style={{ backgroundColor: '#eef4fa', height: '100vh' }}
-  >
-  <Link to="/teacher-profile" className="link">
-    <div className="user-tab-item border-bottom">profile</div>
-  </Link>
-  
-   <Link to="/user-booking" className="link mt-2">
-    <div className="user-tab-item border-bottom">Booking</div>
-  </Link>
-  </div>
+  return (
+    <div
+      className="d-flex flex-column justify-content-center user-left-tab"
+      style={{ backgroundColor: '#eef4fa', height: '100vh' }}
+    >
+      <Link to="/teacher-profile" className="link">
+        <div className="user-tab-item border-bottom">profile</div>
+      </Link>
+
+      <Link to="/user-booking" className="link mt-2">
+        <div className="user-tab-item border-bottom">Booking</div>
+      </Link>
+    </div>
+  );
 }
 
 export default Teachertabs;

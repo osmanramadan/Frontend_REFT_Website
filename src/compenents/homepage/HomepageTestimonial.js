@@ -6,34 +6,40 @@ import ahmed from '../../assets/images/ahmed.jpg';
 import mona from '../../assets/images/mona.jpg';
 
 function HomepageTestimonial() {
-  const { t ,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const testimonialData = [
-    { 
+    {
       id: '1',
       quote: t('homepageTestimonial.osman.quote'),
       name: t('homepageTestimonial.osman.name'),
       role: t('homepageTestimonial.osman.role'),
-      image: osman
+      image: osman,
     },
     {
       id: '2',
       quote: t('homepageTestimonial.ahmed.quote'),
       name: t('homepageTestimonial.ahmed.name'),
       role: t('homepageTestimonial.ahmed.role'),
-      image: ahmed
+      image: ahmed,
     },
     {
       id: '3',
       quote: t('homepageTestimonial.mona.quote'),
       name: t('homepageTestimonial.mona.name'),
       role: t('homepageTestimonial.mona.role'),
-      image: mona
-    }
+      image: mona,
+    },
   ];
 
   return (
-    <Carousel data-bs-theme="dark"  style={{'fontFamily':i18n.language==='en'?'Poppins':'Cairo', position: 'relative' }}>
+    <Carousel
+      data-bs-theme="dark"
+      style={{
+        fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo',
+        position: 'relative',
+      }}
+    >
       {testimonialData.map((item, index) => (
         <Carousel.Item
           key={index}
@@ -41,7 +47,7 @@ function HomepageTestimonial() {
             height: 'auto',
             color: '#282938',
             backgroundColor: '#eef4fa',
-            borderRadius: '15px'
+            borderRadius: '15px',
           }}
           className="mb-4"
         >
@@ -52,7 +58,7 @@ function HomepageTestimonial() {
                 fontSize: '20px',
                 fontWeight: 'medium',
                 lineHeight: '140%',
-                letterSpacing: '0.5%'
+                letterSpacing: '0.5%',
               }}
             >
               {item.quote}
@@ -89,7 +95,7 @@ function HomepageTestimonial() {
                 style={{
                   fontWeight: 'medium',
                   fontSize: '17px',
-                  color: '#282938'
+                  color: '#282938',
                 }}
               >
                 {item.name}
@@ -98,7 +104,7 @@ function HomepageTestimonial() {
                 style={{
                   fontWeight: 'medium',
                   fontSize: '14px',
-                  color: '#282938'
+                  color: '#282938',
                 }}
               >
                 {item.role}

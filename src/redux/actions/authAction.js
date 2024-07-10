@@ -6,7 +6,7 @@ import {
   FOREGT_PASSWORD,
   LOGIN_USER,
   UPDATE_USER_PASSWORD,
-  VERIFY_USER
+  VERIFY_USER,
 } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
 import { useGetDataToken, useGetData } from '../../crud/useGetData';
@@ -133,17 +133,17 @@ export const userAddresses = (body) => async (dispatch) => {
   }
 };
 
-export const verifyUser= () => async (dispatch) => {
+export const verifyUser = () => async (dispatch) => {
   try {
     const response = await useGetDataToken(`/api/v1/users/verifyuser`);
 
     dispatch({
-      type:VERIFY_USER,
+      type: VERIFY_USER,
       payload: response,
     });
   } catch (e) {
     dispatch({
-      type:VERIFY_USER,
+      type: VERIFY_USER,
       payload: e.response,
     });
   }

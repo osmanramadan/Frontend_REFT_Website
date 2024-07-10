@@ -10,11 +10,8 @@ import RegisterHook from '../../hooks/auth/registerHook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-
-
 function SignUp() {
-  
-const [
+  const [
     username,
     email,
     phone,
@@ -151,7 +148,7 @@ const [
               </div>
 
               <CityDropdown city={city} onChangeCity={onChangeCity} />
-              
+
               <AcessButton txt="register" onClick={OnSubmit} />
               <AcessSwitch
                 txt="Already have an account?"

@@ -1,13 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-
-
-
-
-function Banner({ txt  }) {
-
-
+function Banner({ txt }) {
   return (
     <div
       style={{
@@ -19,10 +13,11 @@ function Banner({ txt  }) {
       className="d-flex align-items-center"
     >
       <Container>
-         <Row>
-            <Col xs='12' sm='6'><div>{txt}</div></Col>
-                  
-         </Row>
+        <Row>
+          <Col xs="12" sm="6">
+            <div>{txt}</div>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

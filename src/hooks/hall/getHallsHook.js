@@ -1,46 +1,39 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHalls, searchHalls, searchHallsCity} from '../../redux/actions/hallAction';
-import { useTranslation } from 'react-i18next';
+import {
+  getHalls,
+  searchHalls,
+  searchHallsCity,
+} from '../../redux/actions/hallAction';
+import axios from 'axios';
+
 
 const GetHallsHook = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [city, setCity] = useState('');
   const [town, setTown] = useState('');
 
-
   const res = useSelector((state) => state.hallReducer.getHalls);
   const search_res = useSelector((state) => state.hallReducer.searchHalls);
 
-
-
-  
-
   const onChangeCity = (value) => {
-    
-    if(value==='all'){
-
-      setData(res.data)
-    }else{
-      let newdata=[]
+    if (value === 'all') {
+      setData(res.data);
+    } else {
+      let newdata = [];
       value['city'].forEach((v) => {
-        
-        const filtered = data.filter((dt)=>{
-
-           return dt.city.toLowerCase().includes(v.toLowerCase())
-          }
-      );
+        const filtered = data.filter((dt) => {
+          return dt.city.toLowerCase().includes(v.toLowerCase());
+        });
         newdata.push(...filtered);
       });
 
       const uniqueFiltered = [...new Set([...newdata])];
       setData([...uniqueFiltered]);
     }
-      
-    } 
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -49,45 +42,39 @@ const GetHallsHook = () => {
   }, []);
 
   
-  useEffect(() => {
 
-    if(town ==='' || city ===''){
-      setData(res.data)
-      return
+  useEffect(() => {
+    if (town === '' || city === '') {
+      setData(res.data);
+      return;
     }
 
     setLoading(true);
-    dispatch(searchHalls(`${city}/${town.en}`))
+    dispatch(searchHalls(`${city}/${town.en}`));
     setLoading(false);
-     
-  }, [town,city]);
+  }, [town, city]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true);
-    dispatch(searchHallsCity(city))
+    dispatch(searchHallsCity(city));
     setLoading(false);
-  },[city])
-
-
- 
+  }, [city]);
 
   useEffect(() => {
     setData(search_res);
   }, [search_res]);
 
-  console.log(res,'(*********)')
-  try{
-  
+  console.log(res, '(*********)');
+  try {
     useEffect(() => {
       if (loading === false) {
         setLoading(true);
-        
+
         if (res.status) {
           if (res.status === 'success') {
             setData(res.data);
             // location.replace(res.data)
           }
-  
         }
         // if (res.data.status === 'forbidden') {
 
@@ -97,18 +84,13 @@ const GetHallsHook = () => {
         //   window.location.href ='/signin'
         //   return;
         // }
-  
       }
-    }, [res.data,res.status]);
-  
-  }catch(e){
-   window.location.href ='/signin'
-   return;
+    }, [res.data, res.status]);
+  } catch (e) {
+    window.location.href = '/signin';
+    return;
   }
-  return [data,loading,setTown,town,setCity,city,onChangeCity];
+  return [data, loading, setTown, town, setCity, city, onChangeCity];
 };
 
 export default GetHallsHook;
-
-
-

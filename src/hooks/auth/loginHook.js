@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/actions/authAction';
 // import CryptoJS from 'crypto-js';
 
-
 const LoginHook = () => {
   const dispatch = useDispatch();
 
@@ -46,37 +45,32 @@ const LoginHook = () => {
     setLoading(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-  },[])
+  }, []);
 
   useEffect(() => {
     if (loading === false) {
       if (res.data) {
-        
         if (res.data.validationError) {
           setLoading(true);
           alert(res.data.validationError);
           return;
         }
         if (res.data.token) {
-  
           localStorage.setItem('token', res.data.token);
 
-            // localStorage.setItem('user',JSON.stringify(res.data.data));
-          
+          // localStorage.setItem('user',JSON.stringify(res.data.data));
 
           setLoading(true);
           setTimeout(() => {
             window.location.href = '/';
           }, 1000);
-
-
         } else {
           setLoading(true);
-          localStorage.getItem('token')?localStorage.removeItem('token'):''
-          localStorage.getItem('user')?localStorage.removeItem('user'):''
+          localStorage.getItem('token') ? localStorage.removeItem('token') : '';
+          localStorage.getItem('user') ? localStorage.removeItem('user') : '';
         }
 
         if (res.data.error) {

@@ -78,7 +78,7 @@ const VerifyPasswordHook = () => {
           setLoading(true);
           alert('Expired code');
           setTimeout(() => {
-            navigate('/login');
+            navigate('/signin');
           }, 1500);
         }
 

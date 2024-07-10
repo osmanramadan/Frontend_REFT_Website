@@ -40,6 +40,6 @@ export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
 // checkout
-export const CREATE_ORDER = 'CREATE_ORDER'; 
-export const CHECK_ORDER_COMPLETE='CHECK_ORDER_COMPLETE'
-export const Get_Hall_CODES='Get_Hall_CODES'
+export const CREATE_ORDER = 'CREATE_ORDER';
+export const CHECK_ORDER_COMPLETE = 'CHECK_ORDER_COMPLETE';
+export const Get_Hall_CODES = 'Get_Hall_CODES';

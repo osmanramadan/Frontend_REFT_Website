@@ -1,4 +1,3 @@
-
 import {
   ADD_HALL,
   GET_ALL_HALLS,
@@ -6,10 +5,9 @@ import {
   GET_ADMIN_HALLS,
   CHANGE_HALL_STATUS,
   GET_USER_HALLS,
-  GET_HALLS_CITIES ,
+  GET_HALLS_CITIES,
   ADD_HALL_RATE,
-  ALLOWED_USER_RATE
-
+  ALLOWED_USER_RATE,
 } from '../type';
 
 const inital = {
@@ -20,10 +18,10 @@ const inital = {
   getAdminHalls: [],
   getUserHalls: [],
   searchHalls: [],
-  reservHallByHour:[],
-  reservHallByInterval:[],
+  reservHallByHour: [],
+  reservHallByInterval: [],
   hallStatus: [],
-  getHallsCities:[]
+  getHallsCities: [],
 };
 
 const hallReducer = (state = inital, action) => {
@@ -35,16 +33,16 @@ const hallReducer = (state = inital, action) => {
       };
 
     case ADD_HALL_RATE:
-        return {
-          ...state,
-          addHallRate: action.payload,
-        };
+      return {
+        ...state,
+        addHallRate: action.payload,
+      };
 
     case ALLOWED_USER_RATE:
-        return {
-          ...state,
-          allowUserRate: action.payload,
-        };
+      return {
+        ...state,
+        allowUserRate: action.payload,
+      };
     case GET_ALL_HALLS:
       return {
         ...state,
@@ -67,7 +65,7 @@ const hallReducer = (state = inital, action) => {
         ...state,
         searchHalls: action.payload,
       };
-      
+
     case GET_HALLS_CITIES:
       return {
         ...state,

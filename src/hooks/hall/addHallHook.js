@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNewHall } from '../../redux/actions/hallAction';
 
 const AddHallHook = () => {
-
   const dispatch = useDispatch();
 
   if (localStorage.getItem('user') !== null) {
@@ -69,11 +68,11 @@ const AddHallHook = () => {
 
   const onChangePlaceCityId = (id) => {
     setPlaceCityId(id);
-  }
+  };
 
   const onChangePlaceLocation = (event) => {
     setPlaceLocation(`${event.en}/${event.ar}`);
-  }
+  };
 
   const onChangePriceHour = (event) => {
     if (event.target.value <= 0) return;
@@ -138,8 +137,10 @@ const AddHallHook = () => {
       hourPrice === '' ||
       placeDetails === '' ||
       images.length === 0 ||
-      pdfName === '' || pdfName === 'pdf name' ||
-      videoName === '' || videoName === 'video name'
+      pdfName === '' ||
+      pdfName === 'pdf name' ||
+      videoName === '' ||
+      videoName === 'video name'
     ) {
       alert('من فضلك اكمل البيانات');
       return;
@@ -172,7 +173,7 @@ const AddHallHook = () => {
     const hallImages = Array.from(Array(Object.keys(images).length).keys()).map(
       (_item, index) => {
         return dataURLtoFile(images[index], Math.random() + '.png');
-      }
+      },
     );
 
     const formdata = new FormData();

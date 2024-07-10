@@ -34,13 +34,12 @@
 body {
   margin: 0px;
   overflow-x: hidden;
-  /* font-family: 'Racing Sans One'; */
   font-family: 'Poppins', sans-serif;
 }
 
 /* local */
 .form-check-input:checked {
-  background-color: #FCD980;
+  background-color: #fcd980;
   border-color: #c0cde0;
 }
 
@@ -55,23 +54,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color:#1C1E53; 
+  background-color: #1c1e53;
 }
 
 .whatsapp-icon {
   position: fixed;
   bottom: 60px;
   right: 30px;
-  border-radius:50px;
-  
+  border-radius: 50px;
 }
-
-
 
 /************************************************************** Auth ******************************************************/
 
 .inputfield {
-
   height: 60px;
   width: 450px;
   background-color: var(--blue_gray_900_01);
@@ -175,8 +170,8 @@ body {
 .auth-dropdown-content {
   z-index: 10000000;
   padding: 5px;
-  max-height:130px;
-  overflow-y:auto;
+  max-height: 130px;
+  overflow-y: auto;
   font-weight: 500;
   background-color: var(--gray_100_87);
   border: 2px solid var(--white_A700_19);
@@ -233,7 +228,6 @@ body {
   padding: 20px;
   border-top: 2px var(--white_A700) solid;
   /* direction: rtl; */
-
 }
 
 .homePage-Banner img {
@@ -789,7 +783,6 @@ div.lmMaya {
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
 }
 
-
 /* .item-container .item-image img {
   height: 430px;
   width: 100%;
@@ -870,22 +863,22 @@ div.lmMaya {
 }
 
 /* Removes form Controls  */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
-input[type=month]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
+input[type='month']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
 }
 
-input[type=month]::-webkit-calendar-picker-indicator {
-    -webkit-appearance: none;
-    display: none;
+input[type='month']::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  display: none;
 }
 
 .checkout-btn {
@@ -910,12 +903,11 @@ input[type=month]::-webkit-calendar-picker-indicator {
 }
 
 .app-container::-webkit-scrollbar-thumb {
-  background-color:white 
+  background-color: white;
 }
 
-
 .auth-dropdown-content {
-  position:relative !important ;
+  position: relative !important ;
 }
 
 /* Hallrating.css */
@@ -928,7 +920,6 @@ input[type=month]::-webkit-calendar-picker-indicator {
   display: inline-block;
   margin: 0 2px; /* This will be overridden by the starSpacing prop */
 }
-
 
 /* print.css */
 @media print {

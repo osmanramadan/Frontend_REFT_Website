@@ -11,7 +11,6 @@ import HomepageTestimonial from '../compenents/homepage/HomepageTestimonial';
 import HomepageFAQ from '../compenents/homepage/HomepageFAQ';
 import { useTranslation } from 'react-i18next';
 
-
 function HomePage() {
   const { t } = useTranslation();
   return (

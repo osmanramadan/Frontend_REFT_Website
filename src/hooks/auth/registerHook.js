@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser } from '../../redux/actions/authAction';
+import { useTranslation } from 'react-i18next';
 // import { useNavigate } from 'react-router-dom';
 
 const RegisterHook = () => {
-
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('City');
-  const [role, setRole] = useState('Role');
+  const [city, setCity] = useState(t('signup.city'));
+  const [role, setRole] = useState(t('role.placeholder'));
+  // const [roleserver,setRoleServer]=useState()
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,6 @@ const RegisterHook = () => {
   };
 
   const onChangeCity = (value) => {
-
     setCity(value);
   };
 
@@ -48,7 +49,6 @@ const RegisterHook = () => {
   };
 
   const validationValues = () => {
-
     if (username === '' || username.length < 5) {
       return 'Enter username at least five !';
     }
@@ -128,20 +128,21 @@ const RegisterHook = () => {
     if (loading === false) {
       if (res.data) {
         if (res.data.token) {
-          setLoading(true)
-          localStorage.setItem('token', res.data.token);
+          setLoading(true);
           localStorage.removeItem('user');
-          alert("Success create")
+          alert('Success create');
           setTimeout(() => {
             window.location.href = '/signin';
           }, 1000);
           return;
         }
-        if(res.data.status==="fail"){
+
+        if (res.data.status === 'fail') {
           setLoading(true);
-          alert("Recreate acount");
+          alert('Recreate acount');
           return;
         }
+
         if (res.data.validationError) {
           setLoading(true);
           alert(res.data.validationError);

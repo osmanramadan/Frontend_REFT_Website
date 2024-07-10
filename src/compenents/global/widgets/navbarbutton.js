@@ -14,25 +14,24 @@ function NavBarButton() {
 
   return (
     <div>
-     <Dropdown onClick={handleMenuClick}>
-    <Row
-    className="d-flex align-items-center justify-content-center mt-3"
-    style={{ color: 'white' }}
-  >
-    <Col className="text-center d-flex align-items-center">
-      
-        {/* <button className="btn-navbar" onClick={() => (location.href = '/signup')}>
+      <Dropdown onClick={handleMenuClick}>
+        <Row
+          className="d-flex align-items-center justify-content-center mt-3"
+          style={{ color: 'white' }}
+        >
+          <Col className="text-center d-flex align-items-center">
+            {/* <button className="btn-navbar" onClick={() => (location.href = '/signup')}>
           {t('navbar.signup')}
        </button> */}
-    </Col>
-    <Col xs="3">
-      <Dropdown.Toggle
-        id="dropdown-autoclose-true"
-        style={{ backgroundColor: '#1C1E53', border: 'none' }}
-      ></Dropdown.Toggle>
-    </Col>
-  </Row>
-  <Dropdown.Menu
+          </Col>
+          <Col xs="3">
+            <Dropdown.Toggle
+              id="dropdown-autoclose-true"
+              style={{ backgroundColor: '#1C1E53', border: 'none' }}
+            ></Dropdown.Toggle>
+          </Col>
+        </Row>
+        <Dropdown.Menu
           className={`d-flex flex-column justify-content-between text-center  ${
             show ? 'd-none' : 'show'
           }`}
@@ -45,30 +44,26 @@ function NavBarButton() {
             marginTop: '17px',
             borderColor: 'white',
             borderWidth: '3px',
-            fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo' 
+            fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo',
           }}
         >
-        
-          <Link  className="nav-link  mt-2 mb-3" >
-            <div  onClick={() => (location.href = '/signup')}>
-               {t('navbar.signup')}
+          <Link className="nav-link  mt-2 mb-3">
+            <div onClick={() => (location.href = '/signup')}>
+              {t('navbar.signup')}
             </div>
           </Link>
           <Link className="nav-link mb-5 mt-1">
-            <div  onClick={() => (location.href = '/signin')}>
-              {t('navbar.signin')} 
+            <div onClick={() => (location.href = '/signin')}>
+              {t('navbar.signin')}
             </div>
           </Link>
-
         </Dropdown.Menu>
-  
-    </Dropdown>
+      </Dropdown>
     </div>
   );
 }
 
 export default NavBarButton;
-
 
 // import React from 'react';
 // import { useTranslation } from 'react-i18next';

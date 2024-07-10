@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNewMessage } from '../../../redux/actions/messAction';
 
 const AddMessageHook = () => {
-
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  
 
   const [loading, setLoading] = useState(true);
 
@@ -81,13 +79,12 @@ const AddMessageHook = () => {
   useEffect(() => {
     if (loading === false) {
       if (res.data) {
-        
         if (res.data.status === 'success') {
-          setName('')
-          setEmail('')
-          setMessage('')
-          setPhone('')
-          alert('Message Sent Successfully')
+          setName('');
+          setEmail('');
+          setMessage('');
+          setPhone('');
+          alert('Message Sent Successfully');
           return;
         } else {
           alert('Message Not Sent');

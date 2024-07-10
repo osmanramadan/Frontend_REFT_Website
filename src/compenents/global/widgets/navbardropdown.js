@@ -1,5 +1,5 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Figure } from 'react-bootstrap';
@@ -9,29 +9,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavBarButton from './navbarbutton';
 
 function Navbardropdown({ isUser }) {
-
-  const [isuser, isadmin, userData,load] = ProtectedRouteHook();
+  const [isuser, isadmin, userData, load] = ProtectedRouteHook();
 
   const [show, setShow] = useState(false);
+  const nav = useNavigate();
 
   const Logout = () => {
-
-    localStorage.getItem('token')?localStorage.removeItem('token'):'';
-    localStorage.getItem('user')?localStorage.removeItem('user'):'';
-  
-
-    setTimeout(() => {
-      window.location.href = '/signin';
-    }, 1000);
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    // nav('/signin')
+    // <Navigate to='signin' replace="true"/>
+    window.location.reload();
   };
 
   const handleMenuClick = () => {
     setShow(!show);
   };
 
-return (
-  <div>
-
+  return (
+    <div>
       <Dropdown onClick={handleMenuClick}>
         {isUser ? (
           <Row
@@ -114,39 +110,38 @@ return (
             borderWidth: '3px',
           }}
         >
-          { 
-          isuser ? (
-            userData.role==='OWNER'?<Link className="link py-2" to="/owner-profile">
-            {' '}
-            My Profile
-          </Link>:<Link className="link py-2" to="/teacher-profile">
-              {' '}
-            My Profile
-            </Link>
-          ) : (
-            <div className='mt-2'>
-              <Link className="link" to="/admin-places">
-            {' '}
-            Dashboard
+          {isuser ? (
+            userData.role === 'OWNER' ? (
+              <Link className="link py-2" to="/owner-profile">
+                {' '}
+                My Profile
               </Link>
-       
-            </div>
+            ) : (
+              <Link className="link py-2" to="/teacher-profile">
+                {' '}
+                My Profile
+              </Link>
+            )
+          ) : (
+            isadmin && (
+              <div className="mt-2">
+                <Link className="link" to="/admin-places">
+                  {' '}
+                  Dashboard
+                </Link>
+              </div>
+            )
           )}
 
           <Link className="link mb-2">
             <div onClick={Logout}>Log out</div>
           </Link>
-
         </Dropdown.Menu>
       </Dropdown>
     </div>
-)
-  
+  );
 }
 export default Navbardropdown;
-
-
-
 
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import { Link } from 'react-router-dom';
@@ -168,7 +163,6 @@ export default Navbardropdown;
 
 //     localStorage.getItem('token')?localStorage.removeItem('token'):'';
 //     localStorage.getItem('user')?localStorage.removeItem('user'):'';
-  
 
 //     setTimeout(() => {
 //       window.location.href = '/signin';
@@ -264,7 +258,7 @@ export default Navbardropdown;
 //             borderWidth: '3px',
 //           }}
 //         >
-//           { 
+//           {
 //           isuser ? (
 //             userData.role==='OWNER'?<Link className="link py-2" to="/owner-profile">
 //             {' '}
@@ -279,7 +273,7 @@ export default Navbardropdown;
 //             {' '}
 //             Dashboard
 //               </Link>
-       
+
 //             </div>
 //           )}
 
@@ -291,6 +285,6 @@ export default Navbardropdown;
 //       </Dropdown>
 //     </div>
 // )
-  
+
 // }
 // export default Navbardropdown;

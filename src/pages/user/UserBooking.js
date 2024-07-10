@@ -9,11 +9,9 @@ import TeacherBookingInfoHook from '../../hooks/book/teacherbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
 
 function UserBooking() {
-
-
   const [isuser, _isadmin, _userData] = ProtectedRouteHook();
-  const [data,loading,searchforbookingplaceowner]=TeacherBookingInfoHook()
-  
+  const [data, loading, searchforbookingplaceowner] = TeacherBookingInfoHook();
+
   const [searchTermPlaceOwner, setSearchTermPlacwOwner] = useState('');
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
@@ -42,7 +40,7 @@ function UserBooking() {
   const handlePageClick = (num) => {
     setcurrentPage(num);
   };
-  const handleSearchPlaceOwnerChange= (e) => {
+  const handleSearchPlaceOwnerChange = (e) => {
     setSearchTermPlacwOwner(e.target.value);
     searchforbookingplaceowner(e.target.value);
     setcurrentPage(1); // Reset to first page after search
@@ -58,25 +56,19 @@ function UserBooking() {
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
-        <Row
-        xs="12" 
-        className="d-flex justify-content-center mt-5"
-      >
-        <input
-          value={searchTermPlaceOwner}
-          className="hall-search-input"
-          placeholder="Search for Place Owner by Email"
-          onChange={handleSearchPlaceOwnerChange}
-        />
-      
-      </Row>
-        
-          {
-          isuser && loading==true?(
-          <>
-          
-          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-          {loading === true && data.length == 0 && (
+          <Row xs="12" className="d-flex justify-content-center mt-5">
+            <input
+              value={searchTermPlaceOwner}
+              className="hall-search-input"
+              placeholder="Search for Place Owner by Email"
+              onChange={handleSearchPlaceOwnerChange}
+            />
+          </Row>
+
+          {isuser && loading == true ? (
+            <>
+              <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+                {loading === true && data.length == 0 && (
                   <div
                     style={{ fontSize: '30px' }}
                     className="d-flex justify-content-center mb-2 fw-bold"
@@ -94,7 +86,7 @@ function UserBooking() {
                       role="status"
                       aria-hidden="true"
                     />
-      
+
                     <Spinner
                       style={{ color: '#fcd980', marginLeft: '5px' }}
                       as="span"
@@ -103,7 +95,7 @@ function UserBooking() {
                       role="status"
                       aria-hidden="true"
                     />
-      
+
                     <Spinner
                       style={{ color: '#fcd980', marginLeft: '5px' }}
                       as="span"
@@ -116,21 +108,25 @@ function UserBooking() {
                 ) : (
                   ''
                 )}
-            {currentItems.map((info, index) => (
-              
-                 <BookingInfo data={info}/>
-              
-            ))}
+                {currentItems.map((info, index) => (
+                  <BookingInfo data={info} />
+                ))}
 
-            <PaginationComponent
-              pageCount={pageNumberLimit}
-              handlePageClick={handlePageClick}
-            />
-          </Row>
-              </>
-            ):(<div   style={{ fontSize: '20px' }}
-              className="d-flex justify-content-center mb-2 fw-bold">Login Again To See The Booking</div>)
-          }
+                <PaginationComponent
+                  pageCount={pageNumberLimit}
+                  handlePageClick={handlePageClick}
+                />
+              </Row>
+            </>
+          ) : (
+            ''
+            // <div
+            //   style={{ fontSize: '20px' }}
+            //   className="d-flex justify-content-center mb-2 fw-bold"
+            // >
+            //   Login Again To See The Booking
+            // </div>
+          )}
         </Col>
       </Row>
 

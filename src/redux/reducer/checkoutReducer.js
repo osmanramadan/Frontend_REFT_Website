@@ -1,11 +1,9 @@
-
-import { CREATE_ORDER, CHECK_ORDER_COMPLETE,Get_Hall_CODES} from '../type';
+import { CREATE_ORDER, CHECK_ORDER_COMPLETE, Get_Hall_CODES } from '../type';
 
 const inital = {
   createorder: [],
-  checkordercomplete:[],
-  hallcodes:[]
-
+  checkordercomplete: [],
+  hallcodes: [],
 };
 
 const checkoutReducer = (state = inital, action) => {
@@ -15,17 +13,17 @@ const checkoutReducer = (state = inital, action) => {
         ...state,
         createorder: action.payload,
       };
-      case CHECK_ORDER_COMPLETE:
-        return {
-          ...state,
-          checkordercomplete: action.payload,
-        };
+    case CHECK_ORDER_COMPLETE:
+      return {
+        ...state,
+        checkordercomplete: action.payload,
+      };
 
-      case Get_Hall_CODES:
-          return {
-            ...state,
-            hallcodes: action.payload,
-          };
+    case Get_Hall_CODES:
+      return {
+        ...state,
+        hallcodes: action.payload,
+      };
 
     default:
       return state;

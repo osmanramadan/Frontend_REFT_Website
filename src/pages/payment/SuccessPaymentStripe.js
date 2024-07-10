@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import CheckOrderCompleteHook from '../../hooks/checkout/CheckOrderCompleteHook';
+import CheckOrderCompleteStripeHook  from '../../hooks/checkout/CheckOrderCompleteStripeHook';
 
-const SuccessPayment = () => {
+const SuccessPaymentStripe = () => {
   
-  const [loading, CheckOrderComplete] = CheckOrderCompleteHook();
+  const [loading, CheckOrderCompleteStripe] = CheckOrderCompleteStripeHook();
 
   useEffect(() => {
-    CheckOrderComplete();
+    CheckOrderCompleteStripe();
   }, []);
 
-  // const handleBackClick = (e) => {
-  //   e.preventDefault();
-  //   window.history.go(-3);
-  // };
+ 
 
   return (
     <Container>
@@ -46,4 +43,4 @@ const SuccessPayment = () => {
   );
 };
 
-export default SuccessPayment;
+export default SuccessPaymentStripe;

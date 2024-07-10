@@ -11,14 +11,10 @@ import BookingInfo from '../../compenents/user/bookinginfo';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerPlacesBooking() {
-
-
   const [isuser, _isadmin, _userData] = ProtectedRouteHook();
-  const [data,loading,searchforbookingteacher]=OwnerBookingInfoHook()
+  const [data, loading, searchforbookingteacher] = OwnerBookingInfoHook();
 
   const [searchTermTeacher, setSearchTermTeacher] = useState('');
-
-  
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
@@ -48,12 +44,11 @@ function OwnerPlacesBooking() {
     setcurrentPage(num);
   };
 
-  const handleSearchTeacherChange= (e) => {
+  const handleSearchTeacherChange = (e) => {
     setSearchTermTeacher(e.target.value);
     searchforbookingteacher(e.target.value);
     setcurrentPage(1); // Reset to first page after search
   };
-
 
   return (
     <div>
@@ -61,75 +56,79 @@ function OwnerPlacesBooking() {
 
       <Row>
         <Col xs="0" sm="0" md="5" lg="3" className="user-one-tabs">
-        <Ownertabs/>
+          <Ownertabs />
         </Col>
 
         <Col xs="12" sm="12" md="7" lg="8" style={{ direction: 'ltr' }}>
-        <Row
-        xs="12" 
-        className="d-flex justify-content-center"
-      >
-        <input
-          value={searchTermTeacher}
-          className="hall-search-input mt-5"
-          placeholder="Search for Teacher By Email"
-          onChange={handleSearchTeacherChange}
-        />
-      </Row>
-
-       {isuser?(   <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-          {loading === true && data.length == 0 && (
-                  <div
-                    style={{ fontSize: '30px' }}
-                    className="d-flex justify-content-center mb-2 fw-bold"
-                  >
-                    No Booking Yet
-                  </div>
-                )}
-                {loading === false ? (
-                  <div className="d-flex justify-content-center mb-2">
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-      
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-      
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  </div>
-                ) : (
-                  ''
-                )}
-            {currentItems.map((info, index) => (
-              
-                 <BookingInfo data={info}/>
-              
-            ))}
-
-            <PaginationComponent
-              pageCount={pageNumberLimit}
-              handlePageClick={handlePageClick}
+          <Row xs="12" className="d-flex justify-content-center">
+            <input
+              value={searchTermTeacher}
+              className="hall-search-input mt-5"
+              placeholder="Search for Teacher By Email"
+              onChange={handleSearchTeacherChange}
             />
-          </Row>):(<div   style={{ fontSize: '20px' }}
-              className="d-flex justify-content-center mb-2 fw-bold">Login Again To See The Booking</div>)}
+          </Row>
+
+          {isuser ? (
+            <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+              {loading === true && data.length == 0 && (
+                <div
+                  style={{ fontSize: '30px' }}
+                  className="d-flex justify-content-center mb-2 fw-bold"
+                >
+                  No Booking Yet
+                </div>
+              )}
+              {loading === false ? (
+                <div className="d-flex justify-content-center mb-2">
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+
+                  <Spinner
+                    style={{ color: '#fcd980', marginLeft: '5px' }}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              ) : (
+                ''
+              )}
+              {currentItems.map((info, index) => (
+                <BookingInfo data={info} />
+              ))}
+
+              <PaginationComponent
+                pageCount={pageNumberLimit}
+                handlePageClick={handlePageClick}
+              />
+            </Row>
+          ) : (
+            ''
+            // <div
+            //   style={{ fontSize: '20px' }}
+            //   className="d-flex justify-content-center mb-2 fw-bold"
+            // >
+            //   Login Again To See The Booking
+            // </div>
+          )}
         </Col>
       </Row>
 

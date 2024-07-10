@@ -13,7 +13,7 @@ import AddHallHook from '../../hooks/hall/addHallHook';
 import LocationDropdown from '../../compenents/global/widgets/LocationDropDown';
 
 function HallAdd() {
-const  [
+  const [
     onSubmit,
     images,
     onChangeImages,
@@ -38,7 +38,7 @@ const  [
     onChangeVideo,
     videoName,
     loading,
-  ]= AddHallHook();
+  ] = AddHallHook();
 
   return (
     <div>
@@ -118,8 +118,12 @@ const  [
           </Col>
 
           <Col xs="12" sm="6" md="4" lg="4" className="text-center">
-           
-          <LocationDropdown addhall={true}  cityid={placeCityId} location={placeLocation} onChange={onChangePlaceLocation}/>
+            <LocationDropdown
+              addhall={true}
+              cityid={placeCityId}
+              location={placeLocation}
+              onChange={onChangePlaceLocation}
+            />
           </Col>
         </Row>
         {/***********************/}

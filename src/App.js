@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import ProtectedRoute from './compenents/auth/protectedRoute';
 import ProtectedRouteHook from './hooks/auth/protectedRoutedHook';
 import HomePage from './pages/HomePage';
@@ -11,7 +11,6 @@ import ChangePassword from './pages/auth/ChangePassword';
 import Halls from './pages/hall/halls';
 import HallDetails from './pages/hall/HallDetails';
 import HallAdd from './pages/hall/HallAdd';
-import Profile from './pages/user/TeacherProfile';
 import UserPlaces from './pages/user/UserPlaces';
 import AboutUs from './pages/aboutus/AboutUs';
 import ContactUs from './pages/contactus/ContactUs';
@@ -35,75 +34,73 @@ import OwnerPlacesBooking from './pages/user/OwnerPlacesBooking';
 import OwnerProfile from './pages/user/OwnerProfile';
 import TeacherProfile from './pages/user/TeacherProfile';
 import { useTranslation } from 'react-i18next';
+import SuccessPaymentStripe from './pages/payment/SuccessPaymentStripe';
+import NavBar from './compenents/global/navbar';
+import Footer from './compenents/global/footer';
+
+
 
 function App() {
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
-  const { t, i18n } = useTranslation()
-{
+  const { t, i18n } = useTranslation();
+  const location = useLocation();
+
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language');
     if (storedLanguage) {
       i18n.changeLanguage(storedLanguage);
     }
-  }, [i18n])
-}
+  }, [i18n]);
+
+  // const hideNavAndFooter = ['/signin', '/signup','/hall-deta'].includes(location.pathname);
 
   return (
     <div>
-      {/* <NavBar /> */}
+      {/* {!hideNavAndFooter && <NavBar />} */}
       <Routes>
-        <Route exact path="/"  element={<HomePage />} />
-        <Route exact path="*"  element={<NotFound />} />
-        <Route exact path="/signup" element={<SignUp />} />
-        <Route exact path="/signin" element={<SignIn />} />
-        <Route exact path="/hall-details" element={<HallDetails />} />
-        <Route exact path="/about-us" element={<AboutUs />} />
-        <Route exact path="/contact-us"    element={<ContactUs />} />
-        <Route exact path="/forget-password" element={<ForgetPassword />} />
-        <Route exact path="/change-password" element={<ChangePassword />} />
-        <Route exact path="/verify-code" element={<SendCode />} />
-        <Route exact path="/places" element={<Halls />} />
-        {/* <Route exact path="/hall-add" element={<HallAdd />} /> */}
-  
-        {/* <Route exact path="/checkout-hour" element={<HallCheckoutOneHour />} />
-        <Route exact path="/checkout-hours" element={<HallCheckoutHours />} />
-        <Route exact path="/checkout-days" element={<HallCheckoutDays />} />
-        <Route exact path="/checkout-hours-days" element={<HallCheckoutHoursDays />} /> */}
-        <Route exact path="/terms" element={<UserTermsAndCondition/>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/hall-details" element={<HallDetails />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/verify-code" element={<SendCode />} />
+        <Route path="/places" element={<Halls />} />
+        <Route path="/terms" element={<UserTermsAndCondition />} />
 
-        
-
-        <Route errorElement={<Navigate to='signin'/>} element={<ProtectedRoute auth={isUser} />}>
-          {/* <Route exact path="/hall-details"   element={<HallDetails />} /> */}
-          <Route exact path="/checkout-hour" element={<HallCheckoutOneHour />} />
-          <Route exact path="/checkout-hours" element={<HallCheckoutHours />} />
-          <Route exact path="/checkout-days" element={<HallCheckoutDays />} />
-          <Route exact path="/checkout-hours-days" element={<HallCheckoutHoursDays />} />
-          <Route exact path="/hall-add" element={<HallAdd />} />
-          <Route exact path="/owner-profile"   element={<OwnerProfile/>} />
-          <Route exact path="/teacher-profile"   element={<TeacherProfile/>} />
-          <Route exact path="/user-booking"   element={<UserBooking />} />
-          <Route exact path="/owner-booking"  element={<OwnerPlacesBooking />} />
-          <Route exact path="/owner-places-booking"  element={<OwnerBooking />} />
-          <Route exact path="/user-places"           element={<UserPlaces />} />
-
-          <Route exact path="/processing-payment"    element={<SuccessPayment />} />
-          <Route exact path="/fail-payment"          element={<FailPayment />} />
-          <Route exact path="/book-hall" element={<HallBook />} />
+        <Route element={<ProtectedRoute auth={isUser} />}>
+          <Route path="/checkout-hour" element={<HallCheckoutOneHour />} />
+          <Route path="/checkout-hours" element={<HallCheckoutHours />} />
+          <Route path="/checkout-days" element={<HallCheckoutDays />} />
+          <Route path="/checkout-hours-days" element={<HallCheckoutHoursDays />} />
+          <Route path="/hall-add" element={<HallAdd />} />
+          <Route path="/owner-profile" element={<OwnerProfile />} />
+          <Route path="/teacher-profile" element={<TeacherProfile />} />
+          <Route path="/user-booking" element={<UserBooking />} />
+          <Route path="/owner-booking" element={<OwnerPlacesBooking />} />
+          <Route path="/owner-places-booking" element={<OwnerBooking />} />
+          <Route path="/user-places" element={<UserPlaces />} />
+          <Route path="/processing-payment" element={<SuccessPayment />} />
+          <Route path="/processing-stripe-payment" element={<SuccessPaymentStripe />} />
+          <Route path="/fail-payment" element={<FailPayment />} />
+          <Route path="/book-hall" element={<HallBook />} />
         </Route>
 
-        <Route  element={<ProtectedRoute auth={isAdmin}/>}>
-          <Route exact path="/admin-places"    element={<AdminHalls />} />
-          {/* <Route exact path="/hall-details"    element={<HallDetails />} /> */}
-          <Route exact path="/admin-booking"   element={<AdminBooking />} />
-          <Route exact path="/admin-messages"  element={<AdminMessages />} />
-          <Route exact path="/message-details" element={<MessDetails />} />
+        <Route element={<ProtectedRoute auth={isAdmin} />}>
+          <Route path="/admin-places" element={<AdminHalls />} />
+          <Route path="/admin-booking" element={<AdminBooking />} />
+          <Route path="/admin-messages" element={<AdminMessages />} />
+          <Route path="/message-details" element={<MessDetails />} />
         </Route>
-        
       </Routes>
-      {/* <Footer /> */}
+      {/* {!hideNavAndFooter && <Footer/>} */}
     </div>
   );
 }
 
 export default App;
+
+

@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreateOrderPaypal } from '../../redux/actions/checkoutAction';
+import { CreateOrderStripe } from '../../redux/actions/checkoutAction';
 
-const CreateOrderHook = () => {
+const CreateOrderStripeHook = () => {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
   const res = useSelector((state) => state.checkoutReducer.createorder);
 
-  const CreateOrderAction = (data, amount) => {
+  const CreateOrderStripeAction = (data, amount) => {
     localStorage.setItem('bookinfo', JSON.stringify(data));
     setLoading(true);
-    dispatch(CreateOrderPaypal(data, amount));
+    dispatch(CreateOrderStripe(data, amount));
     setLoading(false);
   };
 
@@ -24,7 +25,7 @@ const CreateOrderHook = () => {
     }
   }, [res.data]);
 
-  return [loading, CreateOrderAction];
+  return [loading, CreateOrderStripeAction];
 };
 
-export default CreateOrderHook;
+export default CreateOrderStripeHook;

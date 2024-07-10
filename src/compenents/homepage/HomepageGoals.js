@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 function HomepageGoals() {
-  const { t ,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const goalsData = [
     {
@@ -26,7 +26,13 @@ function HomepageGoals() {
 
   return (
     <div>
-      <Row  style={{'fontFamily':i18n.language==='en'?'Poppins':'Cairo','direction':i18n.language=='en'?'ltr':'rtl'}} className="d-flex justify-content-center">
+      <Row
+        style={{
+          fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo',
+          direction: i18n.language == 'en' ? 'ltr' : 'rtl',
+        }}
+        className="d-flex justify-content-center"
+      >
         {goalsData.map((goal, index) => (
           <Col xs="12" sm="6" md="4" lg="4" key={index} className="mb-3">
             <Goal title={goal.title} txt={goal.txt} num={goal.num} />

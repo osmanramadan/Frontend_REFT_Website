@@ -11,29 +11,24 @@ const HallBook = () => {
   const [selectedTab, setSelectedTab] = useState('book hour'); // State to manage the selected ta
   const nav = useNavigate();
 
-  
-  const  [_loading,GetHallCodes,data]=GetHallCodesHook()
-
+  const [_loading, GetHallCodes, data] = GetHallCodesHook();
 
   let id;
   let price;
   let userid;
-  // {id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id} 
+  // {id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id}
   try {
     id = location.state.id;
-    price=location.state.price;
-    userid=location.state.userid;
+    price = location.state.price;
+    userid = location.state.userid;
   } catch (v) {
     nav('/');
     return;
   }
-  
-  
-  useEffect(()=>{
-    GetHallCodes({'id':id})
-},[])
 
-
+  useEffect(() => {
+    GetHallCodes({ id: id });
+  }, []);
 
   const [year] = useState(new Date().getFullYear()); // Default to current year
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1); // Default to current month
@@ -52,7 +47,7 @@ const HallBook = () => {
       new Date().toLocaleString('en-eg', { timeZone: 'Africa/Cairo' }),
     );
     const todayInEgypt = new Date(today);
-    
+
     const daysInMonth = getDaysInMonth(currentMonth, year);
     const filteredDays = Array.from(
       { length: daysInMonth },
@@ -73,8 +68,6 @@ const HallBook = () => {
   //   nav(`/hall-checkout`, { state:{id:id,info:{price:price,userid:userid},date:date}});
   // }
 
-
-
   // Function to get the name of the day
   const getDayName = (date) => {
     const daysOfWeek = [
@@ -84,15 +77,14 @@ const HallBook = () => {
       'Wednesday',
       'Thursday',
       'Friday',
-      'Saturday'
+      'Saturday',
     ];
-    return daysOfWeek[date.getDay()-1];
-  }
+    return daysOfWeek[date.getDay() - 1];
+  };
 
   const isLeapYear = (year) => {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   };
-
 
   const months = {
     1: 31,
@@ -106,9 +98,8 @@ const HallBook = () => {
     9: 30,
     10: 31,
     11: 30,
-    12: 31
+    12: 31,
   };
-
 
   const renderCalendar = () => {
     const monthName = new Date(year, currentMonth - 1, 1).toLocaleDateString(
@@ -136,39 +127,58 @@ const HallBook = () => {
           </thead>
           <tbody>
             {daysInMonth.map((day) => (
-              <tr key={day-1}>
+              <tr key={day - 1}>
                 <td>
-                {`${day - 1 ? day - 1 : months[currentMonth-1]} (${
-
-        getDayName(new Date(year, currentMonth - 1, day))
-          ? getDayName(new Date(year, currentMonth - 1, day))
-          : "Saturday"
-      })`}
-
+                  {`${day - 1 ? day - 1 : months[currentMonth - 1]} (${
+                    getDayName(new Date(year, currentMonth - 1, day))
+                      ? getDayName(new Date(year, currentMonth - 1, day))
+                      : 'Saturday'
+                  })`}
                 </td>
                 {generateHours().map((hour) => (
                   <td key={hour}>
-                
                     <button
-                          data={`{"year":${year},"time":${JSON.stringify(hour)},"dayname":"${getDayName(
-                                    new Date(year, currentMonth - 1, day)
-                               )}","daynum":${day-1?currentMonth:currentMonth-1}},"monthname":"${monthName}","monthnum":${day-1?currentMonth:currentMonth-1}}`}
-                               style={{ height: "30px", 
-                               borderWidth:data.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('none'):'1px', backgroundColor:data.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('#fcd989'):'',border: data.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ?('none'):'2px double black'}}
-                                onClick={
-                                  
-                                  ()=>console.log(`${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`)
-                                  
-                                  }
-                               >
-                              {
-                                 data.some(dtValue => dtValue === `${id}${year}${day-1?currentMonth:currentMonth-1}${day-1?day-1:months[currentMonth-1]}${hour}`) ? (
-                                  "blocked"
-                                ) : (
-                                  "available"
-                                )}
+                      data={`{"year":${year},"time":${JSON.stringify(hour)},"dayname":"${getDayName(
+                        new Date(year, currentMonth - 1, day),
+                      )}","daynum":${day - 1 ? currentMonth : currentMonth - 1}},"monthname":"${monthName}","monthnum":${day - 1 ? currentMonth : currentMonth - 1}}`}
+                      style={{
+                        height: '30px',
+                        borderWidth: data.some(
+                          (dtValue) =>
+                            dtValue ===
+                            `${id}${year}${day - 1 ? currentMonth : currentMonth - 1}${day - 1 ? day - 1 : months[currentMonth - 1]}${hour}`,
+                        )
+                          ? 'none'
+                          : '1px',
+                        backgroundColor: data.some(
+                          (dtValue) =>
+                            dtValue ===
+                            `${id}${year}${day - 1 ? currentMonth : currentMonth - 1}${day - 1 ? day - 1 : months[currentMonth - 1]}${hour}`,
+                        )
+                          ? '#fcd989'
+                          : '',
+                        border: data.some(
+                          (dtValue) =>
+                            dtValue ===
+                            `${id}${year}${day - 1 ? currentMonth : currentMonth - 1}${day - 1 ? day - 1 : months[currentMonth - 1]}${hour}`,
+                        )
+                          ? 'none'
+                          : '2px double black',
+                      }}
+                      onClick={() =>
+                        console.log(
+                          `${id}${year}${day - 1 ? currentMonth : currentMonth - 1}${day - 1 ? day - 1 : months[currentMonth - 1]}${hour}`,
+                        )
+                      }
+                    >
+                      {data.some(
+                        (dtValue) =>
+                          dtValue ===
+                          `${id}${year}${day - 1 ? currentMonth : currentMonth - 1}${day - 1 ? day - 1 : months[currentMonth - 1]}${hour}`,
+                      )
+                        ? 'blocked'
+                        : 'available'}
                     </button>
-
                   </td>
                 ))}
               </tr>

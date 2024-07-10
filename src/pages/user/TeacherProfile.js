@@ -10,8 +10,6 @@
 // function TeacherProfile() {
 //   const [isuser, _isadmin, userData] = ProtectedRouteHook();
 
-  
- 
 //  return !userData?'loading':userData.role=='OWNER'||userData.role=='TEACHER'?<div>
 //  <NavBar />
 //  <div className='px-3'>
@@ -175,9 +173,7 @@
 // </div>:window.location.href = '/signin';
 //  }
 
-
 // export default TeacherProfile;
-
 
 import React from 'react';
 import NavBar from '../../compenents/global/navbar';
@@ -189,7 +185,7 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Teachertabs from '../../compenents/user/TeacherTaps';
 
 function TeacherProfile() {
-  const [isuser, _isadmin, userData,loading] = ProtectedRouteHook();
+  const [isuser, _isadmin, userData, loading] = ProtectedRouteHook();
 
   // if (!userData) {
   //   window.location.href = '/signin';
@@ -218,152 +214,158 @@ function TeacherProfile() {
               </Col>
             </Row>
 
-             {
-              isuser && loading? (<>
-             <Row className="d-flex justify-content-center text-center">
-              <Col xs="6">
-                {userData.profile_img ? (
-                  <Figure>
-                    <Figure.Image
-                      width={125}
-                      height={125}
-                      alt="Profile Image"
-                      src={`data:image/*;base64,${userData.profile_img}`}
-                      roundedCircle
+            {isuser && loading ? (
+              <>
+                <Row className="d-flex justify-content-center text-center">
+                  <Col xs="6">
+                    {userData.profile_img ? (
+                      <Figure>
+                        <Figure.Image
+                          width={125}
+                          height={125}
+                          alt="Profile Image"
+                          src={`data:image/*;base64,${userData.profile_img}`}
+                          roundedCircle
+                        />
+                      </Figure>
+                    ) : (
+                      <ImageChooser handleSelect={() => {}} />
+                    )}
+                  </Col>
+                </Row>
+                <Row className="d-flex justify-content-center text-center">
+                  <Col
+                    xs="6"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: '7px',
+                      fontSize: '16px',
+                      fontWeight: 'medium',
+                      color: 'white',
+                      height: '47px',
+                      width: '154px',
+                      backgroundColor: '#2405f2',
+                    }}
+                  >
+                    <div>{userData.role}</div>
+                  </Col>
+                </Row>
+
+                <Row className="d-flex justify-content-center text-center mt-5">
+                  <Col
+                    xs="6"
+                    sm="5"
+                    className="d-flex justify-content-center align-items-center"
+                  >
+                    <input
+                      style={{ width: '100%' }}
+                      className="inputfield-userprofile"
+                      placeholder={userData.name}
+                      readOnly
                     />
-                  </Figure>
-                ) : (
-                  <ImageChooser handleSelect={() => {}} />
-                )}
-              </Col>
-            </Row>
-            <Row className="d-flex justify-content-center text-center">
-              <Col
-                xs="6"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: '7px',
-                  fontSize: '16px',
-                  fontWeight: 'medium',
-                  color: 'white',
-                  height: '47px',
-                  width: '154px',
-                  backgroundColor: '#2405f2',
-                }}
-              >
-                <div>{userData.role}</div>
-              </Col>
-            </Row>
+                  </Col>
+                  <Col
+                    xs="1"
+                    sm="2"
+                    className="d-flex justify-content-start align-items-start py-2"
+                    style={{
+                      fontWeight: '600',
+                      fontSize: '29px',
+                      color: '#282938',
+                    }}
+                  >
+                    name
+                  </Col>
+                </Row>
 
-            <Row className="d-flex justify-content-center text-center mt-5">
-              <Col
-                xs="6"
-                sm="5"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <input
-                  style={{ width: '100%' }}
-                  className="inputfield-userprofile"
-                  placeholder={userData.name}
-                  readOnly
-                />
-              </Col>
-              <Col
-                xs="1"
-                sm="2"
-                className="d-flex justify-content-start align-items-start py-2"
-                style={{
-                  fontWeight: '600',
-                  fontSize: '29px',
-                  color: '#282938',
-                }}
-              >
-                name
-              </Col>
-            </Row>
+                <Row className="d-flex justify-content-center text-center mt-0">
+                  <Col
+                    xs="6"
+                    sm="5"
+                    className="d-flex justify-content-center align-items-center"
+                  >
+                    <input
+                      style={{ width: '100%' }}
+                      className="inputfield-userprofile"
+                      placeholder={userData.email}
+                      readOnly
+                    />
+                  </Col>
+                  <Col
+                    xs="1"
+                    sm="2"
+                    className="d-flex justify-content-start align-items-start py-2"
+                    style={{
+                      fontWeight: '600',
+                      fontSize: '29px',
+                      color: '#282938',
+                    }}
+                  >
+                    email
+                  </Col>
+                </Row>
 
-            <Row className="d-flex justify-content-center text-center mt-0">
-              <Col
-                xs="6"
-                sm="5"
-                className="d-flex justify-content-center align-items-center"
+                <Row className="d-flex justify-content-center text-center mt-0">
+                  <Col
+                    xs="6"
+                    sm="5"
+                    className="d-flex justify-content-center align-items-center"
+                  >
+                    <input
+                      className="inputfield-userprofile"
+                      placeholder={userData.phone}
+                      readOnly
+                    />
+                  </Col>
+                  <Col
+                    xs="1"
+                    sm="2"
+                    className="d-flex justify-content-start align-items-start py-2"
+                    style={{
+                      fontWeight: '600',
+                      fontSize: '29px',
+                      color: '#282938',
+                    }}
+                  >
+                    phone
+                  </Col>
+                </Row>
+                <Row className="d-flex justify-content-center text-center mt-0">
+                  <Col
+                    xs="6"
+                    sm="5"
+                    className="d-flex justify-content-center align-items-center"
+                  >
+                    <input
+                      className="inputfield-userprofile"
+                      placeholder={userData.city}
+                      readOnly
+                    />
+                  </Col>
+                  <Col
+                    xs="1"
+                    sm="2"
+                    className="d-flex justify-content-start align-items-start"
+                    style={{
+                      fontWeight: '600',
+                      fontSize: '29px',
+                      color: '#282938',
+                    }}
+                  >
+                    city
+                  </Col>
+                </Row>
+              </>
+            ) : (
+              <div
+                style={{ fontSize: '20px' }}
+                className="d-flex justify-content-center mb-2 fw-bold"
               >
-                <input
-                  style={{ width: '100%' }}
-                  className="inputfield-userprofile"
-                  placeholder={userData.email}
-                  readOnly
-                />
-              </Col>
-              <Col
-                xs="1"
-                sm="2"
-                className="d-flex justify-content-start align-items-start py-2"
-                style={{
-                  fontWeight: '600',
-                  fontSize: '29px',
-                  color: '#282938',
-                }}
-              >
-                email
-              </Col>
-            </Row>
-
-            <Row className="d-flex justify-content-center text-center mt-0">
-              <Col
-                xs="6"
-                sm="5"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <input
-                  className="inputfield-userprofile"
-                  placeholder={userData.phone}
-                  readOnly
-                />
-              </Col>
-              <Col
-                xs="1"
-                sm="2"
-                className="d-flex justify-content-start align-items-start py-2"
-                style={{
-                  fontWeight: '600',
-                  fontSize: '29px',
-                  color: '#282938',
-                }}
-              >
-                phone
-              </Col>
-            </Row>
-            <Row className="d-flex justify-content-center text-center mt-0">
-              <Col
-                xs="6"
-                sm="5"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <input
-                  className="inputfield-userprofile"
-                  placeholder={userData.city}
-                  readOnly
-                />
-              </Col>
-              <Col
-                xs="1"
-                sm="2"
-                className="d-flex justify-content-start align-items-start"
-                style={{
-                  fontWeight: '600',
-                  fontSize: '29px',
-                  color: '#282938',
-                }}
-              >
-                city
-              </Col>
-            </Row> 
-              </>):<div   style={{ fontSize: '20px' }}
-              className="d-flex justify-content-center mb-2 fw-bold">Login Again</div>
-             }
+                Login Again
+              </div>
+            )}
           </Col>
         </Row>
       </div>
