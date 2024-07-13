@@ -13,11 +13,11 @@ import { useTranslation } from 'react-i18next';
 function ContactUs() {
   const { t, i18n } = useTranslation();
   const [
-    name,
+    _name,
     email,
     phone,
     message,
-    loading,
+    _loading,
     onChangeUsername,
     onChangeEmail,
     onChangePhone,

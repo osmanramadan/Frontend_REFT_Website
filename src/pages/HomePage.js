@@ -9,7 +9,7 @@ import HomepageBannerTwo from '../compenents/homepage/HomepageBannerTwo';
 import HomepageHighlyRatedPlaces from '../compenents/homepage/HomepageHighlyRatedPlaces';
 import HomepageTestimonial from '../compenents/homepage/HomepageTestimonial';
 import HomepageFAQ from '../compenents/homepage/HomepageFAQ';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 function HomePage() {
   const { t } = useTranslation();
@@ -17,14 +17,11 @@ function HomePage() {
     <div>
       <NavBar />
       <HomepageBanner />
-
       <Container>
         <MidTitle txt={t('homepageGoals.title')} arrow={false} />
         <HomepageGoals />
         <HomepageBannerTwo />
-
         <MidTitle txt={t('highlyRatedPlaces')} arrow={true} />
-
         <HomepageHighlyRatedPlaces />
         <MidTitle txt={t('homepageTestimonial.title')} arrow={false} />
         <HomepageTestimonial />

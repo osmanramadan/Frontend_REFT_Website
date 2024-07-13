@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import ProtectedRoute from './compenents/auth/protectedRoute';
 import ProtectedRouteHook from './hooks/auth/protectedRoutedHook';
 import HomePage from './pages/HomePage';
@@ -35,15 +35,15 @@ import OwnerProfile from './pages/user/OwnerProfile';
 import TeacherProfile from './pages/user/TeacherProfile';
 import { useTranslation } from 'react-i18next';
 import SuccessPaymentStripe from './pages/payment/SuccessPaymentStripe';
-import NavBar from './compenents/global/navbar';
-import Footer from './compenents/global/footer';
+
 
 
 
 function App() {
+
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
-  const { t, i18n } = useTranslation();
-  const location = useLocation();
+  const { i18n } = useTranslation();
+
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language');
@@ -52,11 +52,8 @@ function App() {
     }
   }, [i18n]);
 
-  // const hideNavAndFooter = ['/signin', '/signup','/hall-deta'].includes(location.pathname);
-
   return (
     <div>
-      {/* {!hideNavAndFooter && <NavBar />} */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFound />} />
@@ -70,6 +67,7 @@ function App() {
         <Route path="/verify-code" element={<SendCode />} />
         <Route path="/places" element={<Halls />} />
         <Route path="/terms" element={<UserTermsAndCondition />} />
+
 
         <Route element={<ProtectedRoute auth={isUser} />}>
           <Route path="/checkout-hour" element={<HallCheckoutOneHour />} />
@@ -89,14 +87,16 @@ function App() {
           <Route path="/book-hall" element={<HallBook />} />
         </Route>
 
+
         <Route element={<ProtectedRoute auth={isAdmin} />}>
           <Route path="/admin-places" element={<AdminHalls />} />
           <Route path="/admin-booking" element={<AdminBooking />} />
           <Route path="/admin-messages" element={<AdminMessages />} />
           <Route path="/message-details" element={<MessDetails />} />
         </Route>
+
       </Routes>
-      {/* {!hideNavAndFooter && <Footer/>} */}
+      
     </div>
   );
 }

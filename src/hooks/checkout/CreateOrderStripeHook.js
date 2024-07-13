@@ -7,7 +7,7 @@ const CreateOrderStripeHook = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  const res = useSelector((state) => state.checkoutReducer.createorder);
+  const res = useSelector((state) => state.checkoutReducer.createorderstripe);
 
   const CreateOrderStripeAction = (data, amount) => {
     localStorage.setItem('bookinfo', JSON.stringify(data));

@@ -70,7 +70,7 @@ function NavBar() {
                 href="/"
                 className="link mx-md-3"
                 style={{
-                  fontFamily: i18n.language === 'en' ? 'Poppins' : 'Cairo',
+                  fontFamily: i18n.language === 'ar' && 'Cairo',
                 }}
               >
                 {t('navbar.home')}
@@ -93,7 +93,7 @@ function NavBar() {
               >
                 {t('navbar.ourPlaces')}
               </Nav.Link>
-              {data.role === 'OWNER' && (
+              {data.role === 'OWNER' || data.role === 'صاحب مكان'  ? (
                 <Nav.Link
                   href="/hall-add"
                   className="link mx-lg-3"
@@ -103,7 +103,7 @@ function NavBar() {
                 >
                   {t('navbar.addPlace')}
                 </Nav.Link>
-              )}
+              ):''}
             </Nav>
           </Col>
 
@@ -113,13 +113,15 @@ function NavBar() {
             className="d-flex justify-content-center px-xs-4 px-md-4"
             style={{ marginRight: '-40px' }}
           >
-            {isUser || isAdmin ? (
+          {
+            isUser || isAdmin ? (
               isUser || isAdmin ? (
                 <Navbardropdown isUser={isUser} />
               ) : null
             ) : !isUser || !isAdmin ? (
               <NavBarButton />
-            ) : null}
+            ) : null
+          }
           </Col>
         </Navbar.Collapse>
       </Container>

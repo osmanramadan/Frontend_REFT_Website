@@ -9,7 +9,7 @@ import {
 } from '../type';
 
 import { useInsertData } from '../../crud/useInsertData';
-//   import { useInsUpdateData } from '../../crud/useUpdateData';
+
 import {
   _useGetDataToken,
   _useGetData,

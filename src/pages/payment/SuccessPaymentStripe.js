@@ -6,9 +6,10 @@ const SuccessPaymentStripe = () => {
   
   const [loading, CheckOrderCompleteStripe] = CheckOrderCompleteStripeHook();
 
+
   useEffect(() => {
     CheckOrderCompleteStripe();
-  }, []);
+  },[]);
 
  
 
@@ -28,14 +29,7 @@ const SuccessPaymentStripe = () => {
             className="d-flex justify-content-center align-items-center"
           >
             Payment Processing
-            {/* <a 
-                  className='mx-5' 
-                  style={{ textDecoration: 'none' }}  
-                  href='#' 
-                  onClick={handleBackClick}
-                >
-                  back
-                </a> */}
+
           </Col>
         )}
       </Row>

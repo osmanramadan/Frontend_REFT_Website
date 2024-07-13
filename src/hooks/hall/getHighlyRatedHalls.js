@@ -1,56 +1,10 @@
-// import { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getHalls} from '../../redux/actions/hallAction';
-
-// const GetHighlyRatedHalls= () => {
-
-//   const dispatch = useDispatch();
-//   const [loading, setLoading] = useState(true);
-//   const [data, setData] = useState([]);
-//   const [highRated,setHighRated]=useEffect([])
-
-//   const res = useSelector((state) => state.hallReducer.getHalls);
-
-//   console.log(res,'************')
-
-//   useEffect(() => {
-//     setLoading(true);
-//     dispatch(getHalls());
-//     setLoading(false);
-//   }, []);
-
-//   useEffect(()=>{
-//     if (data.length > 0) {
-//         const filteredHalls = data.filter(hall => hall.rate = '5' && hall.city === 'Cairo');
-//         setHighRated(filteredHalls);
-//     }
-//     // setHighRated()
-//   },[data])
-// //   console.log(filteredHalls,data,'====================++++++++++++++++++++++++++s+')
-
-//   useEffect(() => {
-//     if (loading === false) {
-//       setLoading(true);
-//       console.log(res)
-//       if (res.status) {
-//         if (res.status === 'success') {
-//           setData(res.data);
-
-//         }
-//       }
-//     }
-//   }, [res.data]);
-
-//   return [data,loading];
-// };
-
-// export default GetHighlyRatedHalls;
-
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHalls } from '../../redux/actions/hallAction';
 
+
 const GetHighlyRatedHalls = () => {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -58,7 +12,7 @@ const GetHighlyRatedHalls = () => {
   const [highlyRatedPlaces, setHighlyRatedPlaces] = useState([]);
 
   const res = useSelector((state) => state.hallReducer.getHalls);
-  // let user;
+  
 
   useEffect(() => {
     setLoading(true);
@@ -67,10 +21,14 @@ const GetHighlyRatedHalls = () => {
   }, []);
 
   useEffect(() => {
+
     if (localStorage.getItem('user') !== null) {
+
       let user = JSON.parse(localStorage.getItem('user'));
       setUser(user);
+      
     }
+
   }, []);
 
   useEffect(() => {

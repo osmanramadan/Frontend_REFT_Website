@@ -10,6 +10,7 @@ import {
   ADD_HALL_RATE,
   ALLOWED_USER_RATE,
 } from '../type';
+
 import { useInsertData } from '../../crud/useInsertData';
 import { useInsUpdateData } from '../../crud/useUpdateData';
 import { useGetDataToken, useGetData } from '../../crud/useGetData';
@@ -66,10 +67,9 @@ export const addNewHall = (data) => async (dispatch) => {
   }
 };
 
-export const getHalls = (data) => async (dispatch) => {
+export const getHalls = () => async (dispatch) => {
   try {
-    const response = await useGetData(`/api/v1/halls`);
-    console.log(response, '/api/v1/halls');
+    const response = await useGetData(`/api/v1/halls`)
     dispatch({
       type: GET_ALL_HALLS,
       payload: response,

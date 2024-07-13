@@ -8,6 +8,7 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import StripeButton from '../../compenents/hall/StripeButton';
 
 const HallCheckoutDaysHours = () => {
+  
   const location = useLocation();
   const nav = useNavigate();
 

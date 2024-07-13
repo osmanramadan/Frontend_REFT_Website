@@ -2,13 +2,12 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoute = ({ auth, children }) => {
+
   if (auth === undefined) {
-    console.log('Auth is undefined, loading...');
-    return null; // Or a loading spinner
+    return null; 
   }
 
   if (!auth) {
-    console.log('Auth failed, redirecting to sign-in');
     return <Navigate to="/signin" replace={true} />;
   }
 

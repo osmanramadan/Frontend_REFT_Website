@@ -10,7 +10,7 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function UserPlaces() {
-  const [isuser, _isadmin, _userData] = ProtectedRouteHook();
+  // const [isuser, _isadmin, _userData] = ProtectedRouteHook();
   const [halls, loading] = GetUserHallsHook();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
@@ -95,7 +95,7 @@ function UserPlaces() {
                 ) : (
                   ''
                 )}
-          {isuser ? (
+      
             <Row className="mt-5 mx-3 px-lg-5 px-md-5">
               {currentItems.map((info, index) => (
                 <Col xs="12" sm="6" md="12" lg="4" key={index}>
@@ -108,15 +108,7 @@ function UserPlaces() {
                 handlePageClick={handlePageClick}
               />
             </Row>
-          ) : (
-            ''
-            // <div
-            //   style={{ fontSize: '20px' }}
-            //   className="d-flex justify-content-center mb-2 fw-bold"
-            // >
-            //   Login Again To See The Places
-            // </div>
-          )}
+      
         </Col>
       </Row>
 

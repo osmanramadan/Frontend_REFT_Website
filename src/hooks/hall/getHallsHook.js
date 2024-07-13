@@ -5,7 +5,7 @@ import {
   searchHalls,
   searchHallsCity,
 } from '../../redux/actions/hallAction';
-import axios from 'axios';
+
 
 
 const GetHallsHook = () => {
@@ -64,7 +64,7 @@ const GetHallsHook = () => {
     setData(search_res);
   }, [search_res]);
 
-  console.log(res, '(*********)');
+  
   try {
     useEffect(() => {
       if (loading === false) {
@@ -73,17 +73,9 @@ const GetHallsHook = () => {
         if (res.status) {
           if (res.status === 'success') {
             setData(res.data);
-            // location.replace(res.data)
           }
         }
-        // if (res.data.status === 'forbidden') {
-
-        //   localStorage.removeItem('token');
-        //   localStorage.removeItem('user');
-        //   localStorage.getItem('id')?localStorage.removeItem('id'):null;
-        //   window.location.href ='/signin'
-        //   return;
-        // }
+  
       }
     }, [res.data, res.status]);
   } catch (e) {

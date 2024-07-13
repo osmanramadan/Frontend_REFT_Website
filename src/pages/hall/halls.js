@@ -22,7 +22,7 @@ function Halls() {
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, _setItemsPerPage] = useState(3);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -137,24 +137,13 @@ function Halls() {
       >
         <Col xs="12" sm="4" md="4" lg="3">
           {i18n.language === 'en' ? (
-            // <input
-            //   value={search}
-            //   className="hall-search-input"
-            //   placeholder={t('halls.searchPlaceholder')}
-            //   onChange={search_in_halls}
-            // />
+
             <SearchHallDropdownCities
               search={search}
               onChange={search_in_halls}
               addhall={true}
             />
           ) : (
-            // <input
-            //   value={search}
-            //   className="hall-search-input-ar"
-            //   placeholder={t('halls.searchPlaceholder')}
-            //   onChange={search_in_halls}
-            // />
             <SearchHallDropdownCities
               search={search}
               onChange={search_in_halls}
@@ -238,7 +227,6 @@ function Halls() {
             <span>{t('halls.noHalls')}</span>
           </div>
           <div className="spinner-border text-custom" role="status">
-            {/* <span className="visually-hidden">Loading...</span> */}
           </div>
         </div>
       )}

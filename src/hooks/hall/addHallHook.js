@@ -88,7 +88,6 @@ const AddHallHook = () => {
   };
 
   const onChangeImages = (value) => {
-    console.log(value);
     setImages(value);
   };
 
@@ -101,7 +100,6 @@ const AddHallHook = () => {
       const fileSizeInKB = fileSizeInBytes / 1024;
       const fileSizeInMB = fileSizeInKB / 1024;
 
-      console.log(`File Size: ${fileSizeInMB.toFixed(2)} MB`);
       setPdfSize(fileSizeInMB);
       setPdfName(selectedPdf.name);
     } else {
@@ -119,7 +117,6 @@ const AddHallHook = () => {
       const fileSizeInKB = fileSizeInBytes / 1024;
       const fileSizeInMB = fileSizeInKB / 1024;
 
-      console.log(`File Video Size: ${fileSizeInMB.toFixed(2)} MB`);
       setVideoSize(fileSizeInMB);
       setVideoName(selectedVideo.name);
     } else {

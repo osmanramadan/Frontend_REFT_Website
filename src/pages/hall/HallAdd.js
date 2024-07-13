@@ -17,7 +17,7 @@ function HallAdd() {
     onSubmit,
     images,
     onChangeImages,
-    placeName,
+    _placeName,
     onChangePlaceName,
     placeCapacity,
     onChangePlaceCapacity,
@@ -31,10 +31,10 @@ function HallAdd() {
     onChangePriceHour,
     placeDetails,
     onChangePlaceDetails,
-    pdf,
+    _pdf,
     onChangePdf,
     pdfName,
-    video,
+    _video,
     onChangeVideo,
     videoName,
     loading,
@@ -45,8 +45,10 @@ function HallAdd() {
       <NavBar />
       <Banner txt={'Home > Add Place'} />
       <MidTitle txt={'Add Hall'} />
+
       {loading === false ? (
         <div className="d-flex justify-content-center mb-2">
+
           <Spinner
             style={{ color: '#fcd980', marginLeft: '5px' }}
             as="span"
@@ -83,7 +85,6 @@ function HallAdd() {
             <input
               className="inputfield-hall"
               onChange={onChangePlaceName}
-              // value={placeName}
               placeholder="Place Name"
               style={{ width: '100%' }}
             />

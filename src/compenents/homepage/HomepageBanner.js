@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next'; // Importing useTranslation hook
+import { useTranslation } from 'react-i18next';
 import banner from '../../assets/images/banner.png';
 import BannerButton from './widget/BannerButton';
 
@@ -38,12 +38,10 @@ function HomepageBanner() {
             {i18n.language === 'ar' ? (
               <div className="d-flex justify-content-center">
                 <BannerButton txt={t('homepageBanner.buttonText')} />{' '}
-                {/* Translated button text */}
               </div>
             ) : (
               <div className="d-flex justify-content-xs-center">
                 <BannerButton txt={t('homepageBanner.buttonText')} />{' '}
-                {/* Translated button text */}
               </div>
             )}
           </Col>
@@ -58,7 +56,7 @@ function HomepageBanner() {
                   marginBottom: '40px',
                   boxShadow: '0 4px 8px rgba(0, 1, 3, 0.1)',
                 }}
-                className="d-none d-md-block" // Hide on small screens
+                className="d-none d-md-block"
                 alt="Banner"
               />
             </div>

@@ -24,14 +24,9 @@ import Hallrating from '../../compenents/global/widgets/hallrating';
 
 function HallDetails() {
 
-  const [isuser, isadmin, _data,loading] = ProtectedRouteHook();
+  const [isuser, isadmin,_data,loading] = ProtectedRouteHook();
 
-  // useState(()=>{
-  //   if(!isuser){
-  //     window.location.href = '/signin'
-  //     return;
-  //    }
-  // },[])
+
 
   const location = useLocation();
   const nav = useNavigate();
@@ -48,7 +43,7 @@ function HallDetails() {
 
 
   const [onSubmit, status, onChangeStatus, _load] = ChangeHallStatusHook();
-  const { _t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const [selectedTab, setSelectedTab] = useState('book hour'); 
   const handleShow  = () => setShow(true);
   const [show, setShow]  = useState(false);
@@ -415,7 +410,7 @@ const handleCheckoutDays = (e) => {
                        
                        <select style={{width: "100%" }}  onChange={onChangeHour}  key={hour} value={hour} className='mt-3'>
                        {generateHours().map((hou) => (
-                         <option style={{width:"50px",height:"50px"}}>{hou}</option>
+                         <option  key={hou} style={{width:"50px",height:"50px"}}>{hou}</option>
                         ))}
                          </select>
                       
@@ -488,7 +483,7 @@ const handleCheckoutDays = (e) => {
                       <Col className='text-start'>
                           <select onChange={onChangeHoursFromMix}  key={hourfrommix} value={hourfrommix} style={{ width: "100%" }}>
                              {generateHours().map((hour) => (
-                          <option>{hour}</option>
+                          <option key={hour}>{hour}</option>
                           ))}
                         </select></Col>
                       <Col>: From</Col>
@@ -500,7 +495,7 @@ const handleCheckoutDays = (e) => {
                           
                       <Col className='text-start'> <select  onChange={onChangeHoursToMix}  key={hourtomix} value={hourtomix} style={{ width: "100%" }}>
                          {generateHours().map((hour) => (
-                      <option>{hour}</option>
+                      <option key={hour}>{hour}</option>
                     ))}
                   </select></Col>
                          <Col >: To</Col>
@@ -977,7 +972,6 @@ const handleCheckoutDays = (e) => {
       <Row className="d-flex justify-content-center mb-3 mt-3">
         <Col
           onClick={handleClick}
-          // onClick={handleShow}
           xs="12" sm='6'
           className="mt-1  mx-1 d-flex justify-content-center align-items-center"
           style={{
@@ -1000,7 +994,6 @@ const handleCheckoutDays = (e) => {
     {isuser ? (
       <Row className="d-flex justify-content-center mb-3 mt-3">
         <Col
-          // onClick={handleClick}
           onClick={handleShow}
           xs="12" sm='6'
           className="mt-1  mx-1 d-flex justify-content-center align-items-center"

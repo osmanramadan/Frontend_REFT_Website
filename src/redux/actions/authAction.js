@@ -12,6 +12,8 @@ import { useInsertData } from '../../crud/useInsertData';
 import { useGetDataToken, useGetData } from '../../crud/useGetData';
 import { useInsUpdateData } from '../../crud/useUpdateData';
 
+
+
 //create new user
 export const createNewUser = (data) => async (dispatch) => {
   try {
@@ -30,6 +32,8 @@ export const createNewUser = (data) => async (dispatch) => {
   }
 };
 
+
+
 //login  user
 export const loginUser = (data) => async (dispatch) => {
   try {
@@ -45,6 +49,7 @@ export const loginUser = (data) => async (dispatch) => {
     });
   }
 };
+
 
 // forget  passwrod
 export const forgetPassword = (email) => async (dispatch) => {

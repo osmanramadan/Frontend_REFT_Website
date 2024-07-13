@@ -3,6 +3,7 @@ import paypal from '../../assets/images/paypal.jpg';
 import CreateOrderHook from '../../hooks/checkout/CreateOrderHook';
 
 const PayPalButton = ({ amount, data }) => {
+  
   const [load, CreateOrderAction] = CreateOrderHook();
 
   const CreateOrder = () => {

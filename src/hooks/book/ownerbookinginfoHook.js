@@ -23,7 +23,7 @@ const OwnerBookingInfoHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    dispatch(ownerbookinginfo(user.id));
+    dispatch(ownerbookinginfo(user.id?user.id:''));
     setLoading(false);
   }, []);
 

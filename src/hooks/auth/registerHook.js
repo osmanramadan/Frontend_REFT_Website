@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser } from '../../redux/actions/authAction';
 import { useTranslation } from 'react-i18next';
-// import { useNavigate } from 'react-router-dom';
+
 
 const RegisterHook = () => {
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
+  const { t} = useTranslation();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState(t('signup.city'));
   const [role, setRole] = useState(t('role.placeholder'));
-  // const [roleserver,setRoleServer]=useState()
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(true);
@@ -58,6 +57,7 @@ const RegisterHook = () => {
     }
 
     // Validate if phone is an Egyptian number
+
     const egyptianPhoneRegex = /^(01)[0-9]{9}$/;
     if (!egyptianPhoneRegex.test(phone)) {
       return 'Invalid egyptian number';
@@ -80,7 +80,7 @@ const RegisterHook = () => {
       return 'Enter City !';
     }
 
-    return ''; // No validation error
+    return '';
   };
 
   const validationQuery = () => {
@@ -98,6 +98,7 @@ const RegisterHook = () => {
   };
 
   const OnSubmit = async () => {
+    
     const validationError = validationValues();
 
     if (validationError) {

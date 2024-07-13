@@ -1,54 +1,12 @@
-// import { useState, useEffect } from 'react';
-// // import CryptoJS from 'crypto-js';
-
-// const ProtectedRouteHook = () => {
-
-//   const [userData, setUserData] = useState([]);
-//   const [error, setError] = useState(true);
-
-//   useEffect(() => {
-
-//     const storedUserData = localStorage.getItem('user');
-//     // var userData={}
-//     // var userData = CryptoJS.AES.decrypt(storedUserData,process.env.REACT_APP_ENCRYPT_KEY).toString(CryptoJS.enc.Utf8);
-
-//     if (storedUserData) {
-
-//       try {
-
-//         const parsedUserData = JSON.parse(storedUserData);
-
-//         if (parsedUserData) {
-
-//           setUserData(parsedUserData);
-//           setError(false);
-
-//         } else {
-//           setError(true);
-//         }
-
-//       } catch (error) {
-//         setError(true);
-//       }
-
-//     }
-//   }, []);
-
-//   return [
-
-//     error?undefined:userData.role   === 'OWNER' || userData.role === 'TEACHER', //  isUser
-//     error ?undefined: userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
-//     userData,
-//   ];
-// };
-
-// export default ProtectedRouteHook;
-
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { verifyUser } from '../../redux/actions/authAction';
 
+
+
 const ProtectedRouteHook = () => {
+
+  
   const dispatch = useDispatch();
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState(true);
@@ -89,9 +47,9 @@ const ProtectedRouteHook = () => {
   return [
     error
       ? undefined
-      : userData.role === 'OWNER' ||
-        userData.role === 'TEACHER' ||
-        userData.role === 'مدرس' ||
+      : userData.role === 'OWNER' ||   //  isUser
+        userData.role === 'TEACHER' || //  isUser
+        userData.role === 'مدرس' ||    //  isUser
         userData.role === 'صاحب مكان', //  isUser
     error ? undefined : userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
     userData,

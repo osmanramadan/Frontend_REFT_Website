@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Row, Spinner } from 'react-bootstrap';
-import UserTabs from '../../compenents/user/TeacherTaps';
-import MidTitle from '../../compenents/global/widgets/midtitle';
+import { Col, Row } from 'react-bootstrap';
 import PaginationComponent from '../../compenents/global/pagination';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import TeacherBookingInfoHook from '../../hooks/book/teacherbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
+
+
 function OwnerBooking() {
+  
   const [isuser, _isadmin, _userData] = ProtectedRouteHook();
   const [data, loading, searchforbookingplaceowner] = TeacherBookingInfoHook();
 
@@ -69,7 +70,7 @@ function OwnerBooking() {
           {isuser ? (
             <>
               <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-                {loading === true && data.length == 0 && (
+                {/* {loading === true && data.length == 0 && (
                   <div
                     style={{ fontSize: '30px' }}
                     className="d-flex justify-content-center mb-2 fw-bold"
@@ -108,7 +109,7 @@ function OwnerBooking() {
                   </div>
                 ) : (
                   ''
-                )}
+                )} */}
                 {currentItems.map((info, index) => (
                   <BookingInfo data={info} />
                 ))}

@@ -11,10 +11,7 @@ const useGetDataToken = async (url) => {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   };
-  console.log(
-    localStorage.getItem('token'),
-    '-----------------------------------------------------',
-  );
+ 
 
   const res = await baseUrl.get(url, config);
   return res.data;

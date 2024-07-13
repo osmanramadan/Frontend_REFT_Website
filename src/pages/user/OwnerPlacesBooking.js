@@ -71,7 +71,7 @@ function OwnerPlacesBooking() {
 
           {isuser ? (
             <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-              {loading === true && data.length == 0 && (
+              {/* {loading === true && data.length == 0 && (
                 <div
                   style={{ fontSize: '30px' }}
                   className="d-flex justify-content-center mb-2 fw-bold"
@@ -110,7 +110,7 @@ function OwnerPlacesBooking() {
                 </div>
               ) : (
                 ''
-              )}
+              )} */}
               {currentItems.map((info, index) => (
                 <BookingInfo data={info} />
               ))}

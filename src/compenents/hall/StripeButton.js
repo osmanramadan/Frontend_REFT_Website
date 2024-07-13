@@ -3,6 +3,7 @@ import stripebanner from '../../assets/images/stripebanner.png';
 import CreateOrderStripeHook from '../../hooks/checkout/CreateOrderStripeHook';
 
 const StripeButton = ({ amount, data }) => {
+  
   const [load, CreateOrderStripeAction] = CreateOrderStripeHook();
 
   const CreateOrder = () => {

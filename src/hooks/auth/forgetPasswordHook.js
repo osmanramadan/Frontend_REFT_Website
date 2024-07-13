@@ -4,6 +4,7 @@ import { forgetPassword } from '../../redux/actions/authAction';
 import { useNavigate } from 'react-router-dom';
 
 const ForgetPasswordHook = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -31,8 +32,10 @@ const ForgetPasswordHook = () => {
   const res = useSelector((state) => state.authReducer.forgetPassword);
   useEffect(() => {
     if (loading === false) {
+      
       if (res.data) {
         if (res.data.status === 'success') {
+
           localStorage.setItem('email', email);
 
           setTimeout(() => {
