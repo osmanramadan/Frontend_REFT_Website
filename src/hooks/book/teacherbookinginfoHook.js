@@ -33,7 +33,9 @@ const TeacherBookingInfoHook = () => {
 
 
   useEffect(() => {
+
     if (loading === false) {
+      
       setLoading(true);
 
       if (res.status) {

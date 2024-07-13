@@ -6,6 +6,7 @@ import {
 } from '../../../redux/actions/hallAction';
 
 const GetAdminHallsHook = () => {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -15,9 +16,9 @@ const GetAdminHallsHook = () => {
   const search_res = useSelector((state) => state.hallReducer.searchHalls);
 
   const searchHall = () => {
-    // setLoading(true);
+    setLoading(true);
     dispatch(searchAdminHalls(search));
-    // setLoading(false);
+    setLoading(false);
   };
 
   useEffect(() => {

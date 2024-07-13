@@ -3,21 +3,21 @@ import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import Banner from '../../compenents/global/widgets/banner';
-import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 import AdminBookingInfoHook from '../../hooks/book/adminbookinginfoHook';
 import { useTranslation } from 'react-i18next';
-import Admintabs from '../../compenents/user/TeacherTaps';
 import PaginationComponent from '../../compenents/global/pagination';
 import BookingInfo from '../../compenents/admin/BookingInfo';
 import AdminTabs from '../../compenents/admin/AdminTaps';
 
 function AdminBooking() {
+  
   const [
     bookinginfo,
     loading,
     searchforbookingplaceowner,
     searchforbookingteacher,
   ] = AdminBookingInfoHook();
+
   const { t } = useTranslation();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);

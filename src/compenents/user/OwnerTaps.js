@@ -18,11 +18,11 @@ function Ownertabs({ admin }) {
       <Link to="/user-places" className="link mt-3">
         <div className="user-tab-item border-bottom">My Places</div>
       </Link>
-      <Link to="/owner-places-booking" className="link mt-3">
+      <Link to="/owner-booking" className="link mt-3">
         <div className="user-tab-item border-bottom">My Booking</div>
       </Link>
 
-      <Link to="/owner-booking" className="link mt-2">
+      <Link to="/owner-places-booking" className="link mt-2">
         <div className="user-tab-item border-bottom">Booking OF My Places</div>
       </Link>
     </div>

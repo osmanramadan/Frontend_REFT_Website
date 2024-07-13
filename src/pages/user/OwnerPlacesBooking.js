@@ -2,16 +2,13 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import UserTabs from '../../compenents/user/TeacherTaps';
-import MidTitle from '../../compenents/global/widgets/midtitle';
 import PaginationComponent from '../../compenents/global/pagination';
-import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import OwnerBookingInfoHook from '../../hooks/book/ownerbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerPlacesBooking() {
-  const [isuser, _isadmin, _userData] = ProtectedRouteHook();
+
   const [data, loading, searchforbookingteacher] = OwnerBookingInfoHook();
 
   const [searchTermTeacher, setSearchTermTeacher] = useState('');
@@ -69,9 +66,9 @@ function OwnerPlacesBooking() {
             />
           </Row>
 
-          {isuser ? (
+          
             <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-              {/* {loading === true && data.length == 0 && (
+              {loading === true && data.length == 0 && (
                 <div
                   style={{ fontSize: '30px' }}
                   className="d-flex justify-content-center mb-2 fw-bold"
@@ -110,9 +107,9 @@ function OwnerPlacesBooking() {
                 </div>
               ) : (
                 ''
-              )} */}
+              )}
               {currentItems.map((info, index) => (
-                <BookingInfo data={info} />
+                <BookingInfo key={index} data={info} />
               ))}
 
               <PaginationComponent
@@ -120,15 +117,7 @@ function OwnerPlacesBooking() {
                 handlePageClick={handlePageClick}
               />
             </Row>
-          ) : (
-            ''
-            // <div
-            //   style={{ fontSize: '20px' }}
-            //   className="d-flex justify-content-center mb-2 fw-bold"
-            // >
-            //   Login Again To See The Booking
-            // </div>
-          )}
+        
         </Col>
       </Row>
 

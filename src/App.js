@@ -78,8 +78,8 @@ function App() {
           <Route path="/owner-profile" element={<OwnerProfile />} />
           <Route path="/teacher-profile" element={<TeacherProfile />} />
           <Route path="/user-booking" element={<UserBooking />} />
-          <Route path="/owner-booking" element={<OwnerPlacesBooking />} />
-          <Route path="/owner-places-booking" element={<OwnerBooking />} />
+          <Route path="/owner-places-booking" element={<OwnerPlacesBooking />} />
+          <Route path="/owner-booking" element={<OwnerBooking />} />
           <Route path="/user-places" element={<UserPlaces />} />
           <Route path="/processing-payment" element={<SuccessPayment />} />
           <Route path="/processing-stripe-payment" element={<SuccessPaymentStripe />} />
@@ -89,9 +89,9 @@ function App() {
 
 
         <Route element={<ProtectedRoute auth={isAdmin} />}>
-          <Route path="/admin-places" element={<AdminHalls />} />
-          <Route path="/admin-booking" element={<AdminBooking />} />
-          <Route path="/admin-messages" element={<AdminMessages />} />
+          <Route path="/admin-places"    element={<AdminHalls />} />
+          <Route path="/admin-booking"   element={<AdminBooking />} />
+          <Route path="/admin-messages"  element={<AdminMessages />} />
           <Route path="/message-details" element={<MessDetails />} />
         </Route>
 

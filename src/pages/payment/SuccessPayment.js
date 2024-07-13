@@ -10,10 +10,7 @@ const SuccessPayment = () => {
     CheckOrderComplete();
   }, []);
 
-  // const handleBackClick = (e) => {
-  //   e.preventDefault();
-  //   window.history.go(-3);
-  // };
+
 
   return (
     <Container>
@@ -31,14 +28,7 @@ const SuccessPayment = () => {
             className="d-flex justify-content-center align-items-center"
           >
             Payment Processing
-            {/* <a 
-                  className='mx-5' 
-                  style={{ textDecoration: 'none' }}  
-                  href='#' 
-                  onClick={handleBackClick}
-                >
-                  back
-                </a> */}
+
           </Col>
         )}
       </Row>

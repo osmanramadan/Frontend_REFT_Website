@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import PaginationComponent from '../../compenents/global/pagination';
-import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import TeacherBookingInfoHook from '../../hooks/book/teacherbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
 import Ownertabs from '../../compenents/user/OwnerTaps';
@@ -12,7 +11,7 @@ import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerBooking() {
   
-  const [isuser, _isadmin, _userData] = ProtectedRouteHook();
+  
   const [data, loading, searchforbookingplaceowner] = TeacherBookingInfoHook();
 
   const [searchTermPlaceOwner, setSearchTermPlacwOwner] = useState('');
@@ -67,10 +66,10 @@ function OwnerBooking() {
               onChange={handleSearchPlaceOwnerChange}
             />
           </Row>
-          {isuser ? (
+ 
             <>
               <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-                {/* {loading === true && data.length == 0 && (
+                {loading === true && data.length == 0 && (
                   <div
                     style={{ fontSize: '30px' }}
                     className="d-flex justify-content-center mb-2 fw-bold"
@@ -109,9 +108,10 @@ function OwnerBooking() {
                   </div>
                 ) : (
                   ''
-                )} */}
+                )}
+
                 {currentItems.map((info, index) => (
-                  <BookingInfo data={info} />
+                  <BookingInfo key={index} data={info} />
                 ))}
 
                 <PaginationComponent
@@ -120,15 +120,7 @@ function OwnerBooking() {
                 />
               </Row>
             </>
-          ) : (
-            ''
-            // <div
-            //   style={{ fontSize: '20px' }}
-            //   className="d-flex justify-content-center mb-2 fw-bold"
-            // >
-            //   Login Again To See The Booking
-            // </div>
-          )}
+          
         </Col>
       </Row>
 

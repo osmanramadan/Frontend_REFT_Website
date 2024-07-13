@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ownerbookinginfo } from '../../redux/actions/bookAction';
+import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
+
+
 
 const OwnerBookingInfoHook = () => {
-  try {
-    if (localStorage.getItem('user') !== null) {
-      var user = JSON.parse(localStorage.getItem('user'));
-    } else {
-      window.location.href = '/signin';
-      return;
-    }
-  } catch (e) {
-    window.location.href = '/signin';
-    return;
-  }
 
+  const [_isuser, _isadmin, userData] = ProtectedRouteHook();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -23,22 +16,14 @@ const OwnerBookingInfoHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    dispatch(ownerbookinginfo(user.id?user.id:''));
+    userData.id?dispatch(ownerbookinginfo(userData.id)):null;
     setLoading(false);
   }, []);
 
-  //   const searchforbookingplaceowner = (search) => {
-  //     // Check if res and res.data are defined
-  //     if (res && res.data) {
-  //       const filteredUsers = res.data.filter((v) =>
-  //         v.placeownerbyid.email.toLowerCase().includes(search.toLowerCase())
-  //       );
-  //       setData(filteredUsers);
-  //     }
-  //   };
+
 
   const searchforbookingteacher = (search) => {
-    // Check if res and res.data are defined
+    
     if (res && res.data) {
       const filteredUsers = res.data.filter((v) =>
         v.userbyid.email.toLowerCase().includes(search.toLowerCase()),
@@ -64,7 +49,6 @@ const OwnerBookingInfoHook = () => {
   }, [res.data]);
 
   return [data, loading, searchforbookingteacher];
-  //   return [data,loading,searchforbookingplaceowner,searchforbookingteacher];
 };
 
 export default OwnerBookingInfoHook;

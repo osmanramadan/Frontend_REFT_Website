@@ -8,7 +8,7 @@ import GetHallCodesHook from '../../hooks/checkout/GetHallCodeHook';
 
 const HallBook = () => {
   const location = useLocation();
-  const [selectedTab, setSelectedTab] = useState('book hour'); // State to manage the selected ta
+  const [_selectedTab, setSelectedTab] = useState('book hour'); // State to manage the selected ta
   const nav = useNavigate();
 
   const [_loading, GetHallCodes, data] = GetHallCodesHook();
@@ -16,7 +16,8 @@ const HallBook = () => {
   let id;
   let price;
   let userid;
-  // {id:hallData.id,price:hallData.price_hour,userid:hallData.userData.id}
+  
+
   try {
     id = location.state.id;
     price = location.state.price;
@@ -37,9 +38,7 @@ const HallBook = () => {
   // Function to get the number of days in a month
   const getDaysInMonth = (month, year) => new Date(year, month, 0).getDate();
 
-  const handleChangeTab = (tabKey) => {
-    setSelectedTab(tabKey);
-  };
+
 
   // Function to generate an array of days for the current month and year
   const generateMonthDays = () => {
@@ -107,7 +106,7 @@ const HallBook = () => {
       { month: 'long' },
     );
     const daysInMonth = generateMonthDays();
-    const firstDayOfMonth = new Date(year, currentMonth - 1, 1);
+    // const firstDayOfMonth = new Date(year, currentMonth - 1, 1);
     // const startingDay = firstDayOfMonth.getDay();
 
     return (

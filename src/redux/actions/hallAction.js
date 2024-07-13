@@ -100,7 +100,7 @@ export const getHallsCities = (data) => async (dispatch) => {
   }
 };
 
-export const getAdminHalls = (data) => async (dispatch) => {
+export const getAdminHalls = () => async (dispatch) => {
   try {
     const response = await useGetDataToken(`/api/v1/halls/getadminhalls`);
 
