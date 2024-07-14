@@ -8,17 +8,14 @@ import logo from '../../assets/images/logo.png';
 import { useTranslation } from 'react-i18next';
 
 function NavBar() {
-
   const { t, i18n } = useTranslation();
   const [isUser, isAdmin, data, _loading] = ProtectedRouteHook();
   const [expanded, setExpanded] = useState(false);
 
   const toggleLanguage = () => {
-
     const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
     i18n.changeLanguage(newLanguage);
     localStorage.setItem('language', newLanguage);
-    
   };
 
   useEffect(() => {
@@ -93,7 +90,7 @@ function NavBar() {
               >
                 {t('navbar.ourPlaces')}
               </Nav.Link>
-              {data.role === 'OWNER' || data.role === 'صاحب مكان'  ? (
+              {data.role === 'OWNER' || data.role === 'صاحب مكان' ? (
                 <Nav.Link
                   href="/hall-add"
                   className="link mx-lg-3"
@@ -103,7 +100,9 @@ function NavBar() {
                 >
                   {t('navbar.addPlace')}
                 </Nav.Link>
-              ):''}
+              ) : (
+                ''
+              )}
             </Nav>
           </Col>
 
@@ -113,15 +112,13 @@ function NavBar() {
             className="d-flex justify-content-center px-xs-4 px-md-4"
             style={{ marginRight: '-40px' }}
           >
-          {
-            isUser || isAdmin ? (
+            {isUser || isAdmin ? (
               isUser || isAdmin ? (
                 <Navbardropdown isUser={isUser} />
               ) : null
             ) : !isUser || !isAdmin ? (
               <NavBarButton />
-            ) : null
-          }
+            ) : null}
           </Col>
         </Navbar.Collapse>
       </Container>

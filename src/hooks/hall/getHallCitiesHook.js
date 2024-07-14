@@ -9,7 +9,6 @@ const GetHallsCitiesHook = () => {
 
   const res = useSelector((state) => state.hallReducer.getHallsCities);
 
-
   useEffect(() => {
     setLoading(true);
     dispatch(getHallsCities());

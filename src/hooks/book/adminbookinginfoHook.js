@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { adminbookinginfo } from '../../redux/actions/bookAction';
 
 const AdminBookingInfoHook = () => {
-  
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);

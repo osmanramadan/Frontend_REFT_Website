@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { teacherbookinginfo } from '../../redux/actions/bookAction';
 import ProtectedRouteHook from '../auth/protectedRoutedHook';
 
-
 const TeacherBookingInfoHook = () => {
-  
-  const [_isuser, _isadmin, userData] = ProtectedRouteHook()
-
+  const [_isuser, _isadmin, userData] = ProtectedRouteHook();
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -17,7 +14,7 @@ const TeacherBookingInfoHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    userData.id?dispatch(teacherbookinginfo(userData.id)):'';
+    userData.id ? dispatch(teacherbookinginfo(userData.id)) : '';
     setLoading(false);
   }, [userData]);
 
@@ -31,11 +28,8 @@ const TeacherBookingInfoHook = () => {
     }
   };
 
-
   useEffect(() => {
-
     if (loading === false) {
-      
       setLoading(true);
 
       if (res.status) {

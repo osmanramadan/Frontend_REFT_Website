@@ -3,16 +3,10 @@ import { Col, Row } from 'react-bootstrap';
 import GetHighlyRatedHalls from '../../hooks/hall/getHighlyRatedHalls';
 import Place from '../global/widgets/place';
 
-
-
 function HomepageHighlyRatedPlaces() {
-
   const [data, _loading] = GetHighlyRatedHalls();
 
-
-
   return (
-
     <Row
       className="d-flex justify-content-center align-items-spacebetween mb-3"
       style={{ marginLeft: '70px' }}
@@ -31,7 +25,7 @@ function HomepageHighlyRatedPlaces() {
           </Col>
         ) : (
           ''
-        )
+        ),
       )}
     </Row>
   );

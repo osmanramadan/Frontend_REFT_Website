@@ -6,7 +6,6 @@ import AcessButton from '../../compenents/auth/AccessButton';
 import ForgetPasswordHook from '../../hooks/auth/forgetPasswordHook';
 
 function ForgetPassword() {
-  
   const [OnChangeEmail, email, onSubmit, loading] = ForgetPasswordHook();
 
   return (

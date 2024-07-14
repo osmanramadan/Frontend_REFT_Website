@@ -1,10 +1,16 @@
-import { CREATE_ORDER,CREATE_ORDER_STRIPE,CHECK_ORDER_COMPLETE, Get_Hall_CODES,CHECK_ORDER_COMPLETE_STRIPE} from '../type';
+import {
+  CREATE_ORDER,
+  CREATE_ORDER_STRIPE,
+  CHECK_ORDER_COMPLETE,
+  Get_Hall_CODES,
+  CHECK_ORDER_COMPLETE_STRIPE,
+} from '../type';
 
 const inital = {
   createorder: [],
   createorderstripe: [],
   checkordercomplete: [],
-  checkordercompletestripe:[],
+  checkordercompletestripe: [],
   hallcodes: [],
 };
 
@@ -16,20 +22,20 @@ const checkoutReducer = (state = inital, action) => {
         createorder: action.payload,
       };
     case CREATE_ORDER_STRIPE:
-        return {
-          ...state,
-          createorderstripe: action.payload,
-        };
+      return {
+        ...state,
+        createorderstripe: action.payload,
+      };
     case CHECK_ORDER_COMPLETE:
       return {
         ...state,
         checkordercomplete: action.payload,
       };
     case CHECK_ORDER_COMPLETE_STRIPE:
-        return {
-          ...state,
-          checkordercompletestripe: action.payload,
-        };
+      return {
+        ...state,
+        checkordercompletestripe: action.payload,
+      };
 
     case Get_Hall_CODES:
       return {

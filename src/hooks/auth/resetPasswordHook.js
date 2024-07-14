@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { resetPassword } from '../../redux/actions/authAction';
 
 const ResetPasswordHook = () => {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [password, setPassword] = useState('');

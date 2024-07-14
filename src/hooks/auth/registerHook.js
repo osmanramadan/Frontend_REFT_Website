@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser } from '../../redux/actions/authAction';
 import { useTranslation } from 'react-i18next';
 
-
 const RegisterHook = () => {
   const dispatch = useDispatch();
-  const { t} = useTranslation();
+  const { t } = useTranslation();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -98,7 +97,6 @@ const RegisterHook = () => {
   };
 
   const OnSubmit = async () => {
-    
     const validationError = validationValues();
 
     if (validationError) {

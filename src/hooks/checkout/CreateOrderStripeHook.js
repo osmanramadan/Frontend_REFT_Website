@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CreateOrderStripe } from '../../redux/actions/checkoutAction';
 
 const CreateOrderStripeHook = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 

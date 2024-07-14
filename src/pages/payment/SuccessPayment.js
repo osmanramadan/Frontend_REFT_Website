@@ -3,14 +3,11 @@ import { Col, Container, Row } from 'react-bootstrap';
 import CheckOrderCompleteHook from '../../hooks/checkout/CheckOrderCompleteHook';
 
 const SuccessPayment = () => {
-  
   const [loading, CheckOrderComplete] = CheckOrderCompleteHook();
 
   useEffect(() => {
     CheckOrderComplete();
   }, []);
-
-
 
   return (
     <Container>
@@ -28,7 +25,6 @@ const SuccessPayment = () => {
             className="d-flex justify-content-center align-items-center"
           >
             Payment Processing
-
           </Col>
         )}
       </Row>

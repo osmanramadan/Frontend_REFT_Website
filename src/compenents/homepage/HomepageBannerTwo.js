@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
 import banner from '../../../src/assets/images/bannertwo.png';
 
 function HomepageBannerTwo() {

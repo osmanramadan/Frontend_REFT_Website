@@ -4,13 +4,9 @@ import Footer from '../../compenents/global/footer';
 import Banner from '../../compenents/global/widgets/banner';
 import { Row, Col, Container } from 'react-bootstrap';
 import MidTitle from '../../compenents/global/widgets/midtitle';
-import {  useLocation, useNavigate } from 'react-router-dom';
-
-
-
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function MessDetails() {
-  
   const location = useLocation();
   const nav = useNavigate();
 

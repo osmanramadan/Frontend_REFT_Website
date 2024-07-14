@@ -1,13 +1,9 @@
 import { ADD_MESSAGE, GET_ALL_MESSAGES, DELETE_MESSAGE } from '../type';
 import { useInsertData } from '../../crud/useInsertData';
-import {
-  _useGetDataToken,
-  useGetData
-} from '../../crud/useGetData';
+import { _useGetDataToken, useGetData } from '../../crud/useGetData';
 
 export const addNewMessage = (data) => async (dispatch) => {
   try {
-    
     const response = await useInsertData(`/api/v1/messages`, data);
 
     dispatch({
@@ -25,9 +21,7 @@ export const addNewMessage = (data) => async (dispatch) => {
 
 export const getMessages = () => async (dispatch) => {
   try {
-
     const response = await useGetData(`/api/v1/messages`);
-  
 
     dispatch({
       type: GET_ALL_MESSAGES,
@@ -44,9 +38,7 @@ export const getMessages = () => async (dispatch) => {
 
 export const delMessage = (id) => async (dispatch) => {
   try {
-
     const response = await useInsertData(`/api/v1/messages/delete/${id}`);
-    
 
     dispatch({
       type: DELETE_MESSAGE,

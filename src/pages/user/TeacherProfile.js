@@ -8,9 +8,7 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Teachertabs from '../../compenents/user/TeacherTaps';
 
 function TeacherProfile() {
-  
   const [isuser, _isadmin, userData, loading] = ProtectedRouteHook();
-
 
   return (
     <div>
@@ -176,8 +174,7 @@ function TeacherProfile() {
               <div
                 style={{ fontSize: '20px' }}
                 className="d-flex justify-content-center mb-2 fw-bold"
-              >
-              </div>
+              ></div>
             )}
           </Col>
         </Row>

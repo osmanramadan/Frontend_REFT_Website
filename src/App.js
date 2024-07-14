@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './compenents/auth/protectedRoute';
 import ProtectedRouteHook from './hooks/auth/protectedRoutedHook';
 import HomePage from './pages/HomePage';
@@ -36,14 +36,9 @@ import TeacherProfile from './pages/user/TeacherProfile';
 import { useTranslation } from 'react-i18next';
 import SuccessPaymentStripe from './pages/payment/SuccessPaymentStripe';
 
-
-
-
 function App() {
-
   const [isUser, isAdmin, _userData] = ProtectedRouteHook();
   const { i18n } = useTranslation();
-
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language');
@@ -68,39 +63,42 @@ function App() {
         <Route path="/places" element={<Halls />} />
         <Route path="/terms" element={<UserTermsAndCondition />} />
 
-
         <Route element={<ProtectedRoute auth={isUser} />}>
           <Route path="/checkout-hour" element={<HallCheckoutOneHour />} />
           <Route path="/checkout-hours" element={<HallCheckoutHours />} />
           <Route path="/checkout-days" element={<HallCheckoutDays />} />
-          <Route path="/checkout-hours-days" element={<HallCheckoutHoursDays />} />
+          <Route
+            path="/checkout-hours-days"
+            element={<HallCheckoutHoursDays />}
+          />
           <Route path="/hall-add" element={<HallAdd />} />
           <Route path="/owner-profile" element={<OwnerProfile />} />
           <Route path="/teacher-profile" element={<TeacherProfile />} />
           <Route path="/user-booking" element={<UserBooking />} />
-          <Route path="/owner-places-booking" element={<OwnerPlacesBooking />} />
+          <Route
+            path="/owner-places-booking"
+            element={<OwnerPlacesBooking />}
+          />
           <Route path="/owner-booking" element={<OwnerBooking />} />
           <Route path="/user-places" element={<UserPlaces />} />
           <Route path="/processing-payment" element={<SuccessPayment />} />
-          <Route path="/processing-stripe-payment" element={<SuccessPaymentStripe />} />
+          <Route
+            path="/processing-stripe-payment"
+            element={<SuccessPaymentStripe />}
+          />
           <Route path="/fail-payment" element={<FailPayment />} />
           <Route path="/book-hall" element={<HallBook />} />
         </Route>
 
-
         <Route element={<ProtectedRoute auth={isAdmin} />}>
-          <Route path="/admin-places"    element={<AdminHalls />} />
-          <Route path="/admin-booking"   element={<AdminBooking />} />
-          <Route path="/admin-messages"  element={<AdminMessages />} />
+          <Route path="/admin-places" element={<AdminHalls />} />
+          <Route path="/admin-booking" element={<AdminBooking />} />
+          <Route path="/admin-messages" element={<AdminMessages />} />
           <Route path="/message-details" element={<MessDetails />} />
         </Route>
-
       </Routes>
-      
     </div>
   );
 }
 
 export default App;
-
-

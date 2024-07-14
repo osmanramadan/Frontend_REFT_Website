@@ -3,7 +3,6 @@ import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import { Container, Row } from 'react-bootstrap';
 
-
 function UserTermsAndCondition() {
   return (
     <div style={{ backgroundColor: '#ACADBC' }}>

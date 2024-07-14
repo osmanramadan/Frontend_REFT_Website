@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHalls } from '../../redux/actions/hallAction';
 
-
 const GetHighlyRatedHalls = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -12,7 +10,6 @@ const GetHighlyRatedHalls = () => {
   const [highlyRatedPlaces, setHighlyRatedPlaces] = useState([]);
 
   const res = useSelector((state) => state.hallReducer.getHalls);
-  
 
   useEffect(() => {
     setLoading(true);
@@ -21,14 +18,10 @@ const GetHighlyRatedHalls = () => {
   }, []);
 
   useEffect(() => {
-
     if (localStorage.getItem('user') !== null) {
-
       let user = JSON.parse(localStorage.getItem('user'));
       setUser(user);
-      
     }
-
   }, []);
 
   useEffect(() => {

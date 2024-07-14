@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ownerbookinginfo } from '../../redux/actions/bookAction';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
-
-
 const OwnerBookingInfoHook = () => {
 
   const [_isuser, _isadmin, userData] = ProtectedRouteHook();
@@ -16,14 +14,11 @@ const OwnerBookingInfoHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    userData.id?dispatch(ownerbookinginfo(userData.id)):null;
+    userData.id?dispatch(ownerbookinginfo(userData.id)) : '';
     setLoading(false);
-  }, []);
-
-
+  }, [userData]);
 
   const searchforbookingteacher = (search) => {
-    
     if (res && res.data) {
       const filteredUsers = res.data.filter((v) =>
         v.userbyid.email.toLowerCase().includes(search.toLowerCase()),

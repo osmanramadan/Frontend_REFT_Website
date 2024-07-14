@@ -48,7 +48,6 @@ function HallAdd() {
 
       {loading === false ? (
         <div className="d-flex justify-content-center mb-2">
-
           <Spinner
             style={{ color: '#fcd980', marginLeft: '5px' }}
             as="span"

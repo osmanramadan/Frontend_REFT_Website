@@ -8,7 +8,6 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerProfile() {
-  
   const [isuser, _isadmin, userData, _loading] = ProtectedRouteHook();
 
   return (

@@ -7,12 +7,6 @@ import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
 import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 
-
-
-
-
-
-
 const HallCheckoutOneHour = () => {
   const location = useLocation();
   const nav = useNavigate();
@@ -73,16 +67,11 @@ const HallCheckoutOneHour = () => {
                     />
                   </Col>
                 </Row>
-              
-                
+
                 <Row className="mt-4">
-
                   <Col xs="5" className=" d-flex justify-content-end">
-                  
                     <div style={{ width: '40px' }}>
-
-
-                    <StripeButton
+                      <StripeButton
                         amount={amount}
                         data={{
                           dashboardinfo: {
@@ -131,9 +120,6 @@ const HallCheckoutOneHour = () => {
                           price: amount,
                         }}
                       />
-
-
-
                     </div>
                   </Col>
                 </Row>

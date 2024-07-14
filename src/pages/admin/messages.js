@@ -9,7 +9,6 @@ import GetMessagesHook from '../../hooks/admin/message/getMessagesHook';
 import Admintabs from '../../compenents/admin/AdminTaps';
 
 function AdminMessages() {
-
   const [messages, loading] = GetMessagesHook();
 
   const [pageNumberLimit, setPageNumberLimit] = useState(0);
@@ -44,7 +43,7 @@ function AdminMessages() {
     <div>
       <NavBar />
       <Banner txt={'Home > Admin > Messages'} />
- 
+
       <Row>
         <Col xs="0" sm="0" md="5" lg="4" className="user-one-tabs">
           <Admintabs />

@@ -83,23 +83,22 @@ const HallCheckoutIntervalHours = () => {
 
                 <Row className="mt-5 text-center">
                   <StripeButton
-                  amount={amount * bookinfo.length}
-                  data={{
-                    dashboardinfo: {
-                      userid: userdata.id,
-                      halluserid: data.info.userid,
-                      hallid: data.id,
+                    amount={amount * bookinfo.length}
+                    data={{
+                      dashboardinfo: {
+                        userid: userdata.id,
+                        halluserid: data.info.userid,
+                        hallid: data.id,
+                        type: 'dayhours',
+                        userid: userdata.id,
+                        amount: amount * bookinfo.length,
+                        date: data.datehours,
+                        hourfrom: data.hourfrom,
+                        hourto: data.hourto,
+                      },
                       type: 'dayhours',
-                      userid: userdata.id,
-                      amount: amount * bookinfo.length,
-                      date: data.datehours,
-                      hourfrom: data.hourfrom,
-                      hourto: data.hourto,
-                    },
-                    type: 'dayhours',
-                    bookinfo: bookinfo,
-                  }}
-                  
+                      bookinfo: bookinfo,
+                    }}
                   />
                   <PayPalButton
                     amount={amount * bookinfo.length}

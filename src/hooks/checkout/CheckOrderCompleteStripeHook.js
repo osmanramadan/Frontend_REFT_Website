@@ -1,9 +1,8 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CheckCompleteStripe } from '../../redux/actions/checkoutAction';
 
 const CheckOrderCompleteStripeHook = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, _setData] = useState(
@@ -12,20 +11,17 @@ const CheckOrderCompleteStripeHook = () => {
       : [],
   );
 
-  const res = useSelector((state) => state.checkoutReducer.checkordercompletestripe);
+  const res = useSelector(
+    (state) => state.checkoutReducer.checkordercompletestripe,
+  );
   const url = new URL(window.location.href);
   const session = url.searchParams.get('session_id');
 
-
-
-  const CheckOrderCompleteStripe =async () => {
+  const CheckOrderCompleteStripe = async () => {
     setLoading(true);
-    dispatch(CheckCompleteStripe(session,data));
+    dispatch(CheckCompleteStripe(session, data));
     setLoading(false);
   };
-
-
-  
 
   useEffect(() => {
     if (loading === false) {

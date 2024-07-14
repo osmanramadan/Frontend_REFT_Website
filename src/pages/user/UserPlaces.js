@@ -56,59 +56,58 @@ function UserPlaces() {
           </Row>
 
           {loading === true && halls.length == 0 && (
-                  <div
-                    style={{ fontSize: '30px' }}
-                    className="d-flex justify-content-center mb-2 fw-bold"
-                  >
-                    No Places Yet
-                  </div>
-                )}
-                {loading === false ? (
-                  <div className="d-flex justify-content-center mb-2">
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  </div>
-                ) : (
-                  ''
-                )}
-      
-            <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-              {currentItems.map((info, index) => (
-                <Col xs="12" sm="6" md="12" lg="4" key={index}>
-                  <Place data={info} />
-                </Col>
-              ))}
-
-              <PaginationComponent
-                pageCount={pageNumberLimit}
-                handlePageClick={handlePageClick}
+            <div
+              style={{ fontSize: '30px' }}
+              className="d-flex justify-content-center mb-2 fw-bold"
+            >
+              No Places Yet
+            </div>
+          )}
+          {loading === false ? (
+            <div className="d-flex justify-content-center mb-2">
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
               />
-            </Row>
-      
+
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+
+              <Spinner
+                style={{ color: '#fcd980', marginLeft: '5px' }}
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            </div>
+          ) : (
+            ''
+          )}
+
+          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+            {currentItems.map((info, index) => (
+              <Col xs="12" sm="6" md="12" lg="4" key={index}>
+                <Place data={info} />
+              </Col>
+            ))}
+
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
+          </Row>
         </Col>
       </Row>
 

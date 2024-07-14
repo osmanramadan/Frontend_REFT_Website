@@ -4,15 +4,12 @@ import {
   OWNER_BOOKING_INFO,
 } from '../type';
 
-import { useInsertData } from '../../crud/useInsertData';
 
 import {
   _useGetDataToken,
   _useGetData,
   useGetData,
 } from '../../crud/useGetData';
-
-
 
 export const adminbookinginfo = () => async (dispatch) => {
   try {

@@ -2,11 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { verifyUser } from '../../redux/actions/authAction';
 
-
-
 const ProtectedRouteHook = () => {
-
-  
   const dispatch = useDispatch();
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState(true);
@@ -47,9 +43,9 @@ const ProtectedRouteHook = () => {
   return [
     error
       ? undefined
-      : userData.role === 'OWNER' ||   //  isUser
+      : userData.role === 'OWNER' || //  isUser
         userData.role === 'TEACHER' || //  isUser
-        userData.role === 'مدرس' ||    //  isUser
+        userData.role === 'مدرس' || //  isUser
         userData.role === 'صاحب مكان', //  isUser
     error ? undefined : userData.role === process.env.REACT_APP_ADMIN_CODE, //  isAdmin
     userData,

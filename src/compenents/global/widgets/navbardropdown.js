@@ -1,5 +1,5 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Figure } from 'react-bootstrap';
@@ -8,13 +8,12 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Navbardropdown({ isUser }) {
-
   const [isuser, isadmin, userData, _load] = ProtectedRouteHook();
   const [show, setShow] = useState(false);
 
   const Logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
 
     window.location.reload();
   };
@@ -139,4 +138,3 @@ function Navbardropdown({ isUser }) {
   );
 }
 export default Navbardropdown;
-

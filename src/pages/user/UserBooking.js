@@ -7,14 +7,7 @@ import PaginationComponent from '../../compenents/global/pagination';
 import TeacherBookingInfoHook from '../../hooks/book/teacherbookinginfoHook';
 import BookingInfo from '../../compenents/user/bookinginfo';
 
-
-
-
-
-
 function UserBooking() {
-
-
   // searchforbookingplaceowner --> just for teacher who want to know placeowner
   const [data, loading, searchforbookingplaceowner] = TeacherBookingInfoHook();
 
@@ -49,7 +42,7 @@ function UserBooking() {
   const handleSearchPlaceOwnerChange = (e) => {
     setSearchTermPlacwOwner(e.target.value);
     searchforbookingplaceowner(e.target.value);
-    setcurrentPage(1); 
+    setcurrentPage(1);
   };
 
   return (
@@ -71,60 +64,56 @@ function UserBooking() {
             />
           </Row>
 
-         
-    
-              <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-                {loading === true && data.length === 0 && (
-                  <div
-                    style={{ fontSize: '30px' }}
-                    className="d-flex justify-content-center mb-2 fw-bold"
-                  >
-                    No Booking Yet
-                  </div>
-                )}
-                {loading === false ? (
-                  <div className="d-flex justify-content-center mb-2">
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-
-                    <Spinner
-                      style={{ color: '#fcd980', marginLeft: '5px' }}
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  </div>
-                ) : (
-                  ''
-                )}
-                {currentItems.map((info, index) => (
-                  <BookingInfo key={index} data={info} />
-                ))}
-
-                <PaginationComponent
-                  pageCount={pageNumberLimit}
-                  handlePageClick={handlePageClick}
+          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+            {loading === true && data.length === 0 && (
+              <div
+                style={{ fontSize: '30px' }}
+                className="d-flex justify-content-center mb-2 fw-bold"
+              >
+                No Booking Yet
+              </div>
+            )}
+            {loading === false ? (
+              <div className="d-flex justify-content-center mb-2">
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
                 />
-              </Row>
-          
-        
+
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </div>
+            ) : (
+              ''
+            )}
+            {currentItems.map((info, index) => (
+              <BookingInfo key={index} data={info} />
+            ))}
+
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
+          </Row>
         </Col>
       </Row>
 

@@ -6,8 +6,6 @@ import {
   searchHallsCity,
 } from '../../redux/actions/hallAction';
 
-
-
 const GetHallsHook = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -41,8 +39,6 @@ const GetHallsHook = () => {
     setLoading(false);
   }, []);
 
-  
-
   useEffect(() => {
     if (town === '' || city === '') {
       setData(res.data);
@@ -64,7 +60,6 @@ const GetHallsHook = () => {
     setData(search_res);
   }, [search_res]);
 
-  
   try {
     useEffect(() => {
       if (loading === false) {
@@ -75,7 +70,6 @@ const GetHallsHook = () => {
             setData(res.data);
           }
         }
-  
       }
     }, [res.data, res.status]);
   } catch (e) {

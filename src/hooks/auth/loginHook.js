@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/actions/authAction';
 
-
-
-
 const LoginHook = () => {
   const dispatch = useDispatch();
 
@@ -53,9 +50,7 @@ const LoginHook = () => {
   }, []);
 
   useEffect(() => {
-
     if (loading === false) {
-
       if (res.data) {
         setLoading(true);
         if (res.data.validationError) {

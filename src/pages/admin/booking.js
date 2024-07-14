@@ -10,7 +10,6 @@ import BookingInfo from '../../compenents/admin/BookingInfo';
 import AdminTabs from '../../compenents/admin/AdminTaps';
 
 function AdminBooking() {
-  
   const [
     bookinginfo,
     loading,

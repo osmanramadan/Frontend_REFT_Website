@@ -137,7 +137,6 @@ function Halls() {
       >
         <Col xs="12" sm="4" md="4" lg="3">
           {i18n.language === 'en' ? (
-
             <SearchHallDropdownCities
               search={search}
               onChange={search_in_halls}
@@ -226,8 +225,7 @@ function Halls() {
           <div className="mx-3">
             <span>{t('halls.noHalls')}</span>
           </div>
-          <div className="spinner-border text-custom" role="status">
-          </div>
+          <div className="spinner-border text-custom" role="status"></div>
         </div>
       )}
       <PaginationComponent

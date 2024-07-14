@@ -8,7 +8,7 @@ import BookingInfo from '../../compenents/user/bookinginfo';
 import Ownertabs from '../../compenents/user/OwnerTaps';
 
 function OwnerPlacesBooking() {
-
+  
   const [data, loading, searchforbookingteacher] = OwnerBookingInfoHook();
 
   const [searchTermTeacher, setSearchTermTeacher] = useState('');
@@ -66,58 +66,56 @@ function OwnerPlacesBooking() {
             />
           </Row>
 
-          
-            <Row className="mt-5 mx-3 px-lg-5 px-md-5">
-              {loading === true && data.length == 0 && (
-                <div
-                  style={{ fontSize: '30px' }}
-                  className="d-flex justify-content-center mb-2 fw-bold"
-                >
-                  No Booking Yet
-                </div>
-              )}
-              {loading === false ? (
-                <div className="d-flex justify-content-center mb-2">
-                  <Spinner
-                    style={{ color: '#fcd980', marginLeft: '5px' }}
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
+          <Row className="mt-5 mx-3 px-lg-5 px-md-5">
+            {loading === true && data.length == 0 && (
+              <div
+                style={{ fontSize: '30px' }}
+                className="d-flex justify-content-center mb-2 fw-bold"
+              >
+                No Booking Yet
+              </div>
+            )}
+            {loading === false ? (
+              <div className="d-flex justify-content-center mb-2">
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
 
-                  <Spinner
-                    style={{ color: '#fcd980', marginLeft: '5px' }}
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
 
-                  <Spinner
-                    style={{ color: '#fcd980', marginLeft: '5px' }}
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                </div>
-              ) : (
-                ''
-              )}
-              {currentItems.map((info, index) => (
-                <BookingInfo key={index} data={info} />
-              ))}
+                <Spinner
+                  style={{ color: '#fcd980', marginLeft: '5px' }}
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </div>
+            ) : (
+              ''
+            )}
+            {currentItems.map((info, index) => (
+              <BookingInfo key={index} data={info} />
+            ))}
 
-              <PaginationComponent
-                pageCount={pageNumberLimit}
-                handlePageClick={handlePageClick}
-              />
-            </Row>
-        
+            <PaginationComponent
+              pageCount={pageNumberLimit}
+              handlePageClick={handlePageClick}
+            />
+          </Row>
         </Col>
       </Row>
 

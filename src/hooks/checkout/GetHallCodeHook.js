@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HallCodes } from '../../redux/actions/checkoutAction';
 
 const GetHallCodesHook = () => {
-  
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);

@@ -9,10 +9,7 @@ import GetAdminHallsHook from '../../hooks/admin/hall/getAdminHallsHook';
 import { useTranslation } from 'react-i18next';
 import Admintabs from '../../compenents/admin/AdminTaps';
 
-
-
 function AdminHalls() {
-
   const [halls, loading, setSearch, search, searchHalls] = GetAdminHallsHook();
   const { t } = useTranslation();
 

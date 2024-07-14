@@ -5,16 +5,15 @@ import ProtectedRouteHook from '../auth/protectedRoutedHook';
 
 const GetUserHallsHook = () => {
   const dispatch = useDispatch();
-  const [_isuser, _isadmin, userData] = ProtectedRouteHook()
+  const [_isuser, _isadmin, userData] = ProtectedRouteHook();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   const res = useSelector((state) => state.hallReducer.getUserHalls);
 
   useEffect(() => {
-
     setLoading(true);
-    userData.id?dispatch(getUserHalls(userData.id)):'';
+    userData.id ? dispatch(getUserHalls(userData.id)) : '';
     setLoading(false);
   }, [userData]);
 

@@ -16,7 +16,6 @@ const HallBook = () => {
   let id;
   let price;
   let userid;
-  
 
   try {
     id = location.state.id;
@@ -37,8 +36,6 @@ const HallBook = () => {
 
   // Function to get the number of days in a month
   const getDaysInMonth = (month, year) => new Date(year, month, 0).getDate();
-
-
 
   // Function to generate an array of days for the current month and year
   const generateMonthDays = () => {

@@ -8,7 +8,6 @@ import ProtectedRouteHook from '../../hooks/auth/protectedRoutedHook';
 import StripeButton from '../../compenents/hall/StripeButton';
 
 const HallCheckoutDaysHours = () => {
-  
   const location = useLocation();
   const nav = useNavigate();
 
@@ -93,8 +92,8 @@ const HallCheckoutDaysHours = () => {
                 </Row>
 
                 <Row className="mt-5 text-center">
-                
-                  <StripeButton amount={amount * bookinfo.length}
+                  <StripeButton
+                    amount={amount * bookinfo.length}
                     data={{
                       dashboardinfo: {
                         type: 'dayshours',
@@ -109,7 +108,8 @@ const HallCheckoutDaysHours = () => {
                       },
                       type: 'dayshours',
                       bookinfo: bookinfo,
-                    }}/>
+                    }}
+                  />
                   <PayPalButton
                     amount={amount * bookinfo.length}
                     data={{
