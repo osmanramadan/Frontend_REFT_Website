@@ -62,6 +62,8 @@ function App() {
         <Route path="/verify-code" element={<SendCode />} />
         <Route path="/places" element={<Halls />} />
         <Route path="/terms" element={<UserTermsAndCondition />} />
+        <Route path="/processing-payment" element={<SuccessPayment />} />
+        <Route path="/fail-payment" element={<FailPayment />} />
 
         <Route element={<ProtectedRoute auth={isUser} />}>
           <Route path="/checkout-hour" element={<HallCheckoutOneHour />} />
@@ -81,12 +83,11 @@ function App() {
           />
           <Route path="/owner-booking" element={<OwnerBooking />} />
           <Route path="/user-places" element={<UserPlaces />} />
-          <Route path="/processing-payment" element={<SuccessPayment />} />
+         
           <Route
             path="/processing-stripe-payment"
             element={<SuccessPaymentStripe />}
           />
-          <Route path="/fail-payment" element={<FailPayment />} />
           <Route path="/book-hall" element={<HallBook />} />
         </Route>
 
