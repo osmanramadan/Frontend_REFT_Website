@@ -37,10 +37,6 @@ function Halls() {
     ),
   ];
 
-  // const uniqueCities = [...new Set(cities.map((i) => {
-  //   const parts = i.city.split('-');
-  //   return i18n.language === 'en' ? parts[0] : parts[1];
-  // }))];
 
   const HandleChangeCity = (v) => {
     const city = v.target.id;
@@ -75,7 +71,7 @@ function Halls() {
   };
 
   useEffect(() => {
-    const updatedItems = halls.slice(indexOfFirstItem, indexOfLastItem);
+    const updatedItems = halls?halls.slice(indexOfFirstItem, indexOfLastItem):[];
     setCurrentItems(updatedItems);
   }, [halls, indexOfFirstItem, indexOfLastItem]);
 
@@ -91,7 +87,7 @@ function Halls() {
   }, [cities]);
 
   useEffect(() => {
-    if (halls.length > 0) {
+    if (halls && halls.length > 0) {
       const pages = [];
 
       for (let i = 1; i <= Math.ceil(halls.length / itemsPerPage); i++) {

@@ -1032,7 +1032,7 @@ function HallDetails() {
               style={{ borderRadius: '30px' }}
               width="80%"
               height="350px"
-              src={`${process.env.REACT_APP_VIDEO_API}/${hallData.video}`}
+              src={`${process.env.NODE_ENV=='dev'?process.env.REACT_APP_DEV_VIDEO_API:process.env.REACT_APP_PROD_VIDEO_API}/${hallData.video}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1065,7 +1065,7 @@ function HallDetails() {
                   fontWeight: '400',
                   color: '#282938',
                 }}
-                to={`${process.env.REACT_APP_PDF_API}/${hallData.pdf}`}
+                to={`${process.env.NODE_ENV=='dev'?process.env.REACT_APP_DEV_PDF_API:process.env.REACT_APP_PROD_PDF_API}/${hallData.pdf}`}
                 target="_blank"
               >
                 Clik Here
