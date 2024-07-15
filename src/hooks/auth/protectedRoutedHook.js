@@ -15,7 +15,7 @@ const ProtectedRouteHook = () => {
     dispatch(verifyUser());
     setLoading(false);
   }, []);
- console.log(res,'5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%5%')
+
   useEffect(() => {
     if (loading === false) {
       if (res.data) {
