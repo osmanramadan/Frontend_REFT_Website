@@ -49,3 +49,12 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
   
 ![App Screenshot](./screenshots/1.PNG)
 ![App Screenshot](./screenshots/10.PNG)
+
+
+# Homepage
+- Website Banner
+- Website Goals
+- Highly Rated Places
+- Frequently Asked Questions
+![App Screenshot](./screenshots/homepage.PNG)
+
