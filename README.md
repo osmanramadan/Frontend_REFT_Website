@@ -9,5 +9,5 @@
 
 
 
-![App Screenshot](./background.png)
+![App Screenshot](./screenshots/background.png)
 
