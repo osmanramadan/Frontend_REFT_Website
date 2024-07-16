@@ -46,7 +46,6 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 ```
 # Auth
 * responsive design in signin and signup
-    ![App Screenshot](./screenshots/1.png)
-
-    ![App Screenshot](./screenshots/10.png)
+![App Screenshot](./screenshots/1.png)
+![App Screenshot](./screenshots/10.png)
 
