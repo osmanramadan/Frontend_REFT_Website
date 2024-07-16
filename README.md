@@ -6,8 +6,5 @@
 
 
 
-
-
-
-![App Screenshot](https://i.ibb.co/GPCJSCX/background.png")
+![App Screenshot](../assets/images/404.png)
 
