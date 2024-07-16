@@ -136,13 +136,11 @@ export const userAddresses = (body) => async (dispatch) => {
 export const verifyUser = () => async (dispatch) => {
   try {
     const response = await useGetDataToken(`/api/v1/users/verifyuser`);
-    console.log(response,'##################')
     dispatch({
       type: VERIFY_USER,
       payload: response,
     });
   } catch (e) {
-    console.log(e,'#######################')
     dispatch({
       type: VERIFY_USER,
       payload: e.response,
