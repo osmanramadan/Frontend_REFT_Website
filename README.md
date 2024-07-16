@@ -72,10 +72,12 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 
 # Profiles
 
-- Teacher 
+- Teacher
+  
 ![App Screenshot](./screenshots/14.PNG)
 
 - Owner
+  
 ![App Screenshot](./screenshots/11.PNG)
 
 
