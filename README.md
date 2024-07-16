@@ -11,3 +11,13 @@
 
 ![App Screenshot](./screenshots/background.png)
 
+# Deployment
+
+To deploy this project run :
+
+```bash
+ npm run install
+```
+```bash
+  npm run start
+```
