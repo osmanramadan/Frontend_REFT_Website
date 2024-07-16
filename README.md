@@ -70,20 +70,20 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 # Profiles
 
 - Teacher 
-![App Screenshot](./screenshots/14.PNG)
+![App Screenshot](./screenshots/14.png)
 
 - Owner
-![App Screenshot](./screenshots/11.PNG)
+![App Screenshot](./screenshots/11.png)
 
 
 # Payment
 - There Is Two Method Of Payment(Stripe,Paypal)
-![App Screenshot](./screenshots/13.PNG)
+![App Screenshot](./screenshots/13.png)
 
 
 # Booking
 - There Are Four Methods Of Booking
-![App Screenshot](./screenshots/12.PNG)
+![App Screenshot](./screenshots/12.png)
 
 
 # Contactus
