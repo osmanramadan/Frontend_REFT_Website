@@ -58,3 +58,12 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 - Frequently Asked Questions
 ![App Screenshot](./screenshots/homepage.png)
 
+# Add Place
+- Only Owner Can Add Hall
+![App Screenshot](./screenshots/4.PNG)
+
+# View Halls
+- View Halls and Filter Theme By Governate And City
+![App Screenshot](./screenshots/5.PNG)
+
+
