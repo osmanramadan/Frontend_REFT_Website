@@ -56,5 +56,5 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 - Website Goals
 - Highly Rated Places
 - Frequently Asked Questions
-![App Screenshot](./screenshots/homepage.PNG)
+![App Screenshot](./screenshots/homepage.png)
 
