@@ -67,3 +67,36 @@ REACT_APP_ADMIN_CODE       ='admin_1/id=80226753244'
 ![App Screenshot](./screenshots/5.PNG)
 
 
+# Profiles
+
+- Teacher 
+![App Screenshot](./screenshots/14.PNG)
+
+- Owner
+![App Screenshot](./screenshots/11.PNG)
+
+
+# Payment
+- There Is Two Method Of Payment(Stripe,Paypal)
+![App Screenshot](./screenshots/13.PNG)
+
+
+# Booking
+- There Are Four Methods Of Booking
+![App Screenshot](./screenshots/12.PNG)
+
+
+# Contactus
+![App Screenshot](./screenshots/7.PNG)
+
+# Aboutus
+![App Screenshot](./screenshots/6.PNG)
+
+
+# Admin Dashboard
+- Admin Can Accept Owner Halls
+- Recieve Users Messages
+- View Halls Booking
+
+![App Screenshot](./screenshots/9.PNG)
+
