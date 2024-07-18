@@ -18,6 +18,12 @@ const CreateOrderStripeHook = () => {
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
+
+      if (res.data.validationError) {
+        window.location.href='/'
+        return;
+      }
+
       if (res.data.status == 'success') {
         window.location.href = res.data.url ? res.data.url : '/';
       }

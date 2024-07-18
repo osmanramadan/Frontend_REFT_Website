@@ -15,13 +15,17 @@ const ChangeHallStatusHook = () => {
 
   const onSubmit = (id) => {
     setLoading(true);
-    dispatch(changeHallStatus({ id: id, checked: status }));
+    dispatch(changeHallStatus({ id:id,checked:status}));
     setLoading(false);
   };
 
   useEffect(() => {
     setLoading(true);
+
     if (res.data) {
+      if (res.data.validationError) {
+        window.location.href='/'
+      }
       if (res.data.status === 'success') {
         alert('نجاح التعديل');
         return;

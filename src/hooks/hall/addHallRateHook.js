@@ -4,7 +4,7 @@ import { addNewRate, showUserRate } from '../../redux/actions/hallAction';
 import ProtectedRouteHook from '../auth/protectedRoutedHook';
 
 const AddHallRateHook = () => {
-  const [isuser, isadmin, userdata, _load] = ProtectedRouteHook();
+  const [_isuser, _isadmin, userdata, _load] = ProtectedRouteHook();
   const [userinfo, setUserInfo] = useState([]);
   const dispatch = useDispatch();
 
@@ -15,23 +15,7 @@ const AddHallRateHook = () => {
     }
   }, [userdata]);
 
-  // try{
 
-  //   if (localStorage.getItem('user') !== null) {
-  //     var user = JSON.parse(localStorage.getItem('user'));
-  //   } else {
-  //     window.location.href = '/signin';
-  //     return;
-  //   }
-
-  // }catch(e){
-  //   window.location.href = '/signin';
-  //   return;
-  // }
-
-  // if (localStorage.getItem('user') !== null) {
-  //   var user = JSON.parse(localStorage.getItem('user'));
-  // }
 
   const [loading, setLoading] = useState(false);
   const [hallid, setHallId] = useState('');
@@ -45,12 +29,29 @@ const AddHallRateHook = () => {
   };
 
   const onSubmit = (rate) => {
+
+    if(isNaN(userinfo.id)){
+      window.location.href ='/'
+    }
+    if(isNaN(hallid)){
+      window.location.href ='/'
+    }
+    if(isNaN(rate)){
+      window.location.href ='/'
+    }
     setLoading(true);
-    dispatch(addNewRate({ userid: userinfo.id, hallid: hallid, rate: rate }));
+    dispatch(addNewRate({userid:userinfo.id,hallid:hallid,rate:rate}));
     setLoading(false);
   };
 
   useEffect(() => {
+
+    // if(isNaN(userinfo.id)){
+    //   window.location.href ='/'
+    // }
+    // if(isNaN(hallid)){
+    //   window.location.href ='/'
+    // }
     setLoading(true);
     dispatch(showUserRate({ userid: userinfo.id, hallid: hallid }));
     setLoading(false);
@@ -70,6 +71,10 @@ const AddHallRateHook = () => {
       if (res.data.status === 'fail') {
         alert('انت بالفعل قمت بالتقييم');
         window.location.reload();
+      }
+
+      if (res.data.validationError) {
+        window.location.href ='/'
       }
     }
   }, [res.data]);

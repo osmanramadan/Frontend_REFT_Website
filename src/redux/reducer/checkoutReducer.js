@@ -2,7 +2,6 @@ import {
   CREATE_ORDER,
   CREATE_ORDER_STRIPE,
   CHECK_ORDER_COMPLETE,
-  Get_Hall_CODES,
   CHECK_ORDER_COMPLETE_STRIPE,
 } from '../type';
 
@@ -11,7 +10,7 @@ const inital = {
   createorderstripe: [],
   checkordercomplete: [],
   checkordercompletestripe: [],
-  hallcodes: [],
+
 };
 
 const checkoutReducer = (state = inital, action) => {
@@ -37,11 +36,6 @@ const checkoutReducer = (state = inital, action) => {
         checkordercompletestripe: action.payload,
       };
 
-    case Get_Hall_CODES:
-      return {
-        ...state,
-        hallcodes: action.payload,
-      };
 
     default:
       return state;

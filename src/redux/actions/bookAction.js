@@ -2,14 +2,18 @@ import {
   ADMIN_BOOKING_INFO,
   TEACHER_BOOKING_INFO,
   OWNER_BOOKING_INFO,
+  Get_Hall_CODES
 } from '../type';
 
 
 import {
   _useGetDataToken,
   _useGetData,
-  useGetData,
+  useGetData
 } from '../../crud/useGetData';
+
+
+import { useInsertData } from '../../crud/useInsertData';
 
 export const adminbookinginfo = () => async (dispatch) => {
   try {
@@ -54,6 +58,22 @@ export const ownerbookinginfo = (id) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: OWNER_BOOKING_INFO,
+      payload: e.response,
+    });
+  }
+};
+export const HallCodes = (data) => async (dispatch) => {
+  try {
+    const response = await useInsertData(`/api/v1/halls/hallcodes`, data);
+
+    dispatch({
+      type: Get_Hall_CODES,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: Get_Hall_CODES,
       payload: e.response,
     });
   }

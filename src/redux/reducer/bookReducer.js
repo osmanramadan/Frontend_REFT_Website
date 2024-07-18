@@ -6,6 +6,7 @@ import {
   ADMIN_BOOKING_INFO,
   OWNER_BOOKING_INFO,
   TEACHER_BOOKING_INFO,
+  Get_Hall_CODES
 } from '../type';
 
 const inital = {
@@ -16,6 +17,7 @@ const inital = {
   adminbookinginfo: [],
   teacherbookinginfo: [],
   ownerbookinginfo: [],
+  hallcodes: [],
 };
 
 const bookReducer = (state = inital, action) => {
@@ -55,6 +57,11 @@ const bookReducer = (state = inital, action) => {
         ...state,
         ownerbookinginfo: action.payload,
       };
+    case Get_Hall_CODES:
+        return {
+          ...state,
+          hallcodes: action.payload,
+        };
 
     default:
       return state;

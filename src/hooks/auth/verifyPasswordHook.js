@@ -15,21 +15,21 @@ const VerifyPasswordHook = () => {
   };
 
   const onSubmit = async () => {
-    if (code === '') {
-      alert('Enter the code !');
-      return;
-    }
+    // if (code === '') {
+    //   alert('Enter the code !');
+    //   return;
+    // }
 
-    const isNumeric = /^\d+$/.test(code);
-    if (!isNumeric) {
-      alert('Only numbers allowed');
-      return;
-    }
+    // const isNumeric = /^\d+$/.test(code);
+    // if (!isNumeric) {
+    //   alert('Only numbers allowed');
+    //   return;
+    // }
 
-    if (code.length < 6) {
-      alert('Code is not less than 6 digits');
-      return;
-    }
+    // if (code.length < 6) {
+    //   alert('Code is not less than 6 digits');
+    //   return;
+    // }
 
     setLoading(true);
     const email = localStorage.getItem('email');

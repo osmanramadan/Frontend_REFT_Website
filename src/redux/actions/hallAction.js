@@ -119,7 +119,7 @@ export const getAdminHalls = () => async (dispatch) => {
 
 export const getUserHalls = (userid) => async (dispatch) => {
   try {
-    const response = await useGetData(`/api/v1/halls/${userid}`);
+    const response = await useGetData(`/api/v1/halls/userhalls/${userid}`);
 
     dispatch({
       type: GET_USER_HALLS,

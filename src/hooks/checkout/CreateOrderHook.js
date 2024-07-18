@@ -11,13 +11,18 @@ const CreateOrderHook = () => {
   const CreateOrderAction = (data, amount) => {
     localStorage.setItem('bookinfo', JSON.stringify(data));
     setLoading(true);
-    dispatch(CreateOrderPaypal(data, amount));
+    dispatch(CreateOrderPaypal(data,amount));
     setLoading(false);
   };
 
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
+
+      if (res.data.validationError) {
+        window.location.href='/'
+        return;
+      }
       if (res.data.status == 'success') {
         window.location.href = res.data.url ? res.data.url : '/';
       }

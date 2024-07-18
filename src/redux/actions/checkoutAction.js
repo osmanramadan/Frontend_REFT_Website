@@ -1,7 +1,6 @@
 import {
   CREATE_ORDER,
   CHECK_ORDER_COMPLETE,
-  Get_Hall_CODES,
   CHECK_ORDER_COMPLETE_STRIPE,
   CREATE_ORDER_STRIPE,
 } from '../type';
@@ -51,7 +50,7 @@ export const CreateOrderStripe = (data) => async (dispatch) => {
 export const CheckCompletePaypal = (id, data) => async (dispatch) => {
   try {
     const response = await useInsertData(
-      `/api/v1/checkout/capturepaymentpaypal?token=${id}`,
+      `/api/v1/checkout/capturepaymentpaypal?sessionid=${id}`,
       data,
     );
 
@@ -88,19 +87,3 @@ export const CheckCompleteStripe = (id, data) => async (dispatch) => {
   }
 };
 
-export const HallCodes = (data) => async (dispatch) => {
-  try {
-    const response = await useInsertData(`/api/v1/checkout/hallcodes`, data);
-
-    dispatch({
-      type: Get_Hall_CODES,
-      payload: response,
-      loading: true,
-    });
-  } catch (e) {
-    dispatch({
-      type: Get_Hall_CODES,
-      payload: e.response,
-    });
-  }
-};

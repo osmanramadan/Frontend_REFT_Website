@@ -27,6 +27,11 @@ const CheckOrderCompleteStripeHook = () => {
     if (loading === false) {
       setLoading(true);
       if (res.data) {
+
+        if (res.data.validationError) {
+          window.location.href='/'
+          return;
+        }
         if (res.data.status === 'success') {
           const userConfirmed = confirm(
             'Payment was successful. Do you want to back?',

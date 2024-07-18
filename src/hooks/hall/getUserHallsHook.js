@@ -25,6 +25,9 @@ const GetUserHallsHook = () => {
         if (res.status === 'success') {
           setData(res.data);
         }
+        if (res.data.validationError) {
+          window.location.href = '/'
+        }
       }
     }
   }, [res.data]);

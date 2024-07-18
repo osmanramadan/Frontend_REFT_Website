@@ -78,7 +78,11 @@ const AddMessageHook = () => {
 
   useEffect(() => {
     if (loading === false) {
-      if (res.data) {
+      if (res.data) {    
+        
+        if (res.data.validationError) {
+          window.location.href ='/'
+        }
         if (res.data.status === 'success') {
           setName('');
           setEmail('');

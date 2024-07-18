@@ -126,6 +126,7 @@ const AddHallHook = () => {
   };
 
   const onSubmit = async () => {
+    
     if (
       placeName === '' ||
       placeCity === '' ||
@@ -165,7 +166,7 @@ const AddHallHook = () => {
 
     setLoading(true);
 
-    const imgCover = dataURLtoFile(images[0], Math.random() + '.png');
+    const imgCover = images[0]&&dataURLtoFile(images[0], Math.random() + '.png');
 
     const hallImages = Array.from(Array(Object.keys(images).length).keys()).map(
       (_item, index) => {
@@ -198,7 +199,11 @@ const AddHallHook = () => {
         return;
       }
       if (res.data.status === 'fail') {
-        alert('مشكله فى عمليه الدقع');
+        alert('مشكله فى عملية الاضافة');
+        return;
+      }
+      if (res.data.validationError) {
+        alert(res.data.validationError);
         return;
       }
       if (res.data.status === 'forbidden') {

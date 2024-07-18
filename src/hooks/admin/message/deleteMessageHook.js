@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { delMessage } from '../../../redux/actions/messAction';
 
 const DeleteMessageHook = () => {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -25,11 +26,14 @@ const DeleteMessageHook = () => {
     if (loading === false) {
       setLoading(true);
       if (res.data) {
+        if (res.data.validationError) {
+          return;
+        }
         if (res.data.status == 'success') {
           location.reload('/admin-messages');
           return;
         } else {
-          alert('خطا فى الجذف');
+          alert('Error in adding message');
           return;
         }
       }

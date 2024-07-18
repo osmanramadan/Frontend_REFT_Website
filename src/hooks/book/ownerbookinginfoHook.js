@@ -31,6 +31,11 @@ const OwnerBookingInfoHook = () => {
     if (loading === false) {
       setLoading(true);
 
+      if (res.data.validationError) {
+        window.location.href='/'
+        return;
+        // alert(res.data.validationError)
+      }
       if (res.status) {
         if (res.status === 'success') {
           setData(res.data);

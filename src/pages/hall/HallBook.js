@@ -4,15 +4,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MidTitle from '../../compenents/global/widgets/midtitle';
 import NavBar from '../../compenents/global/navbar';
 import Footer from '../../compenents/global/footer';
-import GetHallCodesHook from '../../hooks/checkout/GetHallCodeHook';
+import GetHallCodesHook from '../../hooks/hall/GetHallCodeHook';
 
 const HallBook = () => {
   const location = useLocation();
-  const [_selectedTab, setSelectedTab] = useState('book hour'); // State to manage the selected ta
+  const [_selectedTab,_setSelectedTab] = useState('book hour'); // State to manage the selected ta
   const nav = useNavigate();
 
   const [_loading, GetHallCodes, data] = GetHallCodesHook();
-
+ 
   let id;
   let price;
   let userid;
@@ -27,7 +27,7 @@ const HallBook = () => {
   }
 
   useEffect(() => {
-    GetHallCodes({ id: id });
+    GetHallCodes({id:id});
   }, []);
 
   const [year] = useState(new Date().getFullYear()); // Default to current year

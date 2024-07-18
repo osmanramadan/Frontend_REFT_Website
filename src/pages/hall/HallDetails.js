@@ -16,7 +16,7 @@ import ReservHallIntervalHoursHook from '../../hooks/book/reservHallIntervalHour
 import ReservHallIntervalDaysHoursHook from '../../hooks/book/reservHallIntervalDaysHoursHook';
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import GetHallCodesHook from '../../hooks/checkout/GetHallCodeHook';
+import GetHallCodesHook from '../../hooks/hall/GetHallCodeHook';
 import AddHallRateHook from '../../hooks/hall/addHallRateHook';
 import Hallrating from '../../compenents/global/widgets/hallrating';
 

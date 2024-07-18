@@ -14,6 +14,7 @@ const ForgetPasswordHook = () => {
   };
 
   const onSubmit = async () => {
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert('Invalid email');
