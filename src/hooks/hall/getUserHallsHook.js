@@ -16,7 +16,7 @@ const GetUserHallsHook = () => {
     userData.id ? dispatch(getUserHalls(userData.id)) : '';
     setLoading(false);
   }, [userData]);
-
+  console.log(data,'edit osman')
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
